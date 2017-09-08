@@ -3,15 +3,24 @@
 <head>
 	<meta charset="utf-8">
 	<title>David Bershadsky's Website</title>
+	<style> h1 { color: red; padding: 10px; text-decoration: underline; } </style>
+	<style>
+		body {
+			background-color: rgb(255,0,0);
+
+		}
+		h1 {
+			background-color: blue;
+		}
+		p {
+			background-color: rgb(255,0,0);
+		}
+	</style>
 </head>
 <body>
+
 	<h1>Welcome To my COMPSCI Portfolio</h1>
-	<H2>Just a warinig everything here will be total trash</H2>
-	<h3>I like Building things</h3>
-	<h4>I like 3d printing/robotics/airplanes/cars/drones/And Most importantly Burning things</h4>
-	<img src="IMG_6570.jpg" alt="My new drone" style="width:304px;height:228px;">
-	<img src="IMG_6576.jpg" alt="CUBES" style="width:304px;height:228px;">
-	<video id="IMG_4186" width="640" height="360" preload controls>
-		<source src="IMG_4186.mov" />
+	<h5><a href="About/About.html">About Me</a></h5>
+	<h6><a href="house/House.html">House project</a></h6>
 	</body>
 	</html>
