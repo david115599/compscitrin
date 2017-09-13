@@ -3,10 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<title>David Bershadsky's Website</title>
-	<style> h1 { color: red; padding: 10px; text-decoration: underline; } </style>
+	<style> h1 { color: (red); padding: 10px; text-decoration: underline; } </style>
 	<style>
 		body {
-			background-color: rgb(255,0,0);
+			background-color: rgb(0,255,255);
 
 		}
 		h1 {
@@ -18,9 +18,10 @@
 	</style>
 </head>
 <body>
-
+<center>
 	<h1>Welcome To my COMPSCI Portfolio</h1>
 	<h5><a href="About/About.html">About Me</a></h5>
 	<h6><a href="house/House.html">House project</a></h6>
+	</center>
 	</body>
 	</html>
