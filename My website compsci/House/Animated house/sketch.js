@@ -1,10 +1,10 @@
 
 var y = 0;
 
+var bg = loadImage("House.png");
+
 function setup() {
-  // The background image must be the same size as the parameters
-  // into the createCanvas() method. In this program, the size of
-  // the image is 720x400 pixels.
+
 
   createCanvas(300, 300);
 }
@@ -12,9 +12,9 @@ function setup() {
 function draw() {
 
 
-  //stroke(226, 204, 0);
-  //line(0, y, width, y);
-  background(255)
+  stroke(226, 204, 0);
+  line(0, -y, width, -y);
+  background("bg")
   fill(0);
   ellipse(100, y+100, 80, 80);
   ellipse(150, y+150, 80, 80);
