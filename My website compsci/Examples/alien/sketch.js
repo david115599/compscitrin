@@ -27,7 +27,7 @@ function draw() {
   ellipse(100, y+50, 20, 40);
 
 
-  y=y+1+2*y;
+  y=y+1+2*y+y^2;
   if (y > height-200) {
     y = 0;
 
