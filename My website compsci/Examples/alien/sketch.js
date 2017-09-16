@@ -1,6 +1,6 @@
 
 var y = 0;
-
+var v = 10
 //var bg = loadImage("House.png");
 
 function setup() {
@@ -12,8 +12,9 @@ function setup() {
 function draw() {
 
 
+
   stroke(226, 204, 0);
-  line(0, -y, width, -y);
+  line(0, y, width, y);
   background(255)
   fill(0);
   ellipse(100, y+100, 80, 80);
@@ -27,10 +28,12 @@ function draw() {
   ellipse(100, y+50, 20, 40);
 
 
-  y=y+1+2*y+y^2;
-  if (y > height-200) {
-    y = 0;
-
+if (y > -1 & y < height-200) {
+    y = y+v;
+  }
+else{
+    v = -v
+    y = y+v;
   }
 }
 
