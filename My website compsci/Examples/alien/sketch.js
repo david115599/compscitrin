@@ -29,11 +29,11 @@ function draw() {
 
 
 if (y > -1 & y < height-200) {
-    y = y+v;
+    y = y+v+++v^2;
   }
 else{
     v = -v
-    y = y+v;
+    y = y+v+++v^2;
   }
 }
 
