@@ -1,14 +1,56 @@
 W=(1422.5)
 H=(800)
+var deltax=3;
+var x=60;
+var starx = [];
+var stary = [];
+var starw = [];
+var sx = 0;
+var sy = 0;
+var sxv = 2;
+var syv = 2;
+
 
 
 function setup() {
 
   createCanvas(W,H);
-  background(100,255,100);
+  background(0,0,180);
+  for(var i = 0; i<50; i++){
+    starx.push(random(0,width));
+    stary.push(random(0,height));
+    starw.push(random(1,6));
+  }
+  
+}
+
+function draw() {
+
+//sun/moon
+if (sx > -1 & sx < width) {
+    sx = sx+sxv;
+  }
+  else{
+    sxv = -sxv
+    sx = sx+sxv;
+  }
+  if (sy > -1 & sy < 400) {
+    sy = sy+syv;
+  }
+  else{
+    syv = -syv
+    sy = sy+syv;
+  }
+  fill(255,255,0);
+ellipse(sx,sy,80,80)
+//stars
+for(var i = 0; i<50; i++){
+    fill(255,0,0);
+    ellipse(starx[i],stary[i],starw[i],starw[i]);
+  }
 //House
-fill(10,80,200);
-rect(0, 0, W, H/1.5);
+fill(100,255,100);
+rect(0,500, W, H/2);
 fill(0,0,180);
 rect(W/2-W/4/2,H/2.5,W/4,H/2);
 triangle(W/3,H/2.5,W/2, H/5, W/1.5, H/2.5);
