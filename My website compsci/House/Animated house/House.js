@@ -9,7 +9,17 @@ var sx = 0;
 var sy = 0;
 var sxv = 2;
 var syv = 2;
-
+var beginX = 20.0;  // Initial x-coordinate
+var beginY = 10.0;  // Initial y-coordinate
+var endX = 570.0;   // Final x-coordinate
+var endY = 320.0;   // Final y-coordinate
+var distX;          // X-axis distance to move
+var distY;          // Y-axis distance to move
+var exponent = 4;   // Determines the curve
+var xs = 0.0;        // Current x-coordinate
+var ys = 0.0;        // Current y-coordinate
+var step = 0.01;    // Size of each step avar the path
+var pct = 0.0;   
 
 
 function setup() {
@@ -21,12 +31,22 @@ function setup() {
     stary.push(random(0,height));
     starw.push(random(1,6));
   }
-  
+  distX = endX - beginX;
+  distY = endY - beginY;
 }
 
 function draw() {
 
 //sun/moon
+fill(0, 2);
+  rect(0, 0, width, height);
+  pct += step;
+  if (pct < 1.0) {
+    xs = beginX + (pct * distX);
+    ys = beginY + (pow(pct, exponent) * distY);
+  }
+  fill(255);
+  ellipse(xs, ys, 20, 20);
 if (sx > -1 & sx < width) {
     sx = sx+sxv;
   }
