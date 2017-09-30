@@ -12,7 +12,7 @@ var endX = 570.0;   // Final x-coordinate
 var endY = 320.0;   // Final y-coordinate
 var distX;          // X-axis distance to move
 var distY;          // Y-axis distance to move
-var exponent = 4;   // Determines the curve
+var exponent = 2;   // Determines the curve
 var xs = 0.0;        // Current x-coordinate
 var ys = 0.0;        // Current y-coordinate
 var step = 0.01;    // Size of each step along the path
@@ -49,10 +49,10 @@ endX = 570.0;   // Final x-coordinate
 endY = 320.0;   // Final y-coordinate
 distX;          // X-axis distance to move
 distY;          // Y-axis distance to move
-exponent = 4;   // Determines the curve
+exponent = 2;   // Determines the curve
 xs = 0.0;        // Current x-coordinate
 ys = 0.0;        // Current y-coordinate
-step = 0.01;    // Size of each step along the path
+step = -0.01;    // Size of each step along the path
 pct2 += step
 distX = endX - beginX;
 distY = endY - beginY;
