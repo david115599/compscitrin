@@ -1,22 +1,21 @@
 W=(1422.5)
 H=(800)
 var deltax=3;
-var x=60;
 var starx = [];
 var stary = [];
 var starw = [];
-var beginX = -700.0;  // Initial x-coordinate
-var beginY = 800.0;  // Initial y-coordinate
-var endX = 90.0;   // Final x-coordinate
-var endY = -20.0;   // Final y-coordinate
-var distX;          // X-axis distance to move
-var distY;          // Y-axis distance to move
-var exponent = 1/4;   // Determines the curve
-var xs = 0.0;        // Current x-coordinate
-var ys = 0.0;        // Current y-coordinate
-var step = 0.005;    // Size of each step avar the path
 var pct = 0.0;   // Percentage traveled (0.0 to 1.0)
 var pct2 = 0.0;      // Percentage traveled (0.0 to 1.0)
+var beginX = 20.0;  // Initial x-coordinate
+var beginY = 10.0;  // Initial y-coordinate
+var endX = 570.0;   // Final x-coordinate
+var endY = 320.0;   // Final y-coordinate
+var distX;          // X-axis distance to move
+var distY;          // Y-axis distance to move
+var exponent = 4;   // Determines the curve
+var xs = 0.0;        // Current x-coordinate
+var ys = 0.0;        // Current y-coordinate
+var step = 0.01;    // Size of each step along the path
 
 function setup() {
 
@@ -38,9 +37,9 @@ fill(0, 2);
 rect(0, 0, width, height);
 pct += step;
 ;
-if (pct < 1.0) {
-  xs = beginX + (pct * distX);
-  ys = beginY + (pow(pct, exponent) * distY);
+if (pct < 2.0) {
+  xs = -(beginX + (pct * distX));
+  ys = (beginY + (pow(pct, exponent) * distY));
 }
 else {
 
@@ -57,8 +56,8 @@ step = 0.01;    // Size of each step along the path
 pct2 += step
 distX = endX - beginX;
 distY = endY - beginY;
-xs = beginX + (pct2 * distX);
-ys = beginY + (pow(pct2, exponent) * distY);
+xs = (beginX + (pct2 * distX));
+ys = (beginY + (pow(pct2, exponent) * distY));
 }
 fill(255);
 ellipse(xs+width/2, ys, 20, 20);
