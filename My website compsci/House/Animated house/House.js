@@ -15,7 +15,7 @@ var distY;          // Y-axis distance to move
 var exponent = 2;   // Determines the curve
 var xs = 0.0;        // Current x-coordinate
 var ys = 0.0;        // Current y-coordinate
-var step = -0.01;    // Size of each step along the path
+var step = 0.01;    // Size of each step along the path
 
 function setup() {
 
@@ -39,7 +39,7 @@ if (pct < 2.0) {
   xs = -(beginX + (pct * distX));
   ys = (beginY + (pow(pct, exponent) * distY));
 }
-/*else {
+else {
 
 beginX = 20.0;  // Initial x-coordinate
 beginY = 10.0;  // Initial y-coordinate
@@ -56,7 +56,7 @@ distX = endX - beginX;
 distY = endY - beginY;
 xs = (beginX + (pct2 * distX));
 ys = (beginY + (pow(pct2, exponent) * distY));
-}*/
+}
 fill(255);
 ellipse(xs+width/2, ys, 20, 20);
 
