@@ -15,10 +15,12 @@ var distY;          // Y-axis distance to move
 var exponent = 2;   // Determines the curve
 var xs = 0.0;        // Current x-coordinate
 var ys = 0.0;        // Current y-coordinate
-var step = 0.011;    // Size of each step along the path
+var step = 0.001;    // Size of each step along the path
 var cr = 255;
 var cg = 255;
 var cb = 0;
+
+
 
 function setup() {
 
@@ -50,15 +52,14 @@ if (pct <= 1.55) {
 else{
 console.log("go back");
 console.log(pct);
+console.log(cb);
 pct = .45;
-if (cb=0) {
+if (cb==0) {
   cb=255;
 }
-else {
+else if (cb==255) {
   cb=0;
 }
-
-
 }
 
 //stars
