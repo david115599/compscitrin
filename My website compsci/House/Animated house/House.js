@@ -19,8 +19,11 @@ var step = 0.001;    // Size of each step along the path
 var cr = 255;
 var cg = 255;
 var cb = 0;
-
-
+var bgc=1;
+var y = 0;
+var x = 0;
+var v = 4;
+var q = 6;
 
 function setup() {
 
@@ -35,7 +38,7 @@ function setup() {
 }
 
 function draw() {
-background(0,0,170);
+background(0,0,255-bgc);
 //sun/moon
 fill(0, 2);
 rect(0, 0, width, height);
@@ -53,15 +56,37 @@ else{
 console.log("go back");
 console.log(pct);
 console.log(cb);
+console.log(bgc);
 pct = .45;
 if (cb==0) {
   cb=255;
+  bgc=255;
 }
 else if (cb==255) {
   cb=0;
+  bgc=0;
 }
 }
+//cloud
+fill(255,0,0);
+rect(x+100, y+100, 80, 20);
+rect(x+130, y+100, 20, 80);
 
+
+if (y > -100 & y < height-400) {
+  y = y+v;
+}
+else{
+  v = -v
+  y = y+v;
+}
+if (x > -100 & x < width-125) {
+  x = x+q;
+}
+else{
+  q = -q
+  x = x+q;
+}
 //stars
 for(var i = 0; i<50; i++){
   fill(255,0,0);
