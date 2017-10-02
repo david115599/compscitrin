@@ -4,12 +4,11 @@ var deltax=3;
 var starx = [];
 var stary = [];
 var starw = [];
-var pct = 0.0;   // Percentage traveled (0.0 to 1.0)
-var pct2 = 0.0;      // Percentage traveled (0.0 to 1.0)
-var beginX = 20.0;  // Initial x-coordinate
-var beginY = 10.0;  // Initial y-coordinate
-var endX = 570.0;   // Final x-coordinate
-var endY = 320.0;   // Final y-coordinate
+var pct = 0.0;   // Percentage traveled (0.0 to 2.0)
+var beginX = W;//-720.0;  // Initial x-coordinate
+var beginY = H;///320.0;  // Initial y-coordinate
+var endX = 0.0;   // Final x-coordinate
+var endY = 0.0;   // Final y-coordinate
 var distX;          // X-axis distance to move
 var distY;          // Y-axis distance to move
 var exponent = 2;   // Determines the curve
@@ -20,6 +19,7 @@ var step = 0.01;    // Size of each step along the path
 function setup() {
 
   createCanvas(W,H);
+  background(0,0,180);
   for(var i = 0; i<50; i++){
     starx.push(random(0,width));
     stary.push(random(0,height));
@@ -30,33 +30,17 @@ function setup() {
 }
 
 function draw() {
-background(0,0,180);
+
 //sun/moon
 fill(0, 2);
 rect(0, 0, width, height);
 pct += step;
-if (pct < 2.0) {
-  xs = -(beginX + (pct * distX));
-  ys = (beginY + (pow(pct, exponent) * distY));
+;
+if (pct <= 2.0) {
+  xs = (beginX + (pct * distX));
+  ys = beginY*pow(xs, exponent)/pow(beginX, exponent);
 }
-else {
 
-beginX = 20.0;  // Initial x-coordinate
-beginY = 10.0;  // Initial y-coordinate
-endX = 570.0;   // Final x-coordinate
-endY = 320.0;   // Final y-coordinate
-distX;          // X-axis distance to move
-distY;          // Y-axis distance to move
-exponent = 2;   // Determines the curve
-xs = 0.0;        // Current x-coordinate
-ys = 0.0;        // Current y-coordinate
-step = -0.01;    // Size of each step along the path
-pct2 += step
-distX = endX - beginX;
-distY = endY - beginY;
-xs = (beginX + (pct2 * distX));
-ys = (beginY + (pow(pct2, exponent) * distY));
-}
 fill(255);
 ellipse(xs+width/2, ys, 20, 20);
 
@@ -66,7 +50,7 @@ for(var i = 0; i<50; i++){
   fill(255,0,0);
   ellipse(starx[i],stary[i],starw[i],starw[i]);
 }
-//House
+///House
 fill(100,255,100);
 rect(0,500, W, H/2);
 fill(0,0,180);
