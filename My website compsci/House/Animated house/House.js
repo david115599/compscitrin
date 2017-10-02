@@ -4,22 +4,22 @@ var deltax=3;
 var starx = [];
 var stary = [];
 var starw = [];
-var pct = 0.0;   // Percentage traveled (0.0 to 2.0)
-var beginX = W;//-720.0;  // Initial x-coordinate
-var beginY = H;///320.0;  // Initial y-coordinate
-var endX = 0.0;   // Final x-coordinate
-var endY = 0.0;   // Final y-coordinate
+var pct = 0.45;   // Percentage traveled (0.0 to 2.0)
+var pct2 = 0.45;   // Percentage traveled (0.0 to 2.0)
+var beginX = W;// Initial x-coordinate
+var beginY = H;// Initial y-coordinate
+var endX = 0;   // Final x-coordinate
+var endY = 0;   // Final y-coordinate
 var distX;          // X-axis distance to move
 var distY;          // Y-axis distance to move
 var exponent = 2;   // Determines the curve
 var xs = 0.0;        // Current x-coordinate
 var ys = 0.0;        // Current y-coordinate
-var step = 0.01;    // Size of each step along the path
+var step = 0.011;    // Size of each step along the path
 
 function setup() {
 
   createCanvas(W,H);
-  background(0,0,180);
   for(var i = 0; i<50; i++){
     starx.push(random(0,width));
     stary.push(random(0,height));
@@ -30,20 +30,24 @@ function setup() {
 }
 
 function draw() {
-
+background(0,0,180);
 //sun/moon
 fill(0, 2);
 rect(0, 0, width, height);
 pct += step;
-;
-if (pct <= 2.0) {
+pct2 += step;
+
+if (pct <= 1.55) {
   xs = (beginX + (pct * distX));
   ys = beginY*pow(xs, exponent)/pow(beginX, exponent);
+  fill(255,255,0);
+  ellipse(xs+width/2, ys+45, 80, 80);
 }
-
-fill(255);
-ellipse(xs+width/2, ys, 20, 20);
-
+else{
+ptc = .45;
+xs = 0.0;
+ys = 0.0;
+}
 
 //stars
 for(var i = 0; i<50; i++){
