@@ -16,6 +16,9 @@ var exponent = 2;   // Determines the curve
 var xs = 0.0;        // Current x-coordinate
 var ys = 0.0;        // Current y-coordinate
 var step = 0.011;    // Size of each step along the path
+var cr = 255;
+var cg = 255;
+var cb = 0;
 
 function setup() {
 
@@ -30,7 +33,7 @@ function setup() {
 }
 
 function draw() {
-background(0,0,180);
+background(0,0,170);
 //sun/moon
 fill(0, 2);
 rect(0, 0, width, height);
@@ -40,13 +43,21 @@ pct2 += step;
 if (pct <= 1.55) {
   xs = (beginX + (pct * distX));
   ys = beginY*pow(xs, exponent)/pow(beginX, exponent);
-  fill(255,255,0);
+  fill(cr,cg,cb);
   ellipse(xs+width/2, ys+45, 80, 80);
 }
+
 else{
-ptc = .45;
-xs = 0.0;
-ys = 0.0;
+console.log("go back");
+console.log(pct);
+pct = .45;
+if (cb=0) {
+  cb=255;
+}
+if (cb=255) {
+  cb=0;
+}
+
 }
 
 //stars
@@ -55,7 +66,7 @@ for(var i = 0; i<50; i++){
   ellipse(starx[i],stary[i],starw[i],starw[i]);
 }
 ///House
-fill(100,255,100);
+fill(100,255,120);
 rect(0,500, W, H/2);
 fill(0,0,180);
 rect(W/2-W/4/2,H/2.5,W/4,H/2);
