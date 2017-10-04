@@ -67,20 +67,20 @@ else if (cb==255) {
   bgc=0;
 }
 }
-//cloud
-fill(255,0,0);
+//The All Mighty T
+ fill(255,0,0);
 rect(x+100, y+100, 80, 20);
 rect(x+130, y+100, 20, 80);
 
 
-if (y > -100 & y < height-400) {
+if (y > -100 & y < height-800) {
   y = y+v;
 }
 else{
   v = -v
   y = y+v;
 }
-if (x > -100 & x < width-125) {
+if (x > -100 & x < width-200) {
   x = x+q;
 }
 else{
