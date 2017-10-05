@@ -38,7 +38,7 @@ function setup() {
 }
 
 function draw() {
-background(0,0,255-bgc);
+background(0,0,255-pct*255+150);
 //sun/moon
 fill(0, 2);
 rect(0, 0, width, height);
