@@ -24,7 +24,12 @@ var y = 0;
 var x = 0;
 var v = 4;
 var q = 6;
+var img;
 
+function preload()
+{
+  img = loadImage("House.png");
+}
 function setup() {
 
   createCanvas(W,H);
@@ -39,6 +44,7 @@ function setup() {
 
 function draw() {
 background(0,0,255-pct*255+150);
+
 //sun/moon
 fill(0, 2);
 rect(0, 0, width, height);
@@ -108,6 +114,8 @@ rect(800-15,400,75,75);
 rect(580-15,600,75,75);
 rect(800-15,600,75,75);
 rect(690-15,400,75,75);
+//picture
+image(img, 0, 0);
 //Path
 fill(255,0,0)
 rect(690-15,720,10,10);
@@ -172,4 +180,15 @@ fill(139,69,19);
 rect(200,450,50,200);
 fill(0,255,0);
 ellipse(228,390,200,200);
+//fence
+for (var f = 0; f <= 670; f += 20) {
+  fill(0,255,255);
+  rect(f, H-100,10,60);
+  rect(f,H-100,20,10)
 }
+for (var f2 = 760; f2 <= W; f2 += 20) {
+  fill(0,255,255);
+  rect(f2, H-100,10,60);
+  rect(f2-10,H-100,20,10)
+ }
+ }
