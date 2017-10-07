@@ -26,13 +26,12 @@ var v = 4;
 var q = 6;
 var img;
 
-function preload()
-{
-  img = loadImage("House.png");
-}
+
+
 function setup() {
 
   createCanvas(W,H);
+  img = loadImage("House.png");
   for(var i = 0; i<50; i++){
     starx.push(random(0,width));
     stary.push(random(0,height));
@@ -115,7 +114,7 @@ rect(580-15,600,75,75);
 rect(800-15,600,75,75);
 rect(690-15,400,75,75);
 //picture
-image(img, 0, 0);
+image(img, 690-15,400);
 //Path
 fill(255,0,0)
 rect(690-15,720,10,10);
@@ -186,7 +185,7 @@ for (var f = 0; f <= 670; f += 20) {
   rect(f, H-100,10,60);
   rect(f,H-100,20,10)
 }
-for (var f2 = 760; f2 <= W; f2 += 20) {
+for (var f2 = 750; f2 <= W; f2 += 20) {
   fill(0,255,255);
   rect(f2, H-100,10,60);
   rect(f2-10,H-100,20,10)
