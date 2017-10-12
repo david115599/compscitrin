@@ -15,7 +15,7 @@ var distY;          // Y-axis distance to move
 var exponent = 2;   // Determines the curve
 var xs = 0.0;        // Current x-coordinate
 var ys = 0.0;        // Current y-coordinate
-var step = 0.001;    // Size of each step along the path
+var step = 0.01;    // Size of each step along the path
 var cr = 255;
 var cg = 255;
 var cb = 0;
@@ -25,7 +25,7 @@ var x = 0;
 var v = 4;
 var q = 6;
 var img;
-
+var skc = 0;
 
 
 function setup() {
@@ -42,8 +42,11 @@ function setup() {
 }
 
 function draw() {
-background(0,0,255-pct*255+150);
-
+if (cb==0) {
+  background(0,0,150-pct*255+200);
+} else {
+  background(0,0,0+pct*100+50);
+}
 //sun/moon
 fill(0, 2);
 rect(0, 0, width, height);
@@ -51,7 +54,7 @@ pct += step;
 pct2 += step;
 
 if (pct <= 1.55) {
-  xs = (beginX + (pct * distX));
+xs = (beginX + (pct * distX));
   ys = beginY*pow(xs, exponent)/pow(beginX, exponent);
   fill(cr,cg,cb);
   ellipse(xs+width/2, ys+45, 80, 80);
