@@ -2,11 +2,14 @@
 <html>
 <head>
 	<title>Control Structures</title>
+	<style>
+body {background-color: lightgreen;}
+h1   {color: orange; }
+</style>
 </head>
 <body>
 	<center>
-    <h1>The Emptiness is you</h1>
-    <img src="Emptiness....jpg" alt="Empty" style="width:608px;height:456px;">
+    <h1>Welcome to unit 2</h1>
 	</center>
 </body>
 </html>
