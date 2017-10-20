@@ -1,23 +1,23 @@
-W=(401)
-H=(401)
-
+W=(601)
+H=(601)
 
 function setup() {
 
   createCanvas(W,H);
   background(255,255,255);
+
+  rSlider = createSlider(0, 50, 0, .009);
+  rSlider.position(20, 20);
+  var r=rSlider;
 }
 
 function draw(){
 Grid();
+ellipse(0, 0, r, r);
 }
-function mouseClicked() {
-  ellipse(mouseX, mouseY, 40, 40);
-  // prevent default
-  return true;
-}
+
 function Grid(){
-  for(var i = .5; i < W; i += 10) {
+  for(var i = .5; i < W; i += 20) {
      strokeWeight(1);
      line(W, i,0,i );
      line(i, 0,i,W );
