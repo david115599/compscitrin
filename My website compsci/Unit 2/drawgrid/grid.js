@@ -2,13 +2,13 @@ function setup(){
 createCanvas (400,400);
 drawGrid(25);
 }
-var x =();
-var y =();
-var a =();
-var b =();
-
+var x =(200);
+var y =(200);
+var a =(0);
+var b =(0);
+var r=(20);
 function draw(){
-
+ellipse(x+a,y+b,r,r);
 }
 
 function drawGrid(size){
