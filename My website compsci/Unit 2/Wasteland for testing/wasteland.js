@@ -13,12 +13,11 @@ var locked2 = false;
 var bx;
 var by;
 function setup(){
-createCanvas (1000,1000);
+createCanvas (500,500);
  /*slider = createSlider(0, 255, 100);
  slider.position(10, 10);
  slider.style('width', '80px');*/
 }
-
 function draw(){
 background(150,150,150);
 drawGrid(25);
@@ -27,10 +26,10 @@ ellipse ((width/2)-a, (height/2)-b, r, r);
 r == val;*/
 // Test if the cursor is over the box
 fill(0,255,0);
-rect(950,0,50,50);
+rect(width-50,0,50,50);
 fill(255,0,0);
-rect(950,50,50,50);
-  if (mouseX > 950 && mouseX < 1000 &&
+rect(width-50,50,50,50);
+  if (mouseX > width-50 && mouseX < width &&
       mouseY > 0 && mouseY < 50) {
     overBox = true;
     if(!locked) {
@@ -43,7 +42,7 @@ rect(950,50,50,50);
     fill(153);
     overBox = false;
   }
-  if (mouseX > 950 && mouseX < 1000 &&
+  if (mouseX > width-50 && mouseX < width &&
       mouseY > 50 && mouseY < 100) {
     overBox2 = true;
     if(!locked2) {
@@ -63,13 +62,11 @@ rect(950,50,50,50);
 // temporary slider replacement
 function mousePressed() {
   if(overBox) {
-    locked = true;
     console.log("trueup")
   } else {
     locked = false;
   }
   if(overBox2) {
-    locked2 = true;
     console.log("truedown")
   } else {
     locked2 = false;
