@@ -1,13 +1,4 @@
-<<<<<<< HEAD
 var r = rSlider.value();
-=======
-var rSlider;
-var x =(200);
-var y =(200);
-var b =(0);
-var a =(0);
-var r=20;
->>>>>>> e5c0421aaa60f527f36575520b38984d032008de
 function setup(){
 createCanvas (400,400);
 drawGrid(25);
@@ -17,11 +8,7 @@ drawGrid(25);
 }
 
 function draw(){
-<<<<<<< HEAD
 ellipse (0, 0, r, r)
-=======
-ellipse(x+a,y+b,r,r);
->>>>>>> e5c0421aaa60f527f36575520b38984d032008de
 }
 
 function drawGrid(size){
