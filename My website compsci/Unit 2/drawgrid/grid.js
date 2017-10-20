@@ -1,5 +1,5 @@
-W=(601)
-H=(601)
+var W=(401);
+var H=(401);
 
 function setup() {
 
