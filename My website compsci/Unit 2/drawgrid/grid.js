@@ -1,7 +1,10 @@
-W=(401)
-H=(401)
-
-
+var W=(401);
+var H=(401);
+var a = (0);
+var b = (0);
+var x = (200);
+var y = (200);
+var r;
 function setup() {
 
   createCanvas(W,H);
@@ -10,8 +13,11 @@ function setup() {
 
 function draw(){
 Grid();
+ellipse(x,y,r,r);
+
 }
 function mouseClicked() {
+
   ellipse(mouseX, mouseY, 40, 40);
   // prevent default
   return true;
