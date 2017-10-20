@@ -1,6 +1,6 @@
 W=(601)
 H=(601)
-
+var r;
 function setup() {
 
   createCanvas(W,H);
@@ -8,12 +8,12 @@ function setup() {
 
   rSlider = createSlider(0, 50, 0, .009);
   rSlider.position(20, 20);
-  var r=rSlider;
+  r=rSlider;
 }
 
 function draw(){
 Grid();
-ellipse(0, 0, r, r);
+ellipse(200, 200, r, r);
 }
 
 function Grid(){
