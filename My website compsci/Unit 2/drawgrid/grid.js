@@ -2,6 +2,10 @@ function setup(){
 createCanvas (400,400);
 drawGrid(25);
 }
+var x =();
+var y =();
+var a =();
+var b =();
 
 function draw(){
 
