@@ -7,7 +7,7 @@ var slider;
 var val;
 function setup(){
 createCanvas (400,400);
-slider = createSlider(0, 255, 100);
+ slider = createSlider(0, 255, 100);
  slider.position(10, 10);
  slider.style('width', '80px');
 }
@@ -16,6 +16,7 @@ function draw(){
 drawGrid(25);
 ellipse (x-a, y-b, r, r);
 val = slider.value();
+r == val;
 background(val);
 }
 function drawGrid(size){
