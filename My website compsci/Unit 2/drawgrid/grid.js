@@ -1,6 +1,10 @@
+var rSlider;
 function setup(){
 createCanvas (400,400);
 drawGrid(25);
+// create sliders
+  rSlider = createSlider(0, 50, 0, 100);
+  rSlider.position(20, 20);
 }
 
 function draw(){
