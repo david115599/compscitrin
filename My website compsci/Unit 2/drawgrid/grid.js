@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 var W=(401);
 var H=(401);
 
+=======
+var W=(601)
+var H=(601)
+var r;
+>>>>>>> 8b48a5a7f4a08ed444fb0775b6c8950061a20245
 function setup() {
 
   createCanvas(W,H);
@@ -8,12 +14,12 @@ function setup() {
 
   rSlider = createSlider(0, 50, 0, .009);
   rSlider.position(20, 20);
-  var r=rSlider;
+  r=rSlider;
 }
 
 function draw(){
 Grid();
-ellipse(0, 0, r, r);
+ellipse(200, 200, r, r);
 }
 
 function Grid(){
