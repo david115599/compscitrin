@@ -14,16 +14,16 @@ var bx;
 var by;
 function setup(){
 createCanvas (500,500);
- /*slider = createSlider(0, 255, 100);
+ slider = createSlider(0, 255, 100);
  slider.position(10, 10);
- slider.style('width', '80px');*/
+ slider.style('width', '80px');
 }
 function draw(){
 background(150,150,150);
 drawGrid(25);
 ellipse ((width/2)-a, (height/2)-b, r, r);
-/*val = slider.value();
-r == val;*/
+val = slider.value();
+r == val;
 // Test if the cursor is over the box
 fill(0,255,0);
 rect(width-50,0,50,50);
@@ -77,7 +77,7 @@ function mousePressed() {
 
 
 function drawGrid(size){
-for (var i = 0; i < width; i += size){
+for (var i = 0; i < width; i += 10){
   line(0,i,width,i);
   line(i,0,i,height)
   }
