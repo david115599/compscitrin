@@ -1,6 +1,6 @@
 var r = (10);
-var x = (200);
-var y = (200);
+var x = (0);
+var y = (0);
 var a = (0);
 var b = (0);
 var slider;
@@ -14,16 +14,19 @@ var bx;
 var by;
 function setup(){
 createCanvas (500,500);
- slider = createSlider(0, 255, 100);
+ slider = createSlider(0, width, 100);
  slider.position(10, 10);
  slider.style('width', '80px');
 }
 function draw(){
 background(150,150,150);
 drawGrid(25);
-ellipse ((width/2)-a, (height/2)-b, r, r);
+translate(width/2, height/2);
+fill(0,255,255)
+ellipse (x-a, y-b, r, r);
 val = slider.value();
 r = val;
+translate(-width/2, -height/2);
 }
 
 
