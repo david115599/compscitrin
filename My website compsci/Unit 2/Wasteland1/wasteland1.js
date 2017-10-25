@@ -16,7 +16,7 @@ var theta = 0;
 var x1, y1, centerX, centerY, x2, y2;
 var speed;
 function setup(){
-createCanvas (500,500);
+createCanvas (1000,1000);
  slider = createSlider(0, width, 100);
  slider.position(10, 10);
  slider.style('width', '80px');
@@ -36,17 +36,38 @@ fill(0,255,255)
 ellipse (x-a, y-b, r, r);
 val = slider.value();
 r = val;
+drawRight(); //animated right triangle
 translate(-width/2, -height/2);
-x1=cos(theta)*r/2 + centerX;
-y1=sin(theta)*r/2 + centerY
-x2=cos(theta+90+r)*r/2 + centerX;
-y2=sin(theta+90+r)*r/2 + centerY
-theta=theta+speed;
-triangle(x1, y1, width/2, height/2, x2, y2);
 
 }
 
+function drawRight() {
 
+theta = theta * speed;
+
+x1 = r*25*cos(theta) ;
+y1 = r*25*sin(theta) ;
+//strokeWeight(2.5);
+
+fill('blue');
+triangle(0, 0, x1, y1,x1,0);
+triangle(0,0,-x,-y,-x,0);
+
+//dots
+fill('red')
+strokeWeight(1)
+ellipse(0,0,r*.5,r*.5);//center
+
+
+ellipse(x,y,r*.5,r*.5);//position on circle
+
+
+ellipse(x,0,r*.5,r*.5);//x intercept
+
+//ellipse(-x,-y,r*1.1,r*1.1);
+//ellipse(-x,0,r*1.1,r*1.1);
+
+}
 
 function drawGrid(size){
 for (var i = 0; i < width; i += 10){
