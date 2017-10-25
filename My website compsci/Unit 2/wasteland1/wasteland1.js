@@ -12,6 +12,9 @@ var overBox2 = false;
 var locked2 = false;
 var bx;
 var by;
+var a1=0; //angle
+var x1;//triangle coordinate x
+var y1;// triangle coordinate y
 function setup(){
 createCanvas (500,500);
  slider = createSlider(0, 255, 100);
@@ -21,9 +24,20 @@ createCanvas (500,500);
 function draw(){
 background(150,150,150);
 drawGrid(25);
+fill(0,255,0);
 ellipse ((width/2)-a, (height/2)-b, r, r);
 val = slider.value();
 r = val;
+if (a1<=360) {
+
+a1+=0.01; //limit 360
+
+}
+else {
+a1=0;
+}
+
+drawRight();
 }
 
 function drawGrid(size){
@@ -42,5 +56,20 @@ for (var i = 0; i < width; i += 10){
   line(width/2,0,width/2,height);
   line(0,height/2,width,height/2);
   strokeWeight(1);
+
+}
+
+function drawRight() {
+
+
+
+translate(width/2, height/2);
+x1 = r*cos(a1)/2 ;
+y1 = r*sin(a1)/2 ;
+//strokeWeight(2.5);
+
+fill('blue');
+triangle(0, 0, x1, y1,x1,0);
+//triangle(0,0,-x,-y,-x,0);
 
 }
