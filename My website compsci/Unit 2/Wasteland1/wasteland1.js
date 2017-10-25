@@ -13,7 +13,7 @@ var locked2 = false;
 var bx;
 var by;
 var theta = 0;
-var x1, y1, centerX, centerY;
+var x1, y1, centerX, centerY, x2, y2;
 var speed;
 function setup(){
 createCanvas (500,500);
@@ -39,8 +39,10 @@ r = val;
 translate(-width/2, -height/2);
 x1=cos(theta)*r/2 + centerX;
 y1=sin(theta)*r/2 + centerY
-ellipse(x1, y1, 10, 10);
+x2=cos(theta+90+r)*r/2 + centerX;
+y2=sin(theta+90+r)*r/2 + centerY
 theta=theta+speed;
+triangle(x1, y1, width/2, height/2, x2, y2);
 
 }
 
