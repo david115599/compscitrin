@@ -13,8 +13,8 @@ var locked2 = false;
 var bx;
 var by;
 function setup(){
-createCanvas (500,500);
- slider = createSlider(0, 255, 100);
+createCanvas (1000,1000);
+ slider = createSlider(0, width, 100);
  slider.position(10, 10);
  slider.style('width', '80px');
 }
@@ -23,58 +23,39 @@ background(150,150,150);
 drawGrid(25);
 ellipse ((width/2)-a, (height/2)-b, r, r);
 val = slider.value();
-r == val;
-// Test if the cursor is over the box
-fill(0,255,0);
-rect(width-50,0,50,50);
-fill(255,0,0);
-rect(width-50,50,50,50);
-  if (mouseX > width-50 && mouseX < width &&
-      mouseY > 0 && mouseY < 50) {
-    overBox = true;
-    if(!locked) {
-      stroke(0,255,0);
-      fill(153);
-      r=r+1;
-    }
-  } else {
-    stroke(0);
-    fill(153);
-    overBox = false;
-  }
-  if (mouseX > width-50 && mouseX < width &&
-      mouseY > 50 && mouseY < 100) {
-    overBox2 = true;
-    if(!locked2) {
-      stroke(255,0,0);
-      fill(153);
-      r=r-1;
-    }
-  } else {
-    stroke(0);
-    fill(153);
-    overBox2 = false;
-  }
+r = val;
+drawRight(); //animated right triangle
+translate(-width/2, -height/2);
 
 }
 
+function drawRight() {
 
-// temporary slider replacement
-function mousePressed() {
-  if(overBox) {
-    console.log("trueup")
-  } else {
-    locked = false;
-  }
-  if(overBox2) {
-    console.log("truedown")
-  } else {
-    locked2 = false;
-  }
-  xOffset = mouseX-bx;
-  yOffset = mouseY-by;
+theta = theta * speed;
+
+x1 = r*25*cos(theta) ;
+y1 = r*25*sin(theta) ;
+//strokeWeight(2.5);
+
+fill('blue');
+triangle(0, 0, x1, y1,x1,0);
+triangle(0,0,-x,-y,-x,0);
+
+//dots
+fill('red')
+strokeWeight(1)
+ellipse(0,0,r*.5,r*.5);//center
+
+
+ellipse(x,y,r*.5,r*.5);//position on circle
+
+
+ellipse(x,0,r*.5,r*.5);//x intercept
+
+//ellipse(-x,-y,r*1.1,r*1.1);
+//ellipse(-x,0,r*1.1,r*1.1);
+
 }
-
 
 function drawGrid(size){
 for (var i = 0; i < width; i += 10){
