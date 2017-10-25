@@ -31,15 +31,16 @@ for (var i = 0; i < width; i += 10){
   line(0,i,width,i);
   line(i,0,i,height);
   }
+
+  for (var x = 0; x < width; x += 50){
+  strokeWeight(3);
+  line(x, 240, x, 260);
+  line(240, x, 260, x);
+  }
+
   strokeWeight(3);
   line(width/2,0,width/2,height);
   line(0,height/2,width,height/2);
   strokeWeight(1);
 
-  //why doesn't this work?
-  //for var (x = 0; x < width; x += 10){
-  //strokeWeight(3);
-  //line(x, 240, x, 260);
-  //line(240, x, 260, x);
-//}
 }
