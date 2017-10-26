@@ -17,7 +17,7 @@ var x1;//triangle coordinate x
 var y1;// triangle coordinate y
 function setup(){
 createCanvas (500,500);
- slider = createSlider(0, 255, 100);
+ slider = createSlider(0, 500, 500);
  slider.position(10, 10);
  slider.style('width', '80px');
 }
@@ -30,7 +30,7 @@ val = slider.value();
 r = val;
 if (a1<=360) {
 
-a1+=0.01; //limit 360
+a1+=.01;
 
 }
 else {
@@ -66,10 +66,9 @@ function drawRight() {
 translate(width/2, height/2);
 x1 = r*cos(a1)/2 ;
 y1 = r*sin(a1)/2 ;
-//strokeWeight(2.5);
 
 fill('blue');
 triangle(0, 0, x1, y1,x1,0);
-//triangle(0,0,-x,-y,-x,0);
+triangle(0,0,-x1,-y1,-x1,0);
 
 }
