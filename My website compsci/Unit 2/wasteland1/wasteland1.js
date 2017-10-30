@@ -15,6 +15,8 @@ var by;
 var a1=0; //angle
 var x1;//triangle coordinate x
 var y1;// triangle coordinate y
+var mx;
+var my;
 function setup(){
 createCanvas (500,500);
  slider = createSlider(0, 500, 500);
@@ -25,7 +27,7 @@ function draw(){
 background(150,150,150);
 drawGrid(25);
 fill(0,255,0);
-ellipse ((width/2)-a, (height/2)-b, r, r);
+ellipse ((mx)-a, (my)-b, r, r);
 val = slider.value();
 r = val;
 if (a1<=360) {
@@ -71,4 +73,10 @@ fill('blue');
 triangle(0, 0, x1, y1,x1,0);
 triangle(0,0,-x1,-y1,-x1,0);
 
+}
+function mouseReleased() {
+  if(mouseReleased) {
+    mx=mouseX;
+    my=mouseY;
+  }
 }
