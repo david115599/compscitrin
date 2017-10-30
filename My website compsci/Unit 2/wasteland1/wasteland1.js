@@ -5,11 +5,6 @@ var a = (0);
 var b = (0);
 var slider;
 var val;
-var boxSize = 75;
-var overBox = false;
-var locked = false;
-var overBox2 = false;
-var locked2 = false;
 var bx;
 var by;
 var a1=0; //angle
@@ -19,6 +14,7 @@ var mx;
 var my;
 function setup(){
 createCanvas (500,500);
+
  slider = createSlider(0, 500, 500);
  slider.position(10, 10);
  slider.style('width', '80px');
@@ -27,7 +23,7 @@ function draw(){
 background(150,150,150);
 drawGrid(25);
 fill(0,255,0);
-ellipse ((mx)-a, (my)-b, r, r);
+ellipse (mx, my, r, r);
 val = slider.value();
 r = val;
 if (a1<=360) {
@@ -69,7 +65,9 @@ translate(mx,my);
 x1 = r*cos(a1)/2 ;
 y1 = r*sin(a1)/2 ;
 
-fill('blue');
+fill(255,0,0);
+polygon(0,0,r/2,5);
+fill(0,0,255);
 triangle(0, 0, x1, y1,x1,0);
 triangle(0,0,-x1,-y1,-x1,0);
 
@@ -84,4 +82,15 @@ function mouseReleased() {
   }
 
 }
+}
+
+function polygon(x, y, radius, npoints) {
+  var angle = TWO_PI / npoints;
+  beginShape();
+  for (a = 0; a < TWO_PI; a += angle) {
+    var sx = x + cos(a) * radius;
+    var sy = y + sin(a) * radius;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
 }

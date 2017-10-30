@@ -74,10 +74,13 @@ triangle(0,0,-x1,-y1,-x1,0);
 }
 function mouseReleased() {
   if(mouseReleased) {
+    if (mouseX < width & mouseY < height) {
     mx=mouseX;
     my=mouseY;
     mx-=mx%10;
     my-=my%10;
+  }
+
 }
 }
 
