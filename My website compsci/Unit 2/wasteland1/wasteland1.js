@@ -65,7 +65,7 @@ function drawRight() {
 
 
 
-translate(width/2, height/2);
+translate(mx,my);
 x1 = r*cos(a1)/2 ;
 y1 = r*sin(a1)/2 ;
 
@@ -78,5 +78,7 @@ function mouseReleased() {
   if(mouseReleased) {
     mx=mouseX;
     my=mouseY;
-  }
+    mx-=mx%10;
+    my-=my%10;
+}
 }
