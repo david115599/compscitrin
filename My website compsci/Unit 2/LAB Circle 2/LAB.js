@@ -1,5 +1,5 @@
-var W=(400);
-var H=(400);
+var W=(401);
+var H=(401);
 
 
 function setup() {
@@ -12,17 +12,26 @@ function setup() {
    }
 
 drawGrid2(25);
-rotate(90);
+
 }
 
 function drawGrid2(size){
 
 for (var i = 00; i < width; i += 50){
-/*strokeWeight(5);
+strokeWeight(.5);
+stroke(0,0,0);
   line(0,i,width,i);
-  line(i,0,i,height);*/
-strokeWeight(1);
-  line(i,400,(400),350-i);
+  line(i,0,i,height);
+strokeWeight(2);
+stroke(0,0,255);
+  line(i,400,400,400-i);
+stroke(255,0,0);
+  line(00,400-i,400-i,400);
+stroke(255,255,0);
+  line(0,i,400-i,0);
+stroke(0,255,0);
+  line(400,400-i,400-i,0);
+
 
   }
 
