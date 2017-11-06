@@ -4,14 +4,14 @@ var y = (200);
 var a = (0);
 var b = (0);
 var slider;
-var val;
+var val = 0;
 var bx;
 var by;
 var a1=0; //angle
-var x1;//triangle coordinate x
-var y1;// triangle coordinate y
-var mx;
-var my;
+var x1=0;//triangle coordinate x
+var y1=0;// triangle coordinate y
+var mx=0;
+var my=0;
 function setup(){
 createCanvas (500,500);
 
@@ -22,6 +22,13 @@ createCanvas (500,500);
 function draw(){
 background(150,150,150);
 drawGrid(25);
+textSize(32);
+text(nf(("(x-"))+(mx-height/2)+(")^2+(y-")+(my-width/2)+(")^2=")+(r*r),20,30);
+text((nf(x1,3,0)+("=")+(r)+("cos(")+nf(a1/2,1,2)+(")")), 20, 60);
+text((nf(y1,3,0)+("=")+(r)+("sin(")+nf(a1/2,1,2)+(")")), 20, 90);
+text(("Area = ")+nf(PI*(r*r),4,1), 20, 120);
+text(("Circumference = ")+nf(PI*(2*r),4,1), 20, 150);
+
 fill(0,255,0);
 ellipse (mx, my, r, r);
 val = slider.value();
@@ -36,6 +43,8 @@ a1=0;
 }
 
 drawRight();
+
+
 }
 
 function drawGrid(size){
