@@ -23,10 +23,10 @@ function draw(){
 background(150,150,150);
 drawGrid(25);
 textSize(32);
-text(nf(("(x-"))+(mx-height/2)+(")^2+(y-")+(my-width/2)+(")^2=")+(r^2),20,30);
+text(nf(("(x-"))+(mx-height/2)+(")^2+(y-")+(my-width/2)+(")^2=")+(r*r),20,30);
 text((nf(x1,3,0)+("=")+(r)+("cos(")+nf(a1/2,1,2)+(")")), 20, 60);
 text((nf(y1,3,0)+("=")+(r)+("sin(")+nf(a1/2,1,2)+(")")), 20, 90);
-text(("Area = ")+nf(PI*(r^2),4,1), 20, 120);
+text(("Area = ")+nf(PI*(r*r),4,1), 20, 120);
 text(("Circumference = ")+nf(PI*(2*r),4,1), 20, 150);
 
 fill(0,255,0);
