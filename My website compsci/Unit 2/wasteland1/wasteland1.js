@@ -49,12 +49,12 @@ drawRight();
 }
 
 function drawGrid(size){
-for (var i = 0; i < 500; i += 25){
+for (var i = 0; i < 500; i += 25/2){
   line(0,i,500,i);
   line(i,0,i,500);
   }
 
-  for (var x = 0; x < 500; x += 125){
+  for (var x = 0; x < 500; x += 125/2){
   strokeWeight(3);
   line(x, 240, x, 260);
   line(240, x, 260, x);
