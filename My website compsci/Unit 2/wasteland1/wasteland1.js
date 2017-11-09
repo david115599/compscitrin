@@ -14,14 +14,14 @@ var my=0;
 function setup(){
 createCanvas (1000,500);
 
- slider = createSlider(0, 500, 500);
- slider.position(10, 10);
+ slider = createSlider(0, 500, 200);
+ slider.position(550, 15);
  slider.style('width', '80px');
 }
 
 function draw(){
   background(150,150,150);
-translate(500,0);
+translate(500,25);
   fill(0,255,0);
   textSize(32);
   text(nf(("(x-"))+((mx-height/2)/(25/2))+(")^2+(y-")+((my-width/2)/(25/2))+(")^2=")+(((r/2)/(25/2))*((r/2)/(25/2))),20,30);
@@ -29,7 +29,7 @@ translate(500,0);
   text((nf(y1,3,0)+("=")+((r/2))+("sin(")+nf(a1/2,1,2)+(")")), 20, 90);
   text(("Area = ")+nf(PI*(((r/2)/(25/2))*((r/2)/(25/2))),4,1), 20, 120);
   text(("Circumference = ")+nf(PI*(2*((r/2)/(25/2))),4,1), 20, 150);
-translate(-500,0);
+translate(-500,-25);
   drawGrid(25);
   fill(0,255,0);
   ellipse (mx, my, r, r);
@@ -87,8 +87,8 @@ function mouseReleased() {
     if (mouseX < 500-r/2 & mouseY < 500-r/2 & mouseX > r/2 & mouseY > r/2) {
     mx=mouseX;
     my=mouseY;
-    mx-=mx%(125/2);
-    my-=my%(125/2);
+  //  mx-=mx%(125/2);
+  //  my-=my%(125/2);
   }
 
 }
