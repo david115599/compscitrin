@@ -24,10 +24,10 @@ function draw(){
 translate(500,0);
   fill(0,255,0);
   textSize(32);
-  text(nf(("(x-"))+((mx-height/2))+(")^2+(y-")+(my-width/2)+(")^2=")+((r/2)*(r/2)),20,30);
+  text(nf(("(x-"))+((mx-height/2)/(25/2))+(")^2+(y-")+((my-width/2)/(25/2))+(")^2=")+(((r/2)/(25/2))*((r/2)/(25/2))),20,30);
   text((nf(x1,3,0)+("=")+((r/2))+("cos(")+nf(a1/2,1,2)+(")")), 20, 60);
   text((nf(y1,3,0)+("=")+((r/2))+("sin(")+nf(a1/2,1,2)+(")")), 20, 90);
-  text(("Area = ")+nf(PI*((r/2)*(r/2)),4,1), 20, 120);
+  text(("Area = ")+nf(PI*(((r/2)/(25/2))*((r/2)/(25/2))),4,1), 20, 120);
   text(("Circumference = ")+nf(PI*(2*(r/2)),4,1), 20, 150);
 translate(-500,0);
   drawGrid(25);
@@ -87,8 +87,8 @@ function mouseReleased() {
     if (mouseX < 500-r/2 & mouseY < 500-r/2 & mouseX > r/2 & mouseY > r/2) {
     mx=mouseX;
     my=mouseY;
-    mx-=mx%10;
-    my-=my%10;
+    mx-=mx%(125/2);
+    my-=my%(125/2);
   }
 
 }
