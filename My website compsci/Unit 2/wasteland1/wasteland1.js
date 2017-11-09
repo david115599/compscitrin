@@ -104,8 +104,3 @@ function polygon(x, y, radius, npoints, spin) {
   }
   endShape(CLOSE);
 }
-
-//function keyPressed(){
-//  if (key == " ")
-//    console.log("THREE")
-//}
