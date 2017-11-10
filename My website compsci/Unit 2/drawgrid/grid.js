@@ -6,41 +6,44 @@ var slider;
 var bx;
 var by;
 var a1=0; //angle
-var x1=1; //triangle coordinate x
-var y1=1; //triangle coordinate y
+var x1=0; //triangle coordinate x
+var y1=0; //triangle coordinate y
 var mx=0;
 var my=0;
+var xint = 0;
 var movement = .01;
 var triangleMove = 1;
 var pause;
-
 function setup(){
 createCanvas (1000,500);
 
- slider = createSlider(0, 500, 500);
- slider.position(10, 10);
+ slider = createSlider(0, 500, 200);
+ slider.position(550, 15);
  slider.style('width', '80px');
 }
 
 function draw(){
   background(150,150,150);
-translate(500,0);
+translate(500,25);
   fill(0,255,0);
   textSize(32);
-  text(nf(("(x-"))+((mx-height/2))+(")^2+(y-")+(my-width/2)+(")^2=")+((r/2)*(r/2)),20,30);
-  text((nf(x1,3,0)+("=")+((r/2))+("cos(")+nf(a1/2,1,2)+(")")), 20, 60);
-  text((nf(y1,3,0)+("=")+((r/2))+("sin(")+nf(a1/2,1,2)+(")")), 20, 90);
-  text(("Area = ")+nf(PI*((r/2)*(r/2)),4,1), 20, 120);
-  text(("Circumference = ")+nf(PI*(2*(r/2)),4,1), 20, 150);
-  text("Press Spacebar to pause.", 20, 180);
-translate(-500,0);
+  text(nf(("(x-"))+((mx-height/2)/(25/2))+(")^2+(y-")+((my-width/2)/(25/2))+(")^2=")+(((r/2)/(25/2))*((r/2)/(25/2))),20,30);
+  text(("x"+("=")+((r/2))+("cos(")+nf(a1/2,1,2)+(")")), 20, 60);
+  text(("y"+("=")+((r/2))+("sin(")+nf(a1/2,1,2)+(")")), 20, 90);
+  text(("Area = ")+nf(PI*(((r/2)/(25/2))*((r/2)/(25/2))),4,1), 20, 120);
+  text(("Circumference = ")+nf(PI*(2*((r/2)/(25/2))),4,1), 20, 150);
+  text(("Angle = ")+(a1*(180/PI)),20,180);
+  text("Press Spacebar to pause.", 20, 210);
+translate(-500,-25);
   drawGrid(25);
+  fill(255,0,0);
+  polygon(mx,my,r/2,5, i += 0.01);
   fill(0,255,0);
   ellipse (mx, my, r, r);
   fill(255,0,0);
-  polygon(mx,my,r/2,5, i += movement);
+  polygon(mx,my,r/2,5, i += 0.01);
   r = slider.value();
-  if (a1<=360 && pause == false) {
+  if (a1<=3.12 && pause == false) {
 
 a1+=.01;
 
@@ -50,15 +53,16 @@ a1=0;
 }
 
 drawRight();
+
 }
 
 function drawGrid(size){
-for (var i = 0; i < 500; i += 25){
+for (var i = 0; i < 501; i += 25/2){
   line(0,i,500,i);
   line(i,0,i,500);
   }
 
-  for (var x = 0; x < 500; x += 125){
+  for (var x = 0; x < 500; x += 125/2){
   strokeWeight(3);
   line(x, 240, x, 260);
   line(240, x, 260, x);
@@ -72,9 +76,12 @@ for (var i = 0; i < 500; i += 25){
 }
 
 function drawRight() {
+
+
+
 translate(mx,my);
-x1 = triangleMove*(r*cos(a1)/2) ;
-y1 = triangleMove*(r*sin(a1)/2) ;
+x1 = r*cos(a1)/2 ;
+y1 = r*sin(a1)/2 ;
 
 fill(255,0,0);
 polygon(0,0,r/2,5);
@@ -88,13 +95,12 @@ function mouseReleased() {
     if (mouseX < 500-r/2 & mouseY < 500-r/2 & mouseX > r/2 & mouseY > r/2) {
     mx=mouseX;
     my=mouseY;
-    mx-=mx%10;
-    my-=my%10;
+    mx-=mx%(500/40);
+    my-=my%(500/40);
   }
 
 }
 }
-
 function polygon(x, y, radius, npoints, spin) {
   var angle = TWO_PI / npoints;
   beginShape();
@@ -108,7 +114,7 @@ function polygon(x, y, radius, npoints, spin) {
 
 function keyTyped(){
   if (key === ' ')
-    pause = !pause ; 
+    pause = !pause ;
   if (pause == true) {
     movement = 0 ;
     x1 = 0 ;
@@ -122,5 +128,5 @@ function keyTyped(){
     x1 = triangleMove*(r*cos(a1)/2) ;
     y1 = triangleMove*(r*sin(a1)/2) ;
     a1 = 0.01 ;
-  } 
+  }
 }
