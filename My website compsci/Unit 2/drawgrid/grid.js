@@ -6,10 +6,13 @@ var slider;
 var bx;
 var by;
 var a1=0; //angle
-var x1=0; //triangle coordinate x
-var y1=0; //triangle coordinate y
+var x1=1; //triangle coordinate x
+var y1=1; //triangle coordinate y
 var mx=0;
 var my=0;
+var movement = .01;
+var triangleMove = 1;
+var pause;
 
 function setup(){
 createCanvas (1000,500);
@@ -29,14 +32,15 @@ translate(500,0);
   text((nf(y1,3,0)+("=")+((r/2))+("sin(")+nf(a1/2,1,2)+(")")), 20, 90);
   text(("Area = ")+nf(PI*((r/2)*(r/2)),4,1), 20, 120);
   text(("Circumference = ")+nf(PI*(2*(r/2)),4,1), 20, 150);
+  text("Press Spacebar to pause.", 20, 180);
 translate(-500,0);
   drawGrid(25);
   fill(0,255,0);
   ellipse (mx, my, r, r);
   fill(255,0,0);
-  polygon(mx,my,r/2,5, i += 0.01);
+  polygon(mx,my,r/2,5, i += movement);
   r = slider.value();
-  if (a1<=360) {
+  if (a1<=360 && pause == false) {
 
 a1+=.01;
 
@@ -68,12 +72,9 @@ for (var i = 0; i < 500; i += 25){
 }
 
 function drawRight() {
-
-
-
 translate(mx,my);
-x1 = r*cos(a1)/2 ;
-y1 = r*sin(a1)/2 ;
+x1 = triangleMove*(r*cos(a1)/2) ;
+y1 = triangleMove*(r*sin(a1)/2) ;
 
 fill(255,0,0);
 polygon(0,0,r/2,5);
@@ -105,7 +106,21 @@ function polygon(x, y, radius, npoints, spin) {
   endShape(CLOSE);
 }
 
-//function keyPressed(){
-//  if (key == " ")
-//    console.log("THREE")
-//}
+function keyTyped(){
+  if (key === ' ')
+    pause = !pause ; 
+  if (pause == true) {
+    movement = 0 ;
+    x1 = 0 ;
+    y1 = 0 ;
+    triangleMove = 0 ;
+        a1 += 0;
+    }
+  else {
+    movement = 0.01 ;
+    triangleMove = 1 ;
+    x1 = triangleMove*(r*cos(a1)/2) ;
+    y1 = triangleMove*(r*sin(a1)/2) ;
+    a1 = 0.01 ;
+  } 
+}
