@@ -10,7 +10,7 @@ var x1=0; //triangle coordinate x
 var y1=0; //triangle coordinate y
 var mx=0;
 var my=0;
-
+var xint = 0;
 function setup(){
 createCanvas (1000,500);
 
@@ -29,6 +29,7 @@ translate(500,25);
   text((nf(y1,3,0)+("=")+((r/2))+("sin(")+nf(a1/2,1,2)+(")")), 20, 90);
   text(("Area = ")+nf(PI*(((r/2)/(25/2))*((r/2)/(25/2))),4,1), 20, 120);
   text(("Circumference = ")+nf(PI*(2*((r/2)/(25/2))),4,1), 20, 150);
+  text(("Angle = ")+(a1*(180/PI)),20,180);
 translate(-500,-25);
   drawGrid(25);
   fill(0,255,0);
@@ -36,7 +37,7 @@ translate(-500,-25);
   fill(255,0,0);
   polygon(mx,my,r/2,5, i += 0.01);
   r = slider.value();
-  if (a1<=360) {
+  if (a1<=3.12) {
 
 a1+=.01;
 
@@ -46,10 +47,11 @@ a1=0;
 }
 
 drawRight();
+
 }
 
 function drawGrid(size){
-for (var i = 0; i < 500; i += 25/2){
+for (var i = 0; i < 501; i += 25/2){
   line(0,i,500,i);
   line(i,0,i,500);
   }
@@ -87,8 +89,8 @@ function mouseReleased() {
     if (mouseX < 500-r/2 & mouseY < 500-r/2 & mouseX > r/2 & mouseY > r/2) {
     mx=mouseX;
     my=mouseY;
-  //  mx-=mx%(125/2);
-  //  my-=my%(125/2);
+    mx-=mx%(500/40);
+    my-=my%(500/40);
   }
 
 }
