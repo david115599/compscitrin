@@ -10,33 +10,34 @@ var x1=0; //triangle coordinate x
 var y1=0; //triangle coordinate y
 var mx=0;
 var my=0;
-
+var xint = 0;
 function setup(){
 createCanvas (1000,500);
 
- slider = createSlider(0, 500, 500);
- slider.position(10, 10);
+ slider = createSlider(0, 500, 200);
+ slider.position(550, 15);
  slider.style('width', '80px');
 }
 
 function draw(){
   background(150,150,150);
-translate(500,0);
+translate(500,25);
   fill(0,255,0);
   textSize(32);
-  text(nf(("(x-"))+((mx-height/2))+(")^2+(y-")+(my-width/2)+(")^2=")+((r/2)*(r/2)),20,30);
+  text(nf(("(x-"))+((mx-height/2)/(25/2))+(")^2+(y-")+((my-width/2)/(25/2))+(")^2=")+(((r/2)/(25/2))*((r/2)/(25/2))),20,30);
   text((nf(x1,3,0)+("=")+((r/2))+("cos(")+nf(a1/2,1,2)+(")")), 20, 60);
   text((nf(y1,3,0)+("=")+((r/2))+("sin(")+nf(a1/2,1,2)+(")")), 20, 90);
-  text(("Area = ")+nf(PI*((r/2)*(r/2)),4,1), 20, 120);
-  text(("Circumference = ")+nf(PI*(2*(r/2)),4,1), 20, 150);
-translate(-500,0);
+  text(("Area = ")+nf(PI*(((r/2)/(25/2))*((r/2)/(25/2))),4,1), 20, 120);
+  text(("Circumference = ")+nf(PI*(2*((r/2)/(25/2))),4,1), 20, 150);
+  text(("Angle = ")+(a1*(180/PI)),20,180);
+translate(-500,-25);
   drawGrid(25);
   fill(0,255,0);
   ellipse (mx, my, r, r);
   fill(255,0,0);
   polygon(mx,my,r/2,5, i += 0.01);
   r = slider.value();
-  if (a1<=360) {
+  if (a1<=3.12) {
 
 a1+=.01;
 
@@ -46,10 +47,11 @@ a1=0;
 }
 
 drawRight();
+
 }
 
 function drawGrid(size){
-for (var i = 0; i < 500; i += 25/2){
+for (var i = 0; i < 501; i += 25/2){
   line(0,i,500,i);
   line(i,0,i,500);
   }
@@ -87,8 +89,8 @@ function mouseReleased() {
     if (mouseX < 500-r/2 & mouseY < 500-r/2 & mouseX > r/2 & mouseY > r/2) {
     mx=mouseX;
     my=mouseY;
-    mx-=mx%10;
-    my-=my%10;
+    mx-=mx%(500/40);
+    my-=my%(500/40);
   }
 
 }
@@ -104,8 +106,3 @@ function polygon(x, y, radius, npoints, spin) {
   }
   endShape(CLOSE);
 }
-
-//function keyPressed(){
-//  if (key == " ")
-//    console.log("THREE")
-//}
