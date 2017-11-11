@@ -21,6 +21,7 @@ var angle;
 function setup(){
 createCanvas (1000,500);
 
+//creates slider
  slider = createSlider(0, 500, 200);
  slider.position(550, 15);
  slider.style('width', '80px');
@@ -34,6 +35,7 @@ angle= a1*(180/PI);
 if (a1*(180/PI)>90) {
 angle = 90-(angle-90);
 }
+  //writes text on right side of screen
   textSize(32);
   text(nf(("(x-"))+((mx-height/2)/(25/2))+(")^2+(y-")+((my-width/2)/(25/2))+(")^2=")+nf((((r/2)/(25/2))*((r/2)/(25/2))),3,4),20,30);
   text(("x"+("=")+((r/2))+("cos(")+nf(a1/2,1,2)+(")")), 20, 60);
@@ -56,7 +58,9 @@ fill(0,255,0);
   textSize(10);
   text("("+((mx-250)/(25/2))+","+((my-250)/(25/2))+")", (mx), (my));
 
+  //allows slider to change radius
   r = slider.value();
+  //helps pause animation
   if (a1<=3.12 && pause == false) {
 
 a1+=.01;
@@ -67,6 +71,7 @@ a1=0;
 }
 }
 
+//coordinate plane
 function drawGrid(size){
 for (var i = 0; i < 501; i += 25/2){
   line(0,i,500,i);
@@ -86,6 +91,7 @@ for (var i = 0; i < 501; i += 25/2){
 
 }
 
+//draws the polygon and triangles
 function drawRight() {
 
 
@@ -107,11 +113,14 @@ ta = ta + movement;
 stroke(0,0,0);
 translate(-mx,-my);
 }
+
+//draws circle on mouse coordinates
 function mouseReleased() {
   if(mouseReleased) {
     if (mouseX < 500-r/2 & mouseY < 500-r/2 & mouseX > r/2 & mouseY > r/2) {
     mx=mouseX;
     my=mouseY;
+    //snap to grid
     if (snap == true) {
         mx-=mx%(500/40);
         my-=my%(500/40);
@@ -120,6 +129,8 @@ function mouseReleased() {
 
 }
 }
+
+//draws polygon
 function polygon(x, y, radius, npoints, spin) {
   var angle = TWO_PI / npoints;
   beginShape();
@@ -131,6 +142,7 @@ function polygon(x, y, radius, npoints, spin) {
   endShape(CLOSE);
 }
 
+//pauses animation
 function keyTyped(){
   if (key === 's')
   snap = !snap;
@@ -150,7 +162,7 @@ function keyTyped(){
     y1 = triangleMove*(r*sin(a1)/2) ;
     a1 = 0.01 ;
   }
-  if (key === '2')
+//allows # of sides to change with # keys 2-9 if (key === '2')
   	numSides = 2;
   else if (key === '3')
   	numSides = 3;
