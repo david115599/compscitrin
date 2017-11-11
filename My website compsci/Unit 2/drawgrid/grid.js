@@ -15,7 +15,9 @@ var movement = .01;
 var triangleMove = 1;
 var pause;
 var numSides = 3;
-
+var ta = 0;
+var snap;
+var angle;
 function setup(){
 createCanvas (1000,500);
 
@@ -28,22 +30,32 @@ function draw(){
   background(150,150,150);
 translate(500,25);
   fill(0,255,0);
+angle= a1*(180/PI);
+if (a1*(180/PI)>90) {
+angle = 90-(angle-90);
+}
   textSize(32);
-  text(nf(("(x-"))+((mx-height/2)/(25/2))+(")^2+(y-")+((my-width/2)/(25/2))+(")^2=")+(((r/2)/(25/2))*((r/2)/(25/2))),20,30);
+  text(nf(("(x-"))+((mx-height/2)/(25/2))+(")^2+(y-")+((my-width/2)/(25/2))+(")^2=")+nf((((r/2)/(25/2))*((r/2)/(25/2))),3,4),20,30);
   text(("x"+("=")+((r/2))+("cos(")+nf(a1/2,1,2)+(")")), 20, 60);
   text(("y"+("=")+((r/2))+("sin(")+nf(a1/2,1,2)+(")")), 20, 90);
   text(("Area = ")+nf(PI*(((r/2)/(25/2))*((r/2)/(25/2))),4,1), 20, 120);
   text(("Circumference = ")+nf(PI*(2*((r/2)/(25/2))),4,1), 20, 150);
-  text(("Angle = ")+(a1*(180/PI)),20,180);
+  text(("Angle = ")+(angle),20,180);
   text("Press Spacebar to pause.", 20, 210);
+  text("Press S to snap to grid.", 20, 240);
 translate(-500,-25);
   drawGrid(25);
   fill(255,0,0);
-  polygon(mx,my,r/2,numSides, i += movement);
+    polygon(mx,my,r/2,numSides, i += movement);
   fill(0,255,0);
   ellipse (mx, my, r, r);
   fill(255,0,0);
-  polygon(mx,my,r/2,numSides, i += movement);
+polygon(mx,my,r/2,numSides, i += movement);
+  drawRight();
+fill(0,255,0);
+  textSize(10);
+  text("("+((mx-250)/(25/2))+","+((my-250)/(25/2))+")", (mx), (my));
+
   r = slider.value();
   if (a1<=3.12 && pause == false) {
 
@@ -53,9 +65,6 @@ a1+=.01;
 else {
 a1=0;
 }
-
-drawRight();
-
 }
 
 function drawGrid(size){
@@ -90,15 +99,23 @@ polygon(0,0,r/2,numSides);
 fill(0,0,255);
 triangle(0, 0, x1, y1,x1,0);
 triangle(0,0,-x1,-y1,-x1,0);
-
+stroke(255,255,0);
+rotate(ta);
+line(-r/2,-r/2,-r/2,r/2);
+rotate(-ta);
+ta = ta + movement;
+stroke(0,0,0);
+translate(-mx,-my);
 }
 function mouseReleased() {
   if(mouseReleased) {
     if (mouseX < 500-r/2 & mouseY < 500-r/2 & mouseX > r/2 & mouseY > r/2) {
     mx=mouseX;
     my=mouseY;
-    mx-=mx%(500/40);
-    my-=my%(500/40);
+    if (snap == true) {
+        mx-=mx%(500/40);
+        my-=my%(500/40);
+}
   }
 
 }
@@ -115,6 +132,8 @@ function polygon(x, y, radius, npoints, spin) {
 }
 
 function keyTyped(){
+  if (key === 's')
+  snap = !snap;
   if (key === ' ')
     pause = !pause ;
   if (pause == true) {

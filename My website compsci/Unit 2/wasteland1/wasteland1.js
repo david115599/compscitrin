@@ -6,14 +6,15 @@ var slider;
 var bx;
 var by;
 var a1=0; //angle
-var x1=200; //triangle coordinate x
-var y1=200; //triangle coordinate y
+var x1=0; //triangle coordinate x
+var y1=0; //triangle coordinate y
 var mx=0;
 var my=0;
 var xint = 0;
 var movement = .01;
 var triangleMove = 1;
 var pause;
+var numSides = 3;
 var ta = 0;
 var snap;
 var angle;
@@ -45,11 +46,11 @@ angle = 90-(angle-90);
 translate(-500,-25);
   drawGrid(25);
   fill(255,0,0);
-  polygon(mx,my,r/2,5, i += 0.01);
+    polygon(mx,my,r/2,numSides, i += movement);
   fill(0,255,0);
   ellipse (mx, my, r, r);
   fill(255,0,0);
-  polygon(mx,my,r/2,5, i += 0.01);
+polygon(mx,my,r/2,numSides, i += movement);
   drawRight();
 fill(0,255,0);
   textSize(10);
@@ -64,9 +65,6 @@ a1+=.01;
 else {
 a1=0;
 }
-
-
-
 }
 
 function drawGrid(size){
@@ -93,11 +91,11 @@ function drawRight() {
 
 
 translate(mx,my);
-x1 = r*cos(a1)/2 ;
-y1 = r*sin(a1)/2 ;
+x1 = triangleMove*(r*cos(a1)/2) ;
+y1 = triangleMove*(r*sin(a1)/2) ;
 
 fill(255,0,0);
-polygon(0,0,r/2,5);
+polygon(0,0,r/2,numSides);
 fill(0,0,255);
 triangle(0, 0, x1, y1,x1,0);
 triangle(0,0,-x1,-y1,-x1,0);
@@ -114,11 +112,11 @@ function mouseReleased() {
     if (mouseX < 500-r/2 & mouseY < 500-r/2 & mouseX > r/2 & mouseY > r/2) {
     mx=mouseX;
     my=mouseY;
-if (snap == true) {
-    mx-=mx%(500/40);
-    my-=my%(500/40);
-  }
+    if (snap == true) {
+        mx-=mx%(500/40);
+        my-=my%(500/40);
 }
+  }
 
 }
 }
@@ -140,15 +138,32 @@ function keyTyped(){
     pause = !pause ;
   if (pause == true) {
     movement = 0 ;
-
+    x1 = 0 ;
+    y1 = 0 ;
     triangleMove = 0 ;
         a1 += 0;
     }
   else {
     movement = 0.01 ;
     triangleMove = 1 ;
-    x1 = (r*cos(a1)/2) ;
-    y1 = (r*sin(a1)/2) ;
+    x1 = triangleMove*(r*cos(a1)/2) ;
+    y1 = triangleMove*(r*sin(a1)/2) ;
     a1 = 0.01 ;
   }
+  if (key === '2')
+  	numSides = 2;
+  else if (key === '3')
+  	numSides = 3;
+  else if (key === '4')
+  	numSides = 4;
+  else if (key === '5')
+  	numSides = 5;
+  else if (key === '6')
+  	numSides = 6;
+  else if (key === '7')
+  	numSides = 7;
+  else if (key === '8')
+  	numSides = 8;
+  else if (key === '9')
+  	numSides = 9;
 }
