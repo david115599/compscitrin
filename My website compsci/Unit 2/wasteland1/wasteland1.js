@@ -11,6 +11,9 @@ var y1=0; //triangle coordinate y
 var mx=0;
 var my=0;
 var xint = 0;
+var xint1 = 0;
+var yint = 0;
+var yint1 = 0;
 var movement = .01;
 var triangleMove = 1;
 var pause;
@@ -49,16 +52,28 @@ translate(-500,-25);
     polygon(mx,my,r/2,numSides, i += movement);
   fill(0,255,0);
   ellipse (mx, my, r, r);
+  yint = my+sqrt((r/2)*(r/2)-(250-mx)*(250-mx));
+  yint1 = my-sqrt((r/2)*(r/2)-(250-mx)*(250-mx));
+  xint = mx+sqrt((r/2)*(r/2)-(250-my)*(250-my));
+  xint1 = mx-sqrt((r/2)*(r/2)-(250-my)*(250-my));
+fill(255,0,200);
+  ellipse (250, yint, 10, 10);
+  ellipse (250, yint1, 10, 10);
+  ellipse (xint, 250, 10, 10);
+  ellipse (xint1, 250, 10, 10);
+  textSize(10)
+text("(0,"+nf((yint-250)/(500/40),2,2)+")", 260,yint );
+text("(0,"+nf((yint1-250)/(500/40),2,2)+")", 260,yint1 );
+text("(0,"+nf((xint-250)/(500/40),2,2)+")", xint, 240 );
+text("(0,"+nf((xint1-250)/(500/40),2,2)+")", xint1, 240 );
   fill(255,0,0);
 polygon(mx,my,r/2,numSides, i += movement);
   drawRight();
 fill(0,255,0);
   textSize(10);
   text("("+((mx-250)/(25/2))+","+((my-250)/(25/2))+")", (mx), (my));
-
   r = slider.value();
   if (a1<=3.12 && pause == false) {
-
 a1+=.01;
 
 }
