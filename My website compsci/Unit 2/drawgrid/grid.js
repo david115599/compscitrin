@@ -91,10 +91,8 @@ for (var i = 0; i < 501; i += 25/2){
 
 }
 
-//draws the polygon and triangles
+//draw polygon and triangles
 function drawRight() {
-
-
 
 translate(mx,my);
 x1 = triangleMove*(r*cos(a1)/2) ;
@@ -106,7 +104,7 @@ fill(0,0,255);
 triangle(0, 0, x1, y1,x1,0);
 triangle(0,0,-x1,-y1,-x1,0);
 stroke(255,255,0);
-//tangent line
+//creates tangent line
 rotate(ta);
 line(-r/2,-r/2,-r/2,r/2);
 rotate(-ta);
@@ -121,7 +119,6 @@ function mouseReleased() {
     if (mouseX < 500-r/2 & mouseY < 500-r/2 & mouseX > r/2 & mouseY > r/2) {
     mx=mouseX;
     my=mouseY;
-    //snap to grid
     if (snap == true) {
         mx-=mx%(500/40);
         my-=my%(500/40);
@@ -164,6 +161,7 @@ function keyTyped(){
     a1 = 0.01 ;
   }
 //allows # of sides to change with # keys 2-9 if (key === '2')
+  if (key === '2')
   	numSides = 2;
   else if (key === '3')
   	numSides = 3;
