@@ -14,6 +14,8 @@ var xint = 0;
 var movement = .01;
 var triangleMove = 1;
 var pause;
+var numSides = 3;
+
 function setup(){
 createCanvas (1000,500);
 
@@ -37,11 +39,11 @@ translate(500,25);
 translate(-500,-25);
   drawGrid(25);
   fill(255,0,0);
-  polygon(mx,my,r/2,5, i += movement);
+  polygon(mx,my,r/2,numSides, i += movement);
   fill(0,255,0);
   ellipse (mx, my, r, r);
   fill(255,0,0);
-  polygon(mx,my,r/2,5, i += movement);
+  polygon(mx,my,r/2,numSides, i += movement);
   r = slider.value();
   if (a1<=3.12 && pause == false) {
 
@@ -84,7 +86,7 @@ x1 = triangleMove*(r*cos(a1)/2) ;
 y1 = triangleMove*(r*sin(a1)/2) ;
 
 fill(255,0,0);
-polygon(0,0,r/2,5);
+polygon(0,0,r/2,numSides);
 fill(0,0,255);
 triangle(0, 0, x1, y1,x1,0);
 triangle(0,0,-x1,-y1,-x1,0);
@@ -129,4 +131,20 @@ function keyTyped(){
     y1 = triangleMove*(r*sin(a1)/2) ;
     a1 = 0.01 ;
   }
+  if (key === '2')
+  	numSides = 2;
+  else if (key === '3')
+  	numSides = 3;
+  else if (key === '4')
+  	numSides = 4;
+  else if (key === '5')
+  	numSides = 5;
+  else if (key === '6')
+  	numSides = 6;
+  else if (key === '7')
+  	numSides = 7;
+  else if (key === '8')
+  	numSides = 8;
+  else if (key === '9')
+  	numSides = 9;
 }
