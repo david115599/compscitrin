@@ -37,11 +37,11 @@ translate(500,25);
 translate(-500,-25);
   drawGrid(25);
   fill(255,0,0);
-  polygon(mx,my,r/2,5, i += 0.01);
+  polygon(mx,my,r/2,5, i += movement);
   fill(0,255,0);
   ellipse (mx, my, r, r);
   fill(255,0,0);
-  polygon(mx,my,r/2,5, i += 0.01);
+  polygon(mx,my,r/2,5, i += movement);
   r = slider.value();
   if (a1<=3.12 && pause == false) {
 
@@ -80,8 +80,8 @@ function drawRight() {
 
 
 translate(mx,my);
-x1 = r*cos(a1)/2 ;
-y1 = r*sin(a1)/2 ;
+x1 = triangleMove*(r*cos(a1)/2) ;
+y1 = triangleMove*(r*sin(a1)/2) ;
 
 fill(255,0,0);
 polygon(0,0,r/2,5);
