@@ -53,7 +53,6 @@ a1=0;
 }
 
 drawRight();
-
 }
 
 function drawGrid(size){
