@@ -6,14 +6,16 @@ var slider;
 var bx;
 var by;
 var a1=0; //angle
-var x1=0; //triangle coordinate x
-var y1=0; //triangle coordinate y
+var x1=200; //triangle coordinate x
+var y1=200; //triangle coordinate y
 var mx=0;
 var my=0;
 var xint = 0;
 var movement = .01;
 var triangleMove = 1;
 var pause;
+var ta = 0;
+var snap;
 function setup(){
 createCanvas (1000,500);
 
@@ -34,6 +36,7 @@ translate(500,25);
   text(("Circumference = ")+nf(PI*(2*((r/2)/(25/2))),4,1), 20, 150);
   text(("Angle = ")+(a1*(180/PI)),20,180);
   text("Press Spacebar to pause.", 20, 210);
+  text("Press S to snap to grid.", 20, 240);
 translate(-500,-25);
   drawGrid(25);
   fill(255,0,0);
@@ -87,16 +90,23 @@ polygon(0,0,r/2,5);
 fill(0,0,255);
 triangle(0, 0, x1, y1,x1,0);
 triangle(0,0,-x1,-y1,-x1,0);
-
+stroke(255,255,0);
+rotate(ta);
+line(-r/2,-r/2,-r/2,r/2);
+rotate(-ta);
+ta = ta + movement;
+stroke(0,0,0);
 }
 function mouseReleased() {
   if(mouseReleased) {
     if (mouseX < 500-r/2 & mouseY < 500-r/2 & mouseX > r/2 & mouseY > r/2) {
     mx=mouseX;
     my=mouseY;
+if (snap == true) {
     mx-=mx%(500/40);
     my-=my%(500/40);
   }
+}
 
 }
 }
@@ -112,20 +122,21 @@ function polygon(x, y, radius, npoints, spin) {
 }
 
 function keyTyped(){
+  if (key === 's')
+  snap = !snap;
   if (key === ' ')
     pause = !pause ;
   if (pause == true) {
     movement = 0 ;
-    x1 = 0 ;
-    y1 = 0 ;
+
     triangleMove = 0 ;
         a1 += 0;
     }
   else {
     movement = 0.01 ;
     triangleMove = 1 ;
-    x1 = triangleMove*(r*cos(a1)/2) ;
-    y1 = triangleMove*(r*sin(a1)/2) ;
+    x1 = (r*cos(a1)/2) ;
+    y1 = (r*sin(a1)/2) ;
     a1 = 0.01 ;
   }
 }
