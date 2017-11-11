@@ -106,6 +106,7 @@ fill(0,0,255);
 triangle(0, 0, x1, y1,x1,0);
 triangle(0,0,-x1,-y1,-x1,0);
 stroke(255,255,0);
+//tangent line
 rotate(ta);
 line(-r/2,-r/2,-r/2,r/2);
 rotate(-ta);
