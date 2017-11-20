@@ -2,7 +2,7 @@
 function setup(){
   noCanvas();
   createFileInput(gotFile, 'multiple');
-WordCount();
+
 }
 
 
@@ -15,11 +15,9 @@ function gotFile(file) {
   } else if (file.type === 'text') {
     createDiv(file.data);
   }
+  console.log(WordCount(file.data));
 }
-
 
 function WordCount(str) {
   return str.split(" ").length;
 }
-
-console.log(WordCount("akdf ad fdas adf ad f"));
