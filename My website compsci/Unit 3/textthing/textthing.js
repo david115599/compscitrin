@@ -15,9 +15,13 @@ function gotFile(file) {
   } else if (file.type === 'text') {
     createDiv(file.data);
   }
-  console.log(WordCount(file.data));
+  createDiv("<h2>"+'# OF Words ='+(WordCount(file.data))+"</h2>");
+  createDiv("<h2>"+'# OF Lines ='+((LineCount(file.data))-1)+"</h2>");
 }
 
 function WordCount(str) {
   return str.split(" ").length;
+}
+function LineCount(str) {
+  return str.split("\n").length;
 }
