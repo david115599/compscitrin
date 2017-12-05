@@ -15,11 +15,11 @@ function gotFile(file) {
   } else if (file.type === 'text') {
     createDiv(file.data);
   }
-  createDiv("<h1>"+'# OF Words ='+((WordCount(file.data)+LineCount(file.data)-2))+"</h1>");
-  createDiv("<h1>"+'# OF Lines ='+((LineCount(file.data))-1)+"</h1>");
-  createDiv("<h1>"+'# OF Characters ='+((CharacterCount1(file.data))-4)+"</h1>");
-  createDiv("<h1>"+'# OF Characters without spaces ='+((CharacterCount2(file.data))-3)+"</h1>");
-  createDiv("<h1>"+'# OF Characters without punctuation ='+((CharacterCount3(file.data))+1)+"</h1>");
+  createDiv("<h1>"+'# OF Words ='+((WordCount(file.data)+LineCount(file.data)))+"</h1>");
+  createDiv("<h1>"+'# OF Lines ='+((LineCount(file.data)))+"</h1>");
+  createDiv("<h1>"+'# OF Characters ='+((CharacterCount1(file.data)))+"</h1>");
+  createDiv("<h1>"+'# OF Characters without spaces ='+((CharacterCount2(file.data)))+"</h1>");
+  createDiv("<h1>"+'# OF Characters without punctuation ='+((CharacterCount3(file.data)))+"</h1>");
   createDiv("<h1>"+'averagewordlength ='+((averagewordlength(file.data)))+"</h1>");
   createDiv("<h1>"+'longest Word ='+((longestWord(file.data)))+"</h1>");
   createDiv("<h1>"+'punctuation free = If you prick us do we not bleed If you tickle us do we not laugh If you poison us do we not die And if you wrong us shall we not revenge'+"</h1>");
@@ -32,19 +32,19 @@ function gotFile(file) {
 }
 
 function WordCount(str) {
-  return str.split(" ").length;
+  return str.split(" ").length-1;
 }
 function LineCount(str) {
-  return str.split("\n").length;
+  return str.split("\n").length-1;
 }
 function CharacterCount1(str) {
-  return str.split("").length;
+  return str.split("").length-LineCount(str);
 }
 function CharacterCount2(str) {
-  return (str.split("").length-str.split(" ").length);
+  return (str.split("").length-LineCount(str)-WordCount(str));
 }
 function CharacterCount3(str) {
-  return (str.split("").length-str.split(".").length-str.split("!").length-str.split("?").length-str.split(",").length-str.split(" ").length);
+  return (str.split("").length-LineCount(str)-WordCount(str)-str.split(".").length-str.split("!").length-str.split("?").length-str.split(",").length);
 }
 function longestWord(string) {
     var str = string.replace('\n',' ').replace('\n',' ').replace('\n',' ').replace('\n',' ').split(' ');
