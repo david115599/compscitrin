@@ -6,8 +6,8 @@ var slider;
 var bx;
 var by;
 var a1=0; //angle
-var x1=0; //triangle coordinate x
-var y1=0; //triangle coordinate y
+var x1=1; //triangle coordinate x
+var y1=1; //triangle coordinate y
 var mx=0;
 var my=0;
 var xint = 0;
@@ -43,6 +43,7 @@ translate(-500,-25);
   fill(255,0,0);
   polygon(mx,my,r/2,5, i += 0.01);
   r = slider.value();
+
   if (a1<=3.12 && pause == false) {
 
 a1+=.01;
@@ -80,8 +81,8 @@ function drawRight() {
 
 
 translate(mx,my);
-x1 = r*cos(a1)/2 ;
-y1 = r*sin(a1)/2 ;
+x1 = triangleMove*(r*cos(a1)/2) ;
+y1 = triangleMove*(r*sin(a1)/2) ;
 
 fill(255,0,0);
 polygon(0,0,r/2,5);
@@ -120,7 +121,7 @@ function keyTyped(){
     x1 = 0 ;
     y1 = 0 ;
     triangleMove = 0 ;
-        a1 += 0;
+     a1 += 0;
     }
   else {
     movement = 0.01 ;
