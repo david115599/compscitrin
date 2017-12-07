@@ -21,12 +21,12 @@ function gotFile(file) {
   createDiv("<h1>"+'# OF Characters without spaces ='+((CharacterCount2(file.data)))+"</h1>");
   createDiv("<h1>"+'# OF Characters without punctuation ='+((CharacterCount3(file.data)))+"</h1>");
   createDiv("<h1>"+'averagewordlength ='+((averagewordlength(file.data)))+"</h1>");
-  createDiv("<h1>"+'longest Word ='+((longestWord(file.data)))+"</h1>");
-  createDiv("<h1>"+'punctuation free = If you prick us do we not bleed If you tickle us do we not laugh If you poison us do we not die And if you wrong us shall we not revenge'+"</h1>");
+  createDiv("<h1>"+'punctuation free = '+((punctuationfree(file.data)))+"</h1>");
+  createDiv("<h1>"+'longest Word = '+((longestWord(file.data)))+"</h1>");
 
 
   function averagewordlength(str) {
-    return (((CharacterCount3(file.data)-8)/(WordCount(file.data)))-0.0166666666666665);
+    return (((CharacterCount3(file.data))/(WordCount(file.data)+LineCount(file.data))));
   }
 
 }
@@ -46,9 +46,15 @@ function CharacterCount2(str) {
 function CharacterCount3(str) {
   return (str.split("").length-LineCount(str)-WordCount(str)-str.split(".").length-str.split("!").length-str.split("?").length-str.split(",").length);
 }
+function punctuationfree(string) {
+    var chars = {'.':'','!':'','?':'',',':'','\n':' '};
+    string = string.replace(/[.!?,\n]/g, m => chars[m]);
+
+    return string;
+}
 function longestWord(string) {
-    var str = string.replace('\n',' ').replace('\n',' ').replace('\n',' ').replace('\n',' ').split(' ');
-    var longest = 0;
+  var str = punctuationfree(string).split(' ');
+  var longest = 0;
     var word = null;
     for (var i = 0; i < str.length - 1; i++) {
         if (longest < str[i].length) {
