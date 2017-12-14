@@ -20,12 +20,16 @@ createDiv(file.data);
 createDiv("<h1>"+'# OF Words ='+((WordCount(file.data)+LineCount(file.data)))+"</h1>");
 createDiv("<h1>"+'# OF Lines ='+((LineCount(file.data)))+"</h1>");
 createDiv("<h1>"+'# OF Characters ='+((CharacterCount1(file.data)))+"</h1>");
+createDiv("<h1>"+'# OF Sentaces ='+((sentanceCount(file.data)))+"</h1>");
 createDiv("<h1>"+'# OF Characters without spaces ='+((CharacterCount2(file.data)))+"</h1>");
 createDiv("<h1>"+'# OF Characters without punctuation ='+((CharacterCount3(file.data)))+"</h1>");
 createDiv("<h1>"+'averagewordlength ='+((averagewordlength(file.data)))+"</h1>");
+createDiv("<h1>"+'characters/sentence ='+((characterssentence(file.data)))+"</h1>");
+createDiv("<h1>"+'words/sentence ='+((wordssentence(file.data)))+"</h1>");
+
 //  createDiv("<h1>"+'punctuation free = '+((punctuationfree(file.data)))+"</h1>");
 createDiv("<h1>"+'longest Word = '+((longestWord(file.data)))+"</h1>");
-(getFrequency(file.data));
+createDiv("<h1>"+'# of unique words = '+((getFrequency(file.data)))+"</h1>");
 
 }
 
@@ -41,6 +45,15 @@ function LineCount(str) {
 function CharacterCount1(str) {
   return str.split("").length-LineCount(str);
 }
+function sentanceCount(str) {
+  return str.split(".").length+str.split("!").length+str.split("?").length;
+}
+function characterssentence(str) {
+  return CharacterCount3(str)/sentanceCount(str);
+}
+function wordssentence(str) {
+  return WordCount(str)/sentanceCount(str);
+}
 //returns the number of number of Characters without spaces.
 function CharacterCount2(str) {
   return (str.split("").length-LineCount(str)-WordCount(str));
@@ -55,8 +68,8 @@ function averagewordlength(str) {
 }
 //removes punctuation for future functions.
 function punctuationfree(string) {
-  var chars = {'.':' ','!':'','?':'',',':'','\n':' ','–':' ','_':' ',';':'',':':'','[':'',']':'','"':''};
-  string = string.replace(/[!?'—'''_',;[\]:.\n"]/g, m => chars[m]);
+  var chars = {'.':' ','!':'','?':'',',':'','\n':' ','-':' ','_':' ',';':'',':':'','[':'',']':'','"':'','—':' '};
+  string = string.replace(/[!?'—''-''_',;[\]:.\n"]/g, m => chars[m]);
 
   return string;
 }
@@ -79,10 +92,12 @@ function getFrequency(string) {
   var table = "<table><tr><th>Words</th><th>Occurences</th><th>Precentage</th></tr>";
   var concordance = {}; //empty object
   var tokens = punctuationfree(string).split(' ');
+  var keys = [];
   for (var i = 0; i < tokens.length; i++) {
     var word = tokens[i].toLowerCase();
     if (concordance[word] === undefined) {
       concordance[word] = 1;
+    keys.push(word);
     } else {
       concordance[word]++;
     }
@@ -93,5 +108,6 @@ function getFrequency(string) {
     table += ("<tr><td>"+k+"</td><td> "+concordance[k]+"</td><td> "+nf(concordance[k]/tokens.length*100,2,2)+ "%" + "</td></tr>")
   }
   table += "</table>";
-  div.html(table)
+  div.html(table);
+return keys.length;
 }
