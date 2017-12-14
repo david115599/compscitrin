@@ -102,10 +102,11 @@ function getFrequency(string) {
       concordance[word]++;
     }
   }
-
-  for (var k in concordance) {
-
-    table += ("<tr><td>"+k+"</td><td> "+concordance[k]+"</td><td> "+nf(concordance[k]/tokens.length*100,2,2)+ "%" + "</td></tr>")
+  keys.sort(function(a, b) {
+    return (concordance[b] - concordance[a]);
+  });
+  for (var i = 0; i < keys.length; i++) {
+    table += ("<tr><td>"+keys[i]+"</td><td> "+concordance[keys[i]]+"</td><td> "+nf(concordance[keys[i]]/tokens.length*100,2,2)+ "%" + "</td></tr>")
   }
   table += "</table>";
   div.html(table);
