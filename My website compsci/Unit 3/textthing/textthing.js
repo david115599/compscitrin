@@ -16,6 +16,16 @@ function gotFile(file) {
 } else if (file.type === 'text') {
 createDiv(file.data);
 }*/
+//statistics in for of table
+var div = createDiv("DATA");
+var datatype =("# OF Words","# OF Lines","# OF Characters","# OF Sentaces","# OF Characters without spaces","# OF Characters without punctuatio","averagewordlength","characters/sentence","words/sentence","longest Word","# of unique words","Text Richness")
+var data =((WordCount(file.data)+LineCount(file.data)),(LineCount(file.data)),(CharacterCount1(file.data)),(sentanceCount(file.data)),(CharacterCount2(file.data)),(CharacterCount3(file.data)),(averagewordlength(file.data)),(characterssentence(file.data)),(wordssentence(file.data)),(vocabrich(file.data)),(longestWord(file.data)))
+var table = "<table><tr><th>Type Of Data</th><th>Data</th></tr>";
+for (var i = 0; i < 20; i++) {
+  table += ("<tr><td>"+datatype[i]+"</td><td> "+data[i]+"</td></tr>")
+}
+table += "</table>";
+div.html(table);
 //returns statistics about text.
 createDiv("<h1>"+'# OF Words ='+((WordCount(file.data)+LineCount(file.data)))+"</h1>");
 createDiv("<h1>"+'# OF Lines ='+((LineCount(file.data)))+"</h1>");
