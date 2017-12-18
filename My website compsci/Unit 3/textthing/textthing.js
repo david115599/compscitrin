@@ -94,8 +94,8 @@ return unique(str)/WordCount(str)
 }
 //removes punctuation for future functions.
 function punctuationfree(string) {
-  var chars = {'.':' ','!':' ','?':' ',',':' ','\n':' ','-':' ','_':' ',';':' ',':':' ','[':' ',']':' ','"':' ','—':' ','—':' ','\m':' '};
-  string = string.replace(/[!?'—''-''_',—;\m:.\n[]]/g, m => chars[m]);
+//  var chars = {'.':' ','!':' ','?':' ',',':' ','\n':' ','-':' ','_':' ',';':' ',':':' ','[':' ',']':' ','"':' ','—':' ','—':' ','\m':' '};
+  string = string.replace(/[!?'—''-''_',—;:.\n\M]/g, ' '); //m => chars[m]);
 
   return string;
 }
@@ -122,7 +122,7 @@ function getFrequency(string) {
   for (var i = 0; i < tokens.length; i++) {
       var word = tokens[i].toLowerCase();
     if(!(tokens[i] == ' ') && !(tokens[i] == '\s')){
-    //  console.log(tokens[i]);
+     console.log(tokens[i]);
       if (concordance[word] == undefined) {
         concordance[word] = 1;
         keys.push(word);
@@ -134,7 +134,7 @@ function getFrequency(string) {
   keys.sort(function(a, b) {
     return (concordance[b] - concordance[a]);
   });
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < min(keys.length,20); i++) {
     table += ("<tr><td>"+keys[i]+"</td><td> "+concordance[keys[i]]+"</td><td> "+nf(concordance[keys[i]]/tokens.length*100,2,2)+ "%" + "</td></tr>")
   }
   table += "</table>";
@@ -169,15 +169,17 @@ function removeStopwords(str) {
     "that","that's","the","their","theirs","them","themselves","then","there","there's","these","they","they'd","they'll","they're","they've","this","those","through","to","too","under",
     "until","up","very","was","wasn't","we","we'd","we'll","we're","we've","were","weren't","what","what's","when","when's","where","where's","which","while","who","who's","whom","why","why's"
     ,"with","won't","would","wouldn't","you","you'd","you'll","you're","you've","your","yours","yourself","yourselves"];
-    str = str.replace(new RegExp('\\b('+stopwords.join('|')+')\\b', 'g'), ' ');
+    str = str.replace(new RegExp('('+stopwords.join('|')+')', 'g'), 'xxxxxxxx');
+//replace(/[!?'—''-''_',—;:.\n\m\s]/g, m => ' ');
 return str;
 }
 function getFrequency2(string) {
-  var string2 = removeStopwords(string);
+  var string2 = punctuationfree(string);
+  var tokens = removeStopwords(string2).split(' ');
   var div = createDiv("Frequency");
   var table = "<table><tr><th>Words Without Stop Words</th><th>Occurences</th><th>Precentage</th></tr>";
   var concordance = {}; //empty object
-  var tokens = punctuationfree(string2).split(' ');
+
   var keys = [];
   for (var i = 0; i < tokens.length; i++) {
     var word = tokens[i].toLowerCase();
@@ -194,7 +196,7 @@ function getFrequency2(string) {
   keys.sort(function(a, b) {
     return (concordance[b] - concordance[a]);
   });
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < min(keys.length,20); i++) {
     table += ("<tr><td>"+keys[i]+"</td><td> "+concordance[keys[i]]+"</td><td> "+nf(concordance[keys[i]]/tokens.length*100,2,2)+ "%" + "</td></tr>")
   }
   table += "</table>";
