@@ -1,4 +1,7 @@
-//this program parses text and returns statistics about it.
+//this program parses text and returns statistics about it, such as number of words,
+//number of characters, number of sentances and so on.
+//the program has all of its fetures conatined in functions that allow it to be modular.
+//the program also has functions that check for errors in the code and print certain messges to help debug the program.
 //by David Bershadsky
 
 function setup(){
@@ -6,17 +9,17 @@ function setup(){
   createFileInput(gotFile, 'multiple');
 }
 
-//imports text
+//imports text file
 function gotFile(file) {
   createDiv("<h1>"+file.name + ' ' + file.type + ' ' + file.size + 'bytes'+"</h1>");
-
+//displays the loaded file.
   // Handle image and text differently
   /*if (file.type === 'image') {
   createImg(file.data);
 } else if (file.type === 'text') {
 createDiv(file.data);
 }*/
-//statistics in for of table
+//displays statistics in the form of a table using a forloop for ease of use
 var div = createDiv("DATA");
 var datatype =["# OF Words","# OF Lines","# OF Characters","# OF Sentances","# OF Characters without spaces",
   "# OF Characters without punctuation","averagewordlength","characters/sentance","words/sentence","Longest Word",
@@ -36,7 +39,11 @@ for (var i = 0; i < datatype.length; i++) {
 }
 table += "</table>";
 div.html(table);
-//returns statistics about text.
+createDiv("<h1>"+'Word frequency'+"</h1>");
+getFrequency(file.data);
+createDiv("<h1>"+'Word frequency without stop words'+"</h1>");
+getFrequency2(file.data);
+//returns statistics about text in a list.
 /*
 createDiv("<h1>"+'# OF Words ='+((WordCount(file.data)+LineCount(file.data)))+"</h1>");
 createDiv("<h1>"+'# OF Lines ='+((LineCount(file.data)))+"</h1>");
@@ -51,11 +58,11 @@ createDiv("<h1>"+'words/sentence ='+((wordssentence(file.data)))+"</h1>");
 //  createDiv("<h1>"+'punctuation free = '+((punctuationfree(file.data)))+"</h1>");
 createDiv("<h1>"+'longest Word = '+((longestWord(file.data)))+"</h1>");
 createDiv("<h1>"+'# of unique words = '+((unique(file.data)))+"</h1>");
-createDiv("<h1>"+'Text Richness = '+((vocabrich(file.data)))+"</h1>");*/
+createDiv("<h1>"+'Text Richness = '+((vocabrich(file.data)))+"</h1>");
 createDiv("<h1>"+'Word frequency'+"</h1>");
 getFrequency(file.data);
 createDiv("<h1>"+'Word frequency without stop words'+"</h1>");
-getFrequency2(file.data);
+getFrequency2(file.data);*/
 }
 
 //returns the number of words.
@@ -70,12 +77,15 @@ function LineCount(str) {
 function CharacterCount1(str) {
   return str.split("").length-LineCount(str);
 }
+//returns number of sentances.
 function sentanceCount(str) {
   return str.split(".").length+str.split("!").length+str.split("?").length;
 }
+//returns the number of characters in a sentance
 function characterssentence(str) {
   return CharacterCount3(str)/sentanceCount(str);
 }
+//returns the number of words per sentance
 function wordssentence(str) {
   return WordCount(str)/sentanceCount(str);
 }
@@ -91,6 +101,7 @@ function CharacterCount3(str) {
 function averagewordlength(str) {
   return (((CharacterCount3(str))/(WordCount(str)+LineCount(str))));
 }
+//returns the vocab Richness, unique words/word count
 function vocabrich(str){
 return unique(str)/WordCount(str)
 }
@@ -145,7 +156,7 @@ function getFrequency(string) {
   table += "</table>";
   div.html(table);
 }
-
+//returns # of unique words
 function unique(string) {
   var concordance = {}; //empty object
   var tokens = punctuationfree(string).split(' ');
@@ -164,6 +175,7 @@ function unique(string) {
   });
 return keys.length;
 }
+//removes stop words from text
 function removeStopwords(str) {
 
     var stopwords = ["a", "about", "above", "above", "across", "after", "afterwards", "again", "against", "all", "almost", "alone", "along", "already", "also","although","always","am","among", "amongst"
@@ -172,6 +184,7 @@ function removeStopwords(str) {
 
 return str;
 }
+//returns the word frequency withou stop words
 function getFrequency2(string) {
 //  console.log("ORIGINAL TEXT");
 //  console.log(string);
@@ -190,7 +203,7 @@ function getFrequency2(string) {
   for (var i = 0; i < tokens.length; i++) {
     var word = tokens[i].toLowerCase();
   if(!(tokens[i] == ' ') && !(tokens[i] == '\s')){
-    console.log(tokens[i]);
+//    console.log(tokens[i]);
     if (concordance[word] == undefined) {
       concordance[word] = 1;
     keys.push(word);
