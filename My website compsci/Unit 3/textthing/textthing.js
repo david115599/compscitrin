@@ -19,7 +19,7 @@ createDiv(file.data);
 //statistics in for of table
 var div = createDiv("DATA");
 var datatype =["# OF Words","# OF Lines","# OF Characters","# OF Sentances","# OF Characters without spaces",
-  "# OF Characters without punctuation","averagewordlength","characters/sentance","words/sentence","longest Word",
+  "# OF Characters without punctuation","averagewordlength","characters/sentance","words/sentence","Longest Word",
   "# of unique words","Text Richness"];
 var data =[(WordCount(file.data)+LineCount(file.data)),(LineCount(file.data)),
   (CharacterCount1(file.data)),(sentanceCount(file.data)),(CharacterCount2(file.data)),
@@ -52,7 +52,9 @@ createDiv("<h1>"+'words/sentence ='+((wordssentence(file.data)))+"</h1>");
 createDiv("<h1>"+'longest Word = '+((longestWord(file.data)))+"</h1>");
 createDiv("<h1>"+'# of unique words = '+((unique(file.data)))+"</h1>");
 createDiv("<h1>"+'Text Richness = '+((vocabrich(file.data)))+"</h1>");*/
+createDiv("<h1>"+'Word frequency'+"</h1>");
 getFrequency(file.data);
+createDiv("<h1>"+'Word frequency without stop words'+"</h1>");
 getFrequency2(file.data);
 }
 
@@ -94,9 +96,12 @@ return unique(str)/WordCount(str)
 }
 //removes punctuation for future functions.
 function punctuationfree(string) {
-  var chars = {'.':' ','!':' ','?':' ',',':' ','\n':' ','-':' ','_':' ',';':' ',':':' ','[':' ',']':' ','"':' ','—':' ','—':' ','\m':' '};
-  string = string.replace(/[!?'—''-''_',—;\m:.\n[]]/g, m => chars[m]);
-
+//  var chars = {'.':' ','!':' ','?':' ',',':' ','\n':' ','-':' ','_':' ',';':' ',':':' ','[':' ',']':' ','"':'','—':' ','—':' ','\m':' '};
+//  string = string.replace(/\n|\./g," ");
+//  string = string.replace(/[!?'—''-''_',—;:.\n\m[]]/g, ' ');//m => chars[m]);
+  string = string.replace(/\"|\'\'|\`\`|"|''|``/g, '');
+  string = string.replace(/\[|\!|\?|\-|\_|\,|\;|\:|\.|\n|\]|\(|\)|--|-|\-\-/g, ' ');
+  string = string.replace(/\s+| /g, ' ');
   return string;
 }
 //returns the longest word.
@@ -104,7 +109,7 @@ function longestWord(string) {
   var str = punctuationfree(string).split(' ');
   var longest = 0;
   var word = null;
-  for (var i = 0; i < str.length - 1; i++) {
+  for (var i = 0; i < str.length; i++) {
     if (longest < str[i].length) {
       longest = str[i].length;
       word = str[i];
@@ -134,7 +139,7 @@ function getFrequency(string) {
   keys.sort(function(a, b) {
     return (concordance[b] - concordance[a]);
   });
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < min(20, keys.length-1); i++) {
     table += ("<tr><td>"+keys[i]+"</td><td> "+concordance[keys[i]]+"</td><td> "+nf(concordance[keys[i]]/tokens.length*100,2,2)+ "%" + "</td></tr>")
   }
   table += "</table>";
@@ -161,19 +166,22 @@ return keys.length;
 }
 function removeStopwords(str) {
 
-    var stopwords = ["a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any","are","aren't","as","at","be","because","been","before","being","below"
-    ,"between","both","but","by","can't","cannot","could","couldn't","did","didn't","do","does","doesn't","doing","don't","down","during","each","few","for","from","further",
-    "had","hadn't","has","hasn't","have","haven't","having","he","he'd","he'll","he's","her","here","here's","hers","herself","him","himself","his","how","how's","i","i'd","i'll","i'm",
-    "i've","if","in","into","is","isn't","it","it's","its","itself","let's","me","more","most","mustn't","my","myself","no","nor","not","of","off","on","once","only",
-    "or","other","ought","our","ours","ourselves","out","over","own","same","shan't","she","she'd","she'll","she's","should","shouldn't","so","some","such","than",
-    "that","that's","the","their","theirs","them","themselves","then","there","there's","these","they","they'd","they'll","they're","they've","this","those","through","to","too","under",
-    "until","up","very","was","wasn't","we","we'd","we'll","we're","we've","were","weren't","what","what's","when","when's","where","where's","which","while","who","who's","whom","why","why's"
-    ,"with","won't","would","wouldn't","you","you'd","you'll","you're","you've","your","yours","yourself","yourselves"];
-    str = str.replace(new RegExp('\\b('+stopwords.join('|')+')\\b', 'g'), ' ');
+    var stopwords = ["a", "about", "above", "above", "across", "after", "afterwards", "again", "against", "all", "almost", "alone", "along", "already", "also","although","always","am","among", "amongst"
+, "amoungst", "amount",  "an", "and", "another", "any","anyhow","anyone","anything","anyway", "anywhere", "are", "around", "as",  "at", "back","be","became", "because","become","becomes", "becoming", "been", "before", "beforehand", "behind", "being", "below", "beside", "besides", "between", "beyond", "bill", "both", "bottom","but", "by", "call", "can", "cannot", "cant", "co", "con", "could", "couldnt", "cry", "de", "describe", "detail", "do", "done", "down", "due", "during", "each", "eg", "eight", "either", "eleven","else", "elsewhere", "empty", "enough", "etc", "even", "ever", "every", "everyone", "everything", "everywhere", "except", "few", "fifteen", "fify", "fill", "find", "fire", "first", "five", "for", "former", "formerly", "forty", "found", "four", "from", "front", "full", "further", "get", "give", "go", "had", "has", "hasnt", "have", "he", "hence", "her", "here", "hereafter", "hereby", "herein", "hereupon", "hers", "herself", "him", "himself", "his", "how", "however", "hundred", "ie", "if", "in", "inc", "indeed", "interest", "into", "is", "it", "its", "itself", "keep", "last", "latter", "latterly", "least", "less", "ltd", "made", "many", "may", "me", "meanwhile", "might", "mill", "mine", "more", "moreover", "most", "mostly", "move", "much", "must", "my", "myself", "name", "namely", "neither", "never", "nevertheless", "next", "nine", "no", "nobody", "none", "noone", "nor", "not", "nothing", "now", "nowhere", "of", "off", "often", "on", "once", "one", "only", "onto", "or", "other", "others", "otherwise", "our", "ours", "ourselves", "out", "over", "own","part", "per", "perhaps", "please", "put", "rather", "re", "same", "see", "seem", "seemed", "seeming", "seems", "serious", "several", "she", "should", "show", "side", "since", "sincere", "six", "sixty", "so", "some", "somehow", "someone", "something", "sometime", "sometimes", "somewhere", "still", "such", "system", "take", "ten", "than", "that", "the", "their", "them", "themselves", "then", "thence", "there", "thereafter", "thereby", "therefore", "therein", "thereupon", "these", "they", "thickv", "thin", "third", "this", "those", "though", "three", "through", "throughout", "thru", "thus", "to", "together", "too", "top", "toward", "towards", "twelve", "twenty", "two", "un", "under", "until", "up", "upon", "us", "very", "via", "was", "we", "well", "were", "what", "whatever", "when", "whence", "whenever", "where", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", "who", "whoever", "whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the"];
+   str = str.replace(new RegExp('\\b('+stopwords.join('|')+')\\b', 'g'), '');
+
 return str;
 }
 function getFrequency2(string) {
+//  console.log("ORIGINAL TEXT");
+//  console.log(string);
   var string2 = removeStopwords(string);
+//  console.log("TEXT w/o STOP WORDS");
+//  console.log(string2);
+//  var string3 = punctuationfree(string2);
+//  console.log("PUNCTUATION FREE TEXT");
+//  console.log(string3);
+//  console.log(string3.split(' ').length);
   var div = createDiv("Frequency");
   var table = "<table><tr><th>Words Without Stop Words</th><th>Occurences</th><th>Precentage</th></tr>";
   var concordance = {}; //empty object
@@ -194,7 +202,7 @@ function getFrequency2(string) {
   keys.sort(function(a, b) {
     return (concordance[b] - concordance[a]);
   });
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < min(keys.length-1,20); i++) {
     table += ("<tr><td>"+keys[i]+"</td><td> "+concordance[keys[i]]+"</td><td> "+nf(concordance[keys[i]]/tokens.length*100,2,2)+ "%" + "</td></tr>")
   }
   table += "</table>";
