@@ -3,14 +3,14 @@
 //createFish: returns an object literal
 //"this" refers back to the object itself, ie "fish"
 //replace "this" with "fish" to verify
-function createPelet() {
+function createPeletD() {
   var fish = {
     //properties
     loc: createVector(random(width),0),
     vel: createVector(0,random(10)),
     //velocity --> vector
     //loc --> vector
-    skin: color(0, 255, 0),
+    skin: color(255, 0, 0),
     outline: color(0),
     age:0,
     weight:10,
