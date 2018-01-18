@@ -4,45 +4,53 @@
 //"this" refers back to the object itself, ie "fish"
 //replace "this" with "fish" to verify
 
-function createFish(mx,my,p1) {
+function createFish(mx,my,t,a,ma,w,mxw,mw,r,g,b) {
   var fish = {
     //properties
     loc: createVector(mx, my),
     vel: createVector(random(5),random(5)),
-    name: "nemo_" + round(random(1000)),
+    name: t,
     //velocity --> vector
     //loc --> vector
-    skin: color(random(255), 0, 0),
+    skin: color(r, g, b),
     outline: color(0),
-    age:0,
-    weight:40,
+    age:a,
+    weight:w,
     tail:1,
+    tail1:1,
     deltatail:.5,
+    maxage:ma,
+    maxweight:mxw,
+    minweight:mw,
+    tdi:1,
 
     //methods (properties that happen to be functions)
     show: function() {
-      if (this.tail > 0 & this.tail < 25) {
+      if (this.tail > 0 & this.tail < this.weight) {
         this.tail = this.tail+this.deltatail;
+        this.tail1 = this.tail*this.tdi;
       }
       else{
         this.deltatail = -this.deltatail
         this.tail = this.tail+this.deltatail;
+        this.tail1 = this.tail*this.tdi;
       }
       fill(this.skin);
       stroke(this.outline);
       ellipse(this.loc.x, this.loc.y, this.weight, this.weight);
-      triangle(this.loc.x-20-this.tail, this.loc.y+20, this.loc.x-20-this.tail, this.loc.y-20,this.loc.x,this.loc.y);
+      triangle((this.loc.x-(this.weight/2)*this.tdi-this.tail1), (this.loc.y+this.weight/2), (this.loc.x-(this.weight/2)*this.tdi-this.tail1), (this.loc.y-this.weight/2),this.loc.x,this.loc.y);
       fill(255);
       text(this.name, this.loc.x - 5, this.loc.y - 5);
     },
     move: function() {
       //movement code goes here
-    if (this.age <= 1000 & this.weight <= 80) {
+    if (this.age <= this.maxage & this.weight <= this.maxweight & this.weight >= this.minweight) {
       if(this.loc.y >= height || this.loc.y <=0){
           this.vel.y *= -1;
       }
       if(this.loc.x >= width-5 || this.loc.x <=5){
           this.vel.x *= -1;
+          this.tdi *= -1;
     }
   } // alive
     else if (this.loc.y <= 40) {
