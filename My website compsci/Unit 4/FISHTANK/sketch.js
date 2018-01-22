@@ -23,7 +23,7 @@ function setup() {
   fishButton2.position(552, 19);
   fishButton2.mousePressed(addWhale);
   fishButton3 = createButton('Spawn Spaz');
-  fishButton3.position(552, 19);
+  fishButton3.position(652, 19);
   fishButton3.mousePressed(addSpaz);
   };
 
@@ -36,15 +36,21 @@ function draw() {
 if (f[i].age <= f[i].maxage & f[i].weight <= f[i].maxweight & f[i].weight >= f[i].minweight) {
     for (var p = 0; p < p1.length; p++){
       if (f[i].Collision(p1[p])) {
-       f[i].weight += p1[p].weight/4;
-       p1.splice(p--, 1);
+        f[i].weight += p1[p].weight/4;
+        p1.splice(p--, 1);
        }}
-       for (var q = 0; q < p2.length; q++){
-         if (f[i].Collision(p2[q])) {
-          f[i].weight -= p2[q].weight/4;
-          p2.splice(q--, 1);
-
-          }}
+    for (var q = 0; q < p2.length; q++){
+      if (f[i].Collision(p2[q])) {
+        f[i].weight -= p2[q].weight/4;
+        p2.splice(q--, 1);
+      }}
+    for (var m = 2; m < f.length; m++){
+      if (f[i].Collisionfish(f[m])) {
+      f[i].vel.y *= -1;
+      f[i].vel.x *= -1;
+      f[m].vel.y *= -1;
+      f[m].vel.x *= -1;
+      }}
 
 }
     f[i].update();
@@ -57,18 +63,18 @@ if (f[i].age <= f[i].maxage & f[i].weight <= f[i].maxweight & f[i].weight >= f[i
     }
 }
 
-//mx,my,t,a,ma,w,mxw,mw,r,g,b
+//mx,my,t,a,ma,w,mxw,mw,r,g,b,spaz
 function addGold() {
-  f.push(createFish(width/2,height/2,"goldfish",0,1000,10,30,5,255,255,0));
+  f.push(createFish(width/2,height/2,"goldfish",0,1000,10,30,5,255,255,0,0));
 }
 function addPiranha() {
-  f.push(createFish(width/2,height/2,"Piranha",0,10000,25,50,10,100,255,150));
+  f.push(createFish(width/2,height/2,"Piranha",0,10000,25,50,10,100,255,150,0));
 }
 function addWhale() {
-  f.push(createFish(width/2,height/2,"Whale",0,30000,50,100,25,200,255,255));
+  f.push(createFish(width/2,height/2,"Whale",0,30000,50,100,25,200,255,255,0));
 }
 function addSpaz() {
-  f.push(createFish(width/2,height/2,"Spaz",0,1000,10,30,5,255,255,0));
+  f.push(createFish(width/2,height/2,"Spaz",0,1000,10,30,5,113, 244, 255,255));
 }
 
 function addFood(){
