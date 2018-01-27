@@ -61,10 +61,10 @@ function draw() {
       }
       //checks for fish collisions amongst themselves and uses to do breeding, not working properly, the screen fills up with infinte fish
       if (f[i].Collisionfish(f[m]) & f[i].weight == f[m].weight & f[m].age <= f[m].maxage & f[m].weight <= f[m].maxweight & f[m].weight >= f[m].minweight & Math.random() * 10 > 9) {
-        //  addPiranha();
+        // addPiranha();
       }
       //checks for fish collisions amongst themselves and reverses direction if they are not eaten
-      else if (f[i].Collisionfish(f[m]) & f[i].age <= f[i].maxage & f[i].weight <= f[i].maxweight & f[i].weight >= f[i].minweight) {
+      if (f[i].Collisionfish(f[m]) & f[i].age <= f[i].maxage & f[i].weight <= f[i].maxweight & f[i].weight >= f[i].minweight) {
         f[i].vel.y *= -1;
         f[i].vel.x *= -1;
         f[i].tdi *= -1;;

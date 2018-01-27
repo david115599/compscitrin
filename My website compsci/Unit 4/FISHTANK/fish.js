@@ -51,11 +51,17 @@ function createFish(mx, my, t, a, ma, w, mxw, mw, r, g, b, spaz, speed) {
       if (this.age <= this.maxage & this.weight <= this.maxweight & this.weight >= this.minweight) {
 //code for toriodal
         if (this.spez == 255) {
-          if (this.loc.y >= height || this.loc.y <= 0) {
+          if (this.loc.y >= height) {
             this.loc.y = this.weight / 2;
           }
-          if (this.loc.x >= width - 5 || this.loc.x <= 5) {
+          if (this.loc.y <= 0) {
+            this.loc.y = height - this.weight / 2;
+          }
+          if (this.loc.x >= width - 5) {
             this.loc.x = this.weight / 2;
+          }
+          if (this.loc.x <= 0) {
+            this.loc.x = width - this.weight / 2;
           }
 //code not for toriodal
         } else {

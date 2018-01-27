@@ -1,6 +1,12 @@
-var block =[];
+var block = [];
+var ball = [];
+var bar = [];
 var x = 0;
 var y = 0;
+var rectx = 300;
+
+
+
 function setup() {
   //song.loop();
   createCanvas(600, 600);
@@ -8,17 +14,63 @@ function setup() {
   fishButton.position(252, 19);
   fishButton.mousePressed(addblock);
 }
+
 function draw() {
+  bar.push(createPeletc(rectx));
   background(0, 180, 0);
-for (var i = 0; i < block.length; i++){
-    block[i].update();}
-fill(200,0,0);
-rect((width/2)-100,height-20,200,20);
+  for (var i = 0; i < ball.length; i++) {
+    for (var m = 0; m < block.length; m++) {
+      if (ball[i].Collisionfish(block[m])) {
+        ball[i].vel.y *= -1;
+        ball[i].vel.x *= -1;
+        block.splice(m--, 1);
+      }
+    }
+  }
+  for (var i = 0; i < block.length; i++) {
+    block[i].update();
+  }
+  for (var i = 0; i < ball.length; i++) {
+    ball[i].update();
+  }
+document.onkeydown = checkKey;
+  for (var i = 0; i < bar.length; i++) {
+    bar[i].update();
+  }
+  for (var i = 0; i < ball.length; i++) {
+    for (var m = 0; m < bar.length; m++) {
+      if (ball[i].Collision(bar[m])) {
+        ball[i].vel.y *= -1;
+      }
+    }
+  }
+}
+
+function keyTyped() {
+  if (key === ' ') {
+    addball();
+    x = 0;
+  }
+}
+
+function checkKey(e) {
+  e = e || window.event;
+  if (e.keyCode == '37' & rectx >= 60) {
+    rectx -= 10;
+  }
+  if (e.keyCode == '39' & rectx <= width - 60) {
+    rectx -= -10;
+  }
 }
 
 function addblock() {
-  for (var i = 0; i < (width)/100; i++){
-    block.push(createPelet(x,y));
-    x+=100;
+  for (var i = 0; i < (width) / 100; i++) {
+    block.push(createPelet(x, y));
+    x += 100;
+  }
 }
+
+
+function addball() {
+  ball.push(createPeletD(rectx));
 }
