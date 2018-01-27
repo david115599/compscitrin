@@ -4,11 +4,16 @@ var bar = [];
 var x = 0;
 var y = 0;
 var rectx = 300;
+var song;
+//music only works in firefox
+function preload() {
+  song = loadSound('Brick Breaker Revolution  1 Java Mobile Intro.mp3');
+}
 
 
 
 function setup() {
-  //song.loop();
+  song.loop();
   createCanvas(600, 600);
   fishButton = createButton('Start');
   fishButton.position(252, 19);
@@ -16,6 +21,7 @@ function setup() {
 }
 
 function draw() {
+
   bar.push(createPeletc(rectx));
   background(0, 180, 0);
   for (var i = 0; i < ball.length; i++) {
@@ -33,16 +39,19 @@ function draw() {
   for (var i = 0; i < ball.length; i++) {
     ball[i].update();
   }
-document.onkeydown = checkKey;
-  for (var i = 0; i < bar.length; i++) {
-    bar[i].update();
-  }
   for (var i = 0; i < ball.length; i++) {
     for (var m = 0; m < bar.length; m++) {
       if (ball[i].Collision(bar[m])) {
         ball[i].vel.y *= -1;
       }
     }
+  }
+  document.onkeydown = checkKey;
+    for (var i = 0; i < bar.length; i++) {
+    for (var z = 0; z < bar.length; z++) {
+      bar[i].update();
+      bar.splice(z--, 1);
+  }
   }
 }
 
