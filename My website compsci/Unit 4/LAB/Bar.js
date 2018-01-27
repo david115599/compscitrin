@@ -11,7 +11,6 @@ function createPeletc(rectx) {
     //loc --> vector
     skin: color(0, 255, 0),
     outline: color(0),
-    age: 0,
     weight: 100,
 
     //methods (properties that happen to be functions)
@@ -24,7 +23,6 @@ function createPeletc(rectx) {
     },
     update: function(rectx) {
       this.show();
-      this.age++;
     }
   }
   return fish;
