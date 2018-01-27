@@ -5,12 +5,12 @@
 //the program uses objects to keep track of everything that is occuring and stores these objects in arrays.
 
 
-/*var song;
-
+var song;
+//music only works in firefox
 function preload() {
   song = loadSound('Sound-of-water-running.mp3');
 }
-*/
+
 // variables are defined
 var f = [];
 var p1 = [];
@@ -22,7 +22,8 @@ var t = 0;
 var rand = 0;
 //in setup the buttons for the various finction are added
 function setup() {
-  //song.loop();
+//music only works in firefox
+  song.loop();
   createCanvas(600, 600);
   fishButton = createButton('Spawn Gold');
   fishButton.position(152, 19);
