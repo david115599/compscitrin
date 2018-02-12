@@ -1,9 +1,4 @@
-//2010 Census Demo using JSON (https://www.json.org/)
-//2010 variables: https://api.census.gov/data/2010/sf1/variables.html
-//H0110004: renter occupied
-//* = wildcard (matches anything)
-//query: https://api.census.gov/data/2010/sf1?key=e8a63d6bac96233cd5c3cf2de348ed9882285b0a&get=H0110004,NAME&for=state:*
-//results saved to: sf1.json (2D array)
+//Vacnacy Status statistics For Migrant Workers--These include vacant units intended for occupancy by migratory workers employed in farm work during the crop season. (Work in a cannery, a freezer plant, or a food-processing plant is not farm work.)
 float avg2010 = 0 ;
 
 String [] states = new String[52];
