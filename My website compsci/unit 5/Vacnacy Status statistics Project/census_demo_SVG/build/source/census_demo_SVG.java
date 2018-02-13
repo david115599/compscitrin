@@ -1,3 +1,19 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class census_demo_SVG extends PApplet {
+
 //2010 Census Demo using JSON (https://www.json.org/)
 //2010 variables: https://api.census.gov/data/2010/sf1/variables.html
 //H0110004: renter occupied
@@ -8,7 +24,7 @@
 // What are the pros/cons of this graph???
 PrintWriter output;
 int sf =5;
-void setup() {
+public void setup() {
   JSONArray json;
   json = loadJSONArray("2010sf1.json");
   output = createWriter("barGraph.html");
@@ -34,4 +50,13 @@ void setup() {
   output.flush(); // Writes the remaining data to the file
   output.close(); // Finishes the file
   println("Done");
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "census_demo_SVG" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
