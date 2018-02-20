@@ -23,7 +23,7 @@ int [] vacancy2010 = new int[52];
 public void setup() {
   JSONArray json;
   json = loadJSONArray("2010sf1.json");
-  println(json.size());
+  //println(json.size());
 
   for (int i = 1; i < json.size(); i++) {
     states[i-1] = json.getJSONArray(i).getString(1);
