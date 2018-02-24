@@ -1,4 +1,4 @@
-//Vacnacy Status statistics For Migrant Workers--These include vacant units intended for occupancy by migratory workers employed in farm work during the crop season. (Work in a cannery, a freezer plant, or a food-processing plant is not farm work.)
+n//Vacnacy Status statistics For Migrant Workers--These include vacant units intended for occupancy by migratory workers employed in farm work during the crop season. (Work in a cannery, a freezer plant, or a food-processing plant is not farm work.)
 float avg2010 = 0 ;
 
 String [] states = new String[52];
