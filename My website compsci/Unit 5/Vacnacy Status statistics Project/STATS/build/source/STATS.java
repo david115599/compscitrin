@@ -46,14 +46,14 @@ public void setup() {
   for (int i = 1; i < json.size(); i++) {
     String state = json.getJSONArray(i).getString(1);
     int pop = json.getJSONArray(i).getInt(0)/sf;
-    output.println("<rect y='0' x='"+ (i*20-10) +"' height='"+ pop+"' width='10' fill='darkblue'/>");
+    output.println("<rect y='0' x='"+ (i*20-10) +"' height='"+ pop+"' width='10' fill='darkred'/>");
     output.println("<text x='"+pop+"' y='"+ -(i*20-8) + "'transform= rotate("+90+","+0+","+0+") fill='blue' font-size='8'>"+state+"  </text>");
     println(state + ": " + pop);
   }
   for (int i = 1; i < json1.size(); i++) {
     String state = json1.getJSONArray(i).getString(1);
     int pop1 = json1.getJSONArray(i).getInt(0)/sf;
-    output.println("<rect y='0' x='"+ (i*20) +"' height='"+ (pop1)+"' width='10' fill='darkred'/>");
+    output.println("<rect y='0' x='"+ (i*20) +"' height='"+ (pop1)+"' width='10' fill='darkblue'/>");
     output.println("<text x='"+pop1+"' y='"+ -(i*20) + "'transform= rotate("+90+","+0+","+0+") fill='darkred' font-size='8'>"+state+"  </text>");
     println(state + ": " + pop1);
   }
