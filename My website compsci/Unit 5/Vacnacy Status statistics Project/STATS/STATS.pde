@@ -25,20 +25,20 @@ void setup() {
   for (int i = 1; i < json1.size(); i++) {
     String state = json1.getJSONArray(i).getString(1);
     int pop1 = json1.getJSONArray(i).getInt(0)/sf;}
-  output.println("<svg width=\"1000\" height=\"15000\" xmlns=\"http://www.w3.org/2000/svg\">");
+  output.println("<svg width=\"2000\" height=\"15000\" xmlns=\"http://www.w3.org/2000/svg\">");
   //load JSON into arrays (state,pop2010)
   for (int i = 1; i < json.size(); i++) {
     String state = json.getJSONArray(i).getString(1);
     int pop = json.getJSONArray(i).getInt(0)/sf;
     output.println("<rect y='0' x='"+ (i*20-10) +"' height='"+ pop+"' width='10' fill='darkred'/>");
-    output.println("<text x='"+pop+"' y='"+ -(i*20-8) + "'transform= rotate("+90+","+0+","+0+") fill='blue' font-size='8'>"+state+"  </text>");
+    output.println("<text x='"+pop+"' y='"+ -(i*20-8) + "'transform= rotate("+90+","+0+","+0+") fill='green' font-size='10'>"+state+"  </text>");
     println(state + ": " + pop);
   }
   for (int i = 1; i < json1.size(); i++) {
     String state = json1.getJSONArray(i).getString(1);
     int pop1 = json1.getJSONArray(i).getInt(0)/sf;
     output.println("<rect y='0' x='"+ (i*20) +"' height='"+ (pop1)+"' width='10' fill='darkblue'/>");
-    output.println("<text x='"+pop1+"' y='"+ -(i*20) + "'transform= rotate("+90+","+0+","+0+") fill='darkred' font-size='8'>"+state+"  </text>");
+    output.println("<text x='"+pop1+"' y='"+ -(i*20) + "'transform= rotate("+90+","+0+","+0+") fill='green' font-size='10'>"+state+"  </text>");
     println(state + ": " + pop1);
   }
   output.flush(); // Writes the remaining data to the file
