@@ -22,11 +22,24 @@ public class STATS extends PApplet {
 //results saved to: sf1.json (2D array)
 
 // What are the pros/cons of this graph???
+
+PShape usa;
+PShape michigan;
+PShape ohio;
+
+String states[];
+int vacancy2000[]=new int[52];
+int vacancy2010[]=new int[52];
 PrintWriter output;
 int sf =5;
 public void setup() {
+  
+  usa = loadShape("usa-wikipedia.svg");
+  michigan = usa.getChild("MI");
+  ohio = usa.getChild("OH");
   JSONArray json;
   JSONArray json1;
+  states = loadStrings("State_Names.txt");
   json = loadJSONArray("2010sf1.json");
   json1 = loadJSONArray("2000sf1.json");
   output = createWriter("HOME.html");
@@ -35,12 +48,12 @@ public void setup() {
   output.println("</head><body>");
   output.println("<h1>Migrant Vacancy Status Statistics in US Between 2000 and 2010</h1>");
   for (int i = 1; i < json.size(); i++) {
-    String state = json.getJSONArray(i).getString(1);
-    int pop = json.getJSONArray(i).getInt(0)/sf;
+    String state = json.getJSONArray(i).getString(1); //states[i-1]
+    int pop = json.getJSONArray(i).getInt(0)/sf;//vacancy2010[i-1]
     output.println("<a href='website/"+state+".html'>"+state+"</a>");}
   for (int i = 1; i < json1.size(); i++) {
     String state = json1.getJSONArray(i).getString(1);
-    int pop1 = json1.getJSONArray(i).getInt(0)/sf;}
+    int pop1 = json1.getJSONArray(i).getInt(0)/sf;} //vacancy2000[i-1]
   output.println("<svg width=\"2000\" height=\"15000\" xmlns=\"http://www.w3.org/2000/svg\">");
   //load JSON into arrays (state,pop2010)
   for (int i = 1; i < json.size(); i++) {
@@ -60,7 +73,7 @@ public void setup() {
   output.flush(); // Writes the remaining data to the file
   output.close(); // Finishes the file
   println("Done");
-  String states[] = loadStrings("State_Names.txt");
+
   for(int i = 0; i<states.length; i++){
   output = createWriter("website/"+states[i]+".html");
   output.println("<html><head>");
@@ -77,6 +90,29 @@ public void setup() {
   println("Done");
   }
 }
+public void draw() {
+  background(255);
+
+  // Draw the full map
+  shape(usa, -250, 0);
+
+  // Disable the colors found in the SVG file
+  michigan.disableStyle();
+  // Set our own coloring
+  fill(0, 51, 102);
+  noStroke();
+  // Draw a single state
+  shape(michigan, -250, 0); // Wolverines!
+
+  // Disable the colors found in the SVG file
+  ohio.disableStyle();
+  // Set our own coloring
+  fill(153, 0, 0);
+  noStroke();
+  // Draw a single state
+  shape(ohio, -250, 0);  // Buckeyes!
+}
+  public void settings() {  size(1000, 1000); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "STATS" };
     if (passedArgs != null) {
