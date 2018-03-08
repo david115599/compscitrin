@@ -67,7 +67,7 @@ int national2010;
 PrintWriter output;
 int sf =5;
 void setup() {
-  size(1500, 650);
+  size(1400, 650);
   usa = loadShape("usa-wikipedia.svg");
   alabama = usa.getChild("AL");
   alaska = usa.getChild("AK");
@@ -129,26 +129,29 @@ void setup() {
   output.println("<html><head>");
   output.println("<title>Vacancy Status Statistics</title>");
   output.println("</head><body>");
+  output.println("<style>");
+  output.println("body {background-color: rgb(230,90,5); text-align: center; text-align: center;}");
+  output.println("</style>");
   output.println("<h1>Migrant Vacancy Status Statistics in US Between 2000 and 2010</h1>");
   output.println("<img src='heatmap.png' alt='House''r'>");
   for (int i = 1; i < json.size(); i++) {
     String state = json.getJSONArray(i).getString(1); //states[i-1]
     output.println("<a href='website/"+state+".html'>"+state+"</a>");
   }
-  output.println("<svg width=\"2000\" height=\"15000\" xmlns=\"http://www.w3.org/2000/svg\">");
+  output.println("<svg width=\"1040\" height=\"15000\" xmlns=\"http://www.w3.org/2000/svg\">");
   //load JSON into arrays (state,pop2010)
   for (int i = 1; i < json.size(); i++) {
     String state = json.getJSONArray(i).getString(1);
     vacancy2010[i-1]=json.getJSONArray(i).getInt(0);
     output.println("<rect y='0' x='"+ (i*20-10) +"' height='"+ vacancy2010[i-1]/sf+"' width='10' fill='darkred'/>");
-    output.println("<text x='"+vacancy2010[i-1]/sf+"' y='"+ -(i*20-8) + "'transform= rotate("+90+","+0+","+0+") fill='green' font-size='10'>"+state+"  </text>");
+    output.println("<text x='"+vacancy2010[i-1]/sf+"' y='"+ -(i*20-8) + "'transform= rotate("+90+","+0+","+0+") fill='rgb(0,255,0)' font-size='10'>"+state+" 2010  </text>");
     println(state + ": " + vacancy2010[i-1]);
   }
   for (int i = 1; i < json1.size(); i++) {
     String state = json1.getJSONArray(i).getString(1);
     vacancy2000[i-1]=json1.getJSONArray(i).getInt(0);
     output.println("<rect y='0' x='"+ (i*20) +"' height='"+ (vacancy2000[i-1]/sf)+"' width='10' fill='darkblue'/>");
-    output.println("<text x='"+vacancy2000[i-1]/sf+"' y='"+ -(i*20) + "'transform= rotate("+90+","+0+","+0+") fill='green' font-size='10'>"+state+"  </text>");
+    output.println("<text x='"+vacancy2000[i-1]/sf+"' y='"+ -(i*20) + "'transform= rotate("+90+","+0+","+0+") fill='rgb(100,255,100)' font-size='10'>"+state+" 2000  </text>");
     println(state + ": " + vacancy2000[i-1]);
   }
 
@@ -166,12 +169,15 @@ void setup() {
     output.println("<html><head>");
     output.println("<title>" + states[i] + "</title>");
     output.println("</head><body>");
+    output.println("<style>");
+    output.println("body {background-color: rgb(230,90,5); text-align: center; text-align: center;}");
+    output.println("</style>");
     output.println("<h1>" + states[i] + "</h1>");
     output.println("<h1> Number of vacant housing units for migrants in "+ states[i] +" in 2000: " + vacancy2000[i] + " units</h1>");
     output.println("<h1> Total Number of vacant housing units for migrants in 2000: " + national2000 + " units</h1>");
     output.println("<h1> Number of vacant housing units for migrants in 2010: " + vacancy2010[i] + " units</h1>");
     output.println("<h1> Total Number of vacant housing units for migrants in "+ states[i] +" in 2000: " + national2010 + " units</h1>");
-    output.println("<svg width=\"2000\" height=\"20000\" xmlns=\"http://www.w3.org/2000/svg\">");
+    output.println("<svg width=\"440\" height=\"20000\" xmlns=\"http://www.w3.org/2000/svg\">");
     output.println("<rect y='0' x='40' height='"+ vacancy2000[i]/(sf*10)+"' width='100' fill='darkred'/>");
     output.println("<rect y='0' x='140' height='"+ national2000/(sf*10)+"' width='100' fill='yellow'/>");
     output.println("<rect y='0' x='240' height='"+ (vacancy2010[i]/(sf*10))+"' width='100' fill='darkred'/>");
