@@ -130,10 +130,12 @@ void setup() {
   output.println("<title>Vacancy Status Statistics</title>");
   output.println("</head><body>");
   output.println("<style>");
-  output.println("body {background-color: rgb(65,219,5); text-align: center; text-align: center;}");
+  output.println("body {background-color: rgb(90,230,5); text-align: center; text-align: center;}");
   output.println("</style>");
   output.println("<h1>Migrant Vacancy Status Statistics in US Between 2000 and 2010</h1>");
   output.println("<img src='heatmap.png' alt='House''r'>");
+  output.println("<a href='https://www.census.gov/developers/'>More Info On The Data</a>");
+
   for (int i = 1; i < json.size(); i++) {
     String state = json.getJSONArray(i).getString(1); //states[i-1]
     output.println("<a href='website/"+state+".html'>"+state+"</a>");
@@ -144,14 +146,14 @@ void setup() {
     String state = json.getJSONArray(i).getString(1);
     vacancy2010[i-1]=json.getJSONArray(i).getInt(0);
     output.println("<rect y='0' x='"+ (i*20-10) +"' height='"+ vacancy2010[i-1]/sf+"' width='10' fill='darkred'/>");
-    output.println("<text x='"+vacancy2010[i-1]/sf+"' y='"+ -(i*20-8) + "'transform= rotate("+90+","+0+","+0+") fill='rgb(0,255,0)' font-size='10'>"+state+" 2010  </text>");
+    output.println("<text x='"+vacancy2010[i-1]/sf+"' y='"+ -(i*20-8) + "'transform= rotate("+90+","+0+","+0+") fill='rgb(230,90,5)' font-size='10'>"+state+" 2010  </text>");
     println(state + ": " + vacancy2010[i-1]);
   }
   for (int i = 1; i < json1.size(); i++) {
     String state = json1.getJSONArray(i).getString(1);
     vacancy2000[i-1]=json1.getJSONArray(i).getInt(0);
     output.println("<rect y='0' x='"+ (i*20) +"' height='"+ (vacancy2000[i-1]/sf)+"' width='10' fill='darkblue'/>");
-    output.println("<text x='"+vacancy2000[i-1]/sf+"' y='"+ -(i*20) + "'transform= rotate("+90+","+0+","+0+") fill='rgb(100,255,100)' font-size='10'>"+state+" 2000  </text>");
+    output.println("<text x='"+vacancy2000[i-1]/sf+"' y='"+ -(i*20) + "'transform= rotate("+90+","+0+","+0+") fill='rgb(5,90,230)' font-size='10'>"+state+" 2000  </text>");
     println(state + ": " + vacancy2000[i-1]);
   }
 
@@ -170,8 +172,9 @@ void setup() {
     output.println("<title>" + states[i] + "</title>");
     output.println("</head><body>");
     output.println("<style>");
-    output.println("body {background-color: rgb(230,90,5); text-align: center; text-align: center;} a {font-size: 40px;}");
+    output.println("body {background-color: rgb(90,230,5); text-align: center; text-align: center;} a {font-size: 40px;}");
     output.println("</style>");
+    output.println("<a href='../HOME.html'> Home</a>");
     output.println("<h1>Migrant Vacancy Status Statistics in US Between 2000 and 2010</h1>");
     if (i==0) {
     output.println("<a href='"+states[50]+".html'>Previous </a>");
@@ -186,16 +189,16 @@ void setup() {
     else{
     output.println("<a href='"+states[i+1]+".html'> Next</a>");
     }
-    output.println("<a href='*/HOME.html'> Home</a>");
     output.println("<h1> Number of vacant housing units for migrants in "+ states[i] +" in 2000: " + vacancy2000[i] + " units</h1>");
     output.println("<h1> Total Number of vacant housing units for migrants in 2000: " + national2000 + " units</h1>");
     output.println("<h1> Number of vacant housing units for migrants in 2010: " + vacancy2010[i] + " units</h1>");
     output.println("<h1> Total Number of vacant housing units for migrants in "+ states[i] +" in 2000: " + national2010 + " units</h1>");
+    output.println("<p> <a href='https://www.census.gov/developers/'>More Info On The Data</a> </p>");
     output.println("<svg width=\"440\" height=\"20000\" xmlns=\"http://www.w3.org/2000/svg\">");
-    output.println("<rect y='0' x='40' height='"+ vacancy2000[i]/(sf*10)+"' width='100' fill='darkred'/>");
-    output.println("<rect y='0' x='140' height='"+ national2000/(sf*10)+"' width='100' fill='yellow'/>");
-    output.println("<rect y='0' x='240' height='"+ (vacancy2010[i]/(sf*10))+"' width='100' fill='darkred'/>");
-    output.println("<rect y='0' x='340' height='"+ (national2010/(sf*10))+"' width='100' fill='yellow'/>");
+    output.println("<rect y='0' x='40' height='"+ vacancy2000[i]/(sf*10)+"' width='100' fill='rgb(230,90,5)'/>");
+    output.println("<rect y='0' x='140' height='"+ national2000/(sf*10)+"' width='100' fill='rgb(5,90,230)'/>");
+    output.println("<rect y='0' x='240' height='"+ (vacancy2010[i]/(sf*10))+"' width='100' fill='rgb(230,90,5)'/>");
+    output.println("<rect y='0' x='340' height='"+ (national2010/(sf*10))+"' width='100' fill='rgb(5,90,230)'/>");
     output.println("<text y='"+(vacancy2000[i]/(sf*10)+40)+"' x='40' fill='green' font-size='40'>"+vacancy2000[i]+"  </text>");
     output.println("<text y='"+(vacancy2010[i]/(sf*10)+40)+"' x='240' fill='green' font-size='40'>"+vacancy2010[i]+"  </text>");
     output.println("<text y='"+(national2000/(sf*10)+40)+"' x='140' fill='green' font-size='40'>"+national2000+"  </text>");
