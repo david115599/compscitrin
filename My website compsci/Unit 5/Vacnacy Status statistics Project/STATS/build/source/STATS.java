@@ -146,7 +146,7 @@ public void setup() {
   output.println("<title>Vacancy Status Statistics</title>");
   output.println("</head><body>");
   output.println("<style>");
-  output.println("body {background-color: rgb(230,90,5); text-align: center; text-align: center;}");
+  output.println("body {background-color: rgb(65,219,5); text-align: center; text-align: center;}");
   output.println("</style>");
   output.println("<h1>Migrant Vacancy Status Statistics in US Between 2000 and 2010</h1>");
   output.println("<img src='heatmap.png' alt='House''r'>");
@@ -186,9 +186,10 @@ public void setup() {
     output.println("<title>" + states[i] + "</title>");
     output.println("</head><body>");
     output.println("<style>");
-    output.println("body {background-color: rgb(230,90,5); text-align: center; text-align: center;}");
+    output.println("body {background-color: rgb(230,90,5); text-align: center; text-align: center;} a {font-size: 40px;}");
     output.println("</style>");
-    output.println("<h1>" + states[i] + "</h1>");
+    output.println("<h1>Migrant Vacancy Status Statistics in US Between 2000 and 2010</h1>");
+    output.println("<a href='https://en.wikipedia.org/wiki/"+states[i]+"'>"+states[i]+"</a>");
     output.println("<h1> Number of vacant housing units for migrants in "+ states[i] +" in 2000: " + vacancy2000[i] + " units</h1>");
     output.println("<h1> Total Number of vacant housing units for migrants in 2000: " + national2000 + " units</h1>");
     output.println("<h1> Number of vacant housing units for migrants in 2010: " + vacancy2010[i] + " units</h1>");
