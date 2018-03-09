@@ -189,7 +189,20 @@ public void setup() {
     output.println("body {background-color: rgb(230,90,5); text-align: center; text-align: center;} a {font-size: 40px;}");
     output.println("</style>");
     output.println("<h1>Migrant Vacancy Status Statistics in US Between 2000 and 2010</h1>");
+    if (i==0) {
+    output.println("<a href='"+states[50]+".html'>Previous </a>");
+    }
+    else{
+    output.println("<a href='"+states[i-1]+".html'>Previous </a>");
+    }
     output.println("<a href='https://en.wikipedia.org/wiki/"+states[i]+"'>"+states[i]+"</a>");
+    if (i==50) {
+    output.println("<a href='"+states[1]+".html'> Next</a>");
+    }
+    else{
+    output.println("<a href='"+states[i+1]+".html'> Next</a>");
+    }
+    output.println("<a href='*/HOME.html'> Home</a>");
     output.println("<h1> Number of vacant housing units for migrants in "+ states[i] +" in 2000: " + vacancy2000[i] + " units</h1>");
     output.println("<h1> Total Number of vacant housing units for migrants in 2000: " + national2000 + " units</h1>");
     output.println("<h1> Number of vacant housing units for migrants in 2010: " + vacancy2010[i] + " units</h1>");
