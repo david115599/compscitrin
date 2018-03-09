@@ -130,17 +130,18 @@ void setup() {
   output.println("<title>Vacancy Status Statistics</title>");
   output.println("</head><body>");
   output.println("<style>");
-  output.println("body {background-color: rgb(90,230,5); text-align: center; text-align: center;}");
+  output.println("body {background-color: rgb(90,230,5); text-align: center; text-align: center;} p {column-count: 4; column-gap: 80px;}");
   output.println("</style>");
   output.println("<h1>Migrant Vacancy Status Statistics in US Between 2000 and 2010</h1>");
   output.println("<h2>The purpose of this website is to investigate the changes in the number of vacant housing units for imigrants in each state between the years of 2000 and 2010.</h2>");
   output.println("<img src='heatmap.png' alt='House''r'>");
   output.println("<a href='https://www.census.gov/developers/'>More Info On The Data</a>");
-
+  output.println("<p>");
   for (int i = 1; i < json.size(); i++) {
     String state = json.getJSONArray(i).getString(1); //states[i-1]
-    output.println("<a href='website/"+state+".html'>"+state+"</a>");
+    output.println("<a href='website/"+state+".html'>"+state+" </a> ");
   }
+  output.println("</p>");
   output.println("<svg width=\"1040\" height=\"15000\" xmlns=\"http://www.w3.org/2000/svg\">");
   //load JSON into arrays (state,pop2010)
   for (int i = 1; i < json.size(); i++) {
