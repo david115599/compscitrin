@@ -149,6 +149,7 @@ public void setup() {
   output.println("body {background-color: rgb(90,230,5); text-align: center; text-align: center;}");
   output.println("</style>");
   output.println("<h1>Migrant Vacancy Status Statistics in US Between 2000 and 2010</h1>");
+  output.println("<h2>The purpose of this website is to investigate the changes in the number of vacant housing units for imigrants in each state between the years of 2000 and 2010.</h2>");
   output.println("<img src='heatmap.png' alt='House''r'>");
   output.println("<a href='https://www.census.gov/developers/'>More Info On The Data</a>");
 
@@ -230,15 +231,15 @@ public void setup() {
       fill(219,65,5);
       rect(1000,500,60,20);
       fill(0,0,0);
-      text("No Change", 1000, 499);
+      text("~No Change -10<x<10", 1000, 499);
       fill(219,255,5);
       rect(940,500,60,20);
       fill(0,0,0);
-      text("Increase in Vacancy", 885, 530);
+      text("Increase in Vacancy x>10", 885, 530);
       fill(219,0,5);
       rect(1060,500,60,20);
       fill(0,0,0);
-      text("Decrease in Vacancy", 1060, 530);
+      text("Decrease in Vacancy x<-10", 1060, 530);
       alabama.disableStyle();
       fill(219, 65+((vacancy2000[1]-vacancy2010[1])/20),5);
       noStroke();
