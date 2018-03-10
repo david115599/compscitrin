@@ -236,16 +236,38 @@ println(nationalaverage2010);
     output.println("<h1> Total Number of vacant housing units for migrants in 2000: " + national2000 + " units</h1>");
     output.println("<h1> Number of vacant housing units for migrants in 2010: " + vacancy2010[i] + " units</h1>");
     output.println("<h1> Total Number of vacant housing units for migrants in "+ states[i] +" in 2000: " + national2010 + " units</h1>");
+    if (vacancy2000[i]>vacancy2010[i]) {
+      output.println("<h2>The number of vacancies in "+states[i]+" has decreased</h2>");
+    }
+    else{
+      output.println("<h2>The number of vacancies in "+states[i]+" has increased</h2>");
+    }
+    if (vacancy2000[i]>nationalaverage2000) {
+      output.println("<h2>The number of vacancies in "+states[i]+"was above the national average in 2000</h2>");
+    }
+    else{
+      output.println("<h2>The number of vacancies in "+states[i]+" was below the national average in 2000</h2>");
+    }
+    if (vacancy2010[i]>nationalaverage2010) {
+      output.println("<h2>The number of vacancies in "+states[i]+"was above the national average in 2010</h2>");
+    }
+    else{
+      output.println("<h2>The number of vacancies in "+states[i]+" was below the national average in 2010</h2>");
+    }
     output.println("<p> <a href='https://www.census.gov/developers/'>More Info On The Data</a> </p>");
     output.println("<svg width=\"440\" height=\"20000\" xmlns=\"http://www.w3.org/2000/svg\">");
-    output.println("<rect y='0' x='40' height='"+ vacancy2000[i]/(sf)+"' width='100' fill='rgb(230,90,5)'/>");
-    output.println("<rect y='0' x='140' height='"+ nationalaverage2000/(sf)+"' width='100' fill='rgb(5,90,230)'/>");
-    output.println("<rect y='0' x='240' height='"+ (vacancy2010[i]/(sf))+"' width='100' fill='rgb(230,90,5)'/>");
-    output.println("<rect y='0' x='340' height='"+ (nationalaverage2010/(sf))+"' width='100' fill='rgb(5,90,230)'/>");
-    output.println("<text y='"+(vacancy2000[i]/(sf*10)+40)+"' x='40' fill='green' font-size='40'>"+vacancy2000[i]+"  </text>");
-    output.println("<text y='"+(vacancy2010[i]/(sf*10)+40)+"' x='240' fill='green' font-size='40'>"+vacancy2010[i]+"  </text>");
-    output.println("<text y='"+(nationalaverage2000/(sf*10)+40)+"' x='140' fill='green' font-size='40'>"+nationalaverage2000+"  </text>");
-    output.println("<text y='"+(nationalaverage2010/(sf*10)+40)+"' x='340' fill='green' font-size='40'>"+nationalaverage2010+"  </text>");
+    output.println("<rect y='0' x='40' height='"+ vacancy2000[i]/(2*sf)+"' width='100' fill='rgb(230,90,5)'/>");
+    output.println("<rect y='0' x='140' height='"+ nationalaverage2000/(2*sf)+"' width='100' fill='rgb(5,90,230)'/>");
+    output.println("<rect y='0' x='240' height='"+ (vacancy2010[i]/(2*sf))+"' width='100' fill='rgb(230,90,5)'/>");
+    output.println("<rect y='0' x='340' height='"+ (nationalaverage2010/(2*sf))+"' width='100' fill='rgb(5,90,230)'/>");
+    output.println("<text y='"+(vacancy2000[i]/(2*sf)+40)+"' x='40' fill='green' font-size='40'>"+vacancy2000[i]+"  </text>");
+    output.println("<text y='"+(vacancy2010[i]/(2*sf)+40)+"' x='240' fill='green' font-size='40'>"+vacancy2010[i]+"  </text>");
+    output.println("<text y='"+(nationalaverage2000/(2*sf)+40)+"' x='140' fill='green' font-size='40'>"+nationalaverage2000+"  </text>");
+    output.println("<text y='"+(nationalaverage2010/(2*sf)+40)+"' x='340' fill='green' font-size='40'>"+nationalaverage2010+"  </text>");
+    output.println("<text x='0' y='-120'transform= rotate("+90+","+0+","+0+") fill='Black' font-size='20'>vacancy in 2000 </text>");
+    output.println("<text x='0' y='-320'transform= rotate("+90+","+0+","+0+") fill='Black' font-size='20'>vacancy in 2010 </text>");
+    output.println("<text x='0' y='-220'transform= rotate("+90+","+0+","+0+") fill='Black' font-size='20'>nationalaverage 2000 </text>");
+    output.println("<text x='0' y='-420'transform= rotate("+90+","+0+","+0+") fill='Black' font-size='20'>nationalaverage 2010 </text>");
     output.println("</body></html>");
     output.flush(); // Writes the remaining data to the file
     output.close(); // Finishes the file
