@@ -1,12 +1,13 @@
-//2010 Census Demo using JSON (https://www.json.org/)
-//2010 variables: https://api.census.gov/data/2010/sf1/variables.html
-//H0110004: renter occupied
-//* = wildcard (matches anything)
-//query: https://api.census.gov/data/2010/sf1?key=e8a63d6bac96233cd5c3cf2de348ed9882285b0a&get=H0110004,NAME&for=state:*
-//results saved to: sf1.json (2D array)
+/*
+This is my Sense OF Us project. It takes data from the us census beurua and procedurly generates information page
+that contains data for every state and the changes in those Statistics.
+It generates a heat map and bar graph for the whole nation.
+It generates state specific Statistics page's for every state.
+By, David B
+When the code runs ocasionaly it spits out an irrelavent error just rerun the code and it works fine without the error.
+*/
 
-// What are the pros/cons of this graph???
-
+//here my pshape variables are defined.
 PShape usa;
 PShape alabama;
 PShape alaska;
@@ -70,6 +71,7 @@ int nationalaverage2000;
 int nationalaverage2010;
 void setup() {
   size(1400, 650);
+  // This is where the pshape variables are assinged to the sections of the svg.
   usa = loadShape("usa-wikipedia.svg");
   alabama = usa.getChild("AL");
   alaska = usa.getChild("AK");
@@ -122,23 +124,28 @@ void setup() {
   westvirginia = usa.getChild("WV");
   wisconsin = usa.getChild("WI");
   wyoming = usa.getChild("WY");
+  //This is where the json file is loaded.
   JSONArray json;
   JSONArray json1;
   states = loadStrings("State_Names.txt");
   json = loadJSONArray("2010sf1.json");
   json1 = loadJSONArray("2000sf1.json");
+  //This is where the the home page is generated.
   output = createWriter("HOME.html");
   output.println("<html><head>");
   output.println("<title>Vacancy Status Statistics</title>");
   output.println("</head><body>");
+  //CSS for the home page
   output.println("<style>");
   output.println("body {background-color: rgb(90,230,5); text-align: center; text-align: center;} p {column-count: 4; column-gap: 280px;}");
   output.println("</style>");
+  //homepage content
   output.println("<h1>Migrant Vacancy Status Statistics in US Between 2000 and 2010</h1>");
   output.println("<h2>The purpose of this website is to investigate the changes in the number of vacant housing units for imigrants in each state between the years of 2000 and 2010.</h2>");
   output.println("<img src='heatmap.png' alt='House''r'>");
   output.println("<a href='https://www.census.gov/developers/'>More Info On The Data</a>");
   output.println("<h2>Does the the number of vacant housing units for imigrants in the us Increase or Decrease From 2000 to 2010?</h2>");
+  //checks weither the number of vacancies increased or decreased
   for (int i = 1; i < json.size(); i++) {
     vacancy2010[i-1]=json.getJSONArray(i).getInt(0);
   }
@@ -159,6 +166,7 @@ void setup() {
   else{
     output.println("<h2>The number of vacancies has increased</h2>");
   }
+  // links the home page to the state pages.
   output.println("<p>");
   for (int i = 1; i < json.size(); i++) {
     String state = json.getJSONArray(i).getString(1); //states[i-1]
@@ -166,7 +174,7 @@ void setup() {
   }
   output.println("</p>");
   output.println("<svg width=\"1040\" height=\"15000\" xmlns=\"http://www.w3.org/2000/svg\">");
-  //load JSON into arrays (state,pop2010)
+// generates bar graph that is on the home page.
   for (int i = 1; i < json.size(); i++) {
     String state = json.getJSONArray(i).getString(1);
     output.println("<rect y='0' x='"+ (i*20-10) +"' height='"+ vacancy2010[i-1]/sf+"' width='10' fill='darkred'/>");
@@ -183,6 +191,7 @@ void setup() {
   output.flush(); // Writes the remaining data to the file
   output.close(); // Finishes the file
   println("Done");
+  //calculates the national average.
   for ( int i = 0; i < vacancy2000.length; ++i ) {
  nationalaverage2000 += vacancy2000[i];
 }
@@ -193,15 +202,19 @@ nationalaverage2010 += vacancy2010[i];
 nationalaverage2010 /= (float)(vacancy2010.length);
 println(nationalaverage2000);
 println(nationalaverage2010);
+//generates state pages.
   for (int i = 0; i<states.length; i++) {
     output = createWriter("website/"+states[i]+".html");
     output.println("<html><head>");
     output.println("<title>" + states[i] + "</title>");
     output.println("</head><body>");
+    //CSS
     output.println("<style>");
     output.println("body {background-color: rgb(90,230,5); text-align: center; text-align: center;} a {font-size: 40px;}");
     output.println("</style>");
+    //link to home.
     output.println("<a href='../HOME.html'> Home</a>");
+    //Dynamic data.
     output.println("<h1>Migrant Vacancy Status Statistics in US Between 2000 and 2010</h1>");
     if (i==0) {
     output.println("<a href='"+states[50]+".html'>Previous </a>");
@@ -239,6 +252,7 @@ println(nationalaverage2010);
       output.println("<h2>The number of vacancies in "+states[i]+" was below the national average in 2010</h2>");
     }
     output.println("<p> <a href='https://www.census.gov/developers/'>More Info On The Data</a> </p>");
+    //Generates svg bar graph for state data vs national data.
     output.println("<svg width=\"440\" height=\"20000\" xmlns=\"http://www.w3.org/2000/svg\">");
     output.println("<rect y='0' x='40' height='"+ vacancy2000[i]/(2*sf)+"' width='100' fill='rgb(230,90,5)'/>");
     output.println("<rect y='0' x='140' height='"+ nationalaverage2000/(2*sf)+"' width='100' fill='rgb(5,90,230)'/>");
@@ -256,7 +270,8 @@ println(nationalaverage2010);
     output.flush(); // Writes the remaining data to the file
     output.close(); // Finishes the file
     println("Done");
-
+//Creates the png colors for the dynamicly heatmap and assings them to thier
+//respcetive shapes.
       background(5,65,219);
       stroke(0,0,0);
       shape(usa, -250, -150);
