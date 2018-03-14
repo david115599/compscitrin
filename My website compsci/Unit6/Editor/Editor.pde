@@ -61,7 +61,7 @@ void floor2(int theValue) {
   }
 }
 */
-
+/*
 // Constants
 int Y_AXIS = 1;
 int X_AXIS = 2;
@@ -101,6 +101,33 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
       fill(c);
       noStroke();
       rect(i, y, i, y+h);
+    }
+  }
+}
+*/
+
+int size = 20;
+
+void setup(){
+ size (200, 200);
+ smooth();
+}
+
+void draw(){
+
+
+stroke(0);
+  for (int h = 0; h < width; h += size) {
+  for (int v = 0; v < height; v += size) {
+
+    rect (h, v, size, size);
+   }
+  }
+  colorMode(HSB, 200);
+  for (int i = 0; i < 200; i+=10) {
+    for (int j = 0; j < 200; j+=10) {
+      fill(i, j, 200);
+      rect(i, j,20,20);
     }
   }
 }

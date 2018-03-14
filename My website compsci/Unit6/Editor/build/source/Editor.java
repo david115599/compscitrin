@@ -77,14 +77,14 @@ void floor2(int theValue) {
   }
 }
 */
-
+/*
 // Constants
 int Y_AXIS = 1;
 int X_AXIS = 2;
-int c1, c2;
+color c1, c2;
 
-public void setup() {
-  
+void setup() {
+  size(620, 640);
   background(255);
 
   // Define colors
@@ -94,33 +94,60 @@ public void setup() {
   noLoop();
 }
 
-public void draw() {
+void draw() {
   setGradient(50, 190, 540, 80, c2, c1, X_AXIS);
 }
 
-public void setGradient(int x, int y, float w, float h, int c1, int c2, int axis ) {
+void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
 
   noFill();
 
   if (axis == Y_AXIS) {  // Top to bottom gradient
-    for (int i = y; i <= y+h; i+=33.75f) {
+    for (int i = y; i <= y+h; i+=33.75) {
       float inter = map(i, y, y+h, 0, 1);
-      int c = lerpColor(c1, c2, inter);
+      color c = lerpColor(c1, c2, inter);
       fill(c);
       rect(x, i, x+w, i);
     }
   }
   else if (axis == X_AXIS) {  // Left to right gradient
-    for (int i = x; i <= x+w; i+=33.75f) {
+    for (int i = x; i <= x+w; i+=33.75) {
       float inter = map(i, x, x+w, 0, 1);
-      int c = lerpColor(c1, c2, inter);
+      color c = lerpColor(c1, c2, inter);
       fill(c);
       noStroke();
       rect(i, y, i, y+h);
     }
   }
 }
-  public void settings() {  size(620, 640); }
+*/
+
+int size = 20;
+
+public void setup(){
+ 
+ 
+}
+
+public void draw(){
+
+
+stroke(0);
+  for (int h = 0; h < width; h += size) {
+  for (int v = 0; v < height; v += size) {
+
+    rect (h, v, size, size);
+   }
+  }
+  colorMode(HSB, 200);
+  for (int i = 0; i < 200; i+=10) {
+    for (int j = 0; j < 200; j+=10) {
+      fill(i, j, 200);
+      rect(i, j,20,20);
+    }
+  }
+}
+  public void settings() {  size (200, 200);  smooth(); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Editor" };
     if (passedArgs != null) {
