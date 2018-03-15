@@ -134,7 +134,14 @@ noStroke();
 colorMode(HSB, 200);
 for (int i = 0; i < 200; i++) {
   for (int j = 0; j < 200; j++) {
-    stroke(i, j, 200);
+    stroke(i, j*2, 200);
+    point(-i+200, j);
+  }
+}
+colorMode(HSB, 200);
+for (int i = 0; i < 200; i+=1) {
+  for (int j = 0; j < 200; j+=1) {
+    stroke(i, j*2, 200);
     point(-i+200, j);
   }
 }
