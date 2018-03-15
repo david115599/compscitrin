@@ -123,31 +123,83 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
 */
 
 int size = 20;
-
+int Y_AXIS = 1;
+int X_AXIS = 2;
+int c1, c2;
 public void setup(){
  
  
+ c1 = color(255);
+ c2 = color(0);
 }
 
 public void draw(){
-
+  setGradient(0, 200, 125, 40, c2, c1, X_AXIS);
+  setGradient2(300, 200, 125, 40, c2, c1, X_AXIS);
 
 stroke(0);
-  for (int h = 0; h < width; h += size) {
-  for (int v = 0; v < height; v += size) {
 
-    rect (h, v, size, size);
-   }
-  }
   colorMode(HSB, 200);
-  for (int i = 0; i < 200; i+=10) {
+  for (int i = 300; i < 500; i+=10) {
     for (int j = 0; j < 200; j+=10) {
-      fill(i, j, 200);
+      fill(i-300, j, 200);
       rect(i, j,20,20);
+}
+}
+noStroke();
+colorMode(HSB, 200);
+for (int i = 0; i < 200; i++) {
+  for (int j = 0; j < 200; j++) {
+    stroke(i, j, 100);
+    point(-i+200, j);
+  }
+}
+}
+public void setGradient(int x, int y, float w, float h, int c1, int c2, int axis ) {
+
+  noFill();
+
+  if (axis == Y_AXIS) {  // Top to bottom gradient
+    for (int i = y; i <= y+h; i+=1) {
+      float inter = map(i, y, y+h, 0, 1);
+      int c = lerpColor(c1, c2, inter);
+      fill(c);
+      rect(x, i, x+w, i);
+    }
+  }
+  else if (axis == X_AXIS) {  // Left to right gradient
+    for (int i = x; i <= x+w; i+=1) {
+      float inter = map(i, x, x+w, 0, 1);
+      int c = lerpColor(c1, c2, inter);
+      fill(c);
+      noStroke();
+      rect(i, y, i, y+h);
     }
   }
 }
-  public void settings() {  size (200, 200);  smooth(); }
+public void setGradient2(int x, int y, float w, float h, int c1, int c2, int axis ) {
+
+  noFill();
+
+  if (axis == Y_AXIS) {  // Top to bottom gradient
+    for (int i = y; i <= y+h; i+=10) {
+      float inter = map(i, y, y+h, 0, 1);
+      int c = lerpColor(c1, c2, inter);
+      fill(c);
+      rect(x, i, x+w, i);
+    }
+  }
+  else if (axis == X_AXIS) {  // Left to right gradient
+    for (int i = x; i <= x+w; i+=10) {
+      float inter = map(i, x, x+w, 0, 1);
+      int c = lerpColor(c1, c2, inter);
+      fill(c);
+      noStroke();
+      rect(i, y, i, y+h);
+    }
+  }
+}
+  public void settings() {  size (500, 300);  smooth(); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Editor" };
     if (passedArgs != null) {
