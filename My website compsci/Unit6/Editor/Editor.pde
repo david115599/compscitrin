@@ -130,6 +130,14 @@ stroke(0);
       rect(i, j,20,20);
 }
 }
+colorMode(HSB, 200);
+for (int i = 300; i < 500; i+=10) {
+  for (int j = 200; j > 100; j-=10) {
+    fill(i-300, 200, 250-j);
+    rect(i, j,20,20);
+  }
+}
+
 noStroke();
 colorMode(HSB, 200);
 for (int i = 0; i < 200; i++) {
@@ -140,8 +148,8 @@ for (int i = 0; i < 200; i++) {
 }
 colorMode(HSB, 200);
 for (int i = 0; i < 200; i+=1) {
-  for (int j = 0; j < 200; j+=1) {
-    stroke(i, j*2, 200);
+  for (int j = 200; j > 100; j-=1) {
+    stroke(i, 200, 250-j);
     point(-i+200, j);
   }
 }
