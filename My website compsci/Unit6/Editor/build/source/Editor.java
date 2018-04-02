@@ -37,6 +37,22 @@ hs3 = new HScrollbar(0, 100, 150, 16, 16);
 hs4 = new HScrollbar(150, 40, 150, 16, 16);
 hs5 = new HScrollbar(150, 70, 150, 16, 16);
 hs6 = new HScrollbar(150, 100, 150, 16, 16);
+noStroke();
+fill(255,0,0);
+rect(10,120,20,20);
+fill(0,255,0);
+rect(30,120,20,20);
+fill(0,0,255);
+rect(50,120,20,20);
+fill(219, 65, 5);
+rect(70,120,20,20);
+fill(65, 5, 219);
+rect(90,120,20,20);
+fill(5, 65, 219);
+rect(90,120,20,20);
+fill(5, 219, 150);
+rect(110,120,20,20);
+
 }
 
 public void draw(){strokeWeight(2);
