@@ -1,200 +1,129 @@
-/**
- * elevatorDemo by Andrew Rose
- * control a virtual elevator
- * uses buttons and a switch statement
- * controlP5 must be installed for this to work
- * Challenge: add a third floor
- */
-
-//import controlP5 and create an object to add buttons
-/*
-import controlP5.*;
-
-ControlP5 cp5;
-
-int state = 1; //start on floor 1
-
-void setup() {
-  rectMode(CENTER);
-  size(400, 600);
-  background(100);
-
-  cp5 = new ControlP5(this);
-
-  // create a 'floor2' button
-  // pressing button calls floor2 controller below
-  cp5.addButton("Draw")
-    .setValue(2);
-
-  // create an 'floor1' button
-  // pressing button calls floor1 controller below
-  cp5.addButton("Erase")
-    .setValue(1);
-}
-
-void draw() {
-  if (state == 1) {
-    println("Drawing");
-    fill(250);
-  }
-  else{
-    fill(0);
-  }
-  ellipse(mouseX, mouseY, 1, 1);
-
-}
-
-void floor1(int theValue) {
-  if (state == 1) {
-    println("Drawing");
-    fill(250);
-  }
-}
-
-
-void floor2(int theValue) {
-  switch (state) {
-  case 2:
-    println("erasing");
-    fill(0);
-    break;
-  }
-}
-*/
-/*
-// Constants
-int Y_AXIS = 1;
-int X_AXIS = 2;
-color c1, c2;
-
-void setup() {
-  size(620, 640);
-  background(255);
-
-  // Define colors
-  c1 = color(255);
-  c2 = color(0);
-
-  noLoop();
-}
-
-void draw() {
-  setGradient(50, 190, 540, 80, c2, c1, X_AXIS);
-}
-
-void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
-
-  noFill();
-
-  if (axis == Y_AXIS) {  // Top to bottom gradient
-    for (int i = y; i <= y+h; i+=33.75) {
-      float inter = map(i, y, y+h, 0, 1);
-      color c = lerpColor(c1, c2, inter);
-      fill(c);
-      rect(x, i, x+w, i);
-    }
-  }
-  else if (axis == X_AXIS) {  // Left to right gradient
-    for (int i = x; i <= x+w; i+=33.75) {
-      float inter = map(i, x, x+w, 0, 1);
-      color c = lerpColor(c1, c2, inter);
-      fill(c);
-      noStroke();
-      rect(i, y, i, y+h);
-    }
-  }
-}
-*/
-
-int size = 20;
-int Y_AXIS = 1;
-int X_AXIS = 2;
-color c1, c2;
+float R1=0;
+float G1=0;
+float B1=0;
+float R2=0;
+float G2=0;
+float B2=0;
+HScrollbar hs1,hs2,hs3,hs4,hs5,hs6;
 void setup(){
- size (500, 300);
- smooth();
- c1 = color(255);
- c2 = color(0);
+size(900,600);
+background(200,200,200);
+stroke(55,55,55);
+fill(55,55,55);
+rect(0,0,300,600);
+strokeWeight(2);
+stroke(0,0,0);
+rect(0,0,150,200);
+rect(150,0,150,200);
+hs1 = new HScrollbar(0, 40, 150, 16, 16);
+hs2 = new HScrollbar(0, 70, 150, 16, 16);
+hs3 = new HScrollbar(0, 100, 150, 16, 16);
+hs4 = new HScrollbar(150, 40, 150, 16, 16);
+hs5 = new HScrollbar(150, 70, 150, 16, 16);
+hs6 = new HScrollbar(150, 100, 150, 16, 16);
 }
 
-void draw(){
-  setGradient(0, 200, 125, 40, c2, c1, X_AXIS);
-  setGradient2(300, 200, 125, 40, c2, c1, X_AXIS);
-
-stroke(0);
-
-  colorMode(HSB, 200);
-  for (int i = 300; i < 500; i+=10) {
-    for (int j = 0; j < 200; j+=10) {
-      fill(i-300, j, 200);
-      rect(i, j,20,20);
+void draw(){strokeWeight(2);
+  R1=(hs1.getPos())*(255/150);
+  G1=(hs2.getPos())*(255/150);
+  B1=(hs3.getPos())*(255/150);
+  R2=(hs4.getPos()-170)*(255/150);
+  G2=(hs5.getPos()-170)*(255/150);
+  B2=(hs6.getPos()-170)*(255/150);
+  textSize(30);
+  fill(R1,G1,B1);
+  text("Color1", 10, 30);
+  fill(R2,G2,B2);
+  text("Color2", 160, 30);
+  hs1.update();
+  hs1.display();
+  hs2.update();
+  hs2.display();
+  hs3.update();
+  hs3.display();
+  hs4.update();
+  hs4.display();
+  hs5.update();
+  hs5.display();
+  hs6.update();
+  hs6.display();
+  stroke(0,0,0);
+  fill(0,0,0);
+  rect(150,0,1,200);
 }
-}
-colorMode(HSB, 200);
-for (int i = 300; i < 500; i+=10) {
-  for (int j = 200; j > 100; j-=10) {
-    fill(i-300, 200, 250-j);
-    rect(i, j,20,20);
+
+class HScrollbar {
+  int swidth, sheight;    // width and height of bar
+  float xpos, ypos;       // x and y position of bar
+  float spos, newspos;    // x position of slider
+  float sposMin, sposMax; // max and min values of slider
+  int loose;              // how loose/heavy
+  boolean over;           // is the mouse over the slider?
+  boolean locked;
+  float ratio;
+
+  HScrollbar (float xp, float yp, int sw, int sh, int l) {
+    swidth = sw;
+    sheight = sh;
+    int widthtoheight = sw - sh;
+    ratio = (float)sw / (float)widthtoheight;
+    xpos = xp;
+    ypos = yp-sheight/2;
+    spos = xpos + swidth/2 - sheight/2;
+    newspos = spos;
+    sposMin = xpos;
+    sposMax = xpos + swidth - sheight;
+    loose = l;
   }
-}
 
-noStroke();
-colorMode(HSB, 200);
-for (int i = 0; i < 200; i++) {
-  for (int j = 0; j < 200; j++) {
-    stroke(i, j*2, 200);
-    point(-i+200, j);
-  }
-}
-colorMode(HSB, 200);
-for (int i = 0; i < 200; i+=1) {
-  for (int j = 200; j > 100; j-=1) {
-    stroke(i, 200, 250-j);
-    point(-i+200, j);
-  }
-}
-}
-void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
-
-  noFill();
-
-  if (axis == Y_AXIS) {  // Top to bottom gradient
-    for (int i = y; i <= y+h; i+=1) {
-      float inter = map(i, y, y+h, 0, 1);
-      color c = lerpColor(c1, c2, inter);
-      fill(c);
-      rect(x, i, x+w, i);
+  void update() {
+    if (overEvent()) {
+      over = true;
+    } else {
+      over = false;
+    }
+    if (mousePressed && over) {
+      locked = true;
+    }
+    if (!mousePressed) {
+      locked = false;
+    }
+    if (locked) {
+      newspos = constrain(mouseX-sheight/2, sposMin, sposMax);
+    }
+    if (abs(newspos - spos) > 1) {
+      spos = spos + (newspos-spos)/loose;
     }
   }
-  else if (axis == X_AXIS) {  // Left to right gradient
-    for (int i = x; i <= x+w; i+=1) {
-      float inter = map(i, x, x+w, 0, 1);
-      color c = lerpColor(c1, c2, inter);
-      fill(c);
-      noStroke();
-      rect(i, y, i, y+h);
+
+  float constrain(float val, float minv, float maxv) {
+    return min(max(val, minv), maxv);
+  }
+
+  boolean overEvent() {
+    if (mouseX > xpos && mouseX < xpos+swidth &&
+       mouseY > ypos && mouseY < ypos+sheight) {
+      return true;
+    } else {
+      return false;
     }
   }
-}
-void setGradient2(int x, int y, float w, float h, color c1, color c2, int axis ) {
 
-  noFill();
-
-  if (axis == Y_AXIS) {  // Top to bottom gradient
-    for (int i = y; i <= y+h; i+=10) {
-      float inter = map(i, y, y+h, 0, 1);
-      color c = lerpColor(c1, c2, inter);
-      fill(c);
-      rect(x, i, x+w, i);
+  void display() {
+    noStroke();
+    fill(204);
+    rect(xpos, ypos, swidth, sheight);
+    if (over || locked) {
+      fill(0, 0, 0);
+    } else {
+      fill(102, 102, 102);
     }
+    rect(spos, ypos, sheight, sheight);
   }
-  else if (axis == X_AXIS) {  // Left to right gradient
-    for (int i = x; i <= x+w; i+=10) {
-      float inter = map(i, x, x+w, 0, 1);
-      color c = lerpColor(c1, c2, inter);
-      fill(c);
-      noStroke();
-      rect(i, y, i, y+h);
-    }
+
+  float getPos() {
+    // Convert spos to be values between
+    // 0 and the total width of the scrollbar
+    return spos * ratio;
   }
 }
