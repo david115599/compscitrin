@@ -5,11 +5,11 @@ float B1=0;
 float R2=0;
 float G2=0;
 float B2=0;
-int tool=1;
+int tool=0;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 void setup() {
   size(900, 600);
- 
+
   /*colorMode(HSB, width,300, 600);
   for (int h = 0; h < width; h++) {
     for (int q = 0; q < width; q++) {
@@ -17,11 +17,11 @@ void setup() {
     point(h,q);
     }
   }
-  
+
   colorMode(RGB); //go back to RGB to use get()
   noStroke();
   */
-  
+
   background(200-50, 200-50, 200-50);
   stroke(55, 55, 55);
   fill(55, 55, 55);
@@ -82,6 +82,11 @@ void draw() {
   rect(255, 120, 20, 20);
   fill(0, 0, 0);
   rect(275, 120, 20, 20);
+  fill(0, 0, 0);
+  rect(5, 205, 60, 30);
+  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >205 & mouseY <235) {
+    tool =1;
+  }
 
   strokeWeight(2);
   R1=(hs1.getPos())*(255/150);
@@ -266,6 +271,10 @@ class HScrollbar {
 void mouseDragged() {
     if (tool == 1) {
   stroke(R1,G1,B1);
+  line(pmouseX,pmouseY,mouseX,mouseY);
+    }
+    if (tool == 2) {
+  stroke(R2,G2,B2);
   line(pmouseX,pmouseY,mouseX,mouseY);
     }
 }
