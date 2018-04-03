@@ -1,3 +1,21 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import controlP5.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class LAB extends PApplet {
+
 /**
  * elevatorDemo by Andrew Rose
  * control a virtual elevator
@@ -7,16 +25,16 @@
  */
 
 //import controlP5 and create an object to add buttons
-/*
-import controlP5.*;
+
+
 
 ControlP5 cp5;
 
 int state = 1; //start on floor 1
 
-void setup() {
+public void setup() {
   rectMode(CENTER);
-  size(400, 600);
+  
   background(100);
 
   cp5 = new ControlP5(this);
@@ -32,7 +50,7 @@ void setup() {
     .setValue(1);
 }
 
-void draw() {
+public void draw() {
   if (state == 1) {
     println("Drawing");
     fill(250);
@@ -44,7 +62,7 @@ void draw() {
 
 }
 
-void floor1(int theValue) {
+public void floor1(int theValue) {
   if (state == 1) {
     println("Drawing");
     fill(250);
@@ -52,7 +70,7 @@ void floor1(int theValue) {
 }
 
 
-void floor2(int theValue) {
+public void floor2(int theValue) {
   switch (state) {
   case 2:
     println("erasing");
@@ -60,7 +78,7 @@ void floor2(int theValue) {
     break;
   }
 }
-*/
+
 /*
 // Constants
 int Y_AXIS = 1;
@@ -109,15 +127,15 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
 int size = 20;
 int Y_AXIS = 1;
 int X_AXIS = 2;
-color c1, c2;
-void setup(){
+int c1, c2;
+public void setup(){
  size (500, 300);
  smooth();
  c1 = color(255);
  c2 = color(0);
 }
 
-void draw(){
+public void draw(){
   setGradient(0, 200, 125, 40, c2, c1, X_AXIS);
   setGradient2(300, 200, 125, 40, c2, c1, X_AXIS);
 
@@ -154,14 +172,14 @@ for (int i = 0; i < 200; i+=1) {
   }
 }
 }
-void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
+public void setGradient(int x, int y, float w, float h, int c1, int c2, int axis ) {
 
   noFill();
 
   if (axis == Y_AXIS) {  // Top to bottom gradient
     for (int i = y; i <= y+h; i+=1) {
       float inter = map(i, y, y+h, 0, 1);
-      color c = lerpColor(c1, c2, inter);
+      int c = lerpColor(c1, c2, inter);
       fill(c);
       rect(x, i, x+w, i);
     }
@@ -169,21 +187,21 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
   else if (axis == X_AXIS) {  // Left to right gradient
     for (int i = x; i <= x+w; i+=1) {
       float inter = map(i, x, x+w, 0, 1);
-      color c = lerpColor(c1, c2, inter);
+      int c = lerpColor(c1, c2, inter);
       fill(c);
       noStroke();
       rect(i, y, i, y+h);
     }
   }
 }
-void setGradient2(int x, int y, float w, float h, color c1, color c2, int axis ) {
+public void setGradient2(int x, int y, float w, float h, int c1, int c2, int axis ) {
 
   noFill();
 
   if (axis == Y_AXIS) {  // Top to bottom gradient
     for (int i = y; i <= y+h; i+=10) {
       float inter = map(i, y, y+h, 0, 1);
-      color c = lerpColor(c1, c2, inter);
+      int c = lerpColor(c1, c2, inter);
       fill(c);
       rect(x, i, x+w, i);
     }
@@ -191,10 +209,20 @@ void setGradient2(int x, int y, float w, float h, color c1, color c2, int axis )
   else if (axis == X_AXIS) {  // Left to right gradient
     for (int i = x; i <= x+w; i+=10) {
       float inter = map(i, x, x+w, 0, 1);
-      color c = lerpColor(c1, c2, inter);
+      int c = lerpColor(c1, c2, inter);
       fill(c);
       noStroke();
       rect(i, y, i, y+h);
+    }
+  }
+}
+  public void settings() {  size(400, 600); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "LAB" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
     }
   }
 }

@@ -20,6 +20,7 @@ float B1=0;
 float R2=0;
 float G2=0;
 float B2=0;
+int tool=1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 public void setup() {
   
@@ -37,6 +38,22 @@ public void setup() {
   hs4 = new HScrollbar(150, 40, 150, 16, 16);
   hs5 = new HScrollbar(150, 70, 150, 16, 16);
   hs6 = new HScrollbar(150, 100, 150, 16, 16);
+  hs1.newspos = 0;
+  hs2.newspos = 0;
+  hs3.newspos = 0;
+  hs4.newspos = 135+150;
+  hs5.newspos = 135+150;
+  hs6.newspos = 135+150;
+}
+
+public void draw() {
+  stroke(55, 55, 55);
+  fill(55, 55, 55);
+  rect(0, 0, 300, 600);
+  strokeWeight(2);
+  stroke(0, 0, 0);
+  rect(0, 0, 150, 200);
+  rect(150, 0, 150, 200);
   noStroke();
   fill(255, 0, 0);
   rect(5, 120, 20, 20);
@@ -68,15 +85,6 @@ public void setup() {
   fill(0, 0, 0);
   rect(275, 120, 20, 20);
 
-  hs1.newspos = 0;
-  hs2.newspos = 0;
-  hs3.newspos = 0;
-  hs4.newspos = 135+150;
-  hs5.newspos = 135+150;
-  hs6.newspos = 135+150;
-}
-
-public void draw() {
   strokeWeight(2);
   R1=(hs1.getPos())*(255/150);
   G1=(hs2.getPos())*(255/150);
@@ -86,6 +94,9 @@ public void draw() {
   B2=(hs6.getPos()-170)*(255/150);
   textSize(30);
   fill(R1, G1, B1);
+  if (tool == 1) {
+    ellipse(mouseX, mouseY, 1, 1);
+  }
   text("Color1", 10, 30);
   fill(R2, G2, B2);
   text("Color2", 160, 30);
