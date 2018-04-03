@@ -24,7 +24,7 @@ int tool=1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 public void setup() {
   
-  background(200, 200, 200);
+  background(200-50, 200-50, 200-50);
   stroke(55, 55, 55);
   fill(55, 55, 55);
   rect(0, 0, 300, 600);
@@ -143,9 +143,9 @@ public void draw() {
     hs3.newspos = 116;
   }
   if (mousePressed == true & mouseX >105 & mouseX <125 & mouseY >120 & mouseY <140) {
-    hs1.newspos = 105.88f;
-    hs2.newspos = 105.88f;
-    hs3.newspos = 105.88f;
+    hs1.newspos = 105.88f+30;
+    hs2.newspos = 105.88f+30;
+    hs3.newspos = 105.88f+30;
   }
   if (mousePressed == true & mouseX >125 & mouseX <145 & mouseY >120 & mouseY <140) {
     hs1.newspos = 0;
