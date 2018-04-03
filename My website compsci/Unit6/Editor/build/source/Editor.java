@@ -39,23 +39,45 @@ hs5 = new HScrollbar(150, 70, 150, 16, 16);
 hs6 = new HScrollbar(150, 100, 150, 16, 16);
 noStroke();
 fill(255,0,0);
-rect(10,120,20,20);
+rect(5,120,20,20);
 fill(0,255,0);
-rect(30,120,20,20);
+rect(25,120,20,20);
 fill(0,0,255);
-rect(50,120,20,20);
+rect(45,120,20,20);
 fill(219, 65, 5);
-rect(70,120,20,20);
+rect(65,120,20,20);
 fill(65, 5, 219);
-rect(90,120,20,20);
-fill(5, 65, 219);
-rect(90,120,20,20);
-fill(5, 219, 150);
-rect(110,120,20,20);
+rect(85,120,20,20);
+fill(200,200,200);
+rect(105,120,20,20);
+fill(0, 0, 0);
+rect(125,120,20,20);
 
+fill(255,0,0);
+rect(155,120,20,20);
+fill(0,255,0);
+rect(175,120,20,20);
+fill(0,0,255);
+rect(195,120,20,20);
+fill(219, 65, 5);
+rect(215,120,20,20);
+fill(65, 5, 219);
+rect(235,120,20,20);
+fill(200,200,200);
+rect(255,120,20,20);
+fill(0, 0, 0);
+rect(275,120,20,20);
+
+hs1.newspos = 0;
+hs2.newspos = 0;
+hs3.newspos = 0;
+hs4.newspos = 135+150;
+hs5.newspos = 135+150;
+hs6.newspos = 135+150;
 }
 
-public void draw(){strokeWeight(2);
+public void draw(){
+  strokeWeight(2);
   R1=(hs1.getPos())*(255/150);
   G1=(hs2.getPos())*(255/150);
   B1=(hs3.getPos())*(255/150);
@@ -82,6 +104,43 @@ public void draw(){strokeWeight(2);
   stroke(0,0,0);
   fill(0,0,0);
   rect(150,0,1,200);
+
+  if (mousePressed == true & mouseX >5 & mouseX <25 & mouseY >120 & mouseY <140) {
+  hs1.newspos = 135;
+  hs2.newspos = 0;
+  hs3.newspos = 0;
+    }
+  if (mousePressed == true & mouseX >25 & mouseX <45 & mouseY >120 & mouseY <140) {
+  hs1.newspos = 0;
+  hs2.newspos = 135;
+  hs3.newspos = 0;
+    }
+  if (mousePressed == true & mouseX >45 & mouseX <65 & mouseY >120 & mouseY <140) {
+  hs1.newspos = 0;
+  hs2.newspos = 0;
+  hs3.newspos = 135;
+    }
+    //take the rgb value and divide it by 1.888888888888888888... to get the propper slider location
+    if (mousePressed == true & mouseX >65 & mouseX <85 & mouseY >120 & mouseY <140) {
+    hs1.newspos = 116;
+    hs2.newspos = 34.5f;
+    hs3.newspos = 2.6f;
+      }
+      if (mousePressed == true & mouseX >85 & mouseX <105 & mouseY >120 & mouseY <140) {
+      hs1.newspos = 34.5f;
+      hs2.newspos = 2.6f;
+      hs3.newspos = 116;
+        }
+        if (mousePressed == true & mouseX >105 & mouseX <125 & mouseY >120 & mouseY <140) {
+        hs1.newspos = 105.88f;
+        hs2.newspos = 105.88f;
+        hs3.newspos = 105.88f;
+          }
+          if (mousePressed == true & mouseX >125 & mouseX <145 & mouseY >120 & mouseY <140) {
+          hs1.newspos = 0;
+          hs2.newspos = 0;
+          hs3.newspos = 0;
+            }
 }
 
 class HScrollbar {
