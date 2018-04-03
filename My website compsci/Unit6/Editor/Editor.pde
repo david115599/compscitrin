@@ -1,3 +1,4 @@
+
 float R1=0;
 float G1=0;
 float B1=0;
@@ -8,6 +9,19 @@ int tool=1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 void setup() {
   size(900, 600);
+ 
+  /*colorMode(HSB, width,300, 600);
+  for (int h = 0; h < width; h++) {
+    for (int q = 0; q < width; q++) {
+    stroke(h, 100, 100);
+    point(h,q);
+    }
+  }
+  
+  colorMode(RGB); //go back to RGB to use get()
+  noStroke();
+  */
+  
   background(200-50, 200-50, 200-50);
   stroke(55, 55, 55);
   fill(55, 55, 55);
@@ -78,9 +92,7 @@ void draw() {
   B2=(hs6.getPos()-170)*(255/150);
   textSize(30);
   fill(R1, G1, B1);
-  if (tool == 1) {
-    ellipse(mouseX, mouseY, 1, 1);
-  }
+
   text("Color1", 10, 30);
   fill(R2, G2, B2);
   text("Color2", 160, 30);
@@ -249,4 +261,11 @@ class HScrollbar {
     // 0 and the total width of the scrollbar
     return spos * ratio;
   }
+}
+
+void mouseDragged() {
+    if (tool == 1) {
+  stroke(R1,G1,B1);
+  line(pmouseX,pmouseY,mouseX,mouseY);
+    }
 }
