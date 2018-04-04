@@ -22,26 +22,16 @@ float R2=0;
 float G2=0;
 float B2=0;
 int tool=0;
+int thickness=1;
+int mousexp=0;
+int mouseyp=0;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 public void setup() {
   
-
-  /*colorMode(HSB, width,300, 600);
-  for (int h = 0; h < width; h++) {
-    for (int q = 0; q < width; q++) {
-    stroke(h, 100, 100);
-    point(h,q);
-    }
-  }
-
-  colorMode(RGB); //go back to RGB to use get()
-  noStroke();
-  */
+  frameRate(200);
 
   background(200-50, 200-50, 200-50);
-  stroke(55, 55, 55);
   fill(55, 55, 55);
-  rect(0, 0, 300, 600);
   strokeWeight(2);
   stroke(0, 0, 0);
   rect(0, 0, 150, 200);
@@ -61,6 +51,7 @@ public void setup() {
 }
 
 public void draw() {
+  strokeWeight(1);
   stroke(55, 55, 55);
   fill(55, 55, 55);
   rect(0, 0, 300, 600);
@@ -112,6 +103,27 @@ public void draw() {
   text("ERS", 70, 230);
   if (mousePressed == true & mouseX >70 & mouseX <130 & mouseY >205 & mouseY <235) {
     tool =2;
+  }
+  fill(30, 30, 30);
+  rect(135, 205, 60, 30);
+  fill(150, 150, 150);
+  text("S+", 135, 230);
+  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >205 & mouseY <235) {
+    thickness ++;
+  }
+  fill(30, 30, 30);
+  rect(200, 205, 60, 30);
+  fill(150, 150, 150);
+  text("S-", 200, 230);
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >205 & mouseY <235 & thickness>1) {
+    thickness --;
+  }
+  fill(30, 30, 30);
+  rect(5, 240, 60, 30);
+  fill(150, 150, 150);
+  text("LIN", 5, 265);
+  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >240 & mouseY <270) {
+    tool =3;
   }
 
   strokeWeight(2);
@@ -293,13 +305,27 @@ class HScrollbar {
     return spos * ratio;
   }
 }
-
+public void mousePressed(){
+  if (tool == 3) {
+    mousexp=mouseX;
+    mouseyp=mouseY;
+  }
+}
+public void mouseReleased() {
+    if (tool == 3) {
+  strokeWeight(thickness);
+  stroke(R1,G1,B1);
+  line(mousexp,mouseyp,mouseX,mouseY);
+    }
+  }
 public void mouseDragged() {
     if (tool == 1) {
+  strokeWeight(thickness);
   stroke(R1,G1,B1);
   line(pmouseX,pmouseY,mouseX,mouseY);
     }
     if (tool == 2) {
+  strokeWeight(thickness);
   stroke(R2,G2,B2);
   line(pmouseX,pmouseY,mouseX,mouseY);
     }
