@@ -125,6 +125,9 @@ public void draw() {
   if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >240 & mouseY <270) {
     tool =3;
   }
+    text(mouseX-300, 5, 600);
+    text(":", 80, 600);
+    text(mouseY, 95, 600);
 
   strokeWeight(2);
   R1=(hs1.getPos())*(255/150);
@@ -320,8 +323,13 @@ public void mouseReleased() {
   }
 public void mouseDragged() {
     if (tool == 1) {
+       if (mouseButton == LEFT) {
+           stroke(R1,G1,B1);
+       }
+       else if (mouseButton == RIGHT) {
+   stroke(R2,G2,B2);
+  }
   strokeWeight(thickness);
-  stroke(R1,G1,B1);
   line(pmouseX,pmouseY,mouseX,mouseY);
     }
     if (tool == 2) {
