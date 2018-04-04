@@ -55,9 +55,9 @@ public void setup() {
   hs1.newspos = 0;
   hs2.newspos = 0;
   hs3.newspos = 0;
-  hs4.newspos = 135+150;
-  hs5.newspos = 135+150;
-  hs6.newspos = 135+150;
+  hs4.newspos = 105.88f+150+30;
+  hs5.newspos = 105.88f+150+30;
+  hs6.newspos = 105.88f+150+30;
 }
 
 public void draw() {
@@ -98,10 +98,20 @@ public void draw() {
   rect(255, 120, 20, 20);
   fill(0, 0, 0);
   rect(275, 120, 20, 20);
-  fill(0, 0, 0);
+
+  fill(30, 30, 30);
   rect(5, 205, 60, 30);
+  fill(150, 150, 150);
+  text("PEN", 5, 230);
   if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >205 & mouseY <235) {
     tool =1;
+  }
+  fill(30, 30, 30);
+  rect(70, 205, 60, 30);
+  fill(150, 150, 150);
+  text("ERS", 70, 230);
+  if (mousePressed == true & mouseX >70 & mouseX <130 & mouseY >205 & mouseY <235) {
+    tool =2;
   }
 
   strokeWeight(2);
@@ -197,9 +207,9 @@ public void draw() {
     hs6.newspos = 116+150;
   }
   if (mousePressed == true & mouseX >105+150 & mouseX <125+150 & mouseY >120 & mouseY <140) {
-    hs4.newspos = 105.88f+150;
-    hs5.newspos = 105.88f+150;
-    hs6.newspos = 105.88f+150;
+    hs4.newspos = 105.88f+150+30;
+    hs5.newspos = 105.88f+150+30;
+    hs6.newspos = 105.88f+150+30;
   }
   if (mousePressed == true & mouseX >125+150 & mouseX <145+150 & mouseY >120 & mouseY <140) {
     hs4.newspos = 0+150;
