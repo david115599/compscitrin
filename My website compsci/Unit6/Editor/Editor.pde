@@ -2,9 +2,11 @@
 float R1=0;
 float G1=0;
 float B1=0;
+float A1=255;
 float R2=0;
 float G2=0;
 float B2=0;
+float A2=255;
 int tool=1;
 int thickness=1;
 int mousexp=0;
@@ -101,6 +103,34 @@ void draw() {
   text("S-", 200, 230);
   if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >205 & mouseY <235 & thickness>1) {
     thickness --;
+  }
+  fill(30, 30, 30);
+  rect(135, 240, 60, 30);
+  fill(150, 150, 150);
+  text("A1+", 135, 265);
+  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >240 & mouseY <270) {
+    A1 ++;
+  }
+  fill(30, 30, 30);
+  rect(200, 240, 60, 30);
+  fill(150, 150, 150);
+  text("A1-", 200, 265);
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >240 & mouseY <270 & thickness>1) {
+    A1 --;
+  }
+  fill(30, 30, 30);
+  rect(135, 275, 60, 30);
+  fill(150, 150, 150);
+  text("A2+", 135, 275+25);
+  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >275 & mouseY <305) {
+    A2 ++;
+  }
+  fill(30, 30, 30);
+  rect(200, 275, 60, 30);
+  fill(150, 150, 150);
+  text("A2-", 200, 275+25);
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >275 & mouseY <305 & thickness>1) {
+    A2 --;
   }
   fill(30, 30, 30);
   rect(5, 240, 60, 30);
@@ -301,24 +331,24 @@ void mousePressed(){
 void mouseReleased() {
     if (tool == 3) {
   strokeWeight(thickness);
-  stroke(R1,G1,B1);
+  stroke(R1,G1,B1,A1);
   line(mousexp,mouseyp,mouseX,mouseY);
     }
   }
 void mouseDragged() {
     if (tool == 1) {
        if (mouseButton == LEFT) {
-           stroke(R1,G1,B1);
+           stroke(R1,G1,B1,A1);
        }
        else if (mouseButton == RIGHT) {
-   stroke(R2,G2,B2);
+   stroke(R2,G2,B2,A2);
   }
   strokeWeight(thickness);
   line(pmouseX,pmouseY,mouseX,mouseY);
     }
     if (tool == 2) {
   strokeWeight(thickness);
-  stroke(R2,G2,B2);
+  stroke(R2,G2,B2,A2);
   line(pmouseX,pmouseY,mouseX,mouseY);
     }
 }
