@@ -46,11 +46,9 @@ void setup() {
 }
 
 void draw() {
+  background(200-50, 200-50, 200-50);
+  stroke(R1,G1,B1,A1);
   image(lines, 0, 0);
-    if (mousePressed & tool == 3) {
-      background(150);
-     line(x,y,mouseX,mouseY);
-  }
   stroke(0);
 
   strokeWeight(1);
@@ -349,23 +347,24 @@ class HScrollbar {
 }
 void mousePressed(){
   if (tool == 3) {
-    lines.beginDraw();
-     lines.endDraw();
+    stroke(R1,G1,B1,A1);
     x = mouseX;
     y = mouseY;
-    stroke(0);
   }
 }
 void mouseReleased() {
     if (tool == 3) {
+    stroke(R1,G1,B1,A1);
   strokeWeight(thickness);
-  stroke(R1,G1,B1,A1);
  lines.beginDraw();
+ stroke(R1,G1,B1,A1);
   lines.line(x, y, mouseX, mouseY);
-lines.endDraw();
+  lines.endDraw();
     }
   }
 void mouseDragged() {
+    stroke(R1,G1,B1,A1);
+      line(x, y, mouseX, mouseY);
     if (tool == 1) {
        if (mouseButton == LEFT) {
            stroke(R1,G1,B1,A1);
