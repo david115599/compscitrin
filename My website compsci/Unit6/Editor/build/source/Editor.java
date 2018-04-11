@@ -15,6 +15,7 @@ import java.io.IOException;
 public class EDITOR extends PApplet {
 
 
+PGraphics lines;
 float R1=0;
 float G1=0;
 float B1=0;
@@ -27,10 +28,18 @@ int tool=1;
 int thickness=1;
 int mousexp=0;
 int mouseyp=0;
+int x;
+int y;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 public void setup() {
   
   frameRate(200);
+
+  lines = createGraphics(width, height);
+  lines.beginDraw();
+  lines.stroke(0);
+  lines.noFill();
+  lines.endDraw();
 
   background(200-50, 200-50, 200-50);
   fill(55, 55, 55);
@@ -53,6 +62,13 @@ public void setup() {
 }
 
 public void draw() {
+  image(lines, 0, 0);
+    if (mousePressed & tool == 3) {
+      background(150);
+     line(x,y,mouseX,mouseY);
+  }
+  stroke(0);
+
   strokeWeight(1);
   stroke(55, 55, 55);
   fill(55, 55, 55);
@@ -159,7 +175,7 @@ public void draw() {
   rect(5, 275, 70, 30);
   fill(150, 150, 150);
   text("Save", 5, 275+25);
-  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >275 & mouseY <305) {
+  if (mousePressed == true & mouseX >5 & mouseX <75 & mouseY >275 & mouseY <305) {
       PImage partialSave = get(300,0,900,600);
       partialSave.save("Save.png");
   }
@@ -349,15 +365,20 @@ class HScrollbar {
 }
 public void mousePressed(){
   if (tool == 3) {
-    mousexp=mouseX;
-    mouseyp=mouseY;
+    lines.beginDraw();
+     lines.endDraw();
+    x = mouseX;
+    y = mouseY;
+    stroke(0);
   }
 }
 public void mouseReleased() {
     if (tool == 3) {
   strokeWeight(thickness);
   stroke(R1,G1,B1,A1);
-  line(mousexp,mouseyp,mouseX,mouseY);
+ lines.beginDraw();
+  lines.line(x, y, mouseX, mouseY);
+lines.endDraw();
     }
   }
 public void mouseDragged() {

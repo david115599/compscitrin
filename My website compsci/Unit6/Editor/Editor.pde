@@ -18,8 +18,8 @@ HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 void setup() {
   size(900, 600);
   frameRate(200);
-  
-  lines = createGraphics(width, height); 
+
+  lines = createGraphics(width, height);
   lines.beginDraw();
   lines.stroke(0);
   lines.noFill();
