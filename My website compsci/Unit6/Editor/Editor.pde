@@ -139,6 +139,15 @@ void draw() {
   if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >240 & mouseY <270) {
     tool =3;
   }
+  fill(30, 30, 30);
+  rect(5, 275, 60, 30);
+  fill(150, 150, 150);
+  text("SAVE", 5, 275+25);
+  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >275 & mouseY <305) {
+      PImage partialSave = get(300,0,900,600);
+      partialSave.save("Save.png");
+  }
+
     text(mouseX-300, 5, 600);
     text(":", 80, 600);
     text(mouseY, 95, 600);
