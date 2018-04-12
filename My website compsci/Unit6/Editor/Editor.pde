@@ -140,28 +140,34 @@ void draw() {
     A2 ++;
   }
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >275 & mouseY <305 & thickness>1) {
+    A2 --;
+    fill(255, 0, 0);
+  }
   rect(200, 275, 60, 30);
   fill(150, 150, 150);
   text("A2-", 200, 275+25);
-  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >275 & mouseY <305 & thickness>1) {
-    A2 --;
-  }
+
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >240 & mouseY <270) {
+    tool =3;
+    fill(255, 0, 0);
+  }
   rect(5, 240, 60, 30);
   fill(150, 150, 150);
   text("LIN", 5, 265);
-  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >240 & mouseY <270) {
-    tool =3;
-  }
+
   fill(30, 30, 30);
-  rect(5, 275, 70, 30);
-  fill(150, 150, 150);
-  text("Save", 5, 275+25);
   if (mousePressed == true & mouseX >5 & mouseX <75 & mouseY >275 & mouseY <305) {
       PImage partialSave = get(300,0,900,600);
       partialSave.save("Save.png");
+      fill(255, 0, 0);
   }
+  rect(5, 275, 70, 30);
+  fill(150, 150, 150);
+  text("Save", 5, 275+25);
 
+    fill(30, 30, 30);
     text(mouseX-300, 5, 600);
     text(":", 80, 600);
     text(mouseY, 95, 600);
