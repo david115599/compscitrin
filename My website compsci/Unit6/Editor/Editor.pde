@@ -25,7 +25,9 @@ void setup() {
   draw.noFill();
   draw.endDraw();
 
-  background(200-50, 200-50, 200-50);
+  draw.beginDraw();
+  draw.background(200-50, 200-50, 200-50);
+  draw.endDraw();
   fill(55, 55, 55);
   strokeWeight(2);
   stroke(0, 0, 0);
@@ -403,6 +405,7 @@ void mouseDragged() {
     }
     draw.endDraw();
     if (tool == 3) {
+    strokeWeight(thickness);
     stroke(R1,G1,B1,A1);
       line(x, y, mouseX, mouseY);
     }
