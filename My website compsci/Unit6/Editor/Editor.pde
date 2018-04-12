@@ -137,7 +137,7 @@ void draw() {
   text("A1+", 135, 265);
 
   fill(30, 30, 30);
-  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >240 & mouseY <270 & thickness>1) {
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >240 & mouseY <270) {
     A1 --;
     fill(255, 0, 0);
   }
@@ -155,7 +155,7 @@ void draw() {
   text("A2+", 135, 275+25);
 
   fill(30, 30, 30);
-  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >275 & mouseY <305 & thickness>1) {
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >275 & mouseY <305) {
     A2 --;
     fill(255, 0, 0);
   }
@@ -185,7 +185,10 @@ void draw() {
 
   fill(30, 30, 30);
   if (mousePressed == true & mouseX >5 & mouseX <105 & mouseY >310 & mouseY <340) {
-    tool =4;
+    draw.beginDraw();
+    draw.background(200-50, 200-50, 200-50);
+    draw.endDraw();
+      tool = 1;
     fill(255, 0, 0);
   }
   rect(5, 310, 100, 30);
@@ -383,10 +386,6 @@ void mousePressed() {
     draw.endDraw();
     x = mouseX;
     y = mouseY;
-  }
-  if (tool == 4) {
-    draw.background(150);
-    tool = 1;
   }
 }
 void mouseReleased() {
