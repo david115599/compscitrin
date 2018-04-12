@@ -357,14 +357,12 @@ void mouseReleased() {
     stroke(R1,G1,B1,A1);
   strokeWeight(thickness);
  lines.beginDraw();
- stroke(R1,G1,B1,A1);
+  lines.stroke(R1,G1,B1,A1);
   lines.line(x, y, mouseX, mouseY);
   lines.endDraw();
     }
   }
 void mouseDragged() {
-    stroke(R1,G1,B1,A1);
-      line(x, y, mouseX, mouseY);
     if (tool == 1) {
        if (mouseButton == LEFT) {
            stroke(R1,G1,B1,A1);
@@ -379,5 +377,9 @@ void mouseDragged() {
   strokeWeight(thickness);
   stroke(R2,G2,B2,A2);
   line(pmouseX,pmouseY,mouseX,mouseY);
+    }
+    if (tool == 3) {
+    stroke(R1,G1,B1,A1);
+      line(x, y, mouseX, mouseY);
     }
 }
