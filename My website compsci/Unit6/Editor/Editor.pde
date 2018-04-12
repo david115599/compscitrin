@@ -1,4 +1,3 @@
-
 PGraphics draw;
 float R1=0;
 float G1=0;
@@ -93,97 +92,86 @@ void draw() {
   rect(275, 120, 20, 20);
 
   fill(30, 30, 30);
-  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >205 & mouseY <235) {
-    tool =1;
-    fill(255, 0, 0);
-  }
   rect(5, 205, 60, 30);
   fill(150, 150, 150);
   text("PEN", 5, 230);
-
-  fill(30, 30, 30);
-  if (mousePressed == true & mouseX >70 & mouseX <130 & mouseY >205 & mouseY <235) {
-    tool =2;
-      fill(255, 0, 0);
+  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >205 & mouseY <235) {
+    tool =1;
   }
+  fill(30, 30, 30);
   rect(70, 205, 60, 30);
   fill(150, 150, 150);
   text("ERS", 70, 230);
-
-  fill(30, 30, 30);
-  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >205 & mouseY <235) {
-    thickness ++;
-    fill(255, 0, 0);
+  if (mousePressed == true & mouseX >70 & mouseX <130 & mouseY >205 & mouseY <235) {
+    tool =2;
   }
+  fill(30, 30, 30);
   rect(135, 205, 60, 30);
   fill(150, 150, 150);
   text("S+", 135, 230);
-
-  fill(30, 30, 30);
-  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >205 & mouseY <235 & thickness>1) {
-    thickness --;
-    fill(255, 0, 0);
+  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >205 & mouseY <235) {
+    thickness ++;
   }
+  fill(30, 30, 30);
   rect(200, 205, 60, 30);
   fill(150, 150, 150);
   text("S-", 200, 230);
-
-  fill(30, 30, 30);
-  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >240 & mouseY <270) {
-    A1 ++;
-    fill(255, 0, 0);
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >205 & mouseY <235 & thickness>1) {
+    thickness --;
   }
+  fill(30, 30, 30);
   rect(135, 240, 60, 30);
   fill(150, 150, 150);
   text("A1+", 135, 265);
-
-  fill(30, 30, 30);
-  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >240 & mouseY <270 & thickness>1) {
-    A1 --;
-    fill(255, 0, 0);
+  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >240 & mouseY <270) {
+    A1 ++;
   }
+  fill(30, 30, 30);
   rect(200, 240, 60, 30);
   fill(150, 150, 150);
   text("A1-", 200, 265);
-
-  fill(30, 30, 30);
-  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >275 & mouseY <305) {
-    A2 ++;
-    fill(255, 0, 0);
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >240 & mouseY <270 & thickness>1) {
+    A1 --;
   }
+  fill(30, 30, 30);
   rect(135, 275, 60, 30);
   fill(150, 150, 150);
   text("A2+", 135, 275+25);
-
-  fill(30, 30, 30);
-  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >275 & mouseY <305 & thickness>1) {
-    A2 --;
-    fill(255, 0, 0);
+  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >275 & mouseY <305) {
+    A2 ++;
   }
+  fill(30, 30, 30);
   rect(200, 275, 60, 30);
   fill(150, 150, 150);
   text("A2-", 200, 275+25);
-
-  fill(30, 30, 30);
-  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >240 & mouseY <270) {
-    tool =3;
-    fill(255, 0, 0);
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >275 & mouseY <305 & thickness>1) {
+    A2 --;
   }
+  fill(30, 30, 30);
   rect(5, 240, 60, 30);
   fill(150, 150, 150);
   text("LIN", 5, 265);
-
-  fill(30, 30, 30);
-  if (mousePressed == true & mouseX >5 & mouseX <75 & mouseY >275 & mouseY <305) {
-      PImage partialSave = get(300,0,900,600);
-      partialSave.save("Save.png");
-      fill(255, 0, 0);
+  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >240 & mouseY <270) {
+    tool =3;
   }
+  
+  fill(30, 30, 30);
+  rect(5, 310, 100, 30);
+  fill(150, 150, 150);
+  text("CLEAR", 5, 335);
+  if (mousePressed == true & mouseX >5 & mouseX <105 & mouseY >310 & mouseY <340) {
+    tool =4;
+  }
+  
+  fill(30, 30, 30);
   rect(5, 275, 70, 30);
   fill(150, 150, 150);
   text("Save", 5, 275+25);
+  if (mousePressed == true & mouseX >5 & mouseX <75 & mouseY >275 & mouseY <305) {
+      PImage partialSave = get(300,0,900,600);
+      partialSave.save("Save.png");
+  }
 
-    fill(30, 30, 30);
     text(mouseX-300, 5, 600);
     text(":", 80, 600);
     text(mouseY, 95, 600);
@@ -403,10 +391,16 @@ void mouseDragged() {
   draw.stroke(R2,G2,B2,A2);
   draw.line(pmouseX,pmouseY,mouseX,mouseY);
     }
+    
+    if (tool == 4) {
+      draw.background(150);
+      tool = 1;
+    }
     draw.endDraw();
     if (tool == 3) {
     strokeWeight(thickness);
     stroke(R1,G1,B1,A1);
       line(x, y, mouseX, mouseY);
     }
+
 }
