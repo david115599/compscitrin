@@ -48,7 +48,7 @@ void setup() {
 
 void draw() {
   background(200-50, 200-50, 200-50);
-  stroke(R1,G1,B1,A1);
+  stroke(R1, G1, B1, A1);
   image(draw, 0, 0);
   stroke(0);
 
@@ -92,89 +92,110 @@ void draw() {
   rect(275, 120, 20, 20);
 
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >205 & mouseY <235) {
+    tool =1;
+    fill(255, 0, 0);
+  }
   rect(5, 205, 60, 30);
   fill(150, 150, 150);
   text("PEN", 5, 230);
-  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >205 & mouseY <235) {
-    tool =1;
-  }
+
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >70 & mouseX <130 & mouseY >205 & mouseY <235) {
+    tool =2;
+    fill(255, 0, 0);
+  }
   rect(70, 205, 60, 30);
   fill(150, 150, 150);
   text("ERS", 70, 230);
-  if (mousePressed == true & mouseX >70 & mouseX <130 & mouseY >205 & mouseY <235) {
-    tool =2;
-  }
+
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >205 & mouseY <235) {
+    thickness ++;
+    fill(255, 0, 0);
+  }
   rect(135, 205, 60, 30);
   fill(150, 150, 150);
   text("S+", 135, 230);
-  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >205 & mouseY <235) {
-    thickness ++;
-  }
+
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >205 & mouseY <235 & thickness>1) {
+    thickness --;
+    fill(255, 0, 0);
+  }
   rect(200, 205, 60, 30);
   fill(150, 150, 150);
   text("S-", 200, 230);
-  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >205 & mouseY <235 & thickness>1) {
-    thickness --;
-  }
+
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >240 & mouseY <270) {
+    A1 ++;
+    fill(255, 0, 0);
+  }
   rect(135, 240, 60, 30);
   fill(150, 150, 150);
   text("A1+", 135, 265);
-  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >240 & mouseY <270) {
-    A1 ++;
-  }
+
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >240 & mouseY <270 & thickness>1) {
+    A1 --;
+    fill(255, 0, 0);
+  }
   rect(200, 240, 60, 30);
   fill(150, 150, 150);
   text("A1-", 200, 265);
-  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >240 & mouseY <270 & thickness>1) {
-    A1 --;
-  }
+
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >275 & mouseY <305) {
+    A2 ++;
+    fill(255, 0, 0);
+  }
   rect(135, 275, 60, 30);
   fill(150, 150, 150);
   text("A2+", 135, 275+25);
-  if (mousePressed == true & mouseX >135 & mouseX <195 & mouseY >275 & mouseY <305) {
-    A2 ++;
-  }
+
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >275 & mouseY <305 & thickness>1) {
+    A2 --;
+    fill(255, 0, 0);
+  }
   rect(200, 275, 60, 30);
   fill(150, 150, 150);
   text("A2-", 200, 275+25);
-  if (mousePressed == true & mouseX >200 & mouseX <260 & mouseY >275 & mouseY <305 & thickness>1) {
-    A2 --;
-  }
+
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >240 & mouseY <270) {
+    tool =3;
+    fill(255, 0, 0);
+  }
   rect(5, 240, 60, 30);
   fill(150, 150, 150);
   text("LIN", 5, 265);
-  if (mousePressed == true & mouseX >5 & mouseX <65 & mouseY >240 & mouseY <270) {
-    tool =3;
-  }
-  
+
   fill(30, 30, 30);
-  rect(5, 310, 100, 30);
-  fill(150, 150, 150);
-  text("CLEAR", 5, 335);
-  if (mousePressed == true & mouseX >5 & mouseX <105 & mouseY >310 & mouseY <340) {
-    tool =4;
+  if (mousePressed == true & mouseX >5 & mouseX <75 & mouseY >275 & mouseY <305) {
+    PImage partialSave = get(300, 0, 900, 600);
+    partialSave.save("Save.png");
+    fill(255, 0, 0);
   }
-  
-  fill(30, 30, 30);
   rect(5, 275, 70, 30);
   fill(150, 150, 150);
   text("Save", 5, 275+25);
-  if (mousePressed == true & mouseX >5 & mouseX <75 & mouseY >275 & mouseY <305) {
-      PImage partialSave = get(300,0,900,600);
-      partialSave.save("Save.png");
-  }
 
-    text(mouseX-300, 5, 600);
-    text(":", 80, 600);
-    text(mouseY, 95, 600);
+
+  fill(30, 30, 30);
+  if (mousePressed == true & mouseX >5 & mouseX <105 & mouseY >310 & mouseY <340) {
+    tool =4;
+    fill(255, 0, 0);
+  }
+  rect(5, 310, 100, 30);
+  fill(150, 150, 150);
+  text("CLEAR", 5, 335);
+
+  fill(30, 30, 30);
+  text(mouseX-300, 5, 600);
+  text(":", 80, 600);
+  text(mouseY, 95, 600);
 
   strokeWeight(2);
   R1=(hs1.getPos())*(255/150);
@@ -204,7 +225,7 @@ void draw() {
   stroke(0, 0, 0);
   fill(0, 0, 0);
   rect(150, 0, 1, 200);
-//color 1
+  //color 1
   if (mousePressed == true & mouseX >5 & mouseX <25 & mouseY >120 & mouseY <140) {
     hs1.newspos = 135;
     hs2.newspos = 0;
@@ -241,7 +262,7 @@ void draw() {
     hs2.newspos = 0;
     hs3.newspos = 0;
   }
-//color 2
+  //color 2
   if (mousePressed == true & mouseX >5+150 & mouseX <25+150 & mouseY >120 & mouseY <140) {
     hs4.newspos = 135+150;
     hs5.newspos = 0+150;
@@ -355,52 +376,50 @@ class HScrollbar {
     return spos * ratio;
   }
 }
-void mousePressed(){
+void mousePressed() {
   if (tool == 3) {
     draw.beginDraw();
-    draw.stroke(R1,G1,B1,A1);
+    draw.stroke(R1, G1, B1, A1);
     draw.endDraw();
     x = mouseX;
     y = mouseY;
   }
+  if (tool == 4) {
+    draw.background(150);
+    tool = 1;
+  }
 }
 void mouseReleased() {
-    if (tool == 3) {
-  draw.beginDraw();
-  draw.stroke(R1,G1,B1,A1);
-  draw.strokeWeight(thickness);
-  draw.stroke(R1,G1,B1,A1);
-  draw.line(x, y, mouseX, mouseY);
-  draw.endDraw();
-    }
-  }
-void mouseDragged() {
+  if (tool == 3) {
     draw.beginDraw();
-    if (tool == 1) {
-       if (mouseButton == LEFT) {
-           draw.stroke(R1,G1,B1,A1);
-       }
-       else if (mouseButton == RIGHT) {
-   draw.stroke(R2,G2,B2,A2);
-  }
-  draw.strokeWeight(thickness);
-  draw.line(pmouseX,pmouseY,mouseX,mouseY);
-    }
-    if (tool == 2) {
-  draw.strokeWeight(thickness);
-  draw.stroke(R2,G2,B2,A2);
-  draw.line(pmouseX,pmouseY,mouseX,mouseY);
-    }
-    
-    if (tool == 4) {
-      draw.background(150);
-      tool = 1;
-    }
+    draw.stroke(R1, G1, B1, A1);
+    draw.strokeWeight(thickness);
+    draw.stroke(R1, G1, B1, A1);
+    draw.line(x, y, mouseX, mouseY);
     draw.endDraw();
-    if (tool == 3) {
-    strokeWeight(thickness);
-    stroke(R1,G1,B1,A1);
-      line(x, y, mouseX, mouseY);
+  }
+}
+void mouseDragged() {
+  draw.beginDraw();
+  if (tool == 1) {
+    if (mouseButton == LEFT) {
+      draw.stroke(R1, G1, B1, A1);
+    } else if (mouseButton == RIGHT) {
+      draw.stroke(R2, G2, B2, A2);
     }
+    draw.strokeWeight(thickness);
+    draw.line(pmouseX, pmouseY, mouseX, mouseY);
+  }
+  if (tool == 2) {
+    draw.strokeWeight(thickness);
+    draw.stroke(R2, G2, B2, A2);
+    draw.line(pmouseX, pmouseY, mouseX, mouseY);
+  }
 
+  draw.endDraw();
+  if (tool == 3) {
+    strokeWeight(thickness);
+    stroke(R1, G1, B1, A1);
+    line(x, y, mouseX, mouseY);
+  }
 }
