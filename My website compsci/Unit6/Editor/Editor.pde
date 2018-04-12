@@ -1,5 +1,5 @@
 
-PGraphics lines;
+PGraphics draw;
 float R1=0;
 float G1=0;
 float B1=0;
@@ -19,11 +19,11 @@ void setup() {
   size(900, 600);
   frameRate(200);
 
-  lines = createGraphics(width, height);
-  lines.beginDraw();
-  lines.stroke(0);
-  lines.noFill();
-  lines.endDraw();
+  draw = createGraphics(width, height);
+  draw.beginDraw();
+  draw.stroke(0);
+  draw.noFill();
+  draw.endDraw();
 
   background(200-50, 200-50, 200-50);
   fill(55, 55, 55);
@@ -48,7 +48,7 @@ void setup() {
 void draw() {
   background(200-50, 200-50, 200-50);
   stroke(R1,G1,B1,A1);
-  image(lines, 0, 0);
+  image(draw, 0, 0);
   stroke(0);
 
   strokeWeight(1);
@@ -347,37 +347,41 @@ class HScrollbar {
 }
 void mousePressed(){
   if (tool == 3) {
-    stroke(R1,G1,B1,A1);
+    draw.beginDraw();
+    draw.stroke(R1,G1,B1,A1);
+    draw.endDraw();
     x = mouseX;
     y = mouseY;
   }
 }
 void mouseReleased() {
     if (tool == 3) {
-    stroke(R1,G1,B1,A1);
-  strokeWeight(thickness);
- lines.beginDraw();
-  lines.stroke(R1,G1,B1,A1);
-  lines.line(x, y, mouseX, mouseY);
-  lines.endDraw();
+  draw.beginDraw();
+  draw.stroke(R1,G1,B1,A1);
+  draw.strokeWeight(thickness);
+  draw.stroke(R1,G1,B1,A1);
+  draw.line(x, y, mouseX, mouseY);
+  draw.endDraw();
     }
   }
 void mouseDragged() {
+    draw.beginDraw();
     if (tool == 1) {
        if (mouseButton == LEFT) {
-           stroke(R1,G1,B1,A1);
+           draw.stroke(R1,G1,B1,A1);
        }
        else if (mouseButton == RIGHT) {
-   stroke(R2,G2,B2,A2);
+   draw.stroke(R2,G2,B2,A2);
   }
-  strokeWeight(thickness);
-  line(pmouseX,pmouseY,mouseX,mouseY);
+  draw.strokeWeight(thickness);
+  draw.line(pmouseX,pmouseY,mouseX,mouseY);
     }
     if (tool == 2) {
-  strokeWeight(thickness);
-  stroke(R2,G2,B2,A2);
-  line(pmouseX,pmouseY,mouseX,mouseY);
+  draw.strokeWeight(thickness);
+  draw.stroke(R2,G2,B2,A2);
+  draw.line(pmouseX,pmouseY,mouseX,mouseY);
     }
+    draw.endDraw();
     if (tool == 3) {
     stroke(R1,G1,B1,A1);
       line(x, y, mouseX, mouseY);
