@@ -475,6 +475,7 @@ void mouseDragged() {
   if (tool == 4) {
     strokeWeight(thickness);
     stroke(R1, G1, B1, A1);
+    fill(R1, G1, B1, A1);
     rect(x, y, mouseX-x, mouseY-y);
   }
   if (tool == 5) {
