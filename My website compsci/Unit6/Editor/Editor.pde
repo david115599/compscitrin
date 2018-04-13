@@ -14,6 +14,7 @@ int mouseyp=0;
 int x;
 int y;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
+int color;
 void setup() {
   size(900, 600);
   frameRate(244);
@@ -487,5 +488,8 @@ void mouseDragged() {
     stroke(R1, G1, B1, 30);
     noFill();
     rect(x, y, mouseX-x, mouseY-y);
+  }
+  if (tool == 6) {
+color c = get(mouseX, mouseY);
   }
 }
