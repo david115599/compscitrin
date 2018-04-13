@@ -32,7 +32,7 @@ int y;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 public void setup() {
   
-  frameRate(200);
+  frameRate(244);
 
   draw = createGraphics(width, height);
   draw.beginDraw();
@@ -210,6 +210,24 @@ public void draw() {
   rect(5, 310, 100, 30);
   fill(150, 150, 150);
   text("CLEAR", 5, 335);
+
+  fill(30, 30, 30);
+  if (mousePressed == true & mouseX >5 & mouseX <80 & mouseY >345 & mouseY <375) {
+      tool = 4;
+    fill(255, 0, 0);
+  }
+  rect(5, 345, 75, 30);
+  fill(150, 150, 150);
+  text("RECT", 5, 370);
+
+  fill(30, 30, 30);
+  if (mousePressed == true & mouseX >5 & mouseX <80 & mouseY >380 & mouseY <410) {
+      tool = 5;
+    fill(255, 0, 0);
+  }
+  rect(5, 380, 75, 30);
+  fill(150, 150, 150);
+  text("CIRC", 5, 405);
 
   fill(30, 30, 30);
   text(mouseX-300, 5, 600);
@@ -403,6 +421,20 @@ public void mousePressed() {
     x = mouseX;
     y = mouseY;
   }
+  if (tool == 4) {
+    draw.beginDraw();
+    draw.stroke(R1, G1, B1, A1);
+    draw.endDraw();
+    x = mouseX;
+    y = mouseY;
+  }
+  if (tool == 5) {
+    draw.beginDraw();
+    draw.stroke(R1, G1, B1, A1);
+    draw.endDraw();
+    x = mouseX;
+    y = mouseY;
+  }
 }
 public void mouseReleased() {
   if (tool == 3) {
@@ -411,6 +443,25 @@ public void mouseReleased() {
     draw.strokeWeight(thickness);
     draw.stroke(R1, G1, B1, A1);
     draw.line(x, y, mouseX, mouseY);
+    draw.endDraw();
+  }
+  if (tool == 4) {
+    draw.beginDraw();
+    draw.stroke(R1, G1, B1, A1);
+    draw.strokeWeight(thickness);
+    draw.stroke(R1, G1, B1, A1);
+    draw.fill(R1, G1, B1, A1);
+    draw.rect(x, y, mouseX-x, mouseY-y);
+    draw.endDraw();
+  }
+  if (tool == 5) {
+    draw.beginDraw();
+    draw.stroke(R1, G1, B1, A1);
+    draw.strokeWeight(thickness);
+    draw.stroke(R1, G1, B1, A1);
+    draw.fill(R1, G1, B1, A1);
+    draw.ellipseMode(CORNER);
+    draw.ellipse(x, y, mouseX-x, mouseY-y);
     draw.endDraw();
   }
 }
@@ -436,6 +487,21 @@ public void mouseDragged() {
     strokeWeight(thickness);
     stroke(R1, G1, B1, A1);
     line(x, y, mouseX, mouseY);
+  }
+  if (tool == 4) {
+    strokeWeight(thickness);
+    stroke(R1, G1, B1, A1);
+    rect(x, y, mouseX-x, mouseY-y);
+  }
+  if (tool == 5) {
+    strokeWeight(thickness);
+    stroke(R1, G1, B1, A1);
+    fill(R1, G1, B1, A1);
+    ellipseMode(CORNER);
+    ellipse(x, y, mouseX-x, mouseY-y);
+    stroke(R1, G1, B1, 30);
+    noFill();
+    rect(x, y, mouseX-x, mouseY-y);
   }
 }
   public void settings() {  size(900, 600); }
