@@ -14,7 +14,6 @@ int mouseyp=0;
 int x;
 int y;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
-//int color;
 void setup() {
   size(900, 600);
   frameRate(244);
@@ -215,6 +214,15 @@ void draw() {
   text("CIRC", 5, 405);
 
   fill(30, 30, 30);
+  if (mousePressed == true & mouseX >5 & mouseX <85 & mouseY >415 & mouseY <445) {
+      tool = 6;
+    fill(255, 0, 0);
+  }
+  rect(5, 415, 80, 30);
+  fill(150, 150, 150);
+  text("Drop", 5, 440);
+
+  fill(30, 30, 30);
   text(mouseX-300, 5, 600);
   text(":", 80, 600);
   text(mouseY, 95, 600);
@@ -399,6 +407,24 @@ class HScrollbar {
   }
 }
 void mousePressed() {
+  if (tool == 6) {
+    color c = get(mouseX, mouseY);
+    float red =(135/255)*red(c);
+    float green =(135/255)*green(c);
+    float blue =(135/255)*blue(c);
+    float red1 =(135/255)*red(c)+150;;
+    float green1 =(135/255)*green(c)+150;;
+    float blue1 =(135/255)*blue(c)+150;;
+    if (mouseButton == LEFT) {
+      hs1.newspos = red;
+      hs2.newspos = green;
+      hs3.newspos = blue;
+    } else if (mouseButton == RIGHT) {
+      hs4.newspos = red1;
+      hs5.newspos = green1;
+      hs6.newspos = blue1;
+    }
+  }
   if (tool == 3) {
     draw.beginDraw();
     draw.stroke(R1, G1, B1, A1);
@@ -489,7 +515,5 @@ void mouseDragged() {
     noFill();
     rect(x, y, mouseX-x, mouseY-y);
   }
-  if (tool == 6) {
-//color c = get(mouseX, mouseY);
-  }
+
 }
