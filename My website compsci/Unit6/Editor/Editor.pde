@@ -427,6 +427,7 @@ void mousePressed() {
   }
   if (tool == 3) {
     draw.beginDraw();
+    draw.fill(R1, G1, B1, A1);
     draw.stroke(R1, G1, B1, A1);
     draw.endDraw();
     x = mouseX;
@@ -434,6 +435,7 @@ void mousePressed() {
   }
   if (tool == 4) {
     draw.beginDraw();
+    draw.fill(R1, G1, B1, A1);
     draw.stroke(R1, G1, B1, A1);
     draw.endDraw();
     x = mouseX;
@@ -441,6 +443,7 @@ void mousePressed() {
   }
   if (tool == 5) {
     draw.beginDraw();
+    draw.fill(R1, G1, B1, A1);
     draw.stroke(R1, G1, B1, A1);
     draw.endDraw();
     x = mouseX;
@@ -450,6 +453,7 @@ void mousePressed() {
 void mouseReleased() {
   if (tool == 3) {
     draw.beginDraw();
+    draw.fill(R1, G1, B1, A1);
     draw.stroke(R1, G1, B1, A1);
     draw.strokeWeight(thickness);
     draw.stroke(R1, G1, B1, A1);
@@ -481,8 +485,10 @@ void mouseDragged() {
   if (tool == 1) {
     if (mouseButton == LEFT) {
       draw.stroke(R1, G1, B1, A1);
+      draw.fill(R1, G1, B1, A1);
     } else if (mouseButton == RIGHT) {
       draw.stroke(R2, G2, B2, A2);
+      draw.fill(R2, G2, B2, A2);
     }
     draw.strokeWeight(thickness);
     draw.line(pmouseX, pmouseY, mouseX, mouseY);
@@ -490,6 +496,7 @@ void mouseDragged() {
   if (tool == 2) {
     draw.strokeWeight(thickness);
     draw.stroke(R2, G2, B2, A2);
+    draw.fill(R2, G2, B2, A2);
     draw.line(pmouseX, pmouseY, mouseX, mouseY);
   }
 
