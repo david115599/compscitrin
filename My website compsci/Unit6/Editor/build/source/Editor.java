@@ -425,12 +425,12 @@ class HScrollbar {
 public void mousePressed() {
   if (tool == 6) {
     int c = get(mouseX, mouseY);
-    float red =(135/255)*red(c);
-    float green =(135/255)*green(c);
-    float blue =(135/255)*blue(c);
-    float red1 =(135/255)*red(c)+150;;
-    float green1 =(135/255)*green(c)+150;;
-    float blue1 =(135/255)*blue(c)+150;;
+    float red =(135/255.0f)*red(c);
+    float green =(135/255.0f)*green(c);
+    float blue =(135/255.0f)*blue(c);
+    float red1 =(135/255.0f)*red(c)+150;;
+    float green1 =(135/255.0f)*green(c)+150;;
+    float blue1 =(135/255.0f)*blue(c)+150;;
     if (mouseButton == LEFT) {
       hs1.newspos = red;
       hs2.newspos = green;
