@@ -68,7 +68,14 @@ public void draw() {
   stroke(R1, G1, B1, A1);
   image(draw, 0, 0);
   stroke(0);
-
+  for (float x = 0; x < width; x++) {
+        if (gridval == -1) {
+          stroke(0);
+          strokeWeight(1);
+          line(0,x*20,width,x*20);
+          line(x*20,0,x*20,height);
+    }
+  }
   strokeWeight(1);
   stroke(55, 55, 55);
   fill(55, 55, 55);
@@ -241,11 +248,15 @@ public void draw() {
 
     fill(30, 30, 30);
   if (mousePressed == true & mouseX >5 & mouseX <80 & mouseY >450 & mouseY <480) {
-      tool = 6;
+      tool = 7;
     fill(255, 0, 0);
     gridval = gridval*-1;
+    rect(5, 450, 75, 30);
+    fill(150, 150, 150);
+    text("GRID", 5, 475);
+    delay(200);
+    fill(255, 0, 0);
   }
-
   rect(5, 450, 75, 30);
   fill(150, 150, 150);
   text("GRID", 5, 475);
@@ -448,11 +459,14 @@ public void mousePressed() {
       hs1.newspos = red;
       hs2.newspos = green;
       hs3.newspos = blue;
+      tool = 1;
     } else if (mouseButton == RIGHT) {
       hs4.newspos = red1;
       hs5.newspos = green1;
       hs6.newspos = blue1;
+      tool = 1;
     }
+
   }
   if (tool == 3) {
     draw.beginDraw();
@@ -508,30 +522,6 @@ public void mouseReleased() {
     draw.ellipse(x, y, mouseX-x, mouseY-y);
     draw.endDraw();
   }
-
-  if (tool == 6) {
-  for (float x = 0; x < width; x++) {
-        if (gridval == -1) {
-          draw.beginDraw();
-          draw.stroke(0);
-          draw.strokeWeight(1);
-          draw.line(0,x*20,width,x*20);
-          draw.line(x*20,0,x*20,height);
-          draw.endDraw();
-        }
-
-        else {
-          draw.beginDraw();
-           draw.stroke(150,150,150);
-          draw.strokeWeight(1);
-          draw.line(0,x*20,width,x*20);
-          draw.line(x*20,0,x*20,height);
-            draw.endDraw();
-        }
-    }
-  }
-
-
 
 }
 public void mouseDragged() {
