@@ -465,7 +465,7 @@ void mouseReleased() {
     draw.stroke(R1, G1, B1, A1);
     draw.strokeWeight(thickness);
     draw.stroke(R1, G1, B1, A1);
-    draw.fill(R1, G1, B1, A1);
+    draw.fill(R2, G2, B2, A2);
     draw.rect(x, y, mouseX-x, mouseY-y);
     draw.endDraw();
   }
@@ -474,7 +474,7 @@ void mouseReleased() {
     draw.stroke(R1, G1, B1, A1);
     draw.strokeWeight(thickness);
     draw.stroke(R1, G1, B1, A1);
-    draw.fill(R1, G1, B1, A1);
+    draw.fill(R2, G2, B2, A2);
     draw.ellipseMode(CORNER);
     draw.ellipse(x, y, mouseX-x, mouseY-y);
     draw.endDraw();
@@ -509,13 +509,13 @@ void mouseDragged() {
   if (tool == 4) {
     strokeWeight(thickness);
     stroke(R1, G1, B1, A1);
-    fill(R1, G1, B1, A1);
+    fill(R2, G2, B2, A2);
     rect(x, y, mouseX-x, mouseY-y);
   }
   if (tool == 5) {
     strokeWeight(thickness);
     stroke(R1, G1, B1, A1);
-    fill(R1, G1, B1, A1);
+    fill(R2, G2, B2, A2);
     ellipseMode(CORNER);
     ellipse(x, y, mouseX-x, mouseY-y);
     stroke(R1, G1, B1, 30);
