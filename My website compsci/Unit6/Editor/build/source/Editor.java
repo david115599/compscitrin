@@ -29,6 +29,7 @@ int mousexp=0;
 int mouseyp=0;
 int x;
 int y;
+int gridval = 1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 public void setup() {
   
@@ -237,6 +238,18 @@ public void draw() {
   rect(5, 415, 80, 30);
   fill(150, 150, 150);
   text("Drop", 5, 440);
+
+    fill(30, 30, 30);
+  if (mousePressed == true & mouseX >5 & mouseX <80 & mouseY >450 & mouseY <480) {
+      tool = 6;
+    fill(255, 0, 0);
+    gridval = gridval*-1;
+  }
+
+  rect(5, 450, 75, 30);
+  fill(150, 150, 150);
+  text("GRID", 5, 475);
+
 
   fill(30, 30, 30);
   text(mouseX-300, 5, 600);
@@ -481,7 +494,7 @@ public void mouseReleased() {
     draw.stroke(R1, G1, B1, A1);
     draw.strokeWeight(thickness);
     draw.stroke(R1, G1, B1, A1);
-    draw.fill(R1, G1, B1, A1);
+    draw.fill(R2, G2, B2, A2);
     draw.rect(x, y, mouseX-x, mouseY-y);
     draw.endDraw();
   }
@@ -490,11 +503,36 @@ public void mouseReleased() {
     draw.stroke(R1, G1, B1, A1);
     draw.strokeWeight(thickness);
     draw.stroke(R1, G1, B1, A1);
-    draw.fill(R1, G1, B1, A1);
+    draw.fill(R2, G2, B2, A2);
     draw.ellipseMode(CORNER);
     draw.ellipse(x, y, mouseX-x, mouseY-y);
     draw.endDraw();
   }
+
+  if (tool == 6) {
+  for (float x = 0; x < width; x++) {
+        if (gridval == -1) {
+          draw.beginDraw();
+          draw.stroke(0);
+          draw.strokeWeight(1);
+          draw.line(0,x*20,width,x*20);
+          draw.line(x*20,0,x*20,height);
+          draw.endDraw();
+        }
+
+        else {
+          draw.beginDraw();
+           draw.stroke(150,150,150);
+          draw.strokeWeight(1);
+          draw.line(0,x*20,width,x*20);
+          draw.line(x*20,0,x*20,height);
+            draw.endDraw();
+        }
+    }
+  }
+
+
+
 }
 public void mouseDragged() {
   draw.beginDraw();
@@ -525,13 +563,13 @@ public void mouseDragged() {
   if (tool == 4) {
     strokeWeight(thickness);
     stroke(R1, G1, B1, A1);
-    fill(R1, G1, B1, A1);
+    fill(R2, G2, B2, A2);
     rect(x, y, mouseX-x, mouseY-y);
   }
   if (tool == 5) {
     strokeWeight(thickness);
     stroke(R1, G1, B1, A1);
-    fill(R1, G1, B1, A1);
+    fill(R2, G2, B2, A2);
     ellipseMode(CORNER);
     ellipse(x, y, mouseX-x, mouseY-y);
     stroke(R1, G1, B1, 30);

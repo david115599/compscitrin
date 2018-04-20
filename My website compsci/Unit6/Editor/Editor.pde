@@ -13,6 +13,7 @@ int mousexp=0;
 int mouseyp=0;
 int x;
 int y;
+int gridval = 1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 void setup() {
   size(900, 600);
@@ -221,18 +222,18 @@ void draw() {
   rect(5, 415, 80, 30);
   fill(150, 150, 150);
   text("Drop", 5, 440);
-  
+
     fill(30, 30, 30);
   if (mousePressed == true & mouseX >5 & mouseX <80 & mouseY >450 & mouseY <480) {
       tool = 6;
     fill(255, 0, 0);
     gridval = gridval*-1;
   }
-  
+
   rect(5, 450, 75, 30);
   fill(150, 150, 150);
   text("GRID", 5, 475);
-  
+
 
   fill(30, 30, 30);
   text(mouseX-300, 5, 600);
@@ -491,7 +492,7 @@ void mouseReleased() {
     draw.ellipse(x, y, mouseX-x, mouseY-y);
     draw.endDraw();
   }
-  
+
   if (tool == 6) {
   for (float x = 0; x < width; x++) {
         if (gridval == -1) {
@@ -499,23 +500,23 @@ void mouseReleased() {
           draw.stroke(0);
           draw.strokeWeight(1);
           draw.line(0,x*20,width,x*20);
-          draw.line(x*20,0,x*20,height); 
+          draw.line(x*20,0,x*20,height);
           draw.endDraw();
         }
-        
+
         else {
           draw.beginDraw();
            draw.stroke(150,150,150);
           draw.strokeWeight(1);
           draw.line(0,x*20,width,x*20);
-          draw.line(x*20,0,x*20,height); 
+          draw.line(x*20,0,x*20,height);
             draw.endDraw();
         }
     }
   }
-  
-  
-  
+
+
+
 }
 void mouseDragged() {
   draw.beginDraw();
