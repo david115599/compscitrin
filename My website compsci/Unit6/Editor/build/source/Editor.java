@@ -15,6 +15,7 @@ import java.io.IOException;
 public class EDITOR extends PApplet {
 
 PGraphics draw;
+PShape star;
 float R1=0;
 float G1=0;
 float B1=0;
@@ -76,6 +77,11 @@ public void draw() {
           line(x*20,0,x*20,height);
     }
   }
+   stroke(R1, G1, B1, A1);
+  fill(R2,G2,B2,A2);
+  strokeWeight(thickness);
+  star = createShape(TRIANGLE, mouseX, mouseY,mouseX+30, mouseY+40,mouseX-30,mouseY+40);
+
   strokeWeight(1);
   stroke(55, 55, 55);
   fill(55, 55, 55);
@@ -261,6 +267,15 @@ public void draw() {
   fill(150, 150, 150);
   text("GRID", 5, 475);
 
+
+ fill(30, 30, 30);
+  if (mousePressed == true & mouseX >5 & mouseX <85 & mouseY >485 & mouseY <515) {
+      tool = 8;
+    fill(255, 0, 0);
+  }
+  rect(5, 485, 80, 35);
+  fill(150, 150, 150);
+  text("STAMP", 5, 510);
 
   fill(30, 30, 30);
   text(mouseX-300, 5, 600);
@@ -449,12 +464,12 @@ class HScrollbar {
 public void mousePressed() {
   if (tool == 6) {
     int c = get(mouseX, mouseY);
-    float red =(135/255.0f)*red(c);
-    float green =(135/255.0f)*green(c);
-    float blue =(135/255.0f)*blue(c);
-    float red1 =(135/255.0f)*red(c)+150;;
-    float green1 =(135/255.0f)*green(c)+150;;
-    float blue1 =(135/255.0f)*blue(c)+150;;
+    float red =(135/255.0f)*red(c)+(red(c)/2.5f);
+    float green =(135/255.0f)*green(c)+(green(c)/2.5f);
+    float blue =(135/255.0f)*blue(c)+(blue(c)/2.5f);
+    float red1 =(135/255.0f)*red(c)+150+(red(c)/2.5f);
+    float green1 =(135/255.0f)*green(c)+150+(green(c)/2.5f);
+    float blue1 =(135/255.0f)*blue(c)+150+(blue(c)/2.5f);
     if (mouseButton == LEFT) {
       hs1.newspos = red;
       hs2.newspos = green;
@@ -484,6 +499,17 @@ public void mousePressed() {
     x = mouseX;
     y = mouseY;
   }
+
+
+  if (tool == 8) {
+    draw.beginDraw();
+    draw.fill(R1, G1, B1, A1);
+    draw.stroke(R1, G1, B1, A1);
+    draw.endDraw();
+    x = mouseX;
+    y = mouseY;
+  }
+
   if (tool == 5) {
     draw.beginDraw();
     draw.fill(R1, G1, B1, A1);
@@ -520,6 +546,16 @@ public void mouseReleased() {
     draw.fill(R2, G2, B2, A2);
     draw.ellipseMode(CORNER);
     draw.ellipse(x, y, mouseX-x, mouseY-y);
+    draw.endDraw();
+  }
+
+      if (tool == 8) {
+    draw.beginDraw();
+    draw.stroke(R1, G1, B1, A1);
+    draw.strokeWeight(thickness);
+    draw.stroke(R1, G1, B1, A1);
+    draw.fill(R2, G2, B2, A2);
+    draw.shape(star,mouseX-x,mouseY-y);
     draw.endDraw();
   }
 

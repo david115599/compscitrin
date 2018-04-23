@@ -65,7 +65,7 @@ void draw() {
   fill(R2,G2,B2,A2);
   strokeWeight(thickness);
   star = createShape(TRIANGLE, mouseX, mouseY,mouseX+30, mouseY+40,mouseX-30,mouseY+40);
- 
+
   strokeWeight(1);
   stroke(55, 55, 55);
   fill(55, 55, 55);
@@ -483,8 +483,8 @@ void mousePressed() {
     x = mouseX;
     y = mouseY;
   }
-  
-    
+
+
   if (tool == 8) {
     draw.beginDraw();
     draw.fill(R1, G1, B1, A1);
@@ -493,7 +493,7 @@ void mousePressed() {
     x = mouseX;
     y = mouseY;
   }
-  
+
   if (tool == 5) {
     draw.beginDraw();
     draw.fill(R1, G1, B1, A1);
@@ -532,7 +532,7 @@ void mouseReleased() {
     draw.ellipse(x, y, mouseX-x, mouseY-y);
     draw.endDraw();
   }
-  
+
       if (tool == 8) {
     draw.beginDraw();
     draw.stroke(R1, G1, B1, A1);
