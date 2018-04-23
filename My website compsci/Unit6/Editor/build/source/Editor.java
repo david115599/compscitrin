@@ -32,7 +32,9 @@ int x;
 int y;
 int gridval = 1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
+PImage img;
 public void setup() {
+  img = loadImage("color-dropper.png");
   
   frameRate(244);
 
@@ -383,6 +385,9 @@ public void draw() {
     hs4.newspos = 0+150;
     hs5.newspos = 0+150;
     hs6.newspos = 0+150;
+  }
+  if (tool == 6) {
+    image(img, mouseX, mouseY);
   }
 }
 
