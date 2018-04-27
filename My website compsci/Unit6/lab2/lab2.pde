@@ -15,12 +15,18 @@ import controlP5.*;
 ControlP5 cp5;
 
 PImage tiger;
+PImage img;
 
 void setup() {
   size(757,568); //dimensions under Get Info
   tiger = loadImage("Tiger.jpeg");
   image(tiger,0,0);
   cp5 = new ControlP5(this);
+
+  pixelDensity(1);//deactivate HD Retina
+  //size(757, 568); //dimensions under Get Info
+  img = loadImage("Tiger.jpeg");
+  image(img, 0, 0); //draw Tiger to canvas
 
   cp5.addSlider("light")
      .setPosition(100, 20)
@@ -41,11 +47,17 @@ void setup() {
            .setValue(0)
            ;
            cp5.addSlider("greyscale")
-              .setPosition(100, 80)
+              .setPosition(100, 110)
               .setSize(200, 19)
               .setRange(-255,255)
               .setValue(0)
               ;
+              cp5.addSlider("threshold")
+                 .setPosition(100, 140)
+                 .setSize(200, 19)
+                 .setRange(-255,255)
+                 .setValue(0)
+                 ;
 
 }
 
@@ -135,6 +147,61 @@ void greyscale(int val) {
     // Make a new color and set pixel in the window
     color c = color(r);
     pixels[i] = c;
+  }
+  updatePixels();
+}
+void threshold(int val) {
+  println("a slider event from brightness: "+val);
+  loadPixels();
+  tiger.loadPixels();
+  for (int i = 0; i < tiger.pixels.length; i++) {
+    float r = red   (tiger.pixels[i]);
+    float g = green (tiger.pixels[i]);
+    float b = blue  (tiger.pixels[i]);
+    r += val;
+    b += val;
+    g += val;
+    // Constrain RGB to between 0-255
+    r = constrain(r,0,255);
+    g = constrain(g,0,255);
+    b = constrain(b,0,255);
+    if(r>127.5){
+      pixels[i] = color(255);
+    }
+    if(r<127.5){
+      pixels[i] = color(0);
+    }
+    // Make a new color and set pixel in the window
+
+
+  }
+  updatePixels();
+}
+void keyPressed() {
+  if (keyCode == DOWN)
+    down();
+  else if (keyCode == UP)
+    up();
+  else if (keyCode == ENTER)
+    image(img, 0, 0); //draw Tiger to canvas
+}
+void down() {
+  hFlip(true);
+}
+
+void up() {
+  hFlip(false);
+}
+void hFlip(boolean down) {
+  loadPixels();
+  //only need to access top half of image
+  for (int y = 0; y < height/2; y++) { // for each row
+    for (int x = 0; x < width; x++) {  // for each pixel in row
+      if (down)
+        pixels[x+(height-y-1)*width] = pixels[x+(y*width)];
+      else
+        pixels[x+(y*width)] = pixels[x+(height-y-1)*width];
+    } //swap color information for each pixel
   }
   updatePixels();
 }

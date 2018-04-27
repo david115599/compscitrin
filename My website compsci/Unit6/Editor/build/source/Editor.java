@@ -386,8 +386,12 @@ public void draw() {
     hs5.newspos = 0+150;
     hs6.newspos = 0+150;
   }
-  if (tool == 6) {
-    image(img, mouseX, mouseY);
+  if ( tool == 6 ) {
+    image(img,mouseX,mouseY,15,15);
+    noCursor();
+  }
+  else{
+    cursor();
   }
 }
 
