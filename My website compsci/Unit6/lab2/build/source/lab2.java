@@ -202,6 +202,14 @@ public void keyPressed() {
     up();
   else if (keyCode == ENTER)
     image(img, 0, 0); //draw Tiger to canvas
+    else if (keyCode == LEFT)
+      left();
+      else if (keyCode == RIGHT)
+        right();
+        else if (keyCode == 81)
+          q();
+          else if (keyCode == 69)
+            e();
 }
 public void down() {
   hFlip(true);
@@ -209,6 +217,20 @@ public void down() {
 
 public void up() {
   hFlip(false);
+}
+public void right() {
+  lFlip(true);
+}
+
+public void left() {
+  lFlip(false);
+}
+public void q() {
+  dFlip(true);
+}
+
+public void e() {
+  dFlip(false);
 }
 public void hFlip(boolean down) {
   loadPixels();
@@ -219,6 +241,32 @@ public void hFlip(boolean down) {
         pixels[x+(height-y-1)*width] = pixels[x+(y*width)];
       else
         pixels[x+(y*width)] = pixels[x+(height-y-1)*width];
+    } //swap color information for each pixel
+  }
+  updatePixels();
+}
+public void lFlip(boolean down) {
+  loadPixels();
+  //only need to access top half of image
+  for (int y = 0; y < height; y++) { // for each row
+    for (int x = 0; x < width/2; x++) {  // for each pixel in row
+      if (down)
+        pixels[x+(y*width)] = pixels[width-x-1+(y*width)];
+      else
+        pixels[width-x-1+(y*width)] = pixels[x+(y*width)] ;
+    } //swap color information for each pixel
+  }
+  updatePixels();
+}
+public void dFlip(boolean down) {
+  loadPixels();
+  //only need to access top half of image
+  for (int y = 0; y < height; y++) { // for each row
+    for (int x = 0; x < width/2; x++) {  // for each pixel in row
+      if (down)
+        pixels[x+(y*width)] = pixels[(width+x+1-((height-y-1)*width))];
+      else
+        pixels[width-x-1+(y*width)] = pixels[x+(y*width)] ;
     } //swap color information for each pixel
   }
   updatePixels();
