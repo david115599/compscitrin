@@ -232,10 +232,11 @@ void lFlip(boolean down) {
   //only need to access top half of image
   for (int y = 0; y < height; y++) { // for each row
     for (int x = 0; x < width/2; x++) {  // for each pixel in row
+      int xn = width-x-1;
       if (down)
-        pixels[x+(y*width)] = pixels[width-x-1+(y*width)];
+        pixels[x+(y*width)] = pixels[xn+(y*width)];
       else
-        pixels[width-x-1+(y*width)] = pixels[x+(y*width)] ;
+        pixels[xn+(y*width)] = pixels[x+(y*width)] ;
     } //swap color information for each pixel
   }
   updatePixels();
@@ -243,12 +244,23 @@ void lFlip(boolean down) {
 void dFlip(boolean down) {
   loadPixels();
   //only need to access top half of image
-  for (int y = 0; y < height; y++) { // for each row
-    for (int x = 0; x < width/2; x++) {  // for each pixel in row
-      if (down)
-        pixels[x+(y*width)] = pixels[(width-x-1+((height-y-1)*width)];
-      else
-        pixels[width-x-1+(y*width)] = pixels[x+(y*width)] ;
+  for (int x = 0; x < width; x++) {
+
+      float s = float(height)/float(width);
+      int uy =int(x*s);
+      println(x,uy,height/width,s,height,width);
+    for (int y = 0; y <uy; y++) { // for each row
+  // for each pixel in row
+
+      float xm = ((y+s*x)/2*s);
+      println(xn);
+      println(yn);
+//      if (down)
+        pixels[xn+(yn*width)] = pixels[(x+(y*width))];
+//      else{
+//        ;
+//      }
+    //    pixels[width-x-1+(y*width)] = pixels[x+(y*width)] ;
     } //swap color information for each pixel
   }
   updatePixels();
