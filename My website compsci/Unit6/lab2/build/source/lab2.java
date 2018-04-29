@@ -17,16 +17,16 @@ import java.io.IOException;
 public class lab2 extends PApplet {
 
 /**
- * ControlP5 Button
- * this example shows how to create buttons with controlP5.
- *
- * find a list of public methods available for the Button Controller
- * at the bottom of this sketch's source code
- *
- * by Andreas Schlegel, 2012
- * www.sojamo.de/libraries/controlp5
- *
- */
+* ControlP5 Button
+* this example shows how to create buttons with controlP5.
+*
+* find a list of public methods available for the Button Controller
+* at the bottom of this sketch's source code
+*
+* by Andreas Schlegel, 2012
+* www.sojamo.de/libraries/controlp5
+*
+*/
 
 
 
@@ -47,35 +47,35 @@ public void setup() {
   image(img, 0, 0); //draw Tiger to canvas
 
   cp5.addSlider("light")
-     .setPosition(100, 20)
-     .setSize(200, 19)
-     .setRange(-255,255)
-     .setValue(0)
-     ;
-     cp5.addSlider("warmth")
-        .setPosition(100, 50)
-        .setSize(200, 19)
-        .setRange(-255,255)
-        .setValue(0)
-        ;
-        cp5.addSlider("opacity")
-           .setPosition(100, 80)
-           .setSize(200, 19)
-           .setRange(-255,255)
-           .setValue(0)
-           ;
-           cp5.addSlider("greyscale")
-              .setPosition(100, 110)
-              .setSize(200, 19)
-              .setRange(-255,255)
-              .setValue(0)
-              ;
-              cp5.addSlider("threshold")
-                 .setPosition(100, 140)
-                 .setSize(200, 19)
-                 .setRange(-255,255)
-                 .setValue(0)
-                 ;
+  .setPosition(100, 20)
+  .setSize(200, 19)
+  .setRange(-255,255)
+  .setValue(0)
+  ;
+  cp5.addSlider("warmth")
+  .setPosition(100, 50)
+  .setSize(200, 19)
+  .setRange(-255,255)
+  .setValue(0)
+  ;
+  cp5.addSlider("opacity")
+  .setPosition(100, 80)
+  .setSize(200, 19)
+  .setRange(-255,255)
+  .setValue(0)
+  ;
+  cp5.addSlider("greyscale")
+  .setPosition(100, 110)
+  .setSize(200, 19)
+  .setRange(-255,255)
+  .setValue(0)
+  ;
+  cp5.addSlider("threshold")
+  .setPosition(100, 140)
+  .setSize(200, 19)
+  .setRange(-255,255)
+  .setValue(0)
+  ;
 
 }
 
@@ -197,19 +197,19 @@ public void threshold(int val) {
 }
 public void keyPressed() {
   if (keyCode == DOWN)
-    down();
+  down();
   else if (keyCode == UP)
-    up();
+  up();
   else if (keyCode == ENTER)
-    image(img, 0, 0); //draw Tiger to canvas
-    else if (keyCode == LEFT)
-      left();
-      else if (keyCode == RIGHT)
-        right();
-        else if (keyCode == 81)
-          q();
-          else if (keyCode == 69)
-            e();
+  image(img, 0, 0); //draw Tiger to canvas
+  else if (keyCode == LEFT)
+  left();
+  else if (keyCode == RIGHT)
+  right();
+  else if (keyCode == 81)
+  q();
+  else if (keyCode == 69)
+  e();
 }
 public void down() {
   hFlip(true);
@@ -238,53 +238,52 @@ public void hFlip(boolean down) {
   for (int y = 0; y < height/2; y++) { // for each row
     for (int x = 0; x < width; x++) {  // for each pixel in row
       if (down)
-        pixels[x+(height-y-1)*width] = pixels[x+(y*width)];
+      pixels[x+(height-y-1)*width] = pixels[x+(y*width)];
       else
-        pixels[x+(y*width)] = pixels[x+(height-y-1)*width];
-    } //swap color information for each pixel
+      pixels[x+(y*width)] = pixels[x+(height-y-1)*width];
+      } //swap color information for each pixel
+    }
+    updatePixels();
   }
-  updatePixels();
-}
-public void lFlip(boolean down) {
-  loadPixels();
-  //only need to access top half of image
-  for (int y = 0; y < height; y++) { // for each row
-    for (int x = 0; x < width/2; x++) {  // for each pixel in row
-      int xn = width-x-1;
-      if (down)
+  public void lFlip(boolean down) {
+    loadPixels();
+    //only need to access top half of image
+    for (int y = 0; y < height; y++) { // for each row
+      for (int x = 0; x < width/2; x++) {  // for each pixel in row
+        int xn = width-x-1;
+        if (down)
         pixels[x+(y*width)] = pixels[xn+(y*width)];
-      else
+        else
         pixels[xn+(y*width)] = pixels[x+(y*width)] ;
-    } //swap color information for each pixel
-  }
-  updatePixels();
-}
-public void dFlip(boolean down) {
-  loadPixels();
-  //only need to access top half of image
-  for (int x = 0; x < width; x++) {
+        } //swap color information for each pixel
+      }
+      updatePixels();
+    }
+    public void dFlip(boolean down) {
+      loadPixels();
+      //only need to access top half of image
+      for (int x = 0; x < width; x++) {
 
-      float s = PApplet.parseFloat(height)/PApplet.parseFloat(width);
-      int uy =PApplet.parseInt(x*s);
-      println(x,uy,height/width,s,height,width);
-    for (int y = 0; y <uy; y++) { // for each row
-  // for each pixel in row
+        float s = PApplet.parseFloat(height)/PApplet.parseFloat(width);
+        int uy =PApplet.parseInt(x*s);
+        println(x,uy,height/width,s,height,width);
+        for (int y = 0; y <uy; y++) { // for each row
+          // for each pixel in row
 
-      float xm = ((y+s*x)/2*s);
-      int xn = PApplet.parseInt(y/s);
-      int yn = PApplet.parseInt(s*x);
-      println(xn);
-      println(yn);
-//      if (down)
-        pixels[xn+(yn*width)] = pixels[(x+(y*width))];
-//      else{
-//        ;
-//      }
-    //    pixels[width-x-1+(y*width)] = pixels[x+(y*width)] ;
-    } //swap color information for each pixel
-  }
-  updatePixels();
-}
+          float xm = ((y+s*x)/2*s);
+          int xn = PApplet.parseInt(y/s);
+          int yn = PApplet.parseInt(s*x);
+          println(xn);
+          println(yn);
+          if (down)
+          pixels[xn+(yn*width)] = pixels[(x+(y*width))];
+          else{
+            pixels[(x+(y*width))] = pixels[xn+(yn*width)];
+          }
+          } //swap color information for each pixel
+        }
+        updatePixels();
+      }
   public void settings() {  size(757,568);  pixelDensity(1); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "lab2" };
