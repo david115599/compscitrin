@@ -210,6 +210,10 @@ public void keyPressed() {
   q();
   else if (keyCode == 69)
   e();
+  else if (keyCode == 65)
+  a();
+  else if (keyCode == 68)
+  d();
 }
 public void down() {
   hFlip(true);
@@ -231,6 +235,13 @@ public void q() {
 
 public void e() {
   dFlip(false);
+}
+public void a() {
+  zFlip(true);
+}
+
+public void d() {
+  zFlip(false);
 }
 public void hFlip(boolean down) {
   loadPixels();
@@ -273,8 +284,7 @@ public void hFlip(boolean down) {
           float xm = ((y+s*x)/2*s);
           int xn = PApplet.parseInt(y/s);
           int yn = PApplet.parseInt(s*x);
-          println(xn);
-          println(yn);
+  
           if (down)
           pixels[xn+(yn*width)] = pixels[(x+(y*width))];
           else{
@@ -284,6 +294,31 @@ public void hFlip(boolean down) {
         }
         updatePixels();
       }
+
+      public void zFlip(boolean down) {
+        loadPixels();
+        //only need to access top half of image
+        for (int x = 0; x < width; x++) {
+
+          float s = PApplet.parseFloat(height)/PApplet.parseFloat(width);
+          int uy =PApplet.parseInt(x*s);
+          println(x,uy,height/width,s,height,width);
+          for (int y = 0; y <uy; y++) { // for each row
+            // for each pixel in row
+
+            int xn = PApplet.parseInt(y/s);
+            int yn = PApplet.parseInt(s*x);
+            if (down){
+            pixels[xn+(yn*width)] = pixels[(x+(y*width))];
+            pixels[xn+(yn*width)] =  pixels[width-xn+(yn*width)];}
+            else{
+              pixels[(x+(y*width))] = pixels[xn+(yn*width)];
+              pixels[x+(y*width)] =  pixels[width-xn+(yn*width)];
+            }
+            } //swap color information for each pixel
+          }
+          updatePixels();
+        }
   public void settings() {  size(757,568);  pixelDensity(1); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "lab2" };

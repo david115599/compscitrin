@@ -192,6 +192,10 @@ void keyPressed() {
   q();
   else if (keyCode == 69)
   e();
+  else if (keyCode == 65)
+  a();
+  else if (keyCode == 68)
+  d();
 }
 void down() {
   hFlip(true);
@@ -213,6 +217,13 @@ void q() {
 
 void e() {
   dFlip(false);
+}
+void a() {
+  zFlip(true);
+}
+
+void d() {
+  zFlip(false);
 }
 void hFlip(boolean down) {
   loadPixels();
@@ -255,8 +266,7 @@ void hFlip(boolean down) {
           float xm = ((y+s*x)/2*s);
           int xn = int(y/s);
           int yn = int(s*x);
-          println(xn);
-          println(yn);
+  
           if (down)
           pixels[xn+(yn*width)] = pixels[(x+(y*width))];
           else{
@@ -266,3 +276,28 @@ void hFlip(boolean down) {
         }
         updatePixels();
       }
+
+      void zFlip(boolean down) {
+        loadPixels();
+        //only need to access top half of image
+        for (int x = 0; x < width; x++) {
+
+          float s = float(height)/float(width);
+          int uy =int(x*s);
+          println(x,uy,height/width,s,height,width);
+          for (int y = 0; y <uy; y++) { // for each row
+            // for each pixel in row
+
+            int xn = int(y/s);
+            int yn = int(s*x);
+            if (down){
+            pixels[xn+(yn*width)] = pixels[(x+(y*width))];
+            pixels[xn+(yn*width)] =  pixels[width-xn+(yn*width)];}
+            else{
+              pixels[(x+(y*width))] = pixels[xn+(yn*width)];
+              pixels[x+(y*width)] =  pixels[width-xn+(yn*width)];
+            }
+            } //swap color information for each pixel
+          }
+          updatePixels();
+        }
