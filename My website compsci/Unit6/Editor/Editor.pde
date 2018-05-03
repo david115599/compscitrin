@@ -1,5 +1,7 @@
 PGraphics draw;
 PShape star;
+PShader pixelate;
+PImage canvas;
 float R1=0;
 float G1=0;
 float B1=0;
@@ -18,8 +20,9 @@ int gridval = 1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 PImage img;
 void setup() {
+  pixelate = loadShader("pixelate.frag");
   img = loadImage("color-dropper.png");
-  size(900, 600);
+  size(900, 600,P2D);
   frameRate(244);
 
   draw = createGraphics(width, height);
@@ -255,13 +258,30 @@ void draw() {
 
 
  fill(30, 30, 30);
-  if (mousePressed == true & mouseX >5 & mouseX <85 & mouseY >485 & mouseY <515) {
+  if (mousePressed == true & mouseX >5 & mouseX <98 & mouseY >485 & mouseY <515) {
       tool = 8;
     fill(255, 0, 0);
   }
-  rect(5, 485, 80, 35);
+  rect(5, 485, 98, 30);
   fill(150, 150, 150);
   text("STAMP", 5, 510);
+
+  fill(30, 30, 30);
+   if (mousePressed == true & mouseX >5 & mouseX <120 & mouseY >520 & mouseY <550) {
+    //   tool = 8;
+    PImage partialSave = get(300, 0, 900, 600);
+    partialSave.save("Save.png");
+    canvas = loadImage("Save.png");
+    pixelate = loadShader("pixelate.frag");
+    pixelate.set("u_resolution", float(width-300), float(height));
+    pixelate.set("u_tex", canvas);
+    lesspixupdate();
+     fill(255, 0, 0);
+   }
+   rect(5, 520, 120, 30);
+   fill(150, 150, 150);
+   text("Pixelate+", 5, 545);
+
 
   fill(30, 30, 30);
   text(mouseX-300, 5, 600);
@@ -596,4 +616,8 @@ void mouseDragged() {
     rect(x, y, mouseX-x, mouseY-y);
   }
 
+}
+void lesspixupdate() {
+  pixelate.set("u_LEVEL", floor(map(mouseX, 0, width,0, 128)));
+  shader(pixelate);
 }
