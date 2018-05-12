@@ -20,9 +20,12 @@ int gridval = 1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 PImage img;
 void setup() {
-  pixelate = loadShader("pixelate.frag");
+//brocken {---
+//pixelate = loadShader("pixelate.frag");
+//size(900, 600,P2D);
+//---}
   img = loadImage("color-dropper.png");
-  size(900, 600,P2D);
+  size(900, 600);
   frameRate(244);
 
   draw = createGraphics(width, height);
@@ -267,7 +270,8 @@ void draw() {
   text("STAMP", 5, 510);
 
   fill(30, 30, 30);
-   if (mousePressed == true & mouseX >5 & mouseX <120 & mouseY >520 & mouseY <550) {
+  //brocken
+   /*if (mousePressed == true & mouseX >5 & mouseX <120 & mouseY >520 & mouseY <550) {
     //   tool = 8;
     PImage partialSave = get(300, 0, 900, 600);
     partialSave.save("Save.png");
@@ -281,7 +285,7 @@ void draw() {
    rect(5, 520, 120, 30);
    fill(150, 150, 150);
    text("Pixelate+", 5, 545);
-
+*/
 
   fill(30, 30, 30);
   text(mouseX-300, 5, 600);
@@ -617,7 +621,8 @@ void mouseDragged() {
   }
 
 }
-void lesspixupdate() {
+//brocken
+/*void lesspixupdate() {
   pixelate.set("u_LEVEL", floor(map(mouseX, 0, width,0, 128)));
   shader(pixelate);
-}
+}*/
