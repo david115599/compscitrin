@@ -16,6 +16,7 @@ int mousexp=0;
 int mouseyp=0;
 int x;
 int y;
+int pixnum = 90;
 int gridval = 1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 PImage img;
@@ -267,17 +268,32 @@ void draw() {
   text("STAMP", 5, 510);
 
   fill(30, 30, 30);
-   if (mousePressed == true & mouseX >5 & mouseX <120 & mouseY >520 & mouseY <550) {
+   if (mousePressed == true & mouseX >5 & mouseX <120 & mouseY >520 & mouseY <550 & pixnum<= 200) {
     //   tool = 8;
     PImage partialSave = get(300, 0, 900, 600);
     partialSave.save("Save.png");
     canvas = loadImage("Save.png");
-    pixelateImage(80);
+    pixnum+=10;
+    pixelateImage(pixnum);
      fill(255, 0, 0);
    }
    rect(5, 520, 120, 30);
    fill(150, 150, 150);
    text("Pixelate+", 5, 545);
+
+   fill(30, 30, 30);
+    if (mousePressed == true & mouseX >5+150 & mouseX <120+150 & mouseY >520 & mouseY <550 & pixnum>= 31) {
+     //   tool = 8;
+     PImage partialSave = get(300, 0, 900, 600);
+     partialSave.save("Save.png");
+     canvas = loadImage("Save.png");
+     pixnum-=10;
+     pixelateImage(pixnum);
+      fill(255, 0, 0);
+    }
+    rect(5+150, 520, 120, 30);
+    fill(150, 150, 150);
+    text("Pixelate-", 5+150, 545);
 
 
   fill(30, 30, 30);
@@ -628,11 +644,15 @@ void pixelateImage(int pxSize) {
   // ... to set pixel height
   int pxH = int(pxSize * ratio);
 
-  noStroke();
+
+  draw.beginDraw();
+    draw.noStroke();
+
   for (int x=0; x<width; x+=pxSize) {
     for (int y=0; y<height; y+=pxH) {
-      fill(canvas.get(x, y));
-      rect(x+300, y, pxSize, pxH);
+      draw.fill(canvas.get(x, y));
+      draw.rect(x+300, y, pxSize, pxH);
     }
   }
+    draw.endDraw();
 }
