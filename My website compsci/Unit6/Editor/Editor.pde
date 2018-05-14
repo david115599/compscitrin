@@ -17,6 +17,7 @@ int mouseyp=0;
 int x;
 int y;
 int way =1;
+int gono =1;
 int pixnum = 90;
 int gridval = 1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
@@ -311,6 +312,20 @@ void draw() {
      rect(5+150, 520-40, 120, 30);
      fill(150, 150, 150);
      text("Noise-P", 5+150, 545-40);
+
+     fill(30, 30, 30);
+      if (mousePressed == true & mouseX >5+150 & mouseX <120+150 & mouseY >520-80 & mouseY <550-80 ) {
+          if (gono==1){
+            gono=0;
+          }
+          else if(gono==0){
+            gono=1;
+          }
+        fill(255, 0, 0);
+      }
+      rect(5+150, 520-80, 120, 30);
+      fill(150, 150, 150);
+      text("perxy", 5+150, 545-80);
 
 
   fill(30, 30, 30);
@@ -686,12 +701,16 @@ void noiseify() {
       color c = get(x, y);
       if(way==1){
       draw.fill(((red(c))+noiseVal1*80),((green(c))+noiseVal2*80),((blue(c))+noiseVal3*80));
+      if (gono==1) {
       draw.rect(x+noiseVal1*80, y-noiseVal2*80, 1, 1);
+      }
       way=0;
     }
     else if(way==0){
     draw.fill(((red(c))-noiseVal1*80),((green(c))-noiseVal2*80),((blue(c))-noiseVal3*80));
+    if (gono==1) {
     draw.rect(x-noiseVal1*80, y+noiseVal2*80, 1, 1);
+    }
     way=1;
   }
     }
