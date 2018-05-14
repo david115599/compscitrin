@@ -36,10 +36,7 @@ int gridval = 1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 PImage img;
 public void setup() {
-//brocken {---
-//pixelate = loadShader("pixelate.frag");
-//size(900, 600,P2D);
-//---}
+
   img = loadImage("color-dropper.png");
   
   frameRate(244);
@@ -93,11 +90,11 @@ public void draw() {
   strokeWeight(1);
   stroke(55, 55, 55);
   fill(55, 55, 55);
-  rect(0, 0, 300, 600);
+  rect(0, 0, 297, 600);
   strokeWeight(2);
   stroke(0, 0, 0);
   rect(0, 0, 150, 200);
-  rect(150, 0, 150, 200);
+  rect(150, 0, 147, 200);
   noStroke();
   fill(255, 0, 0);
   rect(5, 120, 20, 20);
@@ -286,22 +283,18 @@ public void draw() {
   text("STAMP", 5, 510);
 
   fill(30, 30, 30);
-  //brocken
-   /*if (mousePressed == true & mouseX >5 & mouseX <120 & mouseY >520 & mouseY <550) {
+   if (mousePressed == true & mouseX >5 & mouseX <120 & mouseY >520 & mouseY <550) {
     //   tool = 8;
     PImage partialSave = get(300, 0, 900, 600);
     partialSave.save("Save.png");
     canvas = loadImage("Save.png");
-    pixelate = loadShader("pixelate.frag");
-    pixelate.set("u_resolution", float(width-300), float(height));
-    pixelate.set("u_tex", canvas);
-    lesspixupdate();
+    pixelateImage(80);
      fill(255, 0, 0);
    }
    rect(5, 520, 120, 30);
    fill(150, 150, 150);
    text("Pixelate+", 5, 545);
-*/
+
 
   fill(30, 30, 30);
   text(mouseX-300, 5, 600);
@@ -637,11 +630,28 @@ public void mouseDragged() {
   }
 
 }
-//brocken
-/*void lesspixupdate() {
-  pixelate.set("u_LEVEL", floor(map(mouseX, 0, width,0, 128)));
-  shader(pixelate);
-}*/
+public void pixelateImage(int pxSize) {
+
+  // use ratio of height/width...
+  float ratio;
+  if (width-300 < height) {
+    ratio = height/(width-300);
+  }
+  else {
+    ratio = (width-300)/height;
+  }
+
+  // ... to set pixel height
+  int pxH = PApplet.parseInt(pxSize * ratio);
+
+  noStroke();
+  for (int x=0; x<width; x+=pxSize) {
+    for (int y=0; y<height; y+=pxH) {
+      fill(canvas.get(x, y));
+      rect(x+300, y, pxSize, pxH);
+    }
+  }
+}
   public void settings() {  size(900, 600); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "EDITOR" };
