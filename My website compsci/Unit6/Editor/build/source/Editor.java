@@ -32,10 +32,13 @@ int mousexp=0;
 int mouseyp=0;
 int x;
 int y;
+int way =1;
 int pixnum = 90;
 int gridval = 1;
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 PImage img;
+float noiseScale = 0.02f;
+float increment = 0.02f;
 public void setup() {
 
   img = loadImage("color-dropper.png");
@@ -310,6 +313,20 @@ public void draw() {
     rect(5+150, 520, 120, 30);
     fill(150, 150, 150);
     text("Pixelate-", 5+150, 545);
+
+
+
+    fill(30, 30, 30);
+     if (mousePressed == true & mouseX >5+150 & mouseX <120+150 & mouseY >520-40 & mouseY <550-40 ) {
+       PImage partialSave = get(300, 0, 900, 600);
+       partialSave.save("Save.png");
+       canvas = loadImage("Save.png");
+       noiseify();
+       fill(255, 0, 0);
+     }
+     rect(5+150, 520-40, 120, 30);
+     fill(150, 150, 150);
+     text("Noise-P", 5+150, 545-40);
 
 
   fill(30, 30, 30);
@@ -668,6 +685,31 @@ public void pixelateImage(int pxSize) {
     for (int y=0; y<height; y+=pxH) {
       draw.fill(canvas.get(x, y));
       draw.rect(x+300, y, pxSize, pxH);
+    }
+  }
+    draw.endDraw();
+}
+
+public void noiseify() {
+
+  draw.beginDraw();
+    draw.noStroke();
+  for (int x=300; x<width; x+=1) {
+    for (int y=0; y<height; y+=1) {
+      float noiseVal1 = noise((random(-500, 500)+x)*noiseScale, (random(-500, 500))+y*noiseScale);
+      float noiseVal2 = noise((random(-500, 500)+x)*noiseScale, (random(-500, 500))+y*noiseScale);
+      float noiseVal3 = noise((random(-500, 500)+x)*noiseScale, (random(-500, 500))+y*noiseScale);
+      int c = get(x, y);
+      if(way==1){
+      draw.fill(((red(c))+noiseVal1*80),((green(c))+noiseVal2*80),((blue(c))+noiseVal3*80));
+      draw.rect(x+noiseVal1*80, y-noiseVal2*80, 1, 1);
+      way=0;
+    }
+    else if(way==0){
+    draw.fill(((red(c))-noiseVal1*80),((green(c))-noiseVal2*80),((blue(c))-noiseVal3*80));
+    draw.rect(x-noiseVal1*80, y+noiseVal2*80, 1, 1);
+    way=1;
+  }
     }
   }
     draw.endDraw();
