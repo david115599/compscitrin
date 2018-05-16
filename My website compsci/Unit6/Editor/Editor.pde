@@ -21,22 +21,11 @@ int gono =1;
 int pixnum = 90;
 int gridval = 1;
 
-import controlP5.*;
-
-ControlP5 cp5;
-PImage can;
-
 HScrollbar hs1, hs2, hs3, hs4, hs5, hs6;
 PImage img;
 float noiseScale = 0.02;
 float increment = 0.02;
 void setup() {
-  cp5 = new ControlP5(this);
-    cp5.addButton("OPEN")
-      .setPosition(10, 10)
-      .setSize(200, 19)
-      .setValue(0)
-      ;
   img = loadImage("color-dropper.png");
   size(900, 600);
   frameRate(244);
@@ -315,10 +304,6 @@ void draw() {
     fill(30, 30, 30);
      if (mousePressed == true & mouseX >5+150 & mouseX <120+150 & mouseY >520-40 & mouseY <550-40 ) {
        PImage partialSave = get(300, 0, 900, 600);
-       if ( can != null )
-  {
-    image( can, 0, 0 );
-  }
        partialSave.save("Save.png");
        canvas = loadImage("Save.png");
        noiseify();
@@ -731,21 +716,4 @@ void noiseify() {
     }
   }
     draw.endDraw();
-}
-void imageChosen( File f )
-{
-  if( f.exists() )
-  {
-     String path = f.getAbsolutePath();
-     if (path.endsWith(".jpg") || path.endsWith(".jpeg")
-     || path.endsWith(".png") || path.endsWith(".gif")) {
-       img = loadImage(path);
-       img.resize(width,0); //0: height is scaled in proportion
-     }
-     else
-       println("Invald image format. Please try again");
-  }
-}
-void OPEN() {
-    selectInput( "Select an image", "imageChosen" );
 }
