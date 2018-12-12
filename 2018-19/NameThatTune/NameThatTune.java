@@ -52,7 +52,6 @@ public class NameThatTune {
       for (int i = 0; i <= a.length; i++) {
         v[i] = a[i] * amplitude;
       }
-
       return v;
     }
 
