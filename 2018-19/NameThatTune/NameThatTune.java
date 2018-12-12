@@ -37,27 +37,47 @@ public class NameThatTune {
         return sum(h, lo, 0.5, 0.5);
     }
 
-    public static double[] chordnote(int pitch, double duration) {
+    public static double[] majorchordnote(int pitch, double duration) {
         double hz = 440.0 * Math.pow(2, pitch / 12.0);
+              double hz4 = 440.0 * Math.pow(2, pitch+4 / 12.0);
+                    double hz7 = 440.0 * Math.pow(2, pitch+7 / 12.0);
         double[] a  = tone(hz, duration);
-        double[] hi = tone(2*hz, duration);
-        double[] lo = tone(hz/2, duration);
-        double[] h  = sum(hi, lo, 0.5, 0.5);
-        return sum(h, lo, 0.5, 0.5);
+        double[] a4 = tone(hz4, duration);
+        double[] a7 = tone(hz7, duration);
+        double[] h  = sum(a, a4, 0.5, 0.5);
+        return sum(h, a7, 0.5, 0.5);
+    }
+    public static double[] minorchordnote(int pitch, double duration) {
+        double hz = 440.0 * Math.pow(2, pitch / 12.0);
+              double hz3 = 440.0 * Math.pow(2, pitch+3 / 12.0);
+                    double hz7 = 440.0 * Math.pow(2, pitch+7 / 12.0);
+        double[] a  = tone(hz, duration);
+        double[] a3 = tone(hz3, duration);
+        double[] a7 = tone(hz7, duration);
+        double[] h  = sum(a, a3, 0.5, 0.5);
+        return sum(h, a7, 0.5, 0.5);
     }
 
 
 
     // read in notes from standard input and play them on standard audio
     public static void main(String[] args) {
-
         // read in pitch-duration pairs from standard input
         while (!StdIn.isEmpty()) {
             int pitch = StdIn.readInt();
             double duration = StdIn.readDouble();
-            double[] a = note(pitch, duration);
-            StdAudio.play(a);
-            StdAudio.save("harmonic.wav", a);
+            double[] a = minorchordnote(pitch, duration);
+            //StdAudio.play(a);
+            StdAudio.save("minorchordnote.wav", a);
+            double[] b = harmonicnote(pitch, duration);
+            //StdAudio.play(b);
+            StdAudio.save("harmonicnote.wav", b);
+            double[] c = majorchordnote(pitch, duration);
+            //StdAudio.play(c);
+            StdAudio.save("majorchordnote.wav", c);
         }
+            while (!StdIn.isEmpty()) {
+
+            }
     }
 }
