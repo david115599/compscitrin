@@ -46,6 +46,16 @@ public class NameThatTune {
         return sum(h, lo, 0.5, 0.5);
     }
 
+//changeVolume- scales the amplitude of the tone according to a decimal (i.e .80 or 1.20)
+    public static double[] changeVolume(double[] a, int amplitude) {
+      double[] v = new double[a.length];
+      for (int i = 0; i <= a.length; i++) {
+        v[i] = a[i] * amplitude;
+      }
+
+      return v;
+    }
+
 
 
     // read in notes from standard input and play them on standard audio
@@ -55,7 +65,7 @@ public class NameThatTune {
         while (!StdIn.isEmpty()) {
             int pitch = StdIn.readInt();
             double duration = StdIn.readDouble();
-            double[] a = note(pitch, duration);
+            double[] a = harmonicnote(pitch, duration);
             StdAudio.play(a);
             StdAudio.save("harmonic.wav", a);
         }
