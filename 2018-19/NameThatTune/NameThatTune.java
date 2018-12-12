@@ -67,13 +67,13 @@ public class NameThatTune {
             int pitch = StdIn.readInt();
             double duration = StdIn.readDouble();
             double[] a = minorchordnote(pitch, duration);
-            //StdAudio.play(a);
+            StdAudio.play(a);
             StdAudio.save("minorchordnote.wav", a);
             double[] b = harmonicnote(pitch, duration);
-            //StdAudio.play(b);
+            StdAudio.play(b);
             StdAudio.save("harmonicnote.wav", b);
             double[] c = majorchordnote(pitch, duration);
-            //StdAudio.play(c);
+            StdAudio.play(c);
             StdAudio.save("majorchordnote.wav", c);
         }
             while (!StdIn.isEmpty()) {
