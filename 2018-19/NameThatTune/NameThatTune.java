@@ -57,14 +57,47 @@ public class NameThatTune {
     double[] h  = sum(a, a3, 0.5, 0.5);
     return sum(h, a7, 0.5, 0.5);
   }
-  public static double[] fadenote(int pitch, double duration, double fadepoint, int fadeloc) {
+  public static double[] fadeinnote(int pitch, double duration, double fadeloc) {
     double hz = 440.0 * Math.pow(2, pitch / 12.0);
-    double hz2 = 440.0 * Math.pow(2, pitch+3 / 12.0);
-    double[] a  = tone(hz, duration-fadepoint);
-    double[] a2 = tone(hz2, fadepoint);
-    return MusicTools.concatArray(a, a2);
+    double[] a  = fadeintone(hz, duration, fadeloc);
+    //MusicTools.printArray(a);
+    return (a);
+  }
+  public static double[] fadeintone(double hz, double duration, double fadeloc) {
+    int n = (int) (StdAudio.SAMPLE_RATE * duration);
+    int f = (int) (StdAudio.SAMPLE_RATE * fadeloc);
+    double[] a = new double[n+1];
+    for (int i = 0; i <= f; i++) {
+    double q = ((Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE))/(f))*i;
+    //  a[i] = (.1*q)*Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+    a[i] = q;
+
+    }
+    for (int i = f; i <= n; i++) {
+      a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+    }
+    return a;
   }
 
+  public static double[] fadeoutnote(int pitch, double duration, double fadeloc) {
+    double hz = 440.0 * Math.pow(2, pitch / 12.0);
+    double[] a  = fadeouttone(hz, duration, fadeloc);
+    //MusicTools.printArray(a);
+    return (a);
+  }
+  public static double[] fadeouttone(double hz, double duration, double fadeloc) {
+    int n = (int) (StdAudio.SAMPLE_RATE * duration);
+    int f = (int) (StdAudio.SAMPLE_RATE * fadeloc);
+    double[] a = new double[n+1];
+    for (int i = 0; i <= f; i++) {
+    a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+    }
+    for (int i = f; i <= n; i++) {
+      double q = ((Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE))/(n-f))*((n-f)-(i-f));
+      a[i] = q;
+    }
+    return a;
+  }
 
 
   // read in notes from standard input and play them on standard audio
@@ -82,11 +115,14 @@ public class NameThatTune {
       double[] c = majorchordnote(pitch, duration);
       //StdAudio.play(c);
       StdAudio.save("majorchordnote.wav", c);
-      double fadepoint = .1;
-      int fadeloc = 1;
-      double[] d = fadenote(pitch, duration, fadepoint, fadeloc);
-      StdAudio.play(d);
-      StdAudio.save("fadenote.wav", d);
+      double fadeinloc = duration/2;
+      double[] d = fadeinnote(pitch, duration, fadeinloc);
+      //StdAudio.play(d);
+      StdAudio.save("fadeinnote.wav", d);
+      double fadeoutloc = duration/2;
+      double[] e = fadeoutnote(pitch, duration, fadeoutloc);
+      StdAudio.play(e);
+      StdAudio.save("fadeoutnote.wav", d);
     }
     while (!StdIn.isEmpty()) {
 
