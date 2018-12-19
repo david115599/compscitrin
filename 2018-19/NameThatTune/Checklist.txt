@@ -5,6 +5,6 @@ pitch- translates one note from your sheet music into a “sine wave”
 sum- adds two sine waves
 trim - removes leading and trailing 0’s from your array
 delay- repeats a tone based on an echo volume and time interval
-changeVolume- scales the amplitude of the tone according to a decimal (i.e .80 or 1.20)
+done == changeVolume- scales the amplitude of the tone according to a decimal (i.e .80 or 1.20)
 done == fade- scales the amplitude of the first/last n seconds from 0 to usual value (or vice versa) depending on parameter: “In”, “Out”. Feel free to use either a linear or logarithmic fade pattern.
 done == clip- establishes a max/min for the amplitude of a sound wave. Values that exceed the boundaries of the range are replaced with the max/min
