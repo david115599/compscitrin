@@ -143,8 +143,8 @@ public class NameThatTune {
       StdAudio.save("fadeinnote.wav", d);
       double fadeoutloc = duration/2;
       double[] e = fadeoutnote(pitch, duration, fadeoutloc);
-        StdAudio.play(e);
-      output = MusicTools.concatArray(output, e);
+      //StdAudio.play(e);
+      //output = MusicTools.concatArray(output, e);
       StdAudio.save("fadeoutnote.wav", e);
       double cliploc = .1 ;
       double[] f = clipnote(pitch, duration, cliploc);
