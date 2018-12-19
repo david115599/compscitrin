@@ -119,33 +119,39 @@ public class NameThatTune {
   // read in notes from standard input and play them on standard audio
   public static void main(String[] args) {
     // read in pitch-duration pairs from standard input
+    double[] output = new double[1];
+    output[0] = 0;
     while (!StdIn.isEmpty()) {
       int pitch = StdIn.readInt();
       double duration = StdIn.readDouble();
       double[] a = minorchordnote(pitch, duration);
       //StdAudio.play(a);
+      //output = MusicTools.concatArray(output, a);
       StdAudio.save("minorchordnote.wav", a);
       double[] b = harmonicnote(pitch, duration);
       //StdAudio.play(b);
+      //output = MusicTools.concatArray(output, b);
       StdAudio.save("harmonicnote.wav", b);
       double[] c = majorchordnote(pitch, duration);
       //StdAudio.play(c);
+      //output = MusicTools.concatArray(output, c);
       StdAudio.save("majorchordnote.wav", c);
       double fadeinloc = duration/2;
       double[] d = fadeinnote(pitch, duration, fadeinloc);
       //StdAudio.play(d);
+      //output = MusicTools.concatArray(output, d);
       StdAudio.save("fadeinnote.wav", d);
       double fadeoutloc = duration/2;
       double[] e = fadeoutnote(pitch, duration, fadeoutloc);
-      //StdAudio.play(e);
-      StdAudio.save("fadeoutnote.wav", d);
+        StdAudio.play(e);
+      output = MusicTools.concatArray(output, e);
+      StdAudio.save("fadeoutnote.wav", e);
       double cliploc = .1 ;
       double[] f = clipnote(pitch, duration, cliploc);
-      StdAudio.play(f);
-      StdAudio.save("clip.wav", d);
+      //StdAudio.play(f);
+      //output = MusicTools.concatArray(output, f);
+      StdAudio.save("clip.wav", f);
     }
-    while (!StdIn.isEmpty()) {
-
-    }
+    StdAudio.save("full_song.wav", output);
   }
 }
