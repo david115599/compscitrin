@@ -68,9 +68,9 @@ public class NameThatTune {
     int f = (int) (StdAudio.SAMPLE_RATE * fadeloc);
     double[] a = new double[n+1];
     for (int i = 0; i <= f; i++) {
-    double q = ((Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE))/(f))*i;
-    //  a[i] = (.1*q)*Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
-    a[i] = q;
+      double q = ((Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE))/(f))*i;
+      //  a[i] = (.1*q)*Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+      a[i] = q;
 
     }
     for (int i = f; i <= n; i++) {
@@ -90,7 +90,7 @@ public class NameThatTune {
     int f = (int) (StdAudio.SAMPLE_RATE * fadeloc);
     double[] a = new double[n+1];
     for (int i = 0; i <= f; i++) {
-    a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+      a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
     }
     for (int i = f; i <= n; i++) {
       double q = ((Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE))/(n-f))*((n-f)-(i-f));
@@ -99,6 +99,22 @@ public class NameThatTune {
     return a;
   }
 
+  public static double[] clipnote(int pitch, double duration, double cliploc) {
+    double hz = 440.0 * Math.pow(2, pitch / 12.0);
+    int n = (int) (StdAudio.SAMPLE_RATE * duration);
+    double[] a = new double[n+1];
+    for (int i = 0; i <= n; i++) {
+      a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+      if (a[i] > cliploc) {
+        a[i] = cliploc;
+      }
+      if (a[i] < -cliploc) {
+        a[i] = -cliploc;
+      }
+    }
+    //MusicTools.printArray(a);
+    return (a);
+  }
 
   // read in notes from standard input and play them on standard audio
   public static void main(String[] args) {
@@ -121,8 +137,12 @@ public class NameThatTune {
       StdAudio.save("fadeinnote.wav", d);
       double fadeoutloc = duration/2;
       double[] e = fadeoutnote(pitch, duration, fadeoutloc);
-      StdAudio.play(e);
+      //StdAudio.play(e);
       StdAudio.save("fadeoutnote.wav", d);
+      double cliploc = .1 ;
+      double[] f = clipnote(pitch, duration, cliploc);
+      StdAudio.play(f);
+      StdAudio.save("clip.wav", d);
     }
     while (!StdIn.isEmpty()) {
 
