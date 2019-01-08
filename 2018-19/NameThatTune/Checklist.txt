@@ -2,7 +2,7 @@ done == harmonic – adds both a high and a low octave to a root note == done
 done == minorChord- forms a minor chord around a root note == done
 done == majorChord- forms a major chord around a root note == done
 pitch- translates one note from your sheet music into a “sine wave”
-sum- adds two sine waves
+done == sum- adds two sine waves
 trim - removes leading and trailing 0’s from your array
 delay- repeats a tone based on an echo volume and time interval
 done == changeVolume- scales the amplitude of the tone according to a decimal (i.e .80 or 1.20)

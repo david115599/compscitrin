@@ -1,4 +1,7 @@
-
+import java.util.Date;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class NameThatTune {
 
@@ -128,30 +131,92 @@ public class NameThatTune {
       //StdAudio.play(a);
       //output = MusicTools.concatArray(output, a);
       StdAudio.save("minorchordnote.wav", a);
+
       double[] b = harmonicnote(pitch, duration);
       //StdAudio.play(b);
       //output = MusicTools.concatArray(output, b);
       StdAudio.save("harmonicnote.wav", b);
+
       double[] c = majorchordnote(pitch, duration);
       //StdAudio.play(c);
       //output = MusicTools.concatArray(output, c);
       StdAudio.save("majorchordnote.wav", c);
+
       double fadeinloc = duration/2;
       double[] d = fadeinnote(pitch, duration, fadeinloc);
-      //StdAudio.play(d);
-      //output = MusicTools.concatArray(output, d);
+      final CountDownLatch latch = new CountDownLatch(2);
+      final long start = System.nanoTime();
+      ExecutorService es = Executors.newCachedThreadPool();
+      Runnable runnable = new Runnable() {
+        public void run() {
+          StdAudio.play(d);
+          latch.countDown();
+        }
+      };
+      Runnable runnable1 = new Runnable() {
+        public void run() {
+          StdDraw.setPenRadius(Math.abs(pitch*.1));
+          StdDraw.setPenColor(StdDraw.GREEN);
+          StdDraw.point(.75, .5);
+          StdDraw.setPenColor(StdDraw.BLUE);
+          StdDraw.point(.25, .5);
+          StdDraw.setPenColor(StdDraw.RED);
+          StdDraw.point(.5, .8);
+          StdDraw.setPenColor(StdDraw.YELLOW);
+          StdDraw.point(.5, .2);
+
+          try
+          {
+            Thread.sleep(1000*(int)duration +100);
+          }
+          catch(InterruptedException ex)
+          {
+          //  Thread.currentThread().interrupt();
+          }
+          StdDraw.clear();
+          latch.countDown();
+        }
+      };
+      es.submit(runnable);
+      es.submit(runnable1);
+      try
+      {
+        latch.await();
+      }
+      catch(InterruptedException ex)
+      {
+        Thread.currentThread().interrupt();
+      }
+
+
+      // 1 nanoseconds is equal to 1/1000000000 of a second.
+      long total = (System.nanoTime() - start) / 1000000;
+      //System.out.println("total time: " + total);
+      es.shutdown();
+
+
+
+      output = MusicTools.concatArray(output, d);
       StdAudio.save("fadeinnote.wav", d);
+
       double fadeoutloc = duration/2;
       double[] e = fadeoutnote(pitch, duration, fadeoutloc);
       //StdAudio.play(e);
       //output = MusicTools.concatArray(output, e);
       StdAudio.save("fadeoutnote.wav", e);
+
       double cliploc = .1 ;
       double[] f = clipnote(pitch, duration, cliploc);
       //StdAudio.play(f);
       //output = MusicTools.concatArray(output, f);
       StdAudio.save("clip.wav", f);
     }
+    //MusicTools.printArray(output);
     StdAudio.save("full_song.wav", output);
   }
-}
+  public static void sleep(int i) {
+    try {
+      Thread.sleep(i * 1000);
+    } catch (InterruptedException ie) {}
+    }
+  }

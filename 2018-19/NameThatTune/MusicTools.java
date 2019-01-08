@@ -121,7 +121,7 @@ public class MusicTools{
   *@author, By David Claude Michalovich Bershadsky
   **/
   public static double arrayave(double array[]){
-    System.out.println("arrayave");
+  //  System.out.println("arrayave");
     double c=0;
     if (array.length>0) {
       for (int i=0;i<array.length ;i++ ) {
@@ -141,8 +141,8 @@ public class MusicTools{
   **/
   public static boolean arraysAreEqual(double array[], double array1[]){
     System.out.println("arraysAreEqual");
-    printArray(array);
-    printArray(array1);
+  //  printArray(array);
+  //  printArray(array1);
     if(array.length == array1.length){
       for(int i=0; i<array.length; i++){
         if (array[i] != array1[i]) {
@@ -183,8 +183,8 @@ public class MusicTools{
   public static double[] weightedAddArray(double array[], double array1[] ,double arrayscalar ,double array1scalar){
     System.out.println("weightedAddArray");
     double[] empty_a = {};
-    printArray(array);
-    printArray(array1);
+  //  printArray(array);
+  //  printArray(array1);
     if(arrayscalar+array1scalar != 1){
       return(empty_a);
     }
@@ -220,7 +220,7 @@ public class MusicTools{
   **/
   public static double[] copyArray(double array[], int n, int n1){
     System.out.println("copyArray");
-    printArray(array);
+  //  printArray(array);
     double[] empty_a = {};
     if (n > n1 || n<0) {
       return(empty_a);
@@ -245,7 +245,7 @@ public class MusicTools{
   **/
   public static double[] cutArray(double array[], int n, int n1){
     System.out.println("cutArray");
-    printArray(array);
+  //  printArray(array);
     double[] empty_a = {};
     if (n>n1 || n<0 || n1>array.length) {
       return(empty_a);
@@ -270,8 +270,8 @@ public class MusicTools{
   **/
   public static double[] concatArray(double array[], double array1[]){
     System.out.println("concatArray");
-    printArray(array);
-    printArray(array1);
+    //printArray(array);
+    //printArray(array1);
     double[] ret = new double[array.length+array1.length];
     for (int i=0;i<array.length ;i++ ) {
       ret[i]=array[i];
@@ -292,8 +292,8 @@ public class MusicTools{
   **/
   public static double[] spliceArray(double array[],double array1[], int n){
     System.out.println("spliceArray");
-    printArray(array);
-    printArray(array1);
+  //  printArray(array);
+  //  printArray(array1);
     double[] ret = new double[array.length+array1.length];
     double[] empty_a = {};
     if(n<0 || n>array.length){
