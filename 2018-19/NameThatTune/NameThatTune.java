@@ -245,6 +245,7 @@ public class NameThatTune {
     }
     MusicTools.printArray(sheetmusic);
     StdAudio.save("full_song.wav", output);
+    System.exit(1);
   }
 
 
