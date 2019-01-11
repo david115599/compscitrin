@@ -269,7 +269,7 @@ public class MusicTools{
   *@author, By David Claude Michalovich Bershadsky
   **/
   public static double[] concatArray(double array[], double array1[]){
-    System.out.println("concatArray");
+  //  System.out.println("concatArray");
     //printArray(array);
     //printArray(array1);
     double[] ret = new double[array.length+array1.length];
