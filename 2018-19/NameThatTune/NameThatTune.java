@@ -125,6 +125,7 @@ public class NameThatTune {
 
   // read in notes from standard input and play them on standard audio
   public static void main(String[] args) {
+    StdDraw.setCanvasSize(1500, 850);
     int length = 0;
     if (args.length > 0) {
       try {
@@ -134,18 +135,29 @@ public class NameThatTune {
         System.exit(1);
       }
     }
+
+    //__________________________________________________________________
     //random music gen  START:
 
     double[] sheetmusic = new double[length];
     for (int i = 0;i<length-1;i+=3 ) {
-      double the_chosen_one = (double) ((int) (Math.random()*12));
+      int the_chosen_one = ((int) (Math.random()*14));
       double the_second_chosen_one = (Math.random()*.5);
       double the_third_chosen_one = (double) ((int) (Math.random()*5));
-      sheetmusic[i] = the_chosen_one;
+      sheetmusic[i] = (double)the_chosen_one;
+      /*if (i>=3) {
+        if (sheetmusic[i]-3 == 0) {
+
+        }
+
+      }*/
+      //sheetmusic[i] = the_chosen_one;
       sheetmusic[i+1] = the_second_chosen_one;
       sheetmusic[i+2] = the_third_chosen_one;
     }
     //random music gen  END:
+    //__________________________________________________________________
+
     // read in pitch-duration pairs from standard input
     double[] output = new double[1];
     output[0] = 0;
@@ -192,6 +204,7 @@ public class NameThatTune {
         currentnote = f;
       }
       double[] currentnotefinal =  currentnote;
+      int ii = i;
 
       final CountDownLatch latch = new CountDownLatch(2);
       final long start = System.nanoTime();
@@ -204,15 +217,100 @@ public class NameThatTune {
       };
       Runnable runnable1 = new Runnable() {
         public void run() {
-          StdDraw.setPenRadius(Math.abs(pitch*.1));
+            //System.out.println(sheetmusic[ii]);
+            StdDraw.setPenColor(StdDraw.BLUE);
+            StdDraw.text(.73, .9, Double.toString(sheetmusic[ii]));
+          if (sheetmusic[ii] == 0 || sheetmusic[ii] == 7) {
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.75, .9, "A");
+          }
+          else {
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.75, .9, "A");
+          }
+          if (sheetmusic[ii] == 1 || sheetmusic[ii] == 8) {
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.76, .9, "B");
+          }
+          else {
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.76, .9, "B");
+          }
+          if (sheetmusic[ii] == 2 || sheetmusic[ii] == 9) {
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.77, .9, "C");
+          }
+          else {
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.77, .9, "C");
+          }
+          if (sheetmusic[ii] == 3 || sheetmusic[ii] == 10) {
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.78, .9, "D");
+          }
+          else {
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.78, .9, "D");
+          }
+          if (sheetmusic[ii] == 4 || sheetmusic[ii] == 11) {
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.79, .9, "E");
+          }
+          else {
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.79, .9, "E");
+          }
+          if (sheetmusic[ii] == 5 || sheetmusic[ii] == 12) {
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.80, .9, "F");
+          }
+          else {
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.80, .9, "F");
+          }
+          if (sheetmusic[ii] == 6 || sheetmusic[ii] == 13) {
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.81, .9, "G");
+          }
+          else {
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.81, .9, "G");
+          }
+          if (sheetmusic[ii] == 7 || sheetmusic[ii] == 14) {
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.82, .9, "A");
+          }
+          else {
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.setPenRadius(.1);
+            StdDraw.text(.82, .9, "A");
+          }
+
+
+          StdDraw.setPenRadius(Math.abs(pitch*.05));
           StdDraw.setPenColor(StdDraw.GREEN);
-          StdDraw.point(.75, .5);
+          StdDraw.point(.3, 1-.2);
           StdDraw.setPenColor(StdDraw.BLUE);
-          StdDraw.point(.25, .5);
+          StdDraw.point(.1, 1-.2);
           StdDraw.setPenColor(StdDraw.RED);
-          StdDraw.point(.5, .8);
+          StdDraw.point(.2, 1-.3);
           StdDraw.setPenColor(StdDraw.YELLOW);
-          StdDraw.point(.5, .2);
+          StdDraw.point(.2, 1-.1);
           try
           {
             Thread.sleep(1000*(int)duration +100);
@@ -249,9 +347,9 @@ public class NameThatTune {
   }
 
 
-public static void sleep(int i) {
-  try {
-    Thread.sleep(i * 1000);
-  } catch (InterruptedException ie) {}
+  public static void sleep(int i) {
+    try {
+      Thread.sleep(i * 1000);
+    } catch (InterruptedException ie) {}
+    }
   }
-}
