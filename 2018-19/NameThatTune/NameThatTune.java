@@ -141,16 +141,48 @@ public class NameThatTune {
 
     double[] sheetmusic = new double[length];
     for (int i = 0;i<length-1;i+=3 ) {
-      int the_chosen_one = ((int) (Math.random()*14));
+      double the_chosen_one = ((int) (Math.random()));
       double the_second_chosen_one = (Math.random()*.5);
       double the_third_chosen_one = (double) ((int) (Math.random()*5));
-      sheetmusic[i] = (double)the_chosen_one;
-      /*if (i>=3) {
+      sheetmusic[i] = the_chosen_one;
+      if (i>=3) {
         if (sheetmusic[i]-3 == 0) {
-
+          if (the_chosen_one <=.11) {
+            sheetmusic[i]=3 ;
+          }
+          if (the_chosen_one <=.11+.24 && the_chosen_one >.11) {
+            sheetmusic[i]=6 ;
+          }
+          if (the_chosen_one <=.11+.24+.20 && the_chosen_one >.11+.24) {
+            sheetmusic[i]=7 ;
+          }
+          if (the_chosen_one <=.11+.24+.20+.06 && the_chosen_one >.11+.24+.20) {
+            sheetmusic[i]=5 ;
+          }
+          if (the_chosen_one <=.11+.24+.20+.06+.06 && the_chosen_one >.11+.24+.20+.06) {
+            sheetmusic[i]=4 ;
+          }
         }
 
-      }*/
+        if (sheetmusic[i]-3 == 1) {
+          if (the_chosen_one <=.07) {
+            sheetmusic[i]=5 ;
+          }
+          if (the_chosen_one <=.07+.24 && the_chosen_one >.07) {
+            sheetmusic[i]=3 ;
+          }
+          if (the_chosen_one <=.07+.24+.05 && the_chosen_one >.07+.24) {
+            sheetmusic[i]=7 ;
+          }
+          if (the_chosen_one <=.11+.24+.20+.06 && the_chosen_one >.11+.24+.20) {
+            sheetmusic[i]=5 ;
+          }
+          if (the_chosen_one <=.11+.24+.20+.06+.06 && the_chosen_one >.11+.24+.20+.06) {
+            sheetmusic[i]=4 ;
+          }
+        }
+
+      }
       //sheetmusic[i] = the_chosen_one;
       sheetmusic[i+1] = the_second_chosen_one;
       sheetmusic[i+2] = the_third_chosen_one;
