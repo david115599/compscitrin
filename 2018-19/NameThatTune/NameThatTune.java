@@ -125,6 +125,13 @@ public class NameThatTune {
 
   // read in notes from standard input and play them on standard audio
   public static void main(String[] args) {
+    double note_a = 0;
+    double note_b = 1;
+    double note_c = 2;
+    double note_d = 3;
+    double note_e = 4;
+    double note_f = 5;
+    double note_g = 6;
     StdDraw.setCanvasSize(1500, 850);
     int length = 0;
     if (args.length > 0) {
@@ -141,44 +148,125 @@ public class NameThatTune {
 
     double[] sheetmusic = new double[length];
     for (int i = 0;i<length-1;i+=3 ) {
-      double the_chosen_one = ((int) (Math.random()));
-      double the_second_chosen_one = (Math.random()*.5);
+      double the_chosen_one = ((Math.random()));
+      double the_second_chosen_one = (Math.random()*1);
       double the_third_chosen_one = (double) ((int) (Math.random()*5));
-      sheetmusic[i] = the_chosen_one;
+      sheetmusic[i] = (double)(int)(the_chosen_one*7);
       if (i>=3) {
-        if (sheetmusic[i]-3 == 0) {
+        if (sheetmusic[i]-3 == note_a) {
           if (the_chosen_one <=.11) {
-            sheetmusic[i]=3 ;
+            sheetmusic[i]=note_c ;
           }
           if (the_chosen_one <=.11+.24 && the_chosen_one >.11) {
-            sheetmusic[i]=6 ;
+            sheetmusic[i]=note_f ;
           }
           if (the_chosen_one <=.11+.24+.20 && the_chosen_one >.11+.24) {
-            sheetmusic[i]=7 ;
+            sheetmusic[i]=note_g ;
           }
           if (the_chosen_one <=.11+.24+.20+.06 && the_chosen_one >.11+.24+.20) {
-            sheetmusic[i]=5 ;
+            sheetmusic[i]=note_e ;
           }
           if (the_chosen_one <=.11+.24+.20+.06+.06 && the_chosen_one >.11+.24+.20+.06) {
-            sheetmusic[i]=4 ;
+            sheetmusic[i]=note_d ;
           }
         }
 
-        if (sheetmusic[i]-3 == 1) {
+        if (sheetmusic[i]-3 == note_b) {
           if (the_chosen_one <=.07) {
-            sheetmusic[i]=5 ;
+            sheetmusic[i]=note_e ;
           }
           if (the_chosen_one <=.07+.24 && the_chosen_one >.07) {
-            sheetmusic[i]=3 ;
+            sheetmusic[i]=note_c ;
           }
           if (the_chosen_one <=.07+.24+.05 && the_chosen_one >.07+.24) {
-            sheetmusic[i]=7 ;
+            sheetmusic[i]=note_g ;
           }
-          if (the_chosen_one <=.11+.24+.20+.06 && the_chosen_one >.11+.24+.20) {
-            sheetmusic[i]=5 ;
+          if (the_chosen_one <=.07+.24+.05+.21 && the_chosen_one >.07+.24+.05) {
+            sheetmusic[i]=note_a ;
           }
-          if (the_chosen_one <=.11+.24+.20+.06+.06 && the_chosen_one >.11+.24+.20+.06) {
-            sheetmusic[i]=4 ;
+        }
+
+        if (sheetmusic[i]-3 == note_c) {
+          if (the_chosen_one <=.19) {
+            sheetmusic[i]=note_f ;
+          }
+          if (the_chosen_one <=.19+.25 && the_chosen_one >.19) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.19+.25+.10 && the_chosen_one >.19+.25) {
+            sheetmusic[i]=note_a ;
+          }
+          if (the_chosen_one <=.19+.25+.10+.06 && the_chosen_one >.19+.25+.10) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.19+.25+.10+.06+.05 && the_chosen_one >.19+.25+.10+.06) {
+            sheetmusic[i]=note_b ;
+          }
+        }
+
+        if (sheetmusic[i]-3 == note_d) {
+          if (the_chosen_one <=.13) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.13+.16 && the_chosen_one >.13) {
+            sheetmusic[i]=note_f ;
+          }
+          if (the_chosen_one <=.13+.16+.16 && the_chosen_one >.13+.16) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.13+.16+.16+.09 && the_chosen_one >.13+.16+.16) {
+            sheetmusic[i]=note_e ;
+          }
+          if (the_chosen_one <=.13+.16+.16+.09+.18 && the_chosen_one >.13+.16+.16+.09) {
+            sheetmusic[i]=note_a ;
+          }
+        }
+
+        if (sheetmusic[i]-3 == note_e) {
+          if (the_chosen_one <=.05) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.05+.08 && the_chosen_one >.05) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.05+.08+.08 && the_chosen_one >.05+.08) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.05+.08+.08+.33 && the_chosen_one >.05+.08+.08) {
+            sheetmusic[i]=note_f ;
+          }
+          if (the_chosen_one <=.05+.08+.08+.33+.26 && the_chosen_one >.05+.08+.08+.33) {
+            sheetmusic[i]=note_a ;
+          }
+        }
+
+        if (sheetmusic[i]-3 == note_f) {
+          if (the_chosen_one <=.29) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.29+.29 && the_chosen_one >.29) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.29+.29+.05 && the_chosen_one >.29+.29) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.29+.29+.05+.10 && the_chosen_one >.29+.29+.05) {
+            sheetmusic[i]=note_a ;
+          }
+        }
+
+        if (sheetmusic[i]-3 == note_g) {
+          if (the_chosen_one <=.21) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.21+.06 && the_chosen_one >.21) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.21+.06+.21 && the_chosen_one >.21+.06) {
+            sheetmusic[i]=note_f ;
+          }
+          if (the_chosen_one <=.21+.06+.21+.26  && the_chosen_one >.21+.06+.21) {
+            sheetmusic[i]=note_a ;
           }
         }
 
@@ -235,6 +323,7 @@ public class NameThatTune {
       if (sheetmusic[i+2]== 0) {
         currentnote = f;
       }
+      currentnote = b;//remove
       double[] currentnotefinal =  currentnote;
       int ii = i;
 
@@ -249,9 +338,9 @@ public class NameThatTune {
       };
       Runnable runnable1 = new Runnable() {
         public void run() {
-            //System.out.println(sheetmusic[ii]);
-            StdDraw.setPenColor(StdDraw.BLUE);
-            StdDraw.text(.73, .9, Double.toString(sheetmusic[ii]));
+          //System.out.println(sheetmusic[ii]);
+          StdDraw.setPenColor(StdDraw.BLUE);
+          StdDraw.text(.73, .9, Double.toString(sheetmusic[ii]));
           if (sheetmusic[ii] == 0 || sheetmusic[ii] == 7) {
             StdDraw.setPenColor(StdDraw.RED);
             StdDraw.setPenRadius(.1);
