@@ -126,12 +126,18 @@ public class NameThatTune {
   // read in notes from standard input and play them on standard audio
   public static void main(String[] args) {
     double note_a = 0;
-    double note_b = 1;
-    double note_c = 2;
-    double note_d = 3;
-    double note_e = 4;
-    double note_f = 5;
-    double note_g = 6;
+    double note_as_bf = 1;
+    double note_b = 2;
+    double note_c = 3;
+    double note_cs_df = 4;
+    double note_d = 5;
+    double note_ds_ef = 6;
+    double note_e = 7;
+    double note_f = 8;
+    double note_fs_gf = 9;
+    double note_g = 10;
+    double note_gs_af = 11;
+    double note_a2 = 12;
     StdDraw.setCanvasSize(1500, 850);
     int length = 0;
     if (args.length > 0) {
@@ -149,7 +155,7 @@ public class NameThatTune {
     double[] sheetmusic = new double[length];
     for (int i = 0;i<length-1;i+=3 ) {
       double the_chosen_one = ((Math.random()));
-      double the_second_chosen_one = (Math.random()*1);
+      double the_second_chosen_one = (Math.random()*.5);
       double the_third_chosen_one = (double) ((int) (Math.random()*5));
       sheetmusic[i] = (double)(int)(the_chosen_one*7);
       if (i>=3) {
@@ -171,18 +177,36 @@ public class NameThatTune {
           }
         }
 
-        if (sheetmusic[i]-3 == note_b) {
-          if (the_chosen_one <=.07) {
-            sheetmusic[i]=note_e ;
-          }
-          if (the_chosen_one <=.07+.24 && the_chosen_one >.07) {
+        if (sheetmusic[i]-3 == note_as_bf) {
+          if (the_chosen_one <=.20) {
             sheetmusic[i]=note_c ;
           }
-          if (the_chosen_one <=.07+.24+.05 && the_chosen_one >.07+.24) {
+          if (the_chosen_one <=.20+.23 && the_chosen_one >.20) {
+            sheetmusic[i]=note_f ;
+          }
+          if (the_chosen_one <=.20+.23+.06 && the_chosen_one >.20+.23) {
             sheetmusic[i]=note_g ;
           }
-          if (the_chosen_one <=.07+.24+.05+.21 && the_chosen_one >.07+.24+.05) {
+          if (the_chosen_one <=.20+.23+.06+.11+.05 && the_chosen_one >.20+.23+.060) {
             sheetmusic[i]=note_a ;
+          }
+        }
+
+        if (sheetmusic[i]-3 == note_b) {
+          if (the_chosen_one <=.18+.16+.05) {
+            sheetmusic[i]=note_e ;
+          }
+          if (the_chosen_one <=.18+.16+.14+.05 && the_chosen_one >.18+.16+.05) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.18+.16+.14+.05+.05 && the_chosen_one >.18+.16+.14+.05) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.18+.16+.14+.05+.05+.05 && the_chosen_one >.18+.16+.14+.05+.05) {
+            sheetmusic[i]=note_a ;
+          }
+          if (the_chosen_one <=.18+.16+.14+.05+.05+.05+.09 && the_chosen_one >.18+.16+.14+.05+.05) {
+            sheetmusic[i]=note_as_bf ;
           }
         }
 
@@ -204,7 +228,43 @@ public class NameThatTune {
           }
         }
 
+        if (sheetmusic[i]-3 == note_cs_df) {
+          if (the_chosen_one <=.19) {
+            sheetmusic[i]=note_f ;
+          }
+          if (the_chosen_one <=.19+.25 && the_chosen_one >.19) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.19+.25+.10 && the_chosen_one >.19+.25) {
+            sheetmusic[i]=note_a ;
+          }
+          if (the_chosen_one <=.19+.25+.10+.06 && the_chosen_one >.19+.25+.10) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.19+.25+.10+.06+.05 && the_chosen_one >.19+.25+.10+.06) {
+            sheetmusic[i]=note_b ;
+          }
+        }
+
         if (sheetmusic[i]-3 == note_d) {
+          if (the_chosen_one <=.13) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.13+.16 && the_chosen_one >.13) {
+            sheetmusic[i]=note_f ;
+          }
+          if (the_chosen_one <=.13+.16+.16 && the_chosen_one >.13+.16) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.13+.16+.16+.09 && the_chosen_one >.13+.16+.16) {
+            sheetmusic[i]=note_e ;
+          }
+          if (the_chosen_one <=.13+.16+.16+.09+.18 && the_chosen_one >.13+.16+.16+.09) {
+            sheetmusic[i]=note_a ;
+          }
+        }
+
+        if (sheetmusic[i]-3 == note_ds_ef) {
           if (the_chosen_one <=.13) {
             sheetmusic[i]=note_c ;
           }
@@ -255,6 +315,21 @@ public class NameThatTune {
           }
         }
 
+        if (sheetmusic[i]-3 == note_fs_gf) {
+          if (the_chosen_one <=.29) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.29+.29 && the_chosen_one >.29) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.29+.29+.05 && the_chosen_one >.29+.29) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.29+.29+.05+.10 && the_chosen_one >.29+.29+.05) {
+            sheetmusic[i]=note_a ;
+          }
+        }
+
         if (sheetmusic[i]-3 == note_g) {
           if (the_chosen_one <=.21) {
             sheetmusic[i]=note_c ;
@@ -266,13 +341,47 @@ public class NameThatTune {
             sheetmusic[i]=note_f ;
           }
           if (the_chosen_one <=.21+.06+.21+.26  && the_chosen_one >.21+.06+.21) {
-            sheetmusic[i]=note_a ;
+            sheetmusic[i]=note_a2 ;
+          }
+        }
+
+        if (sheetmusic[i]-3 == note_gs_af) {
+          if (the_chosen_one <=.21) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.21+.06 && the_chosen_one >.21) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.21+.06+.21 && the_chosen_one >.21+.06) {
+            sheetmusic[i]=note_f ;
+          }
+          if (the_chosen_one <=.21+.06+.21+.26  && the_chosen_one >.21+.06+.21) {
+            sheetmusic[i]=note_a2 ;
+          }
+        }
+
+        if (sheetmusic[i]-3 == note_a2) {
+          if (the_chosen_one <=.11) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.11+.24 && the_chosen_one >.11) {
+            sheetmusic[i]=note_f ;
+          }
+          if (the_chosen_one <=.11+.24+.20 && the_chosen_one >.11+.24) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.11+.24+.20+.06 && the_chosen_one >.11+.24+.20) {
+            sheetmusic[i]=note_e ;
+          }
+          if (the_chosen_one <=.11+.24+.20+.06+.06 && the_chosen_one >.11+.24+.20+.06) {
+            sheetmusic[i]=note_d ;
           }
         }
 
       }
       //sheetmusic[i] = the_chosen_one;
-      sheetmusic[i+1] = the_second_chosen_one;
+      sheetmusic[i+1] = .55+the_second_chosen_one;
+      //sheetmusic[2]=Math.random();
       sheetmusic[i+2] = the_third_chosen_one;
     }
     //random music gen  END:
@@ -305,172 +414,191 @@ public class NameThatTune {
       //__________________________________________________________________
 
       double[] currentnote = new double[1+ (int) (StdAudio.SAMPLE_RATE * duration)];
+      /*
       if (sheetmusic[i+2]== 1) {
-        currentnote = a;
-      }
-      if (sheetmusic[i+2]== 2) {
-        currentnote = b;
-      }
-      if (sheetmusic[i+2]== 3) {
-        currentnote = c;
-      }
-      if (sheetmusic[i+2]== 4) {
-        currentnote = d;
-      }
-      if (sheetmusic[i+2]== 5) {
-        currentnote = e;
-      }
-      if (sheetmusic[i+2]== 0) {
-        currentnote = f;
-      }
-      currentnote = b;//remove
-      double[] currentnotefinal =  currentnote;
-      int ii = i;
-
-      final CountDownLatch latch = new CountDownLatch(2);
-      final long start = System.nanoTime();
-      ExecutorService es = Executors.newCachedThreadPool();
-      Runnable runnable = new Runnable() {
-        public void run() {
-          StdAudio.play(currentnotefinal);
-          latch.countDown();
-        }
-      };
-      Runnable runnable1 = new Runnable() {
-        public void run() {
-          //System.out.println(sheetmusic[ii]);
-          StdDraw.setPenColor(StdDraw.BLUE);
-          StdDraw.text(.73, .9, Double.toString(sheetmusic[ii]));
-          if (sheetmusic[ii] == 0 || sheetmusic[ii] == 7) {
-            StdDraw.setPenColor(StdDraw.RED);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.75, .9, "A");
-          }
-          else {
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.75, .9, "A");
-          }
-          if (sheetmusic[ii] == 1 || sheetmusic[ii] == 8) {
-            StdDraw.setPenColor(StdDraw.RED);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.76, .9, "B");
-          }
-          else {
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.76, .9, "B");
-          }
-          if (sheetmusic[ii] == 2 || sheetmusic[ii] == 9) {
-            StdDraw.setPenColor(StdDraw.RED);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.77, .9, "C");
-          }
-          else {
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.77, .9, "C");
-          }
-          if (sheetmusic[ii] == 3 || sheetmusic[ii] == 10) {
-            StdDraw.setPenColor(StdDraw.RED);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.78, .9, "D");
-          }
-          else {
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.78, .9, "D");
-          }
-          if (sheetmusic[ii] == 4 || sheetmusic[ii] == 11) {
-            StdDraw.setPenColor(StdDraw.RED);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.79, .9, "E");
-          }
-          else {
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.79, .9, "E");
-          }
-          if (sheetmusic[ii] == 5 || sheetmusic[ii] == 12) {
-            StdDraw.setPenColor(StdDraw.RED);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.80, .9, "F");
-          }
-          else {
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.80, .9, "F");
-          }
-          if (sheetmusic[ii] == 6 || sheetmusic[ii] == 13) {
-            StdDraw.setPenColor(StdDraw.RED);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.81, .9, "G");
-          }
-          else {
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.81, .9, "G");
-          }
-          if (sheetmusic[ii] == 7 || sheetmusic[ii] == 14) {
-            StdDraw.setPenColor(StdDraw.RED);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.82, .9, "A");
-          }
-          else {
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.setPenRadius(.1);
-            StdDraw.text(.82, .9, "A");
-          }
-
-
-          StdDraw.setPenRadius(Math.abs(pitch*.05));
-          StdDraw.setPenColor(StdDraw.GREEN);
-          StdDraw.point(.3, 1-.2);
-          StdDraw.setPenColor(StdDraw.BLUE);
-          StdDraw.point(.1, 1-.2);
-          StdDraw.setPenColor(StdDraw.RED);
-          StdDraw.point(.2, 1-.3);
-          StdDraw.setPenColor(StdDraw.YELLOW);
-          StdDraw.point(.2, 1-.1);
-          try
-          {
-            Thread.sleep(1000*(int)duration +100);
-          }
-          catch(InterruptedException ex)
-          {
-            //  Thread.currentThread().interrupt();
-          }
-          StdDraw.clear();
-          latch.countDown();
-        }
-      };
-      es.submit(runnable);
-      es.submit(runnable1);
-      try
-      {
-        latch.await();
-      }
-      catch(InterruptedException ex)
-      {
-        Thread.currentThread().interrupt();
-      }
-      // 1 nanoseconds is equal to 1/1000000000 of a second.
-      long total = (System.nanoTime() - start) / 1000000;
-      //System.out.println("total time: " + total);
-      es.shutdown();
-      output = MusicTools.concatArray(output, d);
-      StdAudio.save("current note.wav", currentnote);
-      //__________________________________________________________________
+      currentnote = a;
     }
-    MusicTools.printArray(sheetmusic);
-    StdAudio.save("full_song.wav", output);
-    System.exit(1);
+    if (sheetmusic[i+2]== 2) {
+    currentnote = b;
   }
+  if (sheetmusic[i+2]== 3) {
+  currentnote = c;
+}
+if (sheetmusic[i+2]== 4) {
+currentnote = d;
+}
+if (sheetmusic[i+2]== 5) {
+currentnote = e;
+}
+if (sheetmusic[i+2]== 0) {
+currentnote = f;
+}
+*/
 
 
-  public static void sleep(int i) {
-    try {
-      Thread.sleep(i * 1000);
-    } catch (InterruptedException ie) {}
+
+//---------------------------------------------------------------------------------------------------------------------------------------
+currentnote = b;//remove, it disables ^^
+//---------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+double[] currentnotefinal =  currentnote;
+int ii = i;
+
+final CountDownLatch latch = new CountDownLatch(2);
+final long start = System.nanoTime();
+ExecutorService es = Executors.newCachedThreadPool();
+Runnable runnable = new Runnable() {
+  public void run() {
+    StdAudio.play(currentnotefinal);
+    latch.countDown();
+  }
+};
+Runnable runnable1 = new Runnable() {
+  public void run() {
+    //System.out.println(sheetmusic[ii]);
+    StdDraw.setPenColor(StdDraw.BLUE);
+    StdDraw.text(.73, .9, Double.toString(sheetmusic[ii]));
+    if (sheetmusic[ii] == 0 || sheetmusic[ii] == 7) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.75, .9, "A");
     }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.75, .9, "A");
+    }
+    if (sheetmusic[ii] == 1 || sheetmusic[ii] == 8) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.76, .9, "B");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.76, .9, "B");
+    }
+    if (sheetmusic[ii] == 2 || sheetmusic[ii] == 9) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.77, .9, "C");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.77, .9, "C");
+    }
+    if (sheetmusic[ii] == 3 || sheetmusic[ii] == 10) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.78, .9, "D");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.78, .9, "D");
+    }
+    if (sheetmusic[ii] == 4 || sheetmusic[ii] == 11) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.79, .9, "E");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.79, .9, "E");
+    }
+    if (sheetmusic[ii] == 5 || sheetmusic[ii] == 12) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.80, .9, "F");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.80, .9, "F");
+    }
+    if (sheetmusic[ii] == 6 || sheetmusic[ii] == 13) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.81, .9, "G");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.81, .9, "G");
+    }
+    if (sheetmusic[ii] == 7 || sheetmusic[ii] == 14) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.82, .9, "A");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.82, .9, "A");
+    }
+
+
+    StdDraw.setPenRadius(Math.abs(pitch*.05+.01));
+    StdDraw.setPenColor(StdDraw.GREEN);
+    StdDraw.point(.3, 1-.2);
+    StdDraw.setPenColor(StdDraw.BLUE);
+    StdDraw.point(.1, 1-.2);
+    StdDraw.setPenColor(StdDraw.RED);
+    StdDraw.point(.2, 1-.3);
+    StdDraw.setPenColor(StdDraw.YELLOW);
+    StdDraw.point(.2, 1-.1);
+
+    StdDraw.setPenColor(StdDraw.BLACK);
+    StdDraw.setPenRadius(.01);
+
+    //stops working for last 80 notes of piece
+    for (int i = 0;i< 80 ;i++ ) {
+      StdDraw.line(.1+.01*i, sheetmusic[ii+3*i]*.05, .1+.01*i, .2);
+    }
+  /*  try
+    {
+      Thread.sleep(1000*(int)duration +100);
+    }
+    catch(InterruptedException ex)
+    {
+      //  Thread.currentThread().interrupt();
+    }*/
+    StdDraw.clear();
+    latch.countDown();
   }
+};
+es.submit(runnable);
+es.submit(runnable1);
+try
+{
+  latch.await();
+}
+catch(InterruptedException ex)
+{
+  Thread.currentThread().interrupt();
+}
+// 1 nanoseconds is equal to 1/1000000000 of a second.
+long total = (System.nanoTime() - start) / 1000000;
+//System.out.println("total time: " + total);
+es.shutdown();
+output = MusicTools.concatArray(output, d);
+StdAudio.save("current note.wav", currentnote);
+//__________________________________________________________________
+}
+MusicTools.printArray(sheetmusic);
+StdAudio.save("full_song.wav", output);
+System.exit(1);
+}
+
+
+public static void sleep(int i) {
+  try {
+    Thread.sleep(i * 1000);
+  } catch (InterruptedException ie) {}
+  }
+}
