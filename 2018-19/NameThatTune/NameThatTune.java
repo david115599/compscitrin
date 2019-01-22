@@ -123,6 +123,11 @@ public class NameThatTune {
 
 
 
+
+
+
+
+
   // read in notes from standard input and play them on standard audio
   public static void main(String[] args) {
     double note_a = 0;
@@ -155,7 +160,7 @@ public class NameThatTune {
     double[] sheetmusic = new double[length];
     for (int i = 0;i<length-1;i+=3 ) {
       double the_chosen_one = ((Math.random()));
-      double the_second_chosen_one = (Math.random()*.5);
+      double the_second_chosen_one = (Math.random()*.25);
       double the_third_chosen_one = (double) ((int) (Math.random()*5));
       sheetmusic[i] = (double)(int)(the_chosen_one*7);
       if (i>=3) {
@@ -377,7 +382,6 @@ public class NameThatTune {
             sheetmusic[i]=note_d ;
           }
         }
-
       }
       //sheetmusic[i] = the_chosen_one;
       sheetmusic[i+1] = .55+the_second_chosen_one;
