@@ -31,6 +31,51 @@ public class NameThatTune {
     return a;
   }
 
+
+  public static double[] clip(double[] a, double max, double min) {
+        double[] clip = new double[a.length];
+        for (int i = 0; i < a.length; i++) {
+          if ((a[i] < max) && (a[i] > min)) {
+              clip[i] = a[i];
+          }
+          else if (a[i] > max){
+            clip[i] = max;
+          }
+          else {
+            clip[i] = min;
+          }
+        }
+        return clip;
+      }
+
+      public static double[] trim(double[] a) {
+        int size = 0;
+        int size2 = 0;
+        for (int i = 0; i < a.length; i++) {
+          if (a[i] == 0) {
+            size += 1;
+          }
+          else {
+            break;
+          }
+        }
+
+        for (int l = a.length - 1; l > 0; l--) {
+          if (a[l] == 0) {
+            size2 += 1;
+          }
+          else {
+            break;
+          }
+        }
+
+        double[] trimmed = new double[a.length - size - size2];
+        for (int j = 0; j < trimmed.length; j++) {
+          trimmed[j] = a[j + size];
+        }
+        return trimmed;
+      }
+
   // create a note with harmonics of the given pitch and duration
   // (where 0 = concert A)
   public static double[] harmonicnote(int pitch, double duration) {
