@@ -68,28 +68,15 @@ public static double[] clip(double[] a, double max, double min) {
 //interval = 2
 //delay- repeats a tone based on an echo volume and time interval
 public static double[] delay(double[] a, int interval, int volume) {
-      double[] delayed1 = new double[a.length];
-      double[] delayed2 = new double[a.length + interval];
-
-      for (int i = 0; i < a.length; i++) {
-        delayed1[i] = a[i];
-      }
-
-      for (int j = 0; j < a.length; j++) {
-      if (j < interval) {
-        delayed2[j] = 0;
-      }
-
-      else {
-        delayed2[j] = a[j]*volume;
-      }
-
-      }
-
-      return sum(delayed1, delayed2, 0.5, 0.5);
+double[] delayed = new double[a.length+a.length*(interval+1)];
+//[1,2,3,4,5]
+//interval = 3, volume = 2
+//[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+//[1,2,3,4,5,0,0,0,0,0,0.5,1,1.5,2,2.5,0,0,0,0,0,0.25,0.5,0.75,1,1.25]
 }
 
-//
+
+
 public static double[] trim(double[] a) {
   int size = 0;
   int size2 = 0;
@@ -127,8 +114,8 @@ public static double[] trim(double[] a) {
             int pitch = StdIn.readInt();
             double duration = StdIn.readDouble();
             double[] a = harmonicnote(pitch, duration);
-            StdAudio.play(delay(a,1000,2));
-            StdAudio.save("harmonic.wav", delay(a,1000,2));
+            StdAudio.play(delay(a,3,4));
+            StdAudio.save("harmonic.wav", delay(a,3,4));
 
         }
     }
