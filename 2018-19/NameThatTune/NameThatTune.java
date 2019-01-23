@@ -107,6 +107,38 @@ public class NameThatTune {
     double[] h  = sum(a, a3, 0.5, 0.5);
     return sum(h, a7, 0.5, 0.5);
   }
+
+  public static double[] fadeinoutnote(int pitch, double duration, double fadeloc) {
+    double hz = 440.0 * Math.pow(2, pitch / 12.0);
+    double[] a  = fadeinouttone(hz, duration,fadeloc);
+    double[] hi = fadeinouttone(2*hz, duration,fadeloc);
+    double[] lo = fadeinouttone(hz/2, duration,fadeloc);
+    double[] h  = sum(hi, lo, 0.5, 0.5);
+    return sum(h, lo, 0.5, 0.5);
+  }
+  public static double[] fadeinouttone(double hz, double duration, double fadeloc) {
+    int n = (int) (StdAudio.SAMPLE_RATE * duration);
+    int f = (int) (StdAudio.SAMPLE_RATE * fadeloc);
+    double[] a = new double[n+1];
+    for (int i = 0; i <= f; i++) {
+      double q = ((Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE))/(f))*i;
+      //  a[i] = (.1*q)*Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+      a[i] = q;
+
+    }
+    for (int i = f; i <= n; i++) {
+      a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+    }
+    for (int i = 0; i <= f; i++) {
+      a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+    }
+    for (int i = f; i <= n; i++) {
+      double q = ((Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE))/(n-f))*((n-f)-(i-f));
+      a[i] = q;
+    }
+    return a;
+  }
+
   public static double[] fadeinnote(int pitch, double duration, double fadeloc) {
     double hz = 440.0 * Math.pow(2, pitch / 12.0);
     double[] a  = fadeintone(hz, duration, fadeloc);
@@ -175,6 +207,7 @@ public class NameThatTune {
 
   // read in notes from standard input and play them on standard audio
   public static void main(String[] args) {
+    double musicbank[][] = new double [5][6];
     double note_a = 0;
     double note_as_bf = 1;
     double note_b = 2;
@@ -449,6 +482,9 @@ public class NameThatTune {
       double fadeinloc = duration/2;
       double[] d = fadeinnote(pitch, duration, fadeinloc);
       //__________________________________________________________________
+      double fadeinoutloc = duration/2;
+      double[] q = fadeinoutnote(pitch, duration, fadeinoutloc);
+      //__________________________________________________________________
       double[] a = minorchordnote(pitch, duration);
       //__________________________________________________________________
       double[] b = harmonicnote(pitch, duration);
@@ -487,7 +523,7 @@ currentnote = f;
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------
-currentnote = b;//remove, it disables ^^
+currentnote = q;//remove, it disables ^^
 //---------------------------------------------------------------------------------------------------------------------------------------
 
 
