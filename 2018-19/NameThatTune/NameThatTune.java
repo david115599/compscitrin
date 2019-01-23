@@ -114,7 +114,7 @@ public class NameThatTune {
     double[] hi = fadeinouttone(2*hz, duration,fadeloc);
     double[] lo = fadeinouttone(hz/2, duration,fadeloc);
     double[] h  = sum(hi, lo, 0.5, 0.5);
-    return sum(h, lo, 0.5, 0.5);
+    return a;//sum(h, lo, 0.5, 0.5);//a
   }
   public static double[] fadeinouttone(double hz, double duration, double fadeloc) {
     int n = (int) (StdAudio.SAMPLE_RATE * duration);
@@ -238,7 +238,7 @@ public class NameThatTune {
     double[] sheetmusic = new double[length];
     for (int i = 0;i<length-1;i+=3 ) {
       double the_chosen_one = ((Math.random()));
-      double the_second_chosen_one = (Math.random()*.15);
+      double the_second_chosen_one = (Math.random()*.15+2);
       double the_third_chosen_one = (double) ((int) (Math.random()*5));
       sheetmusic[i] = (double)(int)(the_chosen_one*7);
       /*if (i>=3) {
@@ -636,86 +636,136 @@ Runnable runnable1 = new Runnable() {
     StdDraw.clear();
     //System.out.println(sheetmusic[ii]);
     StdDraw.setPenColor(StdDraw.BLUE);
-    StdDraw.text(.73, .9, Double.toString(sheetmusic[ii]));
-    if (sheetmusic[ii] == 0 || sheetmusic[ii] == 7) {
+    StdDraw.text(.55, .9, Double.toString(sheetmusic[ii]));
+    if (sheetmusic[ii] == 0) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.75, .9, "A");
+      StdDraw.text(.6, .9, "A");
     }
     else {
       StdDraw.setPenColor(StdDraw.BLACK);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.75, .9, "A");
+      StdDraw.text(.6, .9, "A");
     }
-    if (sheetmusic[ii] == 1 || sheetmusic[ii] == 8) {
+    if (sheetmusic[ii] == 1) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.76, .9, "B");
+      StdDraw.text(.625, .9, "#A/B-");
     }
     else {
       StdDraw.setPenColor(StdDraw.BLACK);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.76, .9, "B");
+      StdDraw.text(.625, .9, "#A/B-");
     }
-    if (sheetmusic[ii] == 2 || sheetmusic[ii] == 9) {
+    if (sheetmusic[ii] == 2) {
       StdDraw.setPenColor(StdDraw.RED);
-      StdDraw.setPenRadius(.1);
-      StdDraw.text(.77, .9, "C");
+      StdDraw.setPenRadius(.5);
+      StdDraw.text(.65, .9, "B");
     }
     else {
       StdDraw.setPenColor(StdDraw.BLACK);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.77, .9, "C");
+      StdDraw.text(.65, .9, "B");
     }
-    if (sheetmusic[ii] == 3 || sheetmusic[ii] == 10) {
+    if (sheetmusic[ii] == 3) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.78, .9, "D");
+      StdDraw.text(.66, .9, "C");
     }
     else {
       StdDraw.setPenColor(StdDraw.BLACK);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.78, .9, "D");
+      StdDraw.text(.66, .9, "C");
     }
-    if (sheetmusic[ii] == 4 || sheetmusic[ii] == 11) {
+    if (sheetmusic[ii] == 4) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.79, .9, "E");
+      StdDraw.text(.685, .9, "#C/D-");
     }
     else {
       StdDraw.setPenColor(StdDraw.BLACK);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.79, .9, "E");
+      StdDraw.text(.685, .9, "#C/D-");
     }
-    if (sheetmusic[ii] == 5 || sheetmusic[ii] == 12) {
+    if (sheetmusic[ii] == 5) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.80, .9, "F");
+      StdDraw.text(.71, .9, "D");
     }
     else {
       StdDraw.setPenColor(StdDraw.BLACK);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.80, .9, "F");
+      StdDraw.text(.71, .9, "D");
     }
-    if (sheetmusic[ii] == 6 || sheetmusic[ii] == 13) {
+    if (sheetmusic[ii] == 6) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.81, .9, "G");
+      StdDraw.text(.735, .9, "#D/E-");
     }
     else {
       StdDraw.setPenColor(StdDraw.BLACK);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.81, .9, "G");
+      StdDraw.text(.735, .9, "#D/E-");
     }
-    if (sheetmusic[ii] == 7 || sheetmusic[ii] == 14) {
+    if (sheetmusic[ii] == 7) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.82, .9, "A");
+      StdDraw.text(.76, .9, "E");
     }
     else {
       StdDraw.setPenColor(StdDraw.BLACK);
       StdDraw.setPenRadius(.1);
-      StdDraw.text(.82, .9, "A");
+      StdDraw.text(.76, .9, "E");
+    }
+    if (sheetmusic[ii] == 8) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.77, .9, "F");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.77, .9, "F");
+    }
+    if (sheetmusic[ii] == 9) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.795, .9, "#F/G-");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.795, .9, "#F/G-");
+    }
+    if (sheetmusic[ii] == 10) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.82, .9, "G");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.82, .9, "G");
+    }
+    if (sheetmusic[ii] == 11) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.845, .9, "#G/A-");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.845, .9, "#G/A-");
+    }
+    if (sheetmusic[ii] == 12) {
+      StdDraw.setPenColor(StdDraw.RED);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.87, .9, "A");
+    }
+    else {
+      StdDraw.setPenColor(StdDraw.BLACK);
+      StdDraw.setPenRadius(.1);
+      StdDraw.text(.87, .9, "A");
     }
 
 
