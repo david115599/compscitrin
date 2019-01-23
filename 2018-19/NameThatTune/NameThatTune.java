@@ -238,9 +238,99 @@ public class NameThatTune {
     double[] sheetmusic = new double[length];
     for (int i = 0;i<length-1;i+=3 ) {
       double the_chosen_one = ((Math.random()));
-      double the_second_chosen_one = (Math.random()*.25);
+      double the_second_chosen_one = (Math.random()*.15);
       double the_third_chosen_one = (double) ((int) (Math.random()*5));
       sheetmusic[i] = (double)(int)(the_chosen_one*7);
+      /*if (i>=3) {
+        if (sheetmusic[i]-3 == note_a) {
+          if (the_chosen_one <=.11) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.11+.24 && the_chosen_one >.11) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.11+.24+.20 && the_chosen_one >.11+.24) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.11+.24+.20+.06 && the_chosen_one >.11+.24+.20) {
+            sheetmusic[i]=note_e ;
+          }
+        }
+
+        if (sheetmusic[i]-3 == note_c) {
+          if (the_chosen_one <=.19) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.19+.25 && the_chosen_one >.19) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.19+.25+.10 && the_chosen_one >.19+.25) {
+            sheetmusic[i]=note_a ;
+          }
+          if (the_chosen_one <=.19+.25+.10+.06 && the_chosen_one >.19+.25+.10) {
+            sheetmusic[i]=note_e ;
+          }
+        }
+
+        if (sheetmusic[i]-3 == note_d) {
+          if (the_chosen_one <=.13) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.13+.16 && the_chosen_one >.13) {
+            sheetmusic[i]=note_a ;
+          }
+          if (the_chosen_one <=.13+.16+.16 && the_chosen_one >.13+.16) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.13+.16+.16+.09 && the_chosen_one >.13+.16+.16) {
+            sheetmusic[i]=note_e ;
+          }
+        }
+        if (sheetmusic[i]-3 == note_e) {
+          if (the_chosen_one <=.05) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.05+.08 && the_chosen_one >.05) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.05+.08+.08 && the_chosen_one >.05+.08) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.05+.08+.08+.33 && the_chosen_one >.05+.08+.08) {
+            sheetmusic[i]=note_a ;
+          }
+        }
+        if (sheetmusic[i]-3 == note_g) {
+          if (the_chosen_one <=.21) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.21+.06 && the_chosen_one >.21) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.21+.06+.21 && the_chosen_one >.21+.06) {
+            sheetmusic[i]=note_e ;
+          }
+          if (the_chosen_one <=.21+.06+.21+.26  && the_chosen_one >.21+.06+.21) {
+            sheetmusic[i]=note_a2 ;
+          }
+        }
+
+
+        if (sheetmusic[i]-3 == note_a2) {
+          if (the_chosen_one <=.11) {
+            sheetmusic[i]=note_c ;
+          }
+          if (the_chosen_one <=.11+.24 && the_chosen_one >.11) {
+            sheetmusic[i]=note_d ;
+          }
+          if (the_chosen_one <=.11+.24+.20 && the_chosen_one >.11+.24) {
+            sheetmusic[i]=note_g ;
+          }
+          if (the_chosen_one <=.11+.24+.20+.06 && the_chosen_one >.11+.24+.20) {
+            sheetmusic[i]=note_e ;
+          }
+        }
+      }*/
       if (i>=3) {
         if (sheetmusic[i]-3 == note_a) {
           if (the_chosen_one <=.11) {
@@ -474,10 +564,10 @@ public class NameThatTune {
     output[0] = 0;
 
     for (int i = 0; i<= sheetmusic.length-3; i+=3) {
+      double duration = sheetmusic[i+1];
       //__________________________________________________________________
       double temp =  sheetmusic[i];
       int pitch = (int) temp;
-      double duration = sheetmusic[i+1];
       //__________________________________________________________________
       double fadeinloc = duration/2;
       double[] d = fadeinnote(pitch, duration, fadeinloc);
@@ -543,6 +633,7 @@ Runnable runnable = new Runnable() {
 };
 Runnable runnable1 = new Runnable() {
   public void run() {
+    StdDraw.clear();
     //System.out.println(sheetmusic[ii]);
     StdDraw.setPenColor(StdDraw.BLUE);
     StdDraw.text(.73, .9, Double.toString(sheetmusic[ii]));
@@ -653,7 +744,6 @@ Runnable runnable1 = new Runnable() {
     {
       //  Thread.currentThread().interrupt();
     }*/
-    StdDraw.clear();
     latch.countDown();
   }
 };
