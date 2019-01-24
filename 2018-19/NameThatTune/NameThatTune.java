@@ -267,6 +267,25 @@ public static double[] clipnote(int pitch, double duration, double cliploc) {
   return (a);
 }
 
+public static double[] delay(int pitch, double duration, int ecoloc, double[][]sheetmusic, int i) {
+  double hz = 440.0 * Math.pow(2, pitch / 12.0);
+  double hz4;
+    double hz7;
+  if (i>=6) {
+     hz4 = 440.0 * Math.pow(2, sheetmusic[0][i-ecoloc*3] / 12.0);
+     hz7 = 440.0 * Math.pow(2, sheetmusic[0][i-2*ecoloc*3]/ 12.0);
+  }
+else {
+   hz4 = 440.0 * Math.pow(2, sheetmusic[0][i] / 12.0);
+   hz7 = 440.0 * Math.pow(2, sheetmusic[0][i]/ 12.0);
+}
+  double[] a  = tone(hz, duration);
+  double[] a4 = tone(hz4, duration);
+  double[] a7 = tone(hz7, duration);
+  double[] h  = sum(a, a4, 0.5, 0.5);
+  return sum(h, a7, 0.5, 0.5);
+}
+
 //______________________________________________________________________________________
 public static double[][] generatemusic(int length) {
   double note_a = 0;
@@ -916,6 +935,9 @@ public static void main(String[] args) {
     double cliploc = .1 ;
     double[] f = clipnote(pitch, duration, cliploc);
     //__________________________________________________________________
+    int ecoloc = 1 ;
+    double[] g = delay(pitch, duration, ecoloc, sheetmusic, i);
+
 
     double[] currentnote = new double[1+ (int) (StdAudio.SAMPLE_RATE * duration)];
     /*
