@@ -282,8 +282,8 @@ else {
   double[] a  = tone(hz, duration);
   double[] a4 = tone(hz4, duration);
   double[] a7 = tone(hz7, duration);
-  double[] h  = sum(a, a4, 0.5, 0.5);
-  return sum(h, a7, 0.5, 0.5);
+  double[] h  = sum(a, a4, 0.8, 0.2);
+  return sum(h, a7, 0.8, 0.2);
 }
 
 //______________________________________________________________________________________
