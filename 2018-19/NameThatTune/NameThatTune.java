@@ -820,13 +820,13 @@ Runnable runnable1 = new Runnable() {
     StdDraw.setPenColor(StdDraw.BLACK);
     StdDraw.setPenRadius(.01);
 
-if (40>=((sheetmusic.length/3)-ii)) {
+if (80>=((sheetmusic.length/3)-ii)) {
   for (int i = 0;i<(sheetmusic.length/3)-ii ;i++ ) {
     StdDraw.line(.1+.01*i, sheetmusic[ii+3*i]*.05, .1+.01*i, .2);
   }
 }
 else{
-    for (int i = 0;i<40 ;i++ ) {
+    for (int i = 0;i<80 ;i++ ) {
       StdDraw.line(.1+.01*i, sheetmusic[ii+3*i]*.05, .1+.01*i, .2);
     }}
   /*  try
