@@ -56,6 +56,9 @@ public class NameThatTune {
   return c;
 }
 
+public static double[] changeVolume(double[] a, double volume) {
+  return sum(a, a,volume,volume);
+}
 // create a pure tone of the given frequency for the given duration
 public static double[] tone(double hz, double duration) {
   int n = (int) (StdAudio.SAMPLE_RATE * duration);
@@ -266,7 +269,15 @@ public static double[] clipnote(int pitch, double duration, double cliploc) {
   //MusicTools.printArray(a);
   return (a);
 }
-
+/*public static double[] delay(double[] array1, double volume, double seconds){
+    double n = StdAudio.SAMPLE_RATE*seconds;
+    double[] array2 = new double[array1.length+((int)n)];
+    for(int i = 0; i < ((int)n); i++)
+    array2[i] = 0;
+    for(int i = ((int)n); i < array1.length+((int)n); i++)
+    array2[i] = array1[i-((int)n)];
+    return MusicTools.weightedAddArray(array1, MusicTools.scaleArray(array2, (int)volume), .5, .5);
+  }*/
 public static double[] delay(int pitch, double duration, int ecoloc, double[][]sheetmusic, int i) {
   double hz = 440.0 * Math.pow(2, pitch / 12.0);
   double hz4;
@@ -936,7 +947,7 @@ public static void main(String[] args) {
     double[] f = clipnote(pitch, duration, cliploc);
     //__________________________________________________________________
     int ecoloc = 1 ;
-    double[] g = delay(pitch, duration, ecoloc, sheetmusic, i);
+    //double[] g = delay(pitch, duration, ecoloc, sheetmusic, i);//delay_da not si
 
 
     double[] currentnote = new double[1+ (int) (StdAudio.SAMPLE_RATE * duration)];
@@ -960,11 +971,11 @@ if (sheetmusic[0][i+2]== 0) {
 currentnote = f;
 }
 */
-
+double volume=.5;
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------
-currentnote = q;//remove, it disables ^^
+currentnote = changeVolume(q,  volume) ;//q;//remove, it disables ^^
 //---------------------------------------------------------------------------------------------------------------------------------------
 
 
