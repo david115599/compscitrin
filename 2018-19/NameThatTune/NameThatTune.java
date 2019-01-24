@@ -108,15 +108,24 @@ public class NameThatTune {
     return sum(h, a7, 0.5, 0.5);
   }
 
-  public static double[] fadeinoutnote(int pitch, double duration, double fadeloc) {
+  public static double[] fadeinoutnote(int pitch, int pitch1, double duration, double fadeloc) {
     double hz = 440.0 * Math.pow(2, pitch / 12.0);
       double hzhi = 440.0 * Math.pow(2, (pitch+12) / 12.0);
         double hzlo = 440.0 * Math.pow(2, (pitch-12) / 12.0);
+        double hz1 = 440.0 * Math.pow(2, pitch1 / 12.0);
+          double hzhi1 = 440.0 * Math.pow(2, (pitch1+12) / 12.0);
+            double hzlo1 = 440.0 * Math.pow(2, (pitch1-12) / 12.0);
     double[] a  = fadeinouttone(hz, duration,fadeloc);
     double[] hi = fadeinouttone(hzhi, duration,fadeloc);
     double[] lo = fadeinouttone(hzlo, duration,fadeloc);
     double[] h  = sum(hi, lo, 0.5, 0.5);
-    return sum(h, a, 0.1, 0.4);//a
+    double[] a1  = fadeinouttone(hz1, duration,fadeloc);
+    double[] hi1 = fadeinouttone(hzhi1, duration,fadeloc);
+    double[] lo1 = fadeinouttone(hzlo1, duration,fadeloc);
+    double[] h1  = sum(hi1, lo1, 0.5, 0.5);
+    double[] hh1  = sum(h1, a1, 0.5, 0.5);
+    double[] hh = sum(h, a, 0.1, 0.4);//a
+    return sum(hh, hh1, 0.5, 0.5);//a)
   }
   public static double[] fadeinouttone(double hz, double duration, double fadeloc) {
     int n = (int) (StdAudio.SAMPLE_RATE * duration);
@@ -201,7 +210,7 @@ public class NameThatTune {
   }
 
 //______________________________________________________________________________________
-  public static double[] generatemusic(int length) {
+  public static double[][] generatemusic(int length) {
     double note_a = 0;
     double note_as_bf = 1;
     double note_b = 2;
@@ -218,344 +227,344 @@ public class NameThatTune {
     //__________________________________________________________________
     //random music gen  START:
     double currentlength = 0;
-    double[] sheetmusic = new double[length*40];
-    sheetmusic[0]=0;
-    sheetmusic[1] = .25;
-    sheetmusic[2] = 1;
+    double[][] sheetmusic = new double[2][length*40];
+    sheetmusic[0][0]=0;
+    sheetmusic[0][1] = .25;
+    sheetmusic[0][2] = 1;
     {  int i = 3;
     while (currentlength<=length) {
         double the_chosen_one = ((Math.random()));
         double the_second_chosen_one = (int)((Math.random()*5+1));
         double the_third_chosen_one = (double) ((int) (Math.random()*5));
-        //sheetmusic[i] = (double)(int)(the_chosen_one*12);
-        double the_questioned_one = sheetmusic[i-3];
+        //sheetmusic[0][i] = (double)(int)(the_chosen_one*12);
+        double the_questioned_one = sheetmusic[0][i-3];
           if (the_questioned_one == note_a) {
             if (the_chosen_one <=.25) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.5 && the_chosen_one >.25) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.75 && the_chosen_one >.5) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=1 && the_chosen_one >.75) {
-              sheetmusic[i]=note_e ;
+              sheetmusic[0][i]=note_e ;
             }
           }
 
           if (the_questioned_one == note_c) {
             if (the_chosen_one <=.25) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.5 && the_chosen_one >.25) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.75 && the_chosen_one >.5) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
             if (the_chosen_one <=1 && the_chosen_one >.75) {
-              sheetmusic[i]=note_e ;
+              sheetmusic[0][i]=note_e ;
             }
           }
 
           if (the_questioned_one == note_d) {
             if (the_chosen_one <=.25) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.5 && the_chosen_one >.25) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
             if (the_chosen_one <=.75 && the_chosen_one >.5) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=1 && the_chosen_one >.75) {
-              sheetmusic[i]=note_e ;
+              sheetmusic[0][i]=note_e ;
             }
           }
           if (the_questioned_one == note_e) {
             if (the_chosen_one <=.25) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.5 && the_chosen_one >.25) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.75 && the_chosen_one >.5) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=1 && the_chosen_one >.75) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
           }
           if (the_questioned_one == note_g) {
             if (the_chosen_one <=.25) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.5 && the_chosen_one >.25) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.75&& the_chosen_one >.5) {
-              sheetmusic[i]=note_e ;
+              sheetmusic[0][i]=note_e ;
             }
             if (the_chosen_one <=1  && the_chosen_one >.75) {
-              sheetmusic[i]=note_a2 ;
+              sheetmusic[0][i]=note_a2 ;
             }
           }
 
 
           if (the_questioned_one == note_a2) {
             if (the_chosen_one <=.25) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.5 && the_chosen_one >.25) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.75 && the_chosen_one >.25) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=1&& the_chosen_one >.75) {
-              sheetmusic[i]=note_e ;
+              sheetmusic[0][i]=note_e ;
             }
           }
       /*  if (i>=3) {
           if (the_questioned_one == note_a) {
             if (the_chosen_one <=.11) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.11+.24 && the_chosen_one >.11) {
-              sheetmusic[i]=note_f ;
+              sheetmusic[0][i]=note_f ;
             }
             if (the_chosen_one <=.11+.24+.20 && the_chosen_one >.11+.24) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.11+.24+.20+.06 && the_chosen_one >.11+.24+.20) {
-              sheetmusic[i]=note_e ;
+              sheetmusic[0][i]=note_e ;
             }
             if (the_chosen_one <=.11+.24+.20+.06+.06 && the_chosen_one >.11+.24+.20+.06) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
           }
 
           if (the_questioned_one == note_as_bf) {
             if (the_chosen_one <=.20) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.20+.23 && the_chosen_one >.20) {
-              sheetmusic[i]=note_f ;
+              sheetmusic[0][i]=note_f ;
             }
             if (the_chosen_one <=.20+.23+.06 && the_chosen_one >.20+.23) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.20+.23+.06+.11+.05 && the_chosen_one >.20+.23+.060) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
           }
 
           if (the_questioned_one == note_b) {
             if (the_chosen_one <=.18+.16+.05) {
-              sheetmusic[i]=note_e ;
+              sheetmusic[0][i]=note_e ;
             }
             if (the_chosen_one <=.18+.16+.14+.05 && the_chosen_one >.18+.16+.05) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.18+.16+.14+.05+.05 && the_chosen_one >.18+.16+.14+.05) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.18+.16+.14+.05+.05+.05 && the_chosen_one >.18+.16+.14+.05+.05) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
             if (the_chosen_one <=.18+.16+.14+.05+.05+.05+.09 && the_chosen_one >.18+.16+.14+.05+.05) {
-              sheetmusic[i]=note_as_bf ;
+              sheetmusic[0][i]=note_as_bf ;
             }
           }
 
           if (the_questioned_one == note_c) {
             if (the_chosen_one <=.19) {
-              sheetmusic[i]=note_f ;
+              sheetmusic[0][i]=note_f ;
             }
             if (the_chosen_one <=.19+.25 && the_chosen_one >.19) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.19+.25+.10 && the_chosen_one >.19+.25) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
             if (the_chosen_one <=.19+.25+.10+.06 && the_chosen_one >.19+.25+.10) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.19+.25+.10+.06+.05 && the_chosen_one >.19+.25+.10+.06) {
-              sheetmusic[i]=note_b ;
+              sheetmusic[0][i]=note_b ;
             }
           }
 
           if (the_questioned_one == note_cs_df) {
             if (the_chosen_one <=.19) {
-              sheetmusic[i]=note_f ;
+              sheetmusic[0][i]=note_f ;
             }
             if (the_chosen_one <=.19+.25 && the_chosen_one >.19) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.19+.25+.10 && the_chosen_one >.19+.25) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
             if (the_chosen_one <=.19+.25+.10+.06 && the_chosen_one >.19+.25+.10) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.19+.25+.10+.06+.05 && the_chosen_one >.19+.25+.10+.06) {
-              sheetmusic[i]=note_b ;
+              sheetmusic[0][i]=note_b ;
             }
           }
 
           if (the_questioned_one == note_d) {
             if (the_chosen_one <=.13) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.13+.16 && the_chosen_one >.13) {
-              sheetmusic[i]=note_f ;
+              sheetmusic[0][i]=note_f ;
             }
             if (the_chosen_one <=.13+.16+.16 && the_chosen_one >.13+.16) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.13+.16+.16+.09 && the_chosen_one >.13+.16+.16) {
-              sheetmusic[i]=note_e ;
+              sheetmusic[0][i]=note_e ;
             }
             if (the_chosen_one <=.13+.16+.16+.09+.18 && the_chosen_one >.13+.16+.16+.09) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
           }
 
           if (the_questioned_one == note_ds_ef) {
             if (the_chosen_one <=.13) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.13+.16 && the_chosen_one >.13) {
-              sheetmusic[i]=note_f ;
+              sheetmusic[0][i]=note_f ;
             }
             if (the_chosen_one <=.13+.16+.16 && the_chosen_one >.13+.16) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.13+.16+.16+.09 && the_chosen_one >.13+.16+.16) {
-              sheetmusic[i]=note_e ;
+              sheetmusic[0][i]=note_e ;
             }
             if (the_chosen_one <=.13+.16+.16+.09+.18 && the_chosen_one >.13+.16+.16+.09) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
           }
 
           if (the_questioned_one == note_e) {
             if (the_chosen_one <=.05) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.05+.08 && the_chosen_one >.05) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.05+.08+.08 && the_chosen_one >.05+.08) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.05+.08+.08+.33 && the_chosen_one >.05+.08+.08) {
-              sheetmusic[i]=note_f ;
+              sheetmusic[0][i]=note_f ;
             }
             if (the_chosen_one <=.05+.08+.08+.33+.26 && the_chosen_one >.05+.08+.08+.33) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
           }
 
           if (the_questioned_one == note_f) {
             if (the_chosen_one <=.29) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.29+.29 && the_chosen_one >.29) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.29+.29+.05 && the_chosen_one >.29+.29) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.29+.29+.05+.10 && the_chosen_one >.29+.29+.05) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
           }
 
           if (the_questioned_one == note_fs_gf) {
             if (the_chosen_one <=.29) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.29+.29 && the_chosen_one >.29) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.29+.29+.05 && the_chosen_one >.29+.29) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.29+.29+.05+.10 && the_chosen_one >.29+.29+.05) {
-              sheetmusic[i]=note_a ;
+              sheetmusic[0][i]=note_a ;
             }
           }
 
           if (the_questioned_one == note_g) {
             if (the_chosen_one <=.21) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.21+.06 && the_chosen_one >.21) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.21+.06+.21 && the_chosen_one >.21+.06) {
-              sheetmusic[i]=note_f ;
+              sheetmusic[0][i]=note_f ;
             }
             if (the_chosen_one <=.21+.06+.21+.26  && the_chosen_one >.21+.06+.21) {
-              sheetmusic[i]=note_a2 ;
+              sheetmusic[0][i]=note_a2 ;
             }
           }
 
           if (the_questioned_one == note_gs_af) {
             if (the_chosen_one <=.21) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.21+.06 && the_chosen_one >.21) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
             if (the_chosen_one <=.21+.06+.21 && the_chosen_one >.21+.06) {
-              sheetmusic[i]=note_f ;
+              sheetmusic[0][i]=note_f ;
             }
             if (the_chosen_one <=.21+.06+.21+.26  && the_chosen_one >.21+.06+.21) {
-              sheetmusic[i]=note_a2 ;
+              sheetmusic[0][i]=note_a2 ;
             }
           }
 
           if (the_questioned_one == note_a2) {
             if (the_chosen_one <=.11) {
-              sheetmusic[i]=note_c ;
+              sheetmusic[0][i]=note_c ;
             }
             if (the_chosen_one <=.11+.24 && the_chosen_one >.11) {
-              sheetmusic[i]=note_f ;
+              sheetmusic[0][i]=note_f ;
             }
             if (the_chosen_one <=.11+.24+.20 && the_chosen_one >.11+.24) {
-              sheetmusic[i]=note_g ;
+              sheetmusic[0][i]=note_g ;
             }
             if (the_chosen_one <=.11+.24+.20+.06 && the_chosen_one >.11+.24+.20) {
-              sheetmusic[i]=note_e ;
+              sheetmusic[0][i]=note_e ;
             }
             if (the_chosen_one <=.11+.24+.20+.06+.06 && the_chosen_one >.11+.24+.20+.06) {
-              sheetmusic[i]=note_d ;
+              sheetmusic[0][i]=note_d ;
             }
           }
         }*/
-        //sheetmusic[i] = the_chosen_one;
+        sheetmusic[1][i] = sheetmusic[0][i]-12;
         double notetype = 2;
         if (the_second_chosen_one<=1) {
-          sheetmusic[i+1] =notetype/1;
+          sheetmusic[0][i+1] =notetype/1;
                   currentlength+=notetype/1;
         }
         if (the_second_chosen_one==2) {
-          sheetmusic[i+1] =notetype/2;
+          sheetmusic[0][i+1] =notetype/2;
                   currentlength+=notetype/2;
         }
         if (the_second_chosen_one>=3) {
-          sheetmusic[i+1] =notetype/4;
+          sheetmusic[0][i+1] =notetype/4;
                   currentlength+=notetype/4;
         }
         /*if (the_second_chosen_one>=4) {
-          sheetmusic[i+1] =notetype/the_second_chosen_one;
+          sheetmusic[0][i+1] =notetype/the_second_chosen_one;
                   currentlength+=notetype/the_second_chosen_one;
         }*/
-        sheetmusic[i+2] = the_third_chosen_one;
+        sheetmusic[0][i+2] = the_third_chosen_one;
         i +=3;
 
       //random music gen  END:
@@ -596,22 +605,24 @@ public class NameThatTune {
       }
     }
 
-double[]sheetmusic=generatemusic(length);
+double[][]sheetmusic=generatemusic(length);
     // read in pitch-duration pairs from standard input
     double[] output = new double[1];
     output[0] = 0;
 
-    for (int i = 0; i<= (sheetmusic.length-3)/3; i+=3) {
-      double duration = sheetmusic[i+1];
+    for (int i = 0; i<= (sheetmusic[0].length-3)/3; i+=3) {
+      double duration = sheetmusic[0][i+1];
       //__________________________________________________________________
-      double temp =  sheetmusic[i];
+      double temp =  sheetmusic[0][i];
       int pitch = (int) temp;
+      double temp1 =  sheetmusic[1][i];
+      int pitch1 = (int) temp1;
       //__________________________________________________________________
       double fadeinloc = duration/2;
       double[] d = fadeinnote(pitch, duration, fadeinloc);
       //__________________________________________________________________
       double fadeinoutloc = duration/2;
-      double[] q = fadeinoutnote(pitch, duration, fadeinoutloc);
+      double[] q = fadeinoutnote(pitch,pitch1, duration, fadeinoutloc);
       //__________________________________________________________________
       double[] a = minorchordnote(pitch, duration);
       //__________________________________________________________________
@@ -628,22 +639,22 @@ double[]sheetmusic=generatemusic(length);
 
       double[] currentnote = new double[1+ (int) (StdAudio.SAMPLE_RATE * duration)];
       /*
-      if (sheetmusic[i+2]== 1) {
+      if (sheetmusic[0][i+2]== 1) {
       currentnote = a;
     }
-    if (sheetmusic[i+2]== 2) {
+    if (sheetmusic[0][i+2]== 2) {
     currentnote = b;
   }
-  if (sheetmusic[i+2]== 3) {
+  if (sheetmusic[0][i+2]== 3) {
   currentnote = c;
 }
-if (sheetmusic[i+2]== 4) {
+if (sheetmusic[0][i+2]== 4) {
 currentnote = d;
 }
-if (sheetmusic[i+2]== 5) {
+if (sheetmusic[0][i+2]== 5) {
 currentnote = e;
 }
-if (sheetmusic[i+2]== 0) {
+if (sheetmusic[0][i+2]== 0) {
 currentnote = f;
 }
 */
@@ -672,10 +683,10 @@ Runnable runnable = new Runnable() {
 Runnable runnable1 = new Runnable() {
   public void run() {
     StdDraw.clear();
-    //System.out.println(sheetmusic[ii]);
+    //System.out.println(sheetmusic[0][ii]);
     StdDraw.setPenColor(StdDraw.BLUE);
-    StdDraw.text(.55, .9, Double.toString(sheetmusic[ii]));
-    if (sheetmusic[ii] == 0) {
+    StdDraw.text(.55, .9, Double.toString(sheetmusic[0][ii]));
+    if (sheetmusic[0][ii] == 0) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.6, .9, "A");
@@ -685,7 +696,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.6, .9, "A");
     }
-    if (sheetmusic[ii] == 1) {
+    if (sheetmusic[0][ii] == 1) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.625, .9, "#A/B-");
@@ -695,7 +706,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.625, .9, "#A/B-");
     }
-    if (sheetmusic[ii] == 2) {
+    if (sheetmusic[0][ii] == 2) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.5);
       StdDraw.text(.65, .9, "B");
@@ -705,7 +716,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.65, .9, "B");
     }
-    if (sheetmusic[ii] == 3) {
+    if (sheetmusic[0][ii] == 3) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.66, .9, "C");
@@ -715,7 +726,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.66, .9, "C");
     }
-    if (sheetmusic[ii] == 4) {
+    if (sheetmusic[0][ii] == 4) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.685, .9, "#C/D-");
@@ -725,7 +736,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.685, .9, "#C/D-");
     }
-    if (sheetmusic[ii] == 5) {
+    if (sheetmusic[0][ii] == 5) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.71, .9, "D");
@@ -735,7 +746,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.71, .9, "D");
     }
-    if (sheetmusic[ii] == 6) {
+    if (sheetmusic[0][ii] == 6) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.735, .9, "#D/E-");
@@ -745,7 +756,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.735, .9, "#D/E-");
     }
-    if (sheetmusic[ii] == 7) {
+    if (sheetmusic[0][ii] == 7) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.76, .9, "E");
@@ -755,7 +766,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.76, .9, "E");
     }
-    if (sheetmusic[ii] == 8) {
+    if (sheetmusic[0][ii] == 8) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.77, .9, "F");
@@ -765,7 +776,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.77, .9, "F");
     }
-    if (sheetmusic[ii] == 9) {
+    if (sheetmusic[0][ii] == 9) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.795, .9, "#F/G-");
@@ -775,7 +786,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.795, .9, "#F/G-");
     }
-    if (sheetmusic[ii] == 10) {
+    if (sheetmusic[0][ii] == 10) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.82, .9, "G");
@@ -785,7 +796,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.82, .9, "G");
     }
-    if (sheetmusic[ii] == 11) {
+    if (sheetmusic[0][ii] == 11) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.845, .9, "#G/A-");
@@ -795,7 +806,7 @@ Runnable runnable1 = new Runnable() {
       StdDraw.setPenRadius(.1);
       StdDraw.text(.845, .9, "#G/A-");
     }
-    if (sheetmusic[ii] == 12) {
+    if (sheetmusic[0][ii] == 12) {
       StdDraw.setPenColor(StdDraw.RED);
       StdDraw.setPenRadius(.1);
       StdDraw.text(.87, .9, "A");
@@ -820,14 +831,14 @@ Runnable runnable1 = new Runnable() {
     StdDraw.setPenColor(StdDraw.BLACK);
     StdDraw.setPenRadius(.01);
 
-if (40>=((sheetmusic.length/3)-ii)) {
-  for (int i = 0;i<(sheetmusic.length/3)-ii ;i++ ) {
-    StdDraw.line(.1+.01*i, sheetmusic[ii+3*i]*.05, .1+.01*i, .2);
+if (40>=((sheetmusic[0].length/3)-ii)) {
+  for (int i = 0;i<(sheetmusic[0].length/3)-ii ;i++ ) {
+    StdDraw.line(.1+.01*i, sheetmusic[0][ii+3*i]*.05, .1+.01*i, .2);
   }
 }
 else{
     for (int i = 0;i<40 ;i++ ) {
-      StdDraw.line(.1+.01*i, sheetmusic[ii+3*i]*.05, .1+.01*i, .2);
+      StdDraw.line(.1+.01*i, sheetmusic[0][ii+3*i]*.05, .1+.01*i, .2);
     }}
   /*  try
     {
@@ -858,7 +869,7 @@ output = MusicTools.concatArray(output, d);
 StdAudio.save("current note.wav", currentnote);
 //__________________________________________________________________
 }
-MusicTools.printArray(sheetmusic);
+MusicTools.printArray(sheetmusic[0]);
 StdAudio.save("full_song.wav", output);
 System.exit(1);
 }
