@@ -162,7 +162,7 @@ public class MusicTools{
   *@author, By David Claude Michalovich Bershadsky
   **/
   public static double[] scaleArray(double array[], int n){
-    System.out.println("scaleArray");
+  //  System.out.println("scaleArray");
     double[] ret = new double[array.length];
     if (array.length>0) {
       for (int i=0;i<array.length ;i++ ) {
@@ -181,7 +181,7 @@ public class MusicTools{
   *@author, By David Claude Michalovich Bershadsky
   **/
   public static double[] weightedAddArray(double array[], double array1[] ,double arrayscalar ,double array1scalar){
-    System.out.println("weightedAddArray");
+  //  System.out.println("weightedAddArray");
     double[] empty_a = {};
   //  printArray(array);
   //  printArray(array1);
