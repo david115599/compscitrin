@@ -2,7 +2,7 @@
 public class FishTales{
 
   FishTank myTank;
-  Goldfish g;
+  static Goldfish g = new Goldfish("bob",0,0,0.05f,0.05f);
   Piranha p;
   Food f;
 
@@ -21,7 +21,6 @@ public class FishTales{
 
     // main animation loop
     while (true)  {
-
         // bounce off wall according to law of elastic collision
         if (Math.abs(rx + vx) > 1.0 - radius) vx = -vx;
         if (Math.abs(ry + vy) > 1.0 - radius) vy = -vy;
@@ -35,6 +34,9 @@ public class FishTales{
         // draw ball on the screen
         StdDraw.setPenColor(StdDraw.ORANGE);
         StdDraw.filledCircle(rx, ry, radius);
+
+        g.update();
+
 
         StdDraw.show();// copy offscreen buffer to onscreen
 
