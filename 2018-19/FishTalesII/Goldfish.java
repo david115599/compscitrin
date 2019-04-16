@@ -18,10 +18,12 @@ class Goldfish extends Fish {
     if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size) this.yVelocity = -this.yVelocity;
 
     this.xPos = this.xPos + this.xVelocity;
-    this.xPos = this.yPos + this.yVelocity;
+    System.out.println("this.xPos : " + this.xPos + " + this.xVelocity " + this.xVelocity + " " + (this.xPos+this.xVelocity));
+    this.yPos = this.yPos + this.yVelocity;
+
 
   }//move
-  
+
   protected void show(){
     StdDraw.setPenColor(StdDraw.ORANGE);
     StdDraw.filledCircle(this.xPos, this.yPos, this.size);
