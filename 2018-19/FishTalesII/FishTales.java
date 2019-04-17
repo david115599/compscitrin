@@ -28,6 +28,11 @@ public class FishTales{
           myTank.add(new Piranha("Piranha",0,0,0.05f,0.05f));
         }
 
+        else if(StdDraw.isKeyPressed(70)){ //zoom in 'i' 'I'
+
+          myTank.add(new Pellet());
+        }
+
         StdDraw.clear();
         myTank.update();
 
