@@ -17,6 +17,8 @@ abstract class Fish extends LivingObject{
   }//move
 
   public boolean hasCollision(Tankable t){
+    this.xVelocity=-this.xVelocity;
+    this.yVelocity=-this.yVelocity;
     boolean collision=false;
     return collision;
   }//hasCollision
