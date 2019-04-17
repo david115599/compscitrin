@@ -16,6 +16,9 @@ public class FishTank{
   public double getAmmonia(){return this.ammoniaCount;}
 
   public void update(){
+    for(int i = 0; i<myStuff.size();i++){
+      myStuff.get(i).update();
+    }
     show();
   }
   private void show(){
@@ -28,7 +31,7 @@ public class FishTank{
 
   boolean add(Tankable t){
     boolean added =true;
-
+    myStuff.add(t);
     return true;
   }//add a Tankable object to the FishTank
 
