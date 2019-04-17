@@ -2,7 +2,7 @@ import java.awt.*;//needed for Color
 
 class Goldfish extends Fish {
 
-  Goldfish(String name, float x,float y, float h, float w) {
+  Goldfish(String name, double x,double y, double h, double w) {
     super();
     this.xPos = x;
     this.yPos = y;
@@ -12,8 +12,8 @@ class Goldfish extends Fish {
     this.yVelocity = 0.015;
   }
 
-  protected void move() {
 
+<<<<<<< HEAD
     if (Math.abs(this.xPos + this.xVelocity) > 1.0 - this.size) this.xVelocity = -this.xVelocity;
     if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size) this.yVelocity = -this.yVelocity;
 
@@ -22,6 +22,8 @@ class Goldfish extends Fish {
 
 
   }//move
+=======
+>>>>>>> 741fc9d05d6e2f8613720af0b6c278a43f0399f7
 
   protected void show(){
     StdDraw.setPenColor(StdDraw.ORANGE);

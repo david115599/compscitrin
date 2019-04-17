@@ -25,6 +25,7 @@ public class FishTales{
     // main animation loop
     while (true)  {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         if(StdDraw.isKeyPressed(71)){ //zoom in 'i' 'I'
 
@@ -40,6 +41,16 @@ public class FishTales{
 
         StdDraw.pause(20);// pause for 20 ms
       }//main animation loop
+=======
+      StdDraw.clear();
+      g.update();
+      p.update();
+
+      StdDraw.show();// copy offscreen buffer to onscreen
+
+      StdDraw.pause(20);// pause for 20 ms
+    }//main animation loop
+>>>>>>> 741fc9d05d6e2f8613720af0b6c278a43f0399f7
 =======
       StdDraw.clear();
       g.update();
