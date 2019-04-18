@@ -19,16 +19,16 @@ public class FishTank{
     for(int i = 0; i<myStuff.size();i++){
       myStuff.get(i).update();
       for(int z = 0; z<myStuff.size();z++){
-        if(checkCollision(myStuff.get(i),myStuff.get(z)){
+      /*  if(checkCollision(myStuff.get(i),myStuff.get(z))){
 
-        }
+      }*/
       }
     }
     show();
   }
 
   private void checkCollision(Tankable me, Tankable other){
-    
+
   }
 
 

@@ -8,8 +8,8 @@ class Piranha extends Fish {
     this.yPos = y;
     this.size = h;
 
-    this.xVelocity = Math.random();
-    this.yVelocity = Math.random();
+    this.xVelocity = Math.random()*.01;
+    this.yVelocity = Math.random()*.01;
   }
 
 

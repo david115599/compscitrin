@@ -30,7 +30,7 @@ public class FishTales{
 
         else if(StdDraw.isKeyPressed(70)){ //zoom in 'i' 'I'
 
-          myTank.add(new Pellet());
+//          myTank.add(new Pellet());
         }
 
         StdDraw.clear();
