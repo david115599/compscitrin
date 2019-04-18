@@ -3,7 +3,7 @@ public class FishTales{
 
 
 
-  public static void main(String args[]){
+  public static void main(String args[])throws InterruptedException {
     FishTank myTank = new FishTank();
     Goldfish g = new Goldfish("bob",0,0,0.05f,0.05f);
     Piranha p;
@@ -21,16 +21,19 @@ public class FishTales{
         if(StdDraw.isKeyPressed(71)){ //zoom in 'i' 'I'
 
           myTank.add(new Goldfish("Goldfish",0,0,0.05f,0.05f));
+          Thread.sleep(100);
         }
 
         else if(StdDraw.isKeyPressed(80)){ //zoom in 'i' 'I'
 
           myTank.add(new Piranha("Piranha",0,0,0.05f,0.05f));
+          Thread.sleep(100);
         }
 
         else if(StdDraw.isKeyPressed(70)){ //zoom in 'i' 'I'
 
 //          myTank.add(new Pellet());
+            Thread.sleep(100);
         }
 
         StdDraw.clear();
