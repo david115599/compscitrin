@@ -19,17 +19,15 @@ public class FishTank{
     for(int i = 0; i<myStuff.size();i++){
       myStuff.get(i).update();
       for(int z = 0; z<myStuff.size();z++){
-      /*  if(checkCollision(myStuff.get(i),myStuff.get(z))){
-
-      }*/
+        if((myStuff.get(i).getX()-myStuff.get(z).getX()) <=((myStuff.get(i).getSize()/2)+myStuff.get(z).getSize()/2) && (myStuff.get(i).getY()-myStuff.get(z).getY()) <= ((myStuff.get(i).getSize()/2)
+        +myStuff.get(z).getSize()/2)){
+          myStuff.get(i).hasCollision(myStuff.get(z));
+        }
       }
     }
     show();
   }
 
-  private void checkCollision(Tankable me, Tankable other){
-
-  }
 
 
   private void show(){

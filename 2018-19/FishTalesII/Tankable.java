@@ -5,4 +5,5 @@ interface Tankable {
   double getX();
   double getY();
   double getSize();
+  void bounce();
 }
