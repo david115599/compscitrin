@@ -9,9 +9,9 @@ abstract class Pellet extends LivingObject{
   }//default constructor
 
   protected void move() {
-
+    this.yPos = this.yPos + this.yVelocity;
   }//move
-  
+
   public boolean hasCollision(Tankable t){
     boolean collision=false;
     return collision;
