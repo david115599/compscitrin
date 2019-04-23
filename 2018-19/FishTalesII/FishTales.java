@@ -18,30 +18,34 @@ public class FishTales{
     // main animation loop
     while (true)  {
 
-        if(StdDraw.isKeyPressed(71)){ //G
+      if(StdDraw.isKeyPressed(71)){ //G
 
-          if(myTank.add(new Goldfish("Goldfish",0,0,0.05f,0.05f))){
-          }
-          else{
-            myTank.add(new Goldfish("Goldfish",Math.random(),Math.random(),0.05f,0.05f));
-          }
-          Thread.sleep(300);
+        if(myTank.add(new Goldfish("Goldfish",0,0,0.05f,0.05f))){
         }
-
-        else if(StdDraw.isKeyPressed(80)){ //P
-
-          myTank.add(new Piranha("Piranha",0,0,0.05f,0.05f));
-          Thread.sleep(300);
+        else{
+          myTank.add(new Goldfish("Goldfish",Math.random(),Math.random(),0.05f,0.05f));
         }
+        Thread.sleep(300);
+      }
 
-        else if(StdDraw.isKeyPressed(81)){ //Q
+      else if(StdDraw.isKeyPressed(80)){ //P
 
-          myTank.add(new Food());
-            Thread.sleep(300);
-        }
+        myTank.add(new Piranha("Piranha",0,0,0.05f,0.05f));
+        Thread.sleep(300);
+      }
 
-        StdDraw.clear();
-        myTank.update();
+      else if(StdDraw.isKeyPressed(81)){ //Q
+
+        myTank.add(new Food());
+        myTank.add(new Food());
+        myTank.add(new Food());
+        myTank.add(new Food());
+        myTank.add(new Food());
+        myTank.add(new Food());
+      }
+
+      StdDraw.clear();
+      myTank.update();
 
 
       StdDraw.show();// copy offscreen buffer to onscreen
