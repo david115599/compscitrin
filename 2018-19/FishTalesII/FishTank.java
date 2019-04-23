@@ -19,7 +19,7 @@ public class FishTank{
     for(int i = 0; i<myStuff.size();i++){
       myStuff.get(i).update();
       for(int z = 0; z<myStuff.size();z++){
-        if(Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX()) <=((myStuff.get(i).getSize())+myStuff.get(z).getSize()) && Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())){
+        if(Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
           myStuff.get(i).hasCollision(myStuff.get(z));
         }
       }

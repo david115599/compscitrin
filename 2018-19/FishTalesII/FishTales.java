@@ -18,22 +18,22 @@ public class FishTales{
     // main animation loop
     while (true)  {
 
-        if(StdDraw.isKeyPressed(71)){ //zoom in 'i' 'I'
+        if(StdDraw.isKeyPressed(71)){ //G
 
           myTank.add(new Goldfish("Goldfish",0,0,0.05f,0.05f));
-          Thread.sleep(100);
+          Thread.sleep(300);
         }
 
-        else if(StdDraw.isKeyPressed(80)){ //zoom in 'i' 'I'
+        else if(StdDraw.isKeyPressed(80)){ //P
 
           myTank.add(new Piranha("Piranha",0,0,0.05f,0.05f));
-          Thread.sleep(100);
+          Thread.sleep(300);
         }
 
-        else if(StdDraw.isKeyPressed(70)){ //zoom in 'i' 'I'
+        else if(StdDraw.isKeyPressed(81)){ //Q
 
-//          myTank.add(new Pellet());
-            Thread.sleep(100);
+          myTank.add(new Food());
+            Thread.sleep(300);
         }
 
         StdDraw.clear();
