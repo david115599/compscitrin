@@ -39,6 +39,12 @@ public class FishTank{
 
   boolean add(Tankable t){
     boolean added =true;
+    for(int z = 0; z<myStuff.size();z++){
+      if(myStuff.get(z).getX()==0 || myStuff.get(z).getY()==0){
+            return false;
+      }
+
+    }
     myStuff.add(t);
     return true;
   }//add a Tankable object to the FishTank

@@ -20,7 +20,11 @@ public class FishTales{
 
         if(StdDraw.isKeyPressed(71)){ //G
 
-          myTank.add(new Goldfish("Goldfish",0,0,0.05f,0.05f));
+          if(myTank.add(new Goldfish("Goldfish",0,0,0.05f,0.05f))){
+          }
+          else{
+            myTank.add(new Goldfish("Goldfish",Math.random(),Math.random(),0.05f,0.05f));
+          }
           Thread.sleep(300);
         }
 
