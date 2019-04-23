@@ -40,7 +40,7 @@ public class FishTank{
   boolean add(Tankable t){
     boolean added =true;
     for(int z = 0; z<myStuff.size();z++){
-      if(myStuff.get(z).getX()==0 || myStuff.get(z).getY()==0){
+      if(Math.sqrt(Math.pow((Math.abs(myStuff.get(z).getX()-t.getX())),2)+Math.pow(Math.abs(myStuff.get(z).getY()-t.getY()),2)) <= ((myStuff.get(z).getSize())+t.getSize())*2){
             return false;
       }
 

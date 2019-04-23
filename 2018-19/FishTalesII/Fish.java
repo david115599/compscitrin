@@ -17,9 +17,26 @@ abstract class Fish extends LivingObject{
   }//move
 
   public boolean hasCollision(Tankable t){
-    this.xVelocity=-this.xVelocity;
-    this.yVelocity=-this.yVelocity;
-    t.bounce();
+    if(this instanceof Goldfish && t instanceof Goldfish){
+
+    }
+    else if(this instanceof Fish && t instanceof Food){
+
+    }
+    else if(this instanceof Fish && t instanceof Poison){
+
+    }
+    if(this instanceof Piranha && t instanceof Piranha){
+
+    }
+    if(this instanceof Piranha && t instanceof Goldfish){
+
+    }
+    else{
+      this.xVelocity=-this.xVelocity;
+      this.yVelocity=-this.yVelocity;
+      t.bounce();
+    }
     boolean collision=false;
     return collision;
   }//hasCollision
