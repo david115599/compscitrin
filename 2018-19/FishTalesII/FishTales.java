@@ -37,7 +37,7 @@ public class FishTales{
 
       }
 
-      else if(StdDraw.isKeyPressed(81)){ //Q
+      else if(StdDraw.isKeyPressed(70)){ //F
 
         myTank.add(new Food());
         myTank.add(new Food());
@@ -51,11 +51,14 @@ public class FishTales{
       myTank.update();
 
 
+
       StdDraw.show();// copy offscreen buffer to onscreen
 
       StdDraw.pause(20);// pause for 20 ms
     }//main animation loop
 
   }//main
+
+
 
 }//FishTales class

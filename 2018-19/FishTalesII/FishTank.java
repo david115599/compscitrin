@@ -16,8 +16,13 @@ public class FishTank{
   public double getAmmonia(){return this.ammoniaCount;}
 
   public void update(){
+
     for(int i = 0; i<myStuff.size();i++){
       myStuff.get(i).update();
+      if(myStuff.get(i) instanceof Piranha){
+        myStuff.get(i).closest(nearestGoldfish(myStuff.get(i)));
+      }
+
       for(int z = 0; z<myStuff.size();z++){
         if(Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
           myStuff.get(i).hasCollision(myStuff.get(z));
@@ -49,15 +54,22 @@ public class FishTank{
     return true;
   }//add a Tankable object to the FishTank
 
+
   boolean remove(Tankable t){
     boolean removed =true;
 
     return true;
   }//remove a Tankable object from the FishTank
 
-  Goldfish nearestGoldfish(Piranha p){
-    Goldfish g = null;
-
+  Tankable nearestGoldfish(Tankable p){
+    Tankable g = null;
+    double minD = Double.POSITIVE_INFINITY;
+    for(int i = 0;i<myStuff.size();i++){
+      if(myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD){
+      minD = p.d(myStuff.get(i));
+      g = myStuff.get(i);
+      }
+    }
     return g;
   }//nearestGoldfish
 
