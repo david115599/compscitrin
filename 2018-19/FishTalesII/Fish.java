@@ -31,6 +31,7 @@ abstract class Fish extends LivingObject{
     if(this instanceof Goldfish && t instanceof Piranha){
       //this.vitalSigns = true;
       this.beeneaten = true;
+      t.size +=.01;
     }
 
     if(this instanceof Goldfish && t instanceof Goldfish){
@@ -42,10 +43,10 @@ abstract class Fish extends LivingObject{
     else if(this instanceof Fish && t instanceof Poison){
 
     }
-    if(this instanceof Piranha && t instanceof Piranha){
+    else if(this instanceof Piranha && t instanceof Piranha){
 
     }
-    if(this instanceof Piranha && t instanceof Goldfish){
+    else if(this instanceof Piranha && t instanceof Goldfish){
 
     }
     else{
