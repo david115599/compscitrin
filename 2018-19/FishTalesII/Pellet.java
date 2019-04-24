@@ -18,6 +18,9 @@ abstract class Pellet extends LivingObject{
   }//move
 
   public boolean hasCollision(Tankable t){
+    if(this instanceof Food && t instanceof Fish ){
+        beeneaten=true;
+    }
     boolean collision=false;
     return collision;
   }//hasCollision
