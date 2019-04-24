@@ -1,10 +1,10 @@
 import java.awt.*;//needed for Color
 
 abstract class Pellet extends LivingObject{
-
+  private boolean beeneaten=false;
   Pellet() {
     super();
-    
+
   }//default constructor
 
   Pellet(Color fillColor, Color outlineColor) {
@@ -21,5 +21,9 @@ abstract class Pellet extends LivingObject{
     boolean collision=false;
     return collision;
   }//hasCollision
+  public boolean isEaten(){
+    //boolean beeneaten=false;
 
+    return beeneaten;
+  }//isEaten
 }//Pellet
