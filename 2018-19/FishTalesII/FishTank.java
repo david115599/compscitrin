@@ -26,6 +26,9 @@ public class FishTank{
     fishNum = 0;
     pelletsNum = 0;
     for(int i = 0; i<myStuff.size();i++){
+      if(myStuff.get(i).isEaten() == true){
+        myStuff.remove(i);
+      }
       if(myStuff.get(i) instanceof Fish){
         fishNum++;
       }
@@ -39,9 +42,14 @@ public class FishTank{
       }
 
       for(int z = 0; z<myStuff.size();z++){
-      //  if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && myStuff.get(i).d(myStuff.get(z)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
-      if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
-          myStuff.get(i).hasCollision(myStuff.get(z));
+        if(myStuff.get(z).isEaten() == true){
+          myStuff.remove(z);
+        }
+        else{
+          //  if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && myStuff.get(i).d(myStuff.get(z)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
+          if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
+            myStuff.get(i).hasCollision(myStuff.get(z));
+          }
         }
       }
     }
@@ -76,7 +84,7 @@ public class FishTank{
     boolean added =true;
     for(int z = 0; z<myStuff.size();z++){
       if(Math.sqrt(Math.pow((Math.abs(myStuff.get(z).getX()-t.getX())),2)+Math.pow(Math.abs(myStuff.get(z).getY()-t.getY()),2)) <= ((myStuff.get(z).getSize())+t.getSize())*2){
-            return false;
+        return false;
       }
 
     }
@@ -96,8 +104,8 @@ public class FishTank{
     double minD = Double.POSITIVE_INFINITY;
     for(int i = 0;i<myStuff.size();i++){
       if(myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD && myStuff.get(i).isDead() == false){
-      minD = p.d(myStuff.get(i));
-      g = myStuff.get(i);
+        minD = p.d(myStuff.get(i));
+        g = myStuff.get(i);
       }
     }
     return g;

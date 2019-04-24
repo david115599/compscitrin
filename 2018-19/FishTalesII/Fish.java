@@ -3,6 +3,7 @@ import java.awt.*;//needed for Color
 abstract class Fish extends LivingObject{
   private String name;
   private boolean vitalSigns=false;
+  private boolean beeneaten=false;
 
 
   Fish() {
@@ -28,7 +29,8 @@ abstract class Fish extends LivingObject{
 
   public boolean hasCollision(Tankable t){
     if(this instanceof Goldfish && t instanceof Piranha){
-      this.vitalSigns = true;
+      //this.vitalSigns = true;
+      this.beeneaten = true;
     }
 
     if(this instanceof Goldfish && t instanceof Goldfish){
@@ -64,6 +66,12 @@ abstract class Fish extends LivingObject{
 
     return vitalSigns;
   }//isDead
+
+  public boolean isEaten(){
+    //boolean beeneaten=false;
+
+    return beeneaten;
+  }//isEaten
 
   abstract public boolean tryToEat(Tankable t);
 
