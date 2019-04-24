@@ -10,6 +10,15 @@ abstract class Fish extends LivingObject{
   }//default fish constructor
   protected void move() {
 
+    if(this.vitalSigns == true){
+      this.xVelocity = 0;
+      this.yVelocity = 0.01;
+      if(this.yPos > 0.9){
+        this.yVelocity = 0;
+      }
+
+    }
+
     if (Math.abs(this.xPos + this.xVelocity) > 1.0 - this.size) this.xVelocity = -this.xVelocity;
     if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size) this.yVelocity = -this.yVelocity;
 
