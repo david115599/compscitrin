@@ -20,8 +20,9 @@ class Piranha extends Fish {
     if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size) this.yVelocity = -this.yVelocity;
 
     if(closestG != null){
-    this.xVelocity = (closestG.getX()-this.xPos)/this.d(closestG)*.01;
-    this.yVelocity = (closestG.getY()-this.yPos)/this.d(closestG)*.01;
+    //  it currently ignores collisions and needs to maintain their old velocity
+    //this.xVelocity = (closestG.getX()-this.xPos)/this.d(closestG)*.01;
+    //this.yVelocity = (closestG.getY()-this.yPos)/this.d(closestG)*.01;
     }
 
     this.xPos = this.xPos + this.xVelocity;

@@ -31,28 +31,28 @@ abstract class Fish extends LivingObject{
     if(this instanceof Goldfish && t instanceof Piranha){
       //this.vitalSigns = true;
       this.beeneaten = true;
-      t.size +=.01;
     }
 
     if(this instanceof Goldfish && t instanceof Goldfish){
-
-    }
-    else if(this instanceof Fish && t instanceof Food){
-
-    }
-    else if(this instanceof Fish && t instanceof Poison){
-
-    }
-    else if(this instanceof Piranha && t instanceof Piranha){
-
-    }
-    else if(this instanceof Piranha && t instanceof Goldfish){
-
-    }
-    else{
       this.xVelocity=-this.xVelocity;
       this.yVelocity=-this.yVelocity;
       t.bounce();
+    }
+    if(this instanceof Fish && t instanceof Food){
+
+    }
+    if(this instanceof Fish && t instanceof Poison){
+
+    }
+    if(this instanceof Piranha && t instanceof Piranha){
+      this.xVelocity=-this.xVelocity;
+      this.yVelocity=-this.yVelocity;
+      t.bounce();
+    }
+    if(this instanceof Piranha && t instanceof Goldfish){
+      this.size +=.01;
+      this.xVelocity = this.xVelocity-.01;
+      this.yVelocity = this.yVelocity-.01;
     }
     boolean collision=false;
     return collision;
