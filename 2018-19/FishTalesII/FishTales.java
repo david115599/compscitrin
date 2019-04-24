@@ -51,6 +51,7 @@ public class FishTales{
         myTank.add(new Food());
       }
 
+      //StdDraw.clear(StdDraw.BLUE);
       StdDraw.clear();
       myTank.update();
 

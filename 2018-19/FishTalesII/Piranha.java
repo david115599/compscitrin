@@ -32,7 +32,7 @@ class Piranha extends Fish {
 
 
   protected void show(){
-    StdDraw.setPenColor(StdDraw.BLUE);
+    StdDraw.setPenColor(StdDraw.RED);
     StdDraw.filledCircle(this.xPos, this.yPos, this.size);
   }//show
   public  boolean tryToEat(Tankable t){

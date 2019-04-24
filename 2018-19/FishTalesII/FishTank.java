@@ -6,8 +6,15 @@ public class FishTank{
   private ArrayList<Tankable> myStuff = new ArrayList<Tankable>();
   private float ammoniaCount;
   private double length, width;
+  Font font;
+  private int fishNum;
+  private int pelletsNum;
+  private int ammoniaNum;
+  private Tankable oldestFish;
 
   public FishTank(){
+    font = new Font("Arial", Font.BOLD, 20);
+    StdDraw.setFont(font);
   }
 
   //Accessor Methods
@@ -16,8 +23,16 @@ public class FishTank{
   public double getAmmonia(){return this.ammoniaCount;}
 
   public void update(){
-
+    fishNum = 0;
+    pelletsNum = 0;
     for(int i = 0; i<myStuff.size();i++){
+      if(myStuff.get(i) instanceof Fish){
+        fishNum++;
+      }
+
+      else if(myStuff.get(i) instanceof Pellet){
+        pelletsNum++;
+      }
       myStuff.get(i).update();
       if(myStuff.get(i) instanceof Piranha){
         myStuff.get(i).closest(nearestGoldfish(myStuff.get(i)));
@@ -29,6 +44,15 @@ public class FishTank{
         }
       }
     }
+    StdDraw.setPenColor(StdDraw.BLACK);
+    StdDraw.textLeft(-0.95,0.9, "Fish : " + Integer.toString(fishNum));
+    ammoniaNum = (int)Math.round(fishNum*3.4 + pelletsNum*1.2);
+    StdDraw.textLeft(-0.95,0.8, "Ammonia : " + Integer.toString(ammoniaNum));
+    StdDraw.textLeft(-0.95,0.7, "Pellets : " + Integer.toString(pelletsNum));
+    StdDraw.textLeft(-0.95,0.6, "Oldest Fish : " );
+
+
+
     show();
   }
 
