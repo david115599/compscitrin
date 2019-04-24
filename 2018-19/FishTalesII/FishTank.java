@@ -24,7 +24,7 @@ public class FishTank{
       }
 
       for(int z = 0; z<myStuff.size();z++){
-        if(Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
+        if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && myStuff.get(i).d(myStuff.get(z)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
           myStuff.get(i).hasCollision(myStuff.get(z));
         }
       }
@@ -38,6 +38,11 @@ public class FishTank{
   }
 
   public void cleanTheTank(){
+    for(int i = 0;i<myStuff.size();i++){
+      if(myStuff.get(i).isDead() == true){
+        remove(myStuff.get(i));
+      }
+    }
   }
   public void tapTheTank(){
   }
@@ -57,7 +62,7 @@ public class FishTank{
 
   boolean remove(Tankable t){
     boolean removed =true;
-
+    myStuff.remove(t);
     return true;
   }//remove a Tankable object from the FishTank
 
@@ -65,7 +70,7 @@ public class FishTank{
     Tankable g = null;
     double minD = Double.POSITIVE_INFINITY;
     for(int i = 0;i<myStuff.size();i++){
-      if(myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD){
+      if(myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD && myStuff.get(i).isDead() == false){
       minD = p.d(myStuff.get(i));
       g = myStuff.get(i);
       }

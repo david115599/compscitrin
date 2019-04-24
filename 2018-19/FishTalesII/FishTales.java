@@ -37,6 +37,10 @@ public class FishTales{
 
       }
 
+      else if(StdDraw.isKeyPressed(67)){
+        myTank.cleanTheTank();
+      }
+
       else if(StdDraw.isKeyPressed(70)){ //F
 
         myTank.add(new Food());
