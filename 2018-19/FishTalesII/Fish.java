@@ -78,13 +78,13 @@ boolean collision;
     else if(this.yVelocity <=-0.02){
       this.yVelocity += 0.005;
     }
-    if (Math.abs(this.xPos + this.xVelocity) > 1.0 - this.size && !(this instanceof ToroidalFin)) this.xVelocity = -this.xVelocity;
-    if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size && !(this instanceof ToroidalFin)) this.yVelocity = -this.yVelocity;
-    if (Math.abs(this.xPos + this.xVelocity) > 1.0 - this.size && (this instanceof ToroidalFin)) this.xPos = -this.xPos;
-    if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size && (this instanceof ToroidalFin)) this.yPos = -this.yPos;
+    if (Math.abs(this.xPos + this.xVelocity) > 5.0 - this.size && !(this instanceof ToroidalFin)) this.xVelocity = -this.xVelocity;
+    if (Math.abs(this.yPos + this.yVelocity) > 5.0 - this.size && !(this instanceof ToroidalFin)) this.yVelocity = -this.yVelocity;
+    if (Math.abs(this.xPos + this.xVelocity) > 5.0 - this.size && (this instanceof ToroidalFin)) this.xPos = -this.xPos;
+    if (Math.abs(this.yPos + this.yVelocity) > 5.0 - this.size && (this instanceof ToroidalFin)) this.yPos = -this.yPos;
     this.xPos = this.xPos + this.xVelocity;
     this.yPos = this.yPos + this.yVelocity;
-    System.out.println(this.xVelocity + ", " + this.yVelocity);
+
 
     if(this instanceof Piranha && collision != true){
       if(closestG != null){
