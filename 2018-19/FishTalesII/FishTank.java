@@ -54,11 +54,11 @@ public class FishTank{
       }
     }
     StdDraw.setPenColor(StdDraw.BLACK);
-    StdDraw.textLeft(-0.95,0.9, "Fish : " + Integer.toString(fishNum));
+    StdDraw.textLeft(-4.95,4.9, "Fish : " + Integer.toString(fishNum));
     ammoniaNum = (int)Math.round(fishNum*3.4 + pelletsNum*1.2);
-    StdDraw.textLeft(-0.95,0.8, "Ammonia : " + Integer.toString(ammoniaNum));
-    StdDraw.textLeft(-0.95,0.7, "Pellets : " + Integer.toString(pelletsNum));
-    StdDraw.textLeft(-0.95,0.6, "Oldest Fish : " );
+    StdDraw.textLeft(-4.95,4.8, "Ammonia : " + Integer.toString(ammoniaNum));
+    StdDraw.textLeft(-4.95,4.7, "Pellets : " + Integer.toString(pelletsNum));
+    StdDraw.textLeft(-4.95,4.6, "Oldest Fish : " );
 
 
 
