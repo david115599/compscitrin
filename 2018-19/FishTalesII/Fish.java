@@ -84,7 +84,7 @@ boolean collision;
     if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size && (this instanceof ToroidalFin)) this.yPos = -this.yPos;
     this.xPos = this.xPos + this.xVelocity;
     this.yPos = this.yPos + this.yVelocity;
-    System.out.println(this.xVelocity + ", " + this.yVelocity);
+     
 
     if(this instanceof Piranha && collision != true){
       if(closestG != null){
