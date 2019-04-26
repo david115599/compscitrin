@@ -18,10 +18,12 @@ boolean collision;
       this.beeneaten = true;
     }
 
-    else if(this instanceof Goldfish && t instanceof Goldfish){
-      this.xVelocity=-this.xVelocity;
-      this.yVelocity=-this.yVelocity;
-      //t.bounce();
+    if(this instanceof Fish && t instanceof Fish){
+      double thisSpeed = Math.sqrt(this.xVelocity*this.xVelocity+this.yVelocity*this.yVelocity);
+      double vecLength=Math.sqrt((this.xPos-t.getX())*(this.xPos-t.getX())+(this.yPos-t.getY())*(this.yPos-t.getY()));
+      this.xVelocity = (this.xPos-t.getX())/vecLength*thisSpeed;
+      this.yVelocity = (this.yPos-t.getY())/vecLength*thisSpeed;
+
     }
     if(this instanceof Fish && t instanceof Food){
         this.size +=.01;
@@ -29,15 +31,9 @@ boolean collision;
     if(this instanceof Fish && t instanceof Poison){
         this.size -=.01;
     }
-    if(this instanceof Piranha && t instanceof Piranha){
-      this.xVelocity=-this.xVelocity;
-      this.yVelocity=-this.yVelocity;
-      //t.bounce();
-    }
+
     if(this instanceof Piranha && t instanceof Goldfish){
       this.size +=.01;
-      this.xVelocity = this.xVelocity-.01;
-      this.yVelocity = this.yVelocity-.01;
     }
    collision=false;
     return collision;
