@@ -18,10 +18,10 @@ boolean collision;
       this.beeneaten = true;
     }
 
-    if(this instanceof Goldfish && t instanceof Goldfish){
+    else if(this instanceof Goldfish && t instanceof Goldfish){
       this.xVelocity=-this.xVelocity;
       this.yVelocity=-this.yVelocity;
-      t.bounce();
+      //t.bounce();
     }
     if(this instanceof Fish && t instanceof Food){
         this.size +=.01;
@@ -32,7 +32,7 @@ boolean collision;
     if(this instanceof Piranha && t instanceof Piranha){
       this.xVelocity=-this.xVelocity;
       this.yVelocity=-this.yVelocity;
-      t.bounce();
+      //t.bounce();
     }
     if(this instanceof Piranha && t instanceof Goldfish){
       this.size +=.01;
