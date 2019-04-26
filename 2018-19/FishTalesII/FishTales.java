@@ -11,8 +11,8 @@ public class FishTales{
 
     System.out.println("FishTales II- A more sofishticated architecture");
     // set the scale of the coordinate system
-    StdDraw.setXscale(-1.0, 1.0);
-    StdDraw.setYscale(-1.0, 1.0);
+    StdDraw.setXscale(-5.0, 5.0);
+    StdDraw.setYscale(-5.0, 5.0);
     StdDraw.enableDoubleBuffering();
 
     // main animation loop
