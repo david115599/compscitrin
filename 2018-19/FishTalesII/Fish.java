@@ -54,8 +54,10 @@ boolean collision;
 
     }
 
-    if (Math.abs(this.xPos + this.xVelocity) > 1.0 - this.size) this.xVelocity = -this.xVelocity;
-    if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size) this.yVelocity = -this.yVelocity;
+    if (Math.abs(this.xPos + this.xVelocity) > 1.0 - this.size && !(this instanceof ToroidalFin)) this.xVelocity = -this.xVelocity;
+    if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size && !(this instanceof ToroidalFin)) this.yVelocity = -this.yVelocity;
+    if (Math.abs(this.xPos + this.xVelocity) > 1.0 - this.size && (this instanceof ToroidalFin)) this.xPos = -this.xPos;
+    if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size && (this instanceof ToroidalFin)) this.yPos = -this.yPos;
 
     this.xPos = this.xPos + this.xVelocity;
     this.yPos = this.yPos + this.yVelocity;

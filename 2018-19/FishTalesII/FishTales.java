@@ -37,6 +37,16 @@ public class FishTales{
 
       }
 
+      else if(StdDraw.isKeyPressed(84)){ //P
+
+        if(myTank.add(new ToroidalFin("ToroidalFin",0,0,0.05f,0.05f))){
+        }
+        else{
+          myTank.add((new ToroidalFin("ToroidalFin",Math.random()*.05,Math.random()*.05,0.05f,0.05f)));
+        }
+
+      }
+
       else if(StdDraw.isKeyPressed(67)){
         myTank.cleanTheTank();
       }

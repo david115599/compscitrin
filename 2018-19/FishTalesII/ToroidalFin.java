@@ -15,8 +15,8 @@ class ToroidalFin extends Fish {
 
 
   protected void show(){
-    StdDraw.setPenColor(StdDraw.ORANGE);
-    StdDraw.filledCircle(this.xPos, this.yPos, this.size);
+    StdDraw.setPenColor(StdDraw.RED);
+    StdDraw.circle(this.xPos, this.yPos, this.size);
   }//show
 
   public boolean tryToEat(Tankable t){
