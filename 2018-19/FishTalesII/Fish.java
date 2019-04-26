@@ -4,11 +4,13 @@ abstract class Fish extends LivingObject{
   private String name;
   private boolean vitalSigns=false;
   private boolean beeneaten=false;
-
+boolean collision;
 
   Fish() {
     super();
+    this.closestG = null;
   }//default fish constructor
+<<<<<<< HEAD
   protected void move() {
 
     if(this.vitalSigns == true){
@@ -28,6 +30,9 @@ abstract class Fish extends LivingObject{
     this.xPos = this.xPos + this.xVelocity;
     this.yPos = this.yPos + this.yVelocity;
   }//move
+=======
+
+>>>>>>> 7a5cdd092ed0c3ca6f00c54300c489e49320785b
 
   public boolean hasCollision(Tankable t){
     if(this instanceof Goldfish && t instanceof Piranha){
@@ -36,28 +41,55 @@ abstract class Fish extends LivingObject{
     }
 
     if(this instanceof Goldfish && t instanceof Goldfish){
-
-    }
-    else if(this instanceof Fish && t instanceof Food){
-
-    }
-    else if(this instanceof Fish && t instanceof Poison){
-
-    }
-    if(this instanceof Piranha && t instanceof Piranha){
-
-    }
-    if(this instanceof Piranha && t instanceof Goldfish){
-
-    }
-    else{
       this.xVelocity=-this.xVelocity;
       this.yVelocity=-this.yVelocity;
       t.bounce();
     }
-    boolean collision=false;
+    if(this instanceof Fish && t instanceof Food){
+        this.size +=.01;
+    }
+    if(this instanceof Fish && t instanceof Poison){
+        this.size -=.01;
+    }
+    if(this instanceof Piranha && t instanceof Piranha){
+      this.xVelocity=-this.xVelocity;
+      this.yVelocity=-this.yVelocity;
+      t.bounce();
+    }
+    if(this instanceof Piranha && t instanceof Goldfish){
+      this.size +=.01;
+      this.xVelocity = this.xVelocity-.01;
+      this.yVelocity = this.yVelocity-.01;
+    }
+   collision=false;
     return collision;
   }//hasCollision
+
+  protected void move() {
+
+    if(this.vitalSigns == true){
+      this.xVelocity = 0;
+      this.yVelocity = 0.01;
+      if(this.yPos > 0.9){
+        this.yVelocity = 0;
+      }
+
+    }
+
+    if (Math.abs(this.xPos + this.xVelocity) > 1.0 - this.size) this.xVelocity = -this.xVelocity;
+    if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size) this.yVelocity = -this.yVelocity;
+
+    this.xPos = this.xPos + this.xVelocity;
+    this.yPos = this.yPos + this.yVelocity;
+
+    if(this instanceof Piranha && collision != true){
+      if(closestG != null){
+      //  it currently ignores collisions and needs to maintain their old velocity
+      this.xVelocity = (closestG.getX()-this.xPos)/this.d(closestG)*.01;
+      this.yVelocity = (closestG.getY()-this.yPos)/this.d(closestG)*.01;
+      }
+    }
+  }//move
 
   public int compareTo(Fish f){
     return 0;
