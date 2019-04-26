@@ -4,6 +4,7 @@ abstract class Fish extends LivingObject{
   private String name;
   private boolean vitalSigns=false;
   private boolean beeneaten=false;
+  private double randomGen;
 boolean collision;
 
   Fish() {
@@ -50,11 +51,40 @@ boolean collision;
 
     }
 
-    if (Math.abs(this.xPos + this.xVelocity) > 1.0 - this.size) this.xVelocity = -this.xVelocity;
-    if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size) this.yVelocity = -this.yVelocity;
 
+    randomGen = Math.random();
+
+    if(randomGen >= 0.5){
+      this.xVelocity = this.xVelocity+ 0.1*Math.random()*this.xVelocity;
+    }else if(randomGen <= 0.5){
+      this.xVelocity = this.xVelocity- 0.1*Math.random()*this.xVelocity;
+    }
+    randomGen = Math.random();
+    if(randomGen >= 0.5){
+      this.yVelocity = this.yVelocity+ 0.1*Math.random()*this.yVelocity;
+    }else if(randomGen <= 0.5){
+      this.yVelocity = this.yVelocity- 0.1*Math.random()*this.yVelocity;
+    }
+
+    if(this.xVelocity >=0.02){
+      this.xVelocity -= 0.005;
+    }
+    else if(this.xVelocity <=-0.02){
+      this.xVelocity += 0.005;
+    }
+    if(this.yVelocity >=0.02){
+      this.yVelocity -= 0.005;
+    }
+    else if(this.yVelocity <=-0.02){
+      this.yVelocity += 0.005;
+    }
+    if (Math.abs(this.xPos + this.xVelocity) > 5.0 - this.size && !(this instanceof ToroidalFin)) this.xVelocity = -this.xVelocity;
+    if (Math.abs(this.yPos + this.yVelocity) > 5.0 - this.size && !(this instanceof ToroidalFin)) this.yVelocity = -this.yVelocity;
+    if (Math.abs(this.xPos + this.xVelocity) > 5.0 - this.size && (this instanceof ToroidalFin)) this.xPos = -this.xPos;
+    if (Math.abs(this.yPos + this.yVelocity) > 5.0 - this.size && (this instanceof ToroidalFin)) this.yPos = -this.yPos;
     this.xPos = this.xPos + this.xVelocity;
     this.yPos = this.yPos + this.yVelocity;
+
 
     if(this instanceof Piranha && collision != true){
       if(closestG != null){

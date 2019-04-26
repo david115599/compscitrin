@@ -12,7 +12,7 @@ abstract class Pellet extends LivingObject{
 
   protected void move() {
     this.yPos = this.yPos + this.yVelocity;
-    if(this.yPos < -0.99){
+    if(this.yPos < -4.99){
       this.yVelocity = 0;
     }
   }//move
