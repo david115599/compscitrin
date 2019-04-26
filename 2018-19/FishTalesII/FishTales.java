@@ -23,7 +23,7 @@ public class FishTales{
         if(myTank.add(new Goldfish("Goldfish",0,0,0.05f,0.05f))){
         }
         else{
-          myTank.add(new Goldfish("Goldfish",Math.random()*.02,Math.random()*.02,0.05f,0.05f));
+          myTank.add(new Goldfish("Goldfish",Math.random()*.05,Math.random()*.05,0.05f,0.05f));
         }
       }
 
@@ -32,7 +32,17 @@ public class FishTales{
         if(myTank.add(new Piranha("Piranha",0,0,0.05f,0.05f))){
         }
         else{
-          myTank.add((new Piranha("Piranha",Math.random()*.02,Math.random()*.02,0.05f,0.05f)));
+          myTank.add((new Piranha("Piranha",Math.random()*.05,Math.random()*.05,0.05f,0.05f)));
+        }
+
+      }
+
+      else if(StdDraw.isKeyPressed(84)){ //P
+
+        if(myTank.add(new ToroidalFin("ToroidalFin",0,0,0.05f,0.05f))){
+        }
+        else{
+          myTank.add((new ToroidalFin("ToroidalFin",Math.random()*.05,Math.random()*.05,0.05f,0.05f)));
         }
 
       }
