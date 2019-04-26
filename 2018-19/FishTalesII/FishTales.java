@@ -1,4 +1,7 @@
-
+import java.awt.Color;
+import java.lang.Math;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 public class FishTales{
 
 
@@ -8,6 +11,10 @@ public class FishTales{
     Goldfish g = new Goldfish("bob",0,0,0.05f,0.05f);
     Piranha p;
     Food f;
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    double width = screenSize.getWidth()*.9; //sets width
+    double height = screenSize.getHeight()*.9; //sets height
+    StdDraw.setCanvasSize((int)width,(int)height);
 
     System.out.println("FishTales II- A more sofishticated architecture");
     // set the scale of the coordinate system
