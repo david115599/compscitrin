@@ -3,6 +3,9 @@ import java.awt.*;//needed for Color
 
 
 public class FishTank{
+  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+  double swidth = screenSize.getWidth()*.9; //sets width
+  double sheight = screenSize.getHeight()*.9; //sets height
   private ArrayList<Tankable> myStuff = new ArrayList<Tankable>();
   private float ammoniaCount;
   private double length, width;
@@ -54,10 +57,10 @@ public class FishTank{
       }
     }
     StdDraw.setPenColor(StdDraw.BLACK);
-    StdDraw.textLeft(-0.95,0.9, "Fish : " + Integer.toString(fishNum));
-    StdDraw.textLeft(-0.95,0.8, "Ammonia : " + Integer.toString(ammoniaNum));
-    StdDraw.textLeft(-0.95,0.7, "Pellets : " + Integer.toString(pelletsNum));
-    StdDraw.textLeft(-0.95,0.6, "Oldest Fish : " );
+    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-.8, "Fish : " + Integer.toString(fishNum));
+    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1, "Ammonia : " + Integer.toString(ammoniaNum));
+    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.2, "Pellets : " + Integer.toString(pelletsNum));
+    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.4, "Oldest Fish : " );
 
 
 
