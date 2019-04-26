@@ -8,8 +8,8 @@ class Goldfish extends Fish {
     this.yPos = y;
     this.size = h;
 
-    this.xVelocity = Math.random()*.02;
-    this.yVelocity = Math.random()*.02;
+    this.xVelocity = Math.random()*.01;
+    this.yVelocity = Math.random()*.01;
   }
 
 

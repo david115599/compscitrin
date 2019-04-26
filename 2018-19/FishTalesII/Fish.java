@@ -22,7 +22,9 @@ abstract class Fish extends LivingObject{
 
     if (Math.abs(this.xPos + this.xVelocity) > 1.0 - this.size) this.xVelocity = -this.xVelocity;
     if (Math.abs(this.yPos + this.yVelocity) > 1.0 - this.size) this.yVelocity = -this.yVelocity;
-
+    this.xVelocity = 0.9975 * this.xVelocity + (0.005 * Math.random());
+    this.yVelocity = 0.9975 * this.yVelocity + (0.005 * Math.random());
+    System.out.println(this.xVelocity);
     this.xPos = this.xPos + this.xVelocity;
     this.yPos = this.yPos + this.yVelocity;
   }//move
