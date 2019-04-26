@@ -55,7 +55,6 @@ public class FishTank{
     }
     StdDraw.setPenColor(StdDraw.BLACK);
     StdDraw.textLeft(-0.95,0.9, "Fish : " + Integer.toString(fishNum));
-    ammoniaNum = (int)Math.round(fishNum*3.4 + pelletsNum*1.2);
     StdDraw.textLeft(-0.95,0.8, "Ammonia : " + Integer.toString(ammoniaNum));
     StdDraw.textLeft(-0.95,0.7, "Pellets : " + Integer.toString(pelletsNum));
     StdDraw.textLeft(-0.95,0.6, "Oldest Fish : " );
@@ -76,6 +75,8 @@ public class FishTank{
         remove(myStuff.get(i));
       }
     }
+
+    ammoniaNum = 0;
   }
   public void tapTheTank(){
   }
@@ -88,6 +89,16 @@ public class FishTank{
       }
 
     }
+
+    if(t instanceof Fish){
+      ammoniaNum+=3;
+    }
+
+    else if(t instanceof Pellet){
+      ammoniaNum+=1;
+    }
+
+
     myStuff.add(t);
     return true;
   }//add a Tankable object to the FishTank

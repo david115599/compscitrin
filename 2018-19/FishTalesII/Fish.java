@@ -59,8 +59,31 @@ boolean collision;
     if(this instanceof Piranha && collision != true){
       if(closestG != null){
       //  it currently ignores collisions and needs to maintain their old velocity
-      this.xVelocity = (closestG.getX()-this.xPos)/this.d(closestG)*.01;
-      this.yVelocity = (closestG.getY()-this.yPos)/this.d(closestG)*.01;
+      double targetX = (closestG.getX()-this.xPos)/this.d(closestG);
+      double targetY = (closestG.getY()-this.yPos)/this.d(closestG);
+      int xSign = 1;
+      int ySign = 1;
+
+      if(targetX<this.xVelocity){
+        xSign = -1;
+      }
+
+      if(targetY<this.yVelocity){
+        ySign = -1;
+      }
+
+      if(Math.abs(this.xVelocity+(xSign*.01)<Math.abs(this.maxSpeed) && Math.abs(this.yVelocity+(ySign*.01)<Math.abs(this.maxSpeed)){
+        this.xVelocity+=xSign*.01;
+        this.yVelocity-=ySign*.01;
+      }
+      else{
+        this.xVelocity = targetX;
+        this.yVelocity = targetY;
+      }
+
+
+      // this.xVelocity = (closestG.getX()-this.xPos)/this.d(closestG)*this.maxSpeed;
+      // this.yVelocity = (closestG.getY()-this.yPos)/this.d(closestG)*this.maxSpeed;
       }
     }
   }//move

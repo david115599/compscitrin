@@ -11,6 +11,8 @@ class Piranha extends Fish {
     this.xVelocity = Math.random()*.005;
     this.yVelocity = Math.random()*.005;
 
+    this.maxSpeed = Math.sqrt(this.xVelocity*this.xVelocity+this.yVelocity*this.yVelocity)''
+
   }
 
 
