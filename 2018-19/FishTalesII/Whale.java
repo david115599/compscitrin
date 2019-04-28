@@ -1,28 +1,25 @@
 import java.awt.*;//needed for Color
 
-class Piranha extends Fish {
+class Whale extends Fish {
 
-  Piranha(String name, double x,double y, double h, double w) {
+  Whale(String name, double x,double y, double h, double w) {
     super();
     this.xPos = x;
     this.yPos = y;
     this.size = h;
 
-    this.xVelocity = Math.random()*.04;
-    this.yVelocity = Math.random()*.04;
-
-    this.maxSpeed = Math.sqrt(this.xVelocity*this.xVelocity+this.yVelocity*this.yVelocity);
-
+    this.xVelocity = Math.random()*.03;
+    this.yVelocity = Math.random()*.03;
   }
 
 
 
-
   protected void show(){
-    StdDraw.setPenColor(StdDraw.MAGENTA);
+    StdDraw.setPenColor(StdDraw.CYAN);
     StdDraw.filledCircle(this.xPos, this.yPos, this.size);
   }//show
-  public  boolean tryToEat(Tankable t){
+
+  public boolean tryToEat(Tankable t){
     boolean hasEaten = false;
 
     return hasEaten;
@@ -33,4 +30,4 @@ class Piranha extends Fish {
     return hasBred;
   }//tryToBreed
 
-}//Piranha
+}//Goldfish

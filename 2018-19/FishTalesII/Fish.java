@@ -69,16 +69,16 @@ boolean collision;
       this.yVelocity = this.yVelocity- 0.1*Math.random()*this.yVelocity;
     }
 
-    if(this.xVelocity >=0.02){
+    if(this.xVelocity >=0.08){
       this.xVelocity -= 0.005;
     }
-    else if(this.xVelocity <=-0.02){
+    else if(this.xVelocity <=-0.08){
       this.xVelocity += 0.005;
     }
-    if(this.yVelocity >=0.02){
+    if(this.yVelocity >=0.08){
       this.yVelocity -= 0.005;
     }
-    else if(this.yVelocity <=-0.02){
+    else if(this.yVelocity <=-0.08){
       this.yVelocity += 0.005;
     }
     if (Math.abs(this.xPos + this.xVelocity) > swidth/200 - this.size && !(this instanceof ToroidalFin)) this.xVelocity = -this.xVelocity;
