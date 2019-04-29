@@ -60,9 +60,14 @@ boolean collision;
       }
 
     }
-    if(this instanceof Goldfish && this.size>=0.4){
+    if(this instanceof Goldfish && this.size>=0.2){
       this.vitalSigns = true;
-
+    }
+    if(this instanceof Piranha && this.size>=0.3){
+      this.vitalSigns = true;
+    }
+    if(this instanceof Whale && this.size>=0.8){
+      this.vitalSigns = true;
     }
 
 
