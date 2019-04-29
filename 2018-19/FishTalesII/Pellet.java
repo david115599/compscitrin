@@ -21,6 +21,9 @@ abstract class Pellet extends LivingObject{
     if(this instanceof Food && t instanceof Fish ){
         beeneaten=true;
     }
+    if(this instanceof Poison && t instanceof Fish ){
+        beeneaten=true;
+    }
     boolean collision=false;
     return collision;
   }//hasCollision

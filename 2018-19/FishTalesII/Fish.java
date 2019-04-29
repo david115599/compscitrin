@@ -79,7 +79,12 @@ boolean collision;
     }else if(randomGen <= 0.5){
       this.yVelocity = this.yVelocity- 0.1*Math.random()*this.yVelocity;
     }
-
+if (Math.abs(this.xVelocity) <=.01) {
+  this.xVelocity*=2;
+}
+if (Math.abs(this.yVelocity) <=.01) {
+  this.yVelocity*=2;
+}
     if(this.xVelocity >=0.06){
       this.xVelocity -= 0.005;
     }
@@ -99,7 +104,9 @@ boolean collision;
     this.xPos = this.xPos + this.xVelocity;
     this.yPos = this.yPos + this.yVelocity;
 
-
+    if(this instanceof Whale){
+      this.yVelocity = 0;
+    }
     if(this instanceof Piranha && collision != true){
       if(closestG != null){
       // //  it currently ignores collisions and needs to maintain their old velocity
@@ -128,9 +135,7 @@ boolean collision;
 
        this.xVelocity = (closestG.getX()-this.xPos)/this.d(closestG)*this.maxSpeed;
        this.yVelocity = (closestG.getY()-this.yPos)/this.d(closestG)*this.maxSpeed;
-       if(this instanceof Whale){
-         this.yVelocity = 0;
-       }
+
       }
     }
   }//move

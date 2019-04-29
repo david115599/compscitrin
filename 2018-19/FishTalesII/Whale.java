@@ -9,7 +9,7 @@ class Whale extends Fish {
     this.size = h;
 
     this.xVelocity = Math.random()*.03;
-    this.yVelocity = Math.random()*.03;
+    this.yVelocity = 0;
   }
 
 
