@@ -69,6 +69,7 @@ public class FishTales{
       }
 
       else if(StdDraw.isKeyPressed(70)){ //F
+<<<<<<< HEAD
 
         myTank.add(new Poison());
         myTank.add(new Food());
@@ -79,6 +80,8 @@ public class FishTales{
         myTank.add(new Food());
         myTank.add(new Food());
         myTank.add(new Food());
+=======
+>>>>>>> edfd19d92a85d2acf5b761f447b821445c22db36
         myTank.add(new Food());
       }
 
