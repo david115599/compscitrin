@@ -48,9 +48,13 @@ boolean collision;
     if(this.vitalSigns == true){
       this.xVelocity = 0;
       this.yVelocity = 0.01;
-      if(this.yPos > 0.9){
+      if(this.yPos > sheight/200-0.5){
         this.yVelocity = 0;
       }
+
+    }
+    if(this instanceof Goldfish && this.size>=0.4){
+      this.vitalSigns = true;
 
     }
 
