@@ -128,6 +128,9 @@ boolean collision;
 
        this.xVelocity = (closestG.getX()-this.xPos)/this.d(closestG)*this.maxSpeed;
        this.yVelocity = (closestG.getY()-this.yPos)/this.d(closestG)*this.maxSpeed;
+       if(this instanceof Whale){
+         this.yVelocity = 0;
+       }
       }
     }
   }//move

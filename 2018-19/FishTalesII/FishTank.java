@@ -48,14 +48,14 @@ public class FishTank{
         if(myStuff.get(z).isEaten() == true){
           myStuff.remove(z);
         }
-        if(myStuff.get(z).tryToBreed() == true){
-          boolean sucess = false;
-          while(sucess ==false){
-            if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
-              sucess = true;
-            }
-          }
-        }
+        //if(myStuff.get(z).tryToBreed() == true){
+        //  boolean sucess = false;
+        //  while(sucess ==false){
+          //  if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
+          //    sucess = true;
+            //}
+          //}
+        //}
         else{
           //  if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && myStuff.get(i).d(myStuff.get(z)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
           if(myStuff.get(z)!= myStuff.get(i) && myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
