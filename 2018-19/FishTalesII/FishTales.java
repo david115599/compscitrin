@@ -14,6 +14,7 @@ public class FishTales{
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     double width = screenSize.getWidth()*.9; //sets width
     double height = screenSize.getHeight()*.9; //sets height
+    double ammonia = 0;
     StdDraw.setCanvasSize((int)width,(int)height);
 
     System.out.println("FishTales II- A more sofishticated architecture");
@@ -78,8 +79,13 @@ public class FishTales{
         myTank.add(new Food());
       }
 
-      //StdDraw.clear(StdDraw.BLUE);
-      StdDraw.clear();
+      double R = (255.0)/(20000.0);
+      double y = (ammonia*R)+R;
+
+      ammonia = myTank.getAmmonia();
+      ammonia = Math.min(20000.0,ammonia);
+
+      StdDraw.clear(new Color(0,(int) y,255));
       myTank.update();
 
 

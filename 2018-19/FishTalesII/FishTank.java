@@ -7,12 +7,11 @@ public class FishTank{
   double swidth = screenSize.getWidth()*.9; //sets width
   double sheight = screenSize.getHeight()*.9; //sets height
   private ArrayList<Tankable> myStuff = new ArrayList<Tankable>();
-  private float ammoniaCount;
   private double length, width;
   Font font;
   private int fishNum;
   private int pelletsNum;
-  private int ammoniaNum;
+  private double ammoniaCount;
   private Tankable oldestFish;
 
   public FishTank(){
@@ -34,10 +33,12 @@ public class FishTank{
       }
       if(myStuff.get(i) instanceof Fish){
         fishNum++;
+        ammoniaCount+=0.1;
       }
 
       else if(myStuff.get(i) instanceof Pellet){
         pelletsNum++;
+        ammoniaCount+=0.02;
       }
       myStuff.get(i).update();
       if(myStuff.get(i) instanceof Piranha){
@@ -58,7 +59,7 @@ public class FishTank{
     }
     StdDraw.setPenColor(StdDraw.BLACK);
     StdDraw.textLeft((-swidth/200)+1,(sheight/200)-.8, "Fish : " + Integer.toString(fishNum));
-    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1, "Ammonia : " + Integer.toString(ammoniaNum));
+    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1, "Ammonia : " + Float.toString(Math.round(ammoniaCount)));
     StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.2, "Pellets : " + Integer.toString(pelletsNum));
     StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.4, "Oldest Fish : " );
 
@@ -72,6 +73,8 @@ public class FishTank{
   private void show(){
   }
 
+
+
   public void cleanTheTank(){
     for(int i = 0;i<myStuff.size();i++){
       if(myStuff.get(i).isDead() == true){
@@ -79,7 +82,7 @@ public class FishTank{
       }
     }
 
-    ammoniaNum = 0;
+    ammoniaCount = 0;
   }
   public void tapTheTank(){
   }
@@ -91,14 +94,6 @@ public class FishTank{
         return false;
       }
 
-    }
-
-    if(t instanceof Fish){
-      ammoniaNum+=3;
-    }
-
-    else if(t instanceof Pellet){
-      ammoniaNum+=1;
     }
 
 
