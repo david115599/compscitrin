@@ -24,7 +24,7 @@ class Goldfish extends Fish {
 
     return hasEaten;
   }//tryToEat
-  public  boolean tryToBreed(Tankable t){
+  public boolean tryToBreed(Tankable t){
     boolean hasBred = false;
 
     return hasBred;

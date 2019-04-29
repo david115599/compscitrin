@@ -69,12 +69,6 @@ public class FishTales{
       }
 
       else if(StdDraw.isKeyPressed(70)){ //F
-
-        myTank.add(new Food());
-        myTank.add(new Food());
-        myTank.add(new Food());
-        myTank.add(new Food());
-        myTank.add(new Food());
         myTank.add(new Food());
       }
 

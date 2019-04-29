@@ -8,6 +8,7 @@ abstract class Fish extends LivingObject{
   private boolean vitalSigns=false;
   private boolean beeneaten=false;
   private double randomGen;
+  public boolean breed = false;
 boolean collision;
 
   Fish() {
@@ -17,9 +18,15 @@ boolean collision;
 
 
   public boolean hasCollision(Tankable t){
+    this.breed = false;
     if(this instanceof Goldfish && t instanceof Piranha){
       //this.vitalSigns = true;
       this.beeneaten = true;
+    }
+    if(this instanceof Goldfish && t instanceof Goldfish){
+      if (Math.random()<= .2) {
+        this.breed = true;
+      }
     }
 
     if(this instanceof Fish && t instanceof Fish){
@@ -139,4 +146,8 @@ boolean collision;
 
   abstract public boolean tryToEat(Tankable t);
 
+  public boolean tryToBreed(){
+
+    return breed;
+  }//tryToBreed
 }
