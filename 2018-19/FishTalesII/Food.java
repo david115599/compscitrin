@@ -9,7 +9,7 @@ public class Food extends Pellet{
   Food(){
 
     super(new Color(0,255,0), new Color(255,255,255));
-    this.yVelocity = -Math.random()*0.005;
+    this.yVelocity = -Math.random()*0.02;
     this.xPos = 2* Math.random()*width - width;
     this.yPos = height;
     System.out.println(this.xPos);
