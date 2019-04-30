@@ -6,10 +6,11 @@ class Whale extends Fish {
     super();
     this.xPos = x;
     this.yPos = y;
-    this.maxSize = StdRandom.gaussian(1000,1000/5)/10;
+    this.maxSize = StdRandom.gaussian(1000,1000/5)/20;
     this.size = 0.1f;
 
-    this.xVelocity = Math.random()*.03;
+    this.maxSpeed = StdRandom.gaussian(10,10/5)/20;
+    this.xVelocity = Math.random()*.01;
     this.yVelocity = 0;
     this.maxAge = (int)StdRandom.gaussian(10000,10000/5);
     this.age = 0;
