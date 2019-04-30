@@ -178,7 +178,6 @@ if (Math.abs(this.yVelocity) <=.01) {
   abstract public boolean tryToEat(Tankable t);
 
   public boolean tryToBreed(){
-
     return breed;
   }//tryToBreed
 }
