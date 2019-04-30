@@ -76,22 +76,17 @@ public class FishTales{
 
         myTank.add(new Poison());
         myTank.add(new Food());
-        myTank.add(new Food());
-        myTank.add(new Food());
-        myTank.add(new Food());
-        myTank.add(new Food());
-        myTank.add(new Food());
-        myTank.add(new Food());
-        myTank.add(new Food());
-        myTank.add(new Food());
+
       }
 
-      //Sets background based on ammonia count
-      double R = (205.0)/(20000.0);
+      double R = (220.0)/(20000.0);
+
       double y = (ammonia*R)+R;
       ammonia = myTank.getAmmonia();
       ammonia = Math.min(20000.0,ammonia);
-      StdDraw.clear(new Color(0,(int)y+50,255));
+
+      StdDraw.clear(new Color((int)y, 200,200+(int)y/100));
+
       myTank.update();
 
 
