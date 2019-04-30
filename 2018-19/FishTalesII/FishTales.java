@@ -28,22 +28,41 @@ public class FishTales{
 
       //Creates Goldfish
       if(StdDraw.isKeyPressed(71)){ //G
-        myTank.add(new Goldfish("Goldfish",0,0));
+        if(myTank.add(new Goldfish("Goldfish",(2*Math.random()*width/200)-width/200,(2*Math.random()*height/200)-height/200))){
+        }
+
+        else{
+          myTank.add((new Goldfish("Goldfish",Math.random()*.05+(2*Math.random()*height/200)-height/200,Math.random()*.05+(2*Math.random()*height/200)-height/200)));
+        }
       }
+
 
       //Creates Piranha
       else if(StdDraw.isKeyPressed(80)){ //P
-        myTank.add(new Piranha("Piranha",0,0));
+        if(myTank.add(new Piranha("Piranha",(2*Math.random()*width/200)-width/200,(2*Math.random()*height/200)-height/200))){
+        }
+        else{
+          myTank.add((new Piranha("Piranha",Math.random()*.05+(2*Math.random()*height/200)-height/200,Math.random()*.05+(2*Math.random()*height/200)-height/200)));
+        }
+
       }
 
       //Creates Whale
       else if(StdDraw.isKeyPressed(87)){ //P
-        myTank.add(new Whale("Whale",0,0));
+        if(myTank.add(new Whale("Whale",(2*Math.random()*width/200)-width/200,(2*Math.random()*height/200)-height/200))){
+        }
+        else{
+          myTank.add((new Whale("Whale",Math.random()*.05+(2*Math.random()*height/200)-height/200,Math.random()*.05+(2*Math.random()*height/200)-height/200)));
+        }
       }
 
       //Creates ToroidalFin
       else if(StdDraw.isKeyPressed(84)){ //P
-        myTank.add(new ToroidalFin("ToroidalFin",0,0));
+        if(myTank.add(new ToroidalFin("ToroidalFin",(2*Math.random()*width/200)-width/200,(2*Math.random()*height/200)-height/200))){
+        }
+        else{
+          myTank.add((new ToroidalFin("ToroidalFin",Math.random()*.05+(2*Math.random()*height/200)-height/200,Math.random()*.05+(2*Math.random()*height/200)-height/200)));
+        }
       }
 
       //Cleans the tank
@@ -53,30 +72,12 @@ public class FishTales{
 
       //Creates Food
       else if(StdDraw.isKeyPressed(70)){ //F
-        //OEHRWIUWEHRIEUWHRR
-        //OEHRWIUWEHRIEUWHRR
-
-        //OEHRWIUWEHRIEUWHRR
-        //OEHRWIUWEHRIEUWHRR
-        //OEHRWIUWEHRIEUWHRR
-
-//this needs to be randomized
-        //OEHRWIUWEHRIEUWHRR
-        //OEHRWIUWEHRIEUWHRR
-        //OEHRWIUWEHRIEUWHRR
-
-        //OEHRWIUWEHRIEUWHRR
-        //OEHRWIUWEHRIEUWHRR
-        //OEHRWIUWEHRIEUWHRR
-        //OEHRWIUWEHRIEUWHRR
-
-        //OEHRWIUWEHRIEUWHRR
-        //OEHRWIUWEHRIEUWHRR
-        //OEHRWIUWEHRIEUWHRR
-
+      if (Math.random() <=.5) {
         myTank.add(new Poison());
+      }
+      else{
         myTank.add(new Food());
-
+      }
       }
 
       double R = (220.0)/(20000.0);
