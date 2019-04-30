@@ -10,6 +10,8 @@ class Whale extends Fish {
 
     this.xVelocity = Math.random()*.03;
     this.yVelocity = 0;
+    this.maxAge = 10000;
+    this.age = 0;
   }
 
 

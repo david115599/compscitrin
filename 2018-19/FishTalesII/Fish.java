@@ -9,6 +9,7 @@ abstract class Fish extends LivingObject{
   private boolean beeneaten=false;
   private double randomGen;
   public boolean breed = false;
+  private double ammoniaNum = 0;
 boolean collision;
 
   Fish() {
@@ -70,6 +71,15 @@ boolean collision;
       this.vitalSigns = true;
     }
 
+    if(this.ammoniaNum >=10000){
+      this.age+=1;
+    }
+    else{
+      this.age+=2;
+    }
+    if(this.age>=this.maxAge){
+      this.vitalSigns = true;
+    }
 
     randomGen = Math.random();
 
@@ -154,6 +164,10 @@ if (Math.abs(this.yVelocity) <=.01) {
 
     return vitalSigns;
   }//isDead
+
+  public void setAmmonia(double am){
+    this.ammoniaNum = am;
+  }
 
   public boolean isEaten(){
     //boolean beeneaten=false;

@@ -31,7 +31,7 @@ public class FishTank{
       if(myStuff.get(i).isEaten() == true){
         myStuff.remove(i);
       }
-      if(myStuff.get(i) instanceof Fish){
+      if(myStuff.get(i) instanceof Fish && myStuff.get(i).isDead() == false){
         fishNum++;
         ammoniaCount+=0.1;
       }
@@ -40,7 +40,11 @@ public class FishTank{
         pelletsNum++;
         ammoniaCount+=0.02;
       }
+
+
       myStuff.get(i).update();
+      myStuff.get(i).setAmmonia(this.ammoniaCount);
+
       if(myStuff.get(i) instanceof Piranha){
         myStuff.get(i).closest(nearestGoldfish(myStuff.get(i)));
       }
@@ -120,7 +124,7 @@ public class FishTank{
     Tankable g = null;
     double minD = Double.POSITIVE_INFINITY;
     for(int i = 0;i<myStuff.size();i++){
-      if(myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD && myStuff.get(i).isDead() == false){
+      if(myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD){
         minD = p.d(myStuff.get(i));
         g = myStuff.get(i);
       }

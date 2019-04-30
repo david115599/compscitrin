@@ -10,6 +10,8 @@ class ToroidalFin extends Fish {
 
     this.xVelocity = Math.random()*.05;
     this.yVelocity = Math.random()*.05;
+    this.maxAge = 1000;
+    this.age = 0;
   }
 
 
