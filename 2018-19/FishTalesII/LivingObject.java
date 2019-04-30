@@ -2,7 +2,7 @@ import java.awt.*;//needed for Color
 
 abstract class LivingObject implements Tankable{
   protected FishTank tank;
-  protected double xVelocity, yVelocity, maxSpeed;
+  protected double xVelocity, yVelocity, maxSpeed,speed;
   protected double xPos, yPos, size, maxSize;
   protected Color fillColor, outlineColor;
   protected int age, maxAge;

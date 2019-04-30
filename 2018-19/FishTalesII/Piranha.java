@@ -6,13 +6,13 @@ class Piranha extends Fish {
     super();
     this.xPos = x;
     this.yPos = y;
-    this.maxSize = StdRandom.gaussian(20,20/5)/10;
+    this.maxSize = StdRandom.gaussian(20,20/5)/20;
     this.size = 0.05f;
 
+    this.maxSpeed = StdRandom.gaussian(20,20/5)/1000;
     this.xVelocity = Math.random()*.04;
     this.yVelocity = Math.random()*.04;
 
-    this.maxSpeed = Math.sqrt(this.xVelocity*this.xVelocity+this.yVelocity*this.yVelocity);
     this.maxAge = (int)StdRandom.gaussian(2000,2000/5);
     this.age = 0;
   }

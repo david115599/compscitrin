@@ -10,6 +10,7 @@ class Goldfish extends Fish {
     this.maxSize = StdRandom.gaussian(10,10/5)/10;
     this.size = 0.05f;
 
+    this.maxSpeed = StdRandom.gaussian(30,30/5)/10;
     this.xVelocity = Math.random()*.05;
     this.yVelocity = Math.random()*.05;
 
