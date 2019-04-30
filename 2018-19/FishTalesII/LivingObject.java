@@ -8,6 +8,7 @@ abstract class LivingObject implements Tankable{
   protected int age, maxAge;
   protected Tankable closestG;
 
+
   public void update() {
     move();
     show();
@@ -16,6 +17,7 @@ abstract class LivingObject implements Tankable{
 
   //Accessor Methods
   public double getSize(){return size/2;}
+  public int getAge(){return age/2;}
   public double getX() {return xPos;}
   public double getY() {return yPos;}
   public double getXVelocity() {return xVelocity;}

@@ -2,14 +2,19 @@ import java.awt.*;//needed for Color
 
 class Goldfish extends Fish {
 
-  Goldfish(String name, double x,double y, double h, double w) {
+  Goldfish(String name, double x,double y) {
     super();
     this.xPos = x;
     this.yPos = y;
-    this.size = h;
+
+    this.maxSize = StdRandom.gaussian(10,10/5)/10;
+    this.size = 0.05f;
 
     this.xVelocity = Math.random()*.05;
     this.yVelocity = Math.random()*.05;
+
+    this.maxAge = (int)StdRandom.gaussian(1000,1000/5);
+    this.age = 0;
   }
 
 

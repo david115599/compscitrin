@@ -12,7 +12,6 @@ public class Poison extends Pellet{
     this.yVelocity = -Math.random()*0.02;
     this.xPos = 2* Math.random()*width - width;
     this.yPos = height;
-    System.out.println(this.xPos);
   }
 
   protected void show(){

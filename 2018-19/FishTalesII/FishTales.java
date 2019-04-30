@@ -8,7 +8,7 @@ public class FishTales{
 
   public static void main(String args[])throws InterruptedException {
     FishTank myTank = new FishTank();
-    Goldfish g = new Goldfish("bob",0,0,0.05f,0.05f);
+    Goldfish g = new Goldfish("bob",0,0);
     Piranha p;
     Food f;
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -26,50 +26,53 @@ public class FishTales{
     // main animation loop
     while (true)  {
 
+      //Creates Goldfish
       if(StdDraw.isKeyPressed(71)){ //G
-
-        if(myTank.add(new Goldfish("Goldfish",0,0,0.05f,0.05f))){
-        }
-        else{
-          myTank.add(new Goldfish("Goldfish",Math.random()*.05,Math.random()*.05,0.05f,0.05f));
-        }
+        myTank.add(new Goldfish("Goldfish",0,0));
       }
 
+      //Creates Piranha
       else if(StdDraw.isKeyPressed(80)){ //P
-
-        if(myTank.add(new Piranha("Piranha",0,0,0.05f,0.05f))){
-        }
-        else{
-          myTank.add((new Piranha("Piranha",Math.random()*.05,Math.random()*.05,0.05f,0.05f)));
-        }
-
+        myTank.add(new Piranha("Piranha",0,0));
       }
 
+      //Creates Whale
       else if(StdDraw.isKeyPressed(87)){ //P
-
-        if(myTank.add(new Whale("Whale",0,0,0.05f,0.05f))){
-        }
-        else{
-          myTank.add((new Whale("Whale",Math.random()*.05,Math.random()*.05,0.05f,0.05f)));
-        }
-
+        myTank.add(new Whale("Whale",0,0));
       }
 
+      //Creates ToroidalFin
       else if(StdDraw.isKeyPressed(84)){ //P
-
-        if(myTank.add(new ToroidalFin("ToroidalFin",0,0,0.05f,0.05f))){
-        }
-        else{
-          myTank.add((new ToroidalFin("ToroidalFin",Math.random()*.05,Math.random()*.05,0.05f,0.05f)));
-        }
-
+        myTank.add(new ToroidalFin("ToroidalFin",0,0));
       }
 
+      //Cleans the tank
       else if(StdDraw.isKeyPressed(67)){
         myTank.cleanTheTank();
       }
 
+      //Creates Food
       else if(StdDraw.isKeyPressed(70)){ //F
+        //OEHRWIUWEHRIEUWHRR
+        //OEHRWIUWEHRIEUWHRR
+
+        //OEHRWIUWEHRIEUWHRR
+        //OEHRWIUWEHRIEUWHRR
+        //OEHRWIUWEHRIEUWHRR
+
+//this needs to be randomized
+        //OEHRWIUWEHRIEUWHRR
+        //OEHRWIUWEHRIEUWHRR
+        //OEHRWIUWEHRIEUWHRR
+
+        //OEHRWIUWEHRIEUWHRR
+        //OEHRWIUWEHRIEUWHRR
+        //OEHRWIUWEHRIEUWHRR
+        //OEHRWIUWEHRIEUWHRR
+
+        //OEHRWIUWEHRIEUWHRR
+        //OEHRWIUWEHRIEUWHRR
+        //OEHRWIUWEHRIEUWHRR
 
         myTank.add(new Poison());
         myTank.add(new Food());
@@ -77,12 +80,13 @@ public class FishTales{
       }
 
       double R = (220.0)/(20000.0);
-      double y = (ammonia*R)+R;
 
+      double y = (ammonia*R)+R;
       ammonia = myTank.getAmmonia();
       ammonia = Math.min(20000.0,ammonia);
 
       StdDraw.clear(new Color((int)y, 200,200+(int)y/100));
+
       myTank.update();
 
 

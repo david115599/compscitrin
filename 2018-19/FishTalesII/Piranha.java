@@ -2,17 +2,19 @@ import java.awt.*;//needed for Color
 
 class Piranha extends Fish {
 
-  Piranha(String name, double x,double y, double h, double w) {
+  Piranha(String name, double x,double y) {
     super();
     this.xPos = x;
     this.yPos = y;
-    this.size = h;
+    this.maxSize = StdRandom.gaussian(20,20/5)/10;
+    this.size = 0.05f;
 
     this.xVelocity = Math.random()*.04;
     this.yVelocity = Math.random()*.04;
 
     this.maxSpeed = Math.sqrt(this.xVelocity*this.xVelocity+this.yVelocity*this.yVelocity);
-
+    this.maxAge = (int)StdRandom.gaussian(2000,2000/5);
+    this.age = 0;
   }
 
 

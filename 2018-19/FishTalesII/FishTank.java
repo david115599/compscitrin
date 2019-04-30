@@ -27,20 +27,38 @@ public class FishTank{
   public void update(){
     fishNum = 0;
     pelletsNum = 0;
+    int oldestAge = 0;
+
+    //Cycles through myStuff array
     for(int i = 0; i<myStuff.size();i++){
+
+      //Updates oldest age
+      if(myStuff.get(i).getAge() > oldestAge && myStuff.get(i).isDead() == false){
+        oldestAge = myStuff.get(i).getAge();
+      }
+
+      //Removes eaten Tankable objects
       if(myStuff.get(i).isEaten() == true){
         myStuff.remove(i);
       }
-      if(myStuff.get(i) instanceof Fish){
+
+      //Updates Fish and Ammonia counts
+      if(myStuff.get(i) instanceof Fish && myStuff.get(i).isDead() == false){
         fishNum++;
         ammoniaCount+=0.1;
       }
 
+      //Updates Pellet and Ammonia counts
       else if(myStuff.get(i) instanceof Pellet){
         pelletsNum++;
         ammoniaCount+=0.02;
       }
+
+      //Updates the tankable object
       myStuff.get(i).update();
+      myStuff.get(i).setAmmonia(this.ammoniaCount);
+
+      //Updates Piranha's closest Goldfish
       if(myStuff.get(i) instanceof Piranha){
         myStuff.get(i).closest(nearestGoldfish(myStuff.get(i)));
       }
@@ -65,11 +83,13 @@ public class FishTank{
         }
       }
     }
+
+    //Displays counts
     StdDraw.setPenColor(StdDraw.BLACK);
     StdDraw.textLeft((-swidth/200)+1,(sheight/200)-.8, "Fish : " + Integer.toString(fishNum));
     StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1, "Ammonia : " + Float.toString(Math.round(ammoniaCount)));
     StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.2, "Pellets : " + Integer.toString(pelletsNum));
-    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.4, "Oldest Fish : " );
+    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.4, "Oldest Fish : " + Double.toString((double)Math.round(oldestAge*10)/10));
 
 
 
@@ -82,7 +102,7 @@ public class FishTank{
   }
 
 
-
+  //Clean the tank
   public void cleanTheTank(){
     for(int i = 0;i<myStuff.size();i++){
       if(myStuff.get(i).isDead() == true){
@@ -92,9 +112,12 @@ public class FishTank{
 
     ammoniaCount = 0;
   }
+
+  //Tap the Tank
   public void tapTheTank(){
   }
 
+  //Adds tankable objects to the tank
   boolean add(Tankable t){
     boolean added =true;
     for(int z = 0; z<myStuff.size();z++){
@@ -120,7 +143,7 @@ public class FishTank{
     Tankable g = null;
     double minD = Double.POSITIVE_INFINITY;
     for(int i = 0;i<myStuff.size();i++){
-      if(myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD && myStuff.get(i).isDead() == false){
+      if(myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD){
         minD = p.d(myStuff.get(i));
         g = myStuff.get(i);
       }
