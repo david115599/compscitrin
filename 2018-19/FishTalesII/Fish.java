@@ -1,5 +1,6 @@
 import java.awt.*;//needed for Color
 
+
 abstract class Fish extends LivingObject{
   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
   double swidth = screenSize.getWidth()*.9; //sets width

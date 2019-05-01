@@ -2,6 +2,7 @@ import java.util.*;//needed for ArrayList
 import java.awt.*;//needed for Color
 
 
+
 public class FishTank{
   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
   double swidth = screenSize.getWidth()*.9; //sets width
@@ -75,100 +76,101 @@ public class FishTank{
           if(myStuff.get(z)!= myStuff.get(i) && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
             // do we want this in the if statment (myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false)
             myStuff.get(i).hasCollision(myStuff.get(z));
-    //        spawntype = Bubble;
-      //      spawnx = myStuff.get(i).getX();
-        //    spawny = myStuff.get(i).getY();
-        //    add(new Bubble(myStuff.get(i).getX(),myStuff.get(i).getY()));
-        //    add(new Bubble(myStuff.get(z).getX(),myStuff.get(z).getY()));
+
+            //        spawntype = Bubble;
+            //      spawnx = myStuff.get(i).getX();
+            //    spawny = myStuff.get(i).getY();
+            //    add(new Bubble(myStuff.get(i).getX(),myStuff.get(i).getY()));
+            //    add(new Bubble(myStuff.get(z).getX(),myStuff.get(z).getY()));
           }
         }
         /*if(myStuff.get(z) instanceof Goldfish){
         if(myStuff.get(z).breed == true){
-          boolean sucess = false;
-          while(sucess ==false){
-            if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
-              sucess = true;
-            }
-          }
-        }
-      }*/
+        boolean sucess = false;
+        while(sucess ==false){
+        if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
+        sucess = true;
       }
     }
+  }
+}*/
+}
+}
 
-    //Displays counts
-    StdDraw.setPenColor(StdDraw.BLACK);
-    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-.8, "Fish : " + Integer.toString(fishNum));
-    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1, "Ammonia : " + Float.toString(Math.round(ammoniaCount)));
-    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.2, "Pellets : " + Integer.toString(pelletsNum));
-    StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.4, "Oldest Fish : " + Double.toString((double)Math.round(oldestAge*10)/10));
+//Displays counts
+StdDraw.setPenColor(StdDraw.BLACK);
+StdDraw.textLeft((-swidth/200)+1,(sheight/200)-.8, "Fish : " + Integer.toString(fishNum));
+StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1, "Ammonia : " + Float.toString(Math.round(ammoniaCount)));
+StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.2, "Pellets : " + Integer.toString(pelletsNum));
+StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.4, "Oldest Fish : " + Double.toString((double)Math.round(oldestAge*10)/10));
 
 
 
-    show();
+show();
+}
+
+
+
+private void show(){
+}
+
+
+//Clean the tank
+public void cleanTheTank(){
+  for(int i = 0;i<myStuff.size();i++){
+    if(myStuff.get(i).isDead() == true){
+      remove(myStuff.get(i));
+    }
+  }
+
+  ammoniaCount = 0;
+}
+
+//Tap the Tank
+public void tapTheTank(){
+}
+
+//Adds tankable objects to the tank
+boolean add(Tankable t){
+  boolean added =true;
+  for(int z = 0; z<myStuff.size();z++){
+    if(Math.sqrt(Math.pow((Math.abs(myStuff.get(z).getX()-t.getX())),2)+Math.pow(Math.abs(myStuff.get(z).getY()-t.getY()),2)) <= ((myStuff.get(z).getSize())+t.getSize())*2){
+      return false;
+    }
+
   }
 
 
+  myStuff.add(t);
+  return true;
+}//add a Tankable object to the FishTank
 
-  private void show(){
-  }
 
+boolean remove(Tankable t){
+  boolean removed =true;
+  myStuff.remove(t);
+  return true;
+}//remove a Tankable object from the FishTank
 
-  //Clean the tank
-  public void cleanTheTank(){
-    for(int i = 0;i<myStuff.size();i++){
-      if(myStuff.get(i).isDead() == true){
-        remove(myStuff.get(i));
-      }
-    }
-
-    ammoniaCount = 0;
-  }
-
-  //Tap the Tank
-  public void tapTheTank(){
-  }
-
-  //Adds tankable objects to the tank
-  boolean add(Tankable t){
-    boolean added =true;
-    for(int z = 0; z<myStuff.size();z++){
-      if(Math.sqrt(Math.pow((Math.abs(myStuff.get(z).getX()-t.getX())),2)+Math.pow(Math.abs(myStuff.get(z).getY()-t.getY()),2)) <= ((myStuff.get(z).getSize())+t.getSize())*2){
-        return false;
-      }
+boolean impulseFish(){
+  for(int i = 0;i<myStuff.size();i++){
+    if(myStuff.get(i) instanceof Fish){
 
     }
-
-
-    myStuff.add(t);
-    return true;
-  }//add a Tankable object to the FishTank
-
-
-  boolean remove(Tankable t){
-    boolean removed =true;
-    myStuff.remove(t);
-    return true;
-  }//remove a Tankable object from the FishTank
-
-  boolean impulseFish(){
-    for(int i = 0;i<myStuff.size();i++){
-      if(myStuff.get(i) instanceof Fish){
-
-      }
-    }
-    return true;
   }
+  return true;
+}
 
-  Tankable nearestGoldfish(Tankable p){
-    Tankable g = null;
-    double minD = Double.POSITIVE_INFINITY;
-    for(int i = 0;i<myStuff.size();i++){
-      if(myStuff.get(i).isDead() == false && myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD){
-        minD = p.d(myStuff.get(i));
-        g = myStuff.get(i);
-      }
+Tankable nearestGoldfish(Tankable p){
+  Tankable g = null;
+  double minD = Double.POSITIVE_INFINITY;
+  for(int i = 0;i<myStuff.size();i++){
+    if(myStuff.get(i).isDead() == false && myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD){
+      minD = p.d(myStuff.get(i));
+      g = myStuff.get(i);
     }
-    return g;
-  }//nearestGoldfish
+  }
+  return g;
+}//nearestGoldfish
 
 }//FishTank
