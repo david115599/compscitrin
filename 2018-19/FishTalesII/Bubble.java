@@ -22,9 +22,6 @@ public class Bubble extends LivingObject{
 
   protected void move() {
     this.yPos = this.yPos + this.yVelocity;
-    if(this.yPos > sheight/200-0.5){
-      this.yVelocity = 0;
-    }
   }//move
 
   public boolean hasCollision(Tankable t){
@@ -45,6 +42,10 @@ public class Bubble extends LivingObject{
   }
 
   public boolean isDead(){
+    if(this.yPos > sheight/200){
+  //    beeneaten=true;
+      return true;
+    }
     return false;
   }
 }//Pellet
