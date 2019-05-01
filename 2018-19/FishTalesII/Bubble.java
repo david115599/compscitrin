@@ -1,10 +1,13 @@
 import java.awt.*;//needed for Color
 
-abstract class Bubble extends LivingObject{
+public class Bubble extends LivingObject{
+  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
   private boolean beeneaten=false;
+  double sheight = screenSize.getHeight()*.9; //sets height
+
   Bubble(double x,double y) {
     super();
-    this.yVelocity = Math.random()*0.02;
+    this.yVelocity = Math.random()*0.02+0.003;
     this.xPos = x;
     this.yPos = y;
   }//default constructor
@@ -19,7 +22,7 @@ abstract class Bubble extends LivingObject{
 
   protected void move() {
     this.yPos = this.yPos + this.yVelocity;
-    if(this.yPos < 4.99){
+    if(this.yPos > sheight/200-0.5){
       this.yVelocity = 0;
     }
   }//move
@@ -39,5 +42,9 @@ abstract class Bubble extends LivingObject{
 
   public void setAmmonia(double a){
 
+  }
+
+  public boolean isDead(){
+    return false;
   }
 }//Pellet

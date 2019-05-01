@@ -143,6 +143,15 @@ public class FishTank{
     return true;
   }//remove a Tankable object from the FishTank
 
+  boolean impulseFish(){
+    for(int i = 0;i<myStuff.size();i++){
+      if(i instanceof Fish){
+        
+      }
+    }
+    return true;
+  }
+
   Tankable nearestGoldfish(Tankable p){
     Tankable g = null;
     double minD = Double.POSITIVE_INFINITY;
