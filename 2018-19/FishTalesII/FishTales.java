@@ -15,6 +15,7 @@ public class FishTales{
     double width = screenSize.getWidth()*.9; //sets width
     double height = screenSize.getHeight()*.9; //sets height
     double ammonia = 0;
+    boolean pressed = false;
     StdDraw.setCanvasSize((int)width,(int)height);
 
     System.out.println("FishTales II- A more sofishticated architecture");
@@ -25,6 +26,18 @@ public class FishTales{
 
     // main animation loop
     while (true)  {
+      if(StdDraw.isMousePressed()){
+        if(pressed == false){
+          for(int i = 0;i<(int)(Math.random()*10+4);i++){
+            myTank.add(new Bubble(StdDraw.mouseX()+Math.random()*width/3200-width/6400,StdDraw.mouseY()+Math.random()*height/3200-height/6400));
+          }
+          myTank.impulseFish();
+        }
+        pressed = true;
+      }
+      else{
+        pressed = false;
+      }
 
       //Creates Goldfish
       if(StdDraw.isKeyPressed(71)){ //G
