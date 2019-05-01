@@ -72,7 +72,8 @@ public class FishTank{
         }
         else{
           //  if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && myStuff.get(i).d(myStuff.get(z)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
-          if(myStuff.get(z)!= myStuff.get(i) && myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
+          if(myStuff.get(z)!= myStuff.get(i) && myStuff.get(z).isDead() == false && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
+            // do we want this in the if statment (&& myStuff.get(i).isDead() == false)
             myStuff.get(i).hasCollision(myStuff.get(z));
     //        spawntype = Bubble;
       //      spawnx = myStuff.get(i).getX();
@@ -151,8 +152,8 @@ public class FishTank{
 
   boolean impulseFish(){
     for(int i = 0;i<myStuff.size();i++){
-      if(i instanceof Fish){
-        
+      if(myStuff.get(i) instanceof Fish){
+
       }
     }
     return true;
@@ -162,7 +163,7 @@ public class FishTank{
     Tankable g = null;
     double minD = Double.POSITIVE_INFINITY;
     for(int i = 0;i<myStuff.size();i++){
-      if(myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD){
+      if(myStuff.get(i).isDead() == false && myStuff.get(i) instanceof Goldfish && p.d(myStuff.get(i)) <minD){
         minD = p.d(myStuff.get(i));
         g = myStuff.get(i);
       }
