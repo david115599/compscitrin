@@ -8,7 +8,7 @@ abstract class Fish extends LivingObject{
   private boolean vitalSigns=false;
   private boolean beeneaten=false;
   private double randomGen;
-  public boolean breed = false;
+  protected boolean breed = false;
   private double ammoniaNum = 0;
   boolean collision;
 
