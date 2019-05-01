@@ -57,7 +57,7 @@ abstract class Fish extends LivingObject{
     if(this.vitalSigns == true){
       this.xVelocity = 0;
       this.yVelocity = 0.01;
-      if(this.yPos > sheight/200-0.5){
+      if(this.yPos > sheight/200-(this.size/2)-.1){
         this.yVelocity = 0;
       }
 
@@ -182,9 +182,6 @@ if (Math.abs(this.yVelocity) <=.01) {
     return breed;
   }//tryToBreed
 
-  public boolean getBreed(){
-    return this.breed;
-  }
 
   //Tap the Tank
   public void tap(){

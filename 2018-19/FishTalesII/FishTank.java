@@ -82,10 +82,29 @@ public class FishTank{
           if(myStuff.get(z)!= myStuff.get(i) && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
             // do we want this in the if statment (myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false)
             myStuff.get(i).hasCollision(myStuff.get(z));
-            if (myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Fish || myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Pellet) {
+            if (myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Fish && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false || myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Pellet && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false ) {
               add(new Bubble(myStuff.get(i).getX()-.1,myStuff.get(i).getY()-.1));
               add(new Bubble(myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
             }
+
+            //brocken breeding code
+//************************
+//************************
+//************************
+//************************
+//************************
+//************************
+//************************
+//************************
+//************************
+//************************
+//************************
+            //
+          /*  if (myStuff.get(i) instanceof Goldfish && myStuff.get(z) instanceof Goldfish) {
+            if (myStuff.get(i).tryToBreed(myStuff.get(z)) == true) {
+              add(new Goldfish(myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
+            }
+          }*/
           }
         }
         /*if(myStuff.get(z) instanceof Goldfish){
