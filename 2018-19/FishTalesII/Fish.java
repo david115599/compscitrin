@@ -15,12 +15,12 @@ abstract class Fish extends LivingObject{
 
   Fish() {
     super();
+    this.breed = false;
     this.closestG = null;
   }//default fish constructor
 
 
   public boolean hasCollision(Tankable t){
-    this.breed = false;
     if(this instanceof Goldfish && t instanceof Piranha){
       //this.vitalSigns = true;
       this.beeneaten = true;
@@ -36,8 +36,8 @@ abstract class Fish extends LivingObject{
       double vecLength=Math.sqrt((this.xPos-t.getX())*(this.xPos-t.getX())+(this.yPos-t.getY())*(this.yPos-t.getY()));
       this.xVelocity = (this.xPos-t.getX())/vecLength*thisSpeed;
       this.yVelocity = (this.yPos-t.getY())/vecLength*thisSpeed;
-
     }
+
     if(this instanceof Fish && t instanceof Food){
         this.size +=t.getSize()*.2;
     }
@@ -181,4 +181,18 @@ if (Math.abs(this.yVelocity) <=.01) {
   public boolean tryToBreed(){
     return breed;
   }//tryToBreed
+
+  public boolean getBreed(){
+    return this.breed;
+  }
+
+  //Tap the Tank
+  public void tap(){
+    double thisSpeed = Math.sqrt(this.xVelocity*this.xVelocity+this.yVelocity*this.yVelocity);
+    this.xVelocity = Math.random()-0.5;
+    this.yVelocity = Math.random()-0.5;
+    double newSpeed = Math.sqrt(this.xVelocity*this.xVelocity+this.yVelocity*this.yVelocity);
+    this.xVelocity = (this.xVelocity)/newSpeed*thisSpeed;
+    this.yVelocity = (this.yVelocity)/newSpeed*thisSpeed;
+  }
 }

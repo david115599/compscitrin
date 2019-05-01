@@ -31,7 +31,7 @@ public class FishTales{
           for(int i = 0;i<(int)(Math.random()*10+4);i++){
             myTank.add(new Bubble(StdDraw.mouseX()+Math.random()*width/3200-width/6400,StdDraw.mouseY()+Math.random()*height/3200-height/6400));
           }
-          myTank.impulseFish();
+          myTank.tapTheTank();
         }
         pressed = true;
       }

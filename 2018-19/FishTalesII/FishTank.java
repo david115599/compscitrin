@@ -36,6 +36,12 @@ public class FishTank{
     //Cycles through myStuff array
     for(int i = 0; i<myStuff.size();i++){
 
+
+      // //Checks breeding
+      // if(myStuff.get(i).getBreed() == true){
+      //   System.out.println("breed");
+      // }
+
       //Updates oldest age
       if(myStuff.get(i).getAge() > oldestAge && myStuff.get(i).isDead() == false){
         oldestAge = myStuff.get(i).getAge();
@@ -128,6 +134,11 @@ public void cleanTheTank(){
 
 //Tap the Tank
 public void tapTheTank(){
+  for(int i = 0;i<myStuff.size();i++){
+    if(myStuff.get(i) instanceof Fish){
+      myStuff.get(i).tap();
+    }
+  }
 }
 
 //Adds tankable objects to the tank
@@ -152,14 +163,7 @@ boolean remove(Tankable t){
   return true;
 }//remove a Tankable object from the FishTank
 
-boolean impulseFish(){
-  for(int i = 0;i<myStuff.size();i++){
-    if(myStuff.get(i) instanceof Fish){
 
-    }
-  }
-  return true;
-}
 
 Tankable nearestGoldfish(Tankable p){
   Tankable g = null;
