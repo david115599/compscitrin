@@ -38,14 +38,14 @@ abstract class Fish extends LivingObject{
 
     }
     if(this instanceof Fish && t instanceof Food){
-        this.size +=.01;
+        this.size +=t.getSize()*.2;
     }
     if(this instanceof Fish && t instanceof Poison){
-        this.size -=.01;
+        this.size -=t.getSize()*.2;
     }
 
     if(this instanceof Piranha && t instanceof Goldfish){
-      this.size +=.01;
+      this.size +=t.getSize()*.2;
     }
    collision=false;
     return collision;
