@@ -86,37 +86,42 @@ public class FishTank{
               add(new Bubble(myStuff.get(i).getX()-.1,myStuff.get(i).getY()-.1));
               add(new Bubble(myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
             }
-
-            //broken breeding code
-//************************
-//************************
-//************************
-//************************
-//************************
-//************************
-//************************
-//************************
-//************************
-//************************
-//************************
             //
-          /*  if (myStuff.get(i) instanceof Goldfish && myStuff.get(z) instanceof Goldfish) {
-            if (myStuff.get(i).tryToBreed(myStuff.get(z)) == true) {
-              add(new Goldfish(myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
+            /*if (myStuff.get(i) instanceof Goldfish && myStuff.get(z) instanceof Goldfish) {
+              Goldfish g1 = ((Goldfish)myStuff.get(i));
+              Goldfish g2 = ((Goldfish)myStuff.get(z));
+              if (g1.tryToBreed(g2) == true) {
+                add(new Goldfish("Goldfish",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
+                //System.out.println("hasBred");
+              }
             }
-          }*/
+            if (myStuff.get(i) instanceof Piranha && myStuff.get(z) instanceof Piranha) {
+              Piranha g1 = (myStuff.get(i));
+              Piranha g2 = (myStuff.get(z));
+              if (g1.tryToBreed(g2) == true) {
+                add(new Piranha("Piranha",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
+                //System.out.println("hasBred");
+              }
+              if (myStuff.get(i) instanceof Whale && myStuff.get(z) instanceof Whale) {
+                Piranha g1 = (myStuff.get(i));
+                Piranha g2 = (myStuff.get(z));
+                if (g1.tryToBreed(g2) == true) {
+                  add(new Whale("Whale",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
+                  //System.out.println("hasBred");
+                }
+              }*/
+            }
           }
+          /*if(myStuff.get(z) instanceof Goldfish){
+          if(myStuff.get(z).breed == true){
+          boolean sucess = false;
+          while(sucess ==false){
+          if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
+          sucess = true;
         }
-        /*if(myStuff.get(z) instanceof Goldfish){
-        if(myStuff.get(z).breed == true){
-        boolean sucess = false;
-        while(sucess ==false){
-        if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
-        sucess = true;
       }
     }
-  }
-}*/
+  }*/
 }
 }
 

@@ -19,7 +19,6 @@ class Goldfish extends Fish {
   }
 
 
-
   protected void show(){
     StdDraw.setPenColor(StdDraw.ORANGE);
     StdDraw.filledCircle(this.xPos, this.yPos, this.size);
@@ -30,10 +29,5 @@ class Goldfish extends Fish {
 
     return hasEaten;
   }//tryToEat
-  public boolean tryToBreed(Tankable t){
-    boolean hasBred = false;
-
-    return hasBred;
-  }//tryToBreed
 
 }//Goldfish

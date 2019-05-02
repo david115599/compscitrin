@@ -178,8 +178,14 @@ if (Math.abs(this.yVelocity) <=.01) {
 
   abstract public boolean tryToEat(Tankable t);
 
-  public boolean tryToBreed(){
-    return breed;
+  public boolean tryToBreed(Tankable t){
+    boolean hasBred = false;
+    if (Math.random()<=.2) {
+      hasBred = true;
+    }
+
+
+    return hasBred;
   }//tryToBreed
 
 
