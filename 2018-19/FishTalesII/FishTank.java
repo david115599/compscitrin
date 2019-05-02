@@ -87,7 +87,7 @@ public class FishTank{
               add(new Bubble(myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
             }
             //
-            /*if (myStuff.get(i) instanceof Goldfish && myStuff.get(z) instanceof Goldfish) {
+            if (myStuff.get(i) instanceof Goldfish && myStuff.get(z) instanceof Goldfish) {
               Goldfish g1 = ((Goldfish)myStuff.get(i));
               Goldfish g2 = ((Goldfish)myStuff.get(z));
               if (g1.tryToBreed(g2) == true) {
@@ -95,7 +95,7 @@ public class FishTank{
                 //System.out.println("hasBred");
               }
             }
-            if (myStuff.get(i) instanceof Piranha && myStuff.get(z) instanceof Piranha) {
+            /*if (myStuff.get(i) instanceof Piranha && myStuff.get(z) instanceof Piranha) {
               Piranha g1 = (myStuff.get(i));
               Piranha g2 = (myStuff.get(z));
               if (g1.tryToBreed(g2) == true) {
