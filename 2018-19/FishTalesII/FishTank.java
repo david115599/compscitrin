@@ -95,21 +95,22 @@ public class FishTank{
                 //System.out.println("hasBred");
               }
             }
-            /*if (myStuff.get(i) instanceof Piranha && myStuff.get(z) instanceof Piranha) {
-              Piranha g1 = (myStuff.get(i));
-              Piranha g2 = (myStuff.get(z));
-              if (g1.tryToBreed(g2) == true) {
+            if (myStuff.get(i) instanceof Piranha && myStuff.get(z) instanceof Piranha) {
+              Piranha p1 = (Piranha)(myStuff.get(i));
+              Piranha p2 = (Piranha)(myStuff.get(z));
+              if (p1.tryToBreed(p2) == true) {
                 add(new Piranha("Piranha",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
                 //System.out.println("hasBred");
               }
+            }
               if (myStuff.get(i) instanceof Whale && myStuff.get(z) instanceof Whale) {
-                Piranha g1 = (myStuff.get(i));
-                Piranha g2 = (myStuff.get(z));
-                if (g1.tryToBreed(g2) == true) {
+                Whale w1 = (Whale)(myStuff.get(i));
+                Whale w2 = (Whale)(myStuff.get(z));
+                if (w1.tryToBreed(w2) == true) {
                   add(new Whale("Whale",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
                   //System.out.println("hasBred");
                 }
-              }*/
+              }
             }
           }
           /*if(myStuff.get(z) instanceof Goldfish){
