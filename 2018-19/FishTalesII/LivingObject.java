@@ -7,6 +7,7 @@ abstract class LivingObject implements Tankable{
   protected Color fillColor, outlineColor;
   protected int age, maxAge;
   protected Tankable closestG;
+  protected double ammoniaCount;
 
   public void update() {
     move();
@@ -27,6 +28,7 @@ abstract class LivingObject implements Tankable{
   public double setXVelocity(double xVelocitytemp) {return this.xVelocity=xVelocitytemp;}
   public double setYVelocity(double yVelocitytemp) {return this.yVelocity=yVelocitytemp;}
 
+  public double setAmmonia(double ammonia){return this.ammoniaCount = ammonia;}
   public double d(Tankable s){ //Get distance to another tankable
     return(Math.sqrt(((this.getX()-s.getX()) * (this.getX()-s.getX())) + ((this.getY()-s.getY()) * (this.getY()-s.getY()))));
   }

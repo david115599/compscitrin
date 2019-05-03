@@ -60,9 +60,14 @@ boolean collision;
       }
 
     }
+
     if(this instanceof Goldfish && this.size>=0.4){
       this.vitalSigns = true;
+    }
 
+    
+    if(this.age>=100){
+      this.vitalSigns = true;
     }
 
 
@@ -150,6 +155,10 @@ boolean collision;
 
     return beeneaten;
   }//isEaten
+
+  public void kill(){
+    this.vitalSigns = true;
+  }
 
   abstract public boolean tryToEat(Tankable t);
 
