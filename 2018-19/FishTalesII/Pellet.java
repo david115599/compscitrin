@@ -33,7 +33,8 @@ abstract class Pellet extends LivingObject{
     return beeneaten;
   }//isEaten
 
-  public void setAmmonia(double a){
+  
+  public void tap(){
 
   }
 }//Pellet
