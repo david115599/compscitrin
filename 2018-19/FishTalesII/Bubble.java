@@ -37,9 +37,6 @@ public class Bubble extends LivingObject{
     return beeneaten;
   }//isEaten
 
-  public void setAmmonia(double a){
-
-  }
 
   public boolean isDead(){
     if(this.yPos > sheight/200){
