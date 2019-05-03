@@ -37,10 +37,6 @@ public class Bubble extends LivingObject{
     return beeneaten;
   }//isEaten
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 127e753cb3992063d25da9325cbbe2f1773b7fa6
   public boolean isDead(){
     if(this.yPos > sheight/200){
   //    beeneaten=true;
