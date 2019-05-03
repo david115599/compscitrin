@@ -181,8 +181,9 @@ if (Math.abs(this.yVelocity) <=.01) {
     return vitalSigns;
   }//isDead
 
-  public void setAmmonia(double am){
+  public double setAmmonia(double am){
     this.ammoniaNum = am;
+    return am;
   }
 
   public boolean isEaten(){
