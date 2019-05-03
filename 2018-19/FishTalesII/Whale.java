@@ -2,14 +2,18 @@ import java.awt.*;//needed for Color
 
 class Whale extends Fish {
 
-  Whale(String name, double x,double y, double h, double w) {
+  Whale(String name, double x,double y) {
     super();
     this.xPos = x;
     this.yPos = y;
-    this.size = h;
+    this.maxSize = StdRandom.gaussian(1000,1000/5)/20;
+    this.size = 0.1f;
 
-    this.xVelocity = Math.random()*.03;
-    this.yVelocity = Math.random()*.03;
+    this.maxSpeed = StdRandom.gaussian(10,10/5)/20;
+    this.xVelocity = Math.random()*.01;
+    this.yVelocity = 0;
+    this.maxAge = (int)StdRandom.gaussian(10000,10000/5);
+    this.age = 0;
   }
 
 

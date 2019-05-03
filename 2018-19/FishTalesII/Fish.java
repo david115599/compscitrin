@@ -1,5 +1,6 @@
 import java.awt.*;//needed for Color
 
+
 abstract class Fish extends LivingObject{
   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
   double swidth = screenSize.getWidth()*.9; //sets width
@@ -8,17 +9,18 @@ abstract class Fish extends LivingObject{
   private boolean vitalSigns=false;
   private boolean beeneaten=false;
   private double randomGen;
-  public boolean breed = false;
-boolean collision;
+  protected boolean breed = false;
+  private double ammoniaNum = 0;
+  boolean collision;
 
   Fish() {
     super();
+    this.breed = false;
     this.closestG = null;
   }//default fish constructor
 
 
   public boolean hasCollision(Tankable t){
-    this.breed = false;
     if(this instanceof Goldfish && t instanceof Piranha){
       //this.vitalSigns = true;
       this.beeneaten = true;
@@ -34,42 +36,51 @@ boolean collision;
       double vecLength=Math.sqrt((this.xPos-t.getX())*(this.xPos-t.getX())+(this.yPos-t.getY())*(this.yPos-t.getY()));
       this.xVelocity = (this.xPos-t.getX())/vecLength*thisSpeed;
       this.yVelocity = (this.yPos-t.getY())/vecLength*thisSpeed;
-
     }
+
     if(this instanceof Fish && t instanceof Food){
-        this.size +=.01;
+        this.size +=t.getSize()*.2;
     }
     if(this instanceof Fish && t instanceof Poison){
-        this.size -=.01;
+        this.size -=t.getSize()*.2;
     }
 
     if(this instanceof Piranha && t instanceof Goldfish){
-      this.size +=.01;
+      this.size +=t.getSize()*.2;
     }
    collision=false;
     return collision;
   }//hasCollision
 
   protected void move() {
-
+    //If dead, float to the top
     if(this.vitalSigns == true){
       this.xVelocity = 0;
       this.yVelocity = 0.01;
-      if(this.yPos > sheight/200-0.5){
+      if(this.yPos > sheight/200-(this.size/2)-.1){
         this.yVelocity = 0;
       }
 
     }
 
-    if(this instanceof Goldfish && this.size>=0.4){
+    //Checks size, fish dies if it's too big
+    if(this.size>=this.maxSize){
       this.vitalSigns = true;
     }
 
-    
-    if(this.age>=100){
+    //Checks ammonia, increased age based on ammonia count
+    if(this.ammoniaNum >=10000){
+      this.age+=1;
+    }
+    else{
+      this.age+=2;
+    }
+    //Checks age, fish dies if it's too old
+    if(this.age>=this.maxAge){
       this.vitalSigns = true;
     }
-
+    //Updates age
+    this.age+=0.05;
 
     randomGen = Math.random();
 
@@ -84,7 +95,12 @@ boolean collision;
     }else if(randomGen <= 0.5){
       this.yVelocity = this.yVelocity- 0.1*Math.random()*this.yVelocity;
     }
-
+if (Math.abs(this.xVelocity) <=.01) {
+  this.xVelocity*=2;
+}
+if (Math.abs(this.yVelocity) <=.01) {
+  this.yVelocity*=2;
+}
     if(this.xVelocity >=0.06){
       this.xVelocity -= 0.005;
     }
@@ -104,7 +120,9 @@ boolean collision;
     this.xPos = this.xPos + this.xVelocity;
     this.yPos = this.yPos + this.yVelocity;
 
-
+    if(this instanceof Whale){
+      this.yVelocity = 0;
+    }
     if(this instanceof Piranha && collision != true){
       if(closestG != null){
       // //  it currently ignores collisions and needs to maintain their old velocity
@@ -133,9 +151,7 @@ boolean collision;
 
        this.xVelocity = (closestG.getX()-this.xPos)/this.d(closestG)*this.maxSpeed;
        this.yVelocity = (closestG.getY()-this.yPos)/this.d(closestG)*this.maxSpeed;
-       if(this instanceof Whale){
-         this.yVelocity = 0;
-       }
+
       }
     }
   }//move
@@ -150,20 +166,36 @@ boolean collision;
     return vitalSigns;
   }//isDead
 
+  public void setAmmonia(double am){
+    this.ammoniaNum = am;
+  }
+
   public boolean isEaten(){
     //boolean beeneaten=false;
 
     return beeneaten;
   }//isEaten
 
-  public void kill(){
-    this.vitalSigns = true;
-  }
-
   abstract public boolean tryToEat(Tankable t);
 
-  public boolean tryToBreed(){
+  public boolean tryToBreed(Tankable t){
+    boolean hasBred = false;
+    if (Math.random()<=.2) {
+      hasBred = true;
+    }
 
-    return breed;
+
+    return hasBred;
   }//tryToBreed
+
+
+  //Tap the Tank
+  public void tap(){
+    double thisSpeed = Math.sqrt(this.xVelocity*this.xVelocity+this.yVelocity*this.yVelocity);
+    this.xVelocity = Math.random()-0.5;
+    this.yVelocity = Math.random()-0.5;
+    double newSpeed = Math.sqrt(this.xVelocity*this.xVelocity+this.yVelocity*this.yVelocity);
+    this.xVelocity = (this.xVelocity)/newSpeed*thisSpeed;
+    this.yVelocity = (this.yVelocity)/newSpeed*thisSpeed;
+  }
 }

@@ -2,12 +2,13 @@ import java.awt.*;//needed for Color
 
 abstract class LivingObject implements Tankable{
   protected FishTank tank;
-  protected double xVelocity, yVelocity, maxSpeed;
+  protected double xVelocity, yVelocity, maxSpeed,speed;
   protected double xPos, yPos, size, maxSize;
   protected Color fillColor, outlineColor;
   protected int age, maxAge;
   protected Tankable closestG;
   protected double ammoniaCount;
+
 
   public void update() {
     move();
@@ -17,6 +18,7 @@ abstract class LivingObject implements Tankable{
 
   //Accessor Methods
   public double getSize(){return size/2;}
+  public int getAge(){return age/2;}
   public double getX() {return xPos;}
   public double getY() {return yPos;}
   public double getXVelocity() {return xVelocity;}
