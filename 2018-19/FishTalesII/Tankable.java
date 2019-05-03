@@ -3,6 +3,7 @@ interface Tankable {
   boolean hasCollision(Tankable t);
   boolean isDead();
   boolean isEaten();
+  void becomeeaten();
   double getX();
   double getY();
   double getSize();

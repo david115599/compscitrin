@@ -35,9 +35,11 @@ abstract class Fish extends LivingObject{
     }
     if(this instanceof Piranha && t instanceof Piranha && this.size < t.getSize()){
       this.beeneaten = true;
+      this.becomeeaten();
     }
     if(this instanceof Piranha && t instanceof Piranha && this.size > t.getSize()){
        this.size+= t.getSize()*.2;
+       t.becomeeaten();
      }
     if(this instanceof Goldfish && t instanceof Goldfish){
       if (Math.random()<= .2) {
@@ -189,6 +191,9 @@ if (Math.abs(this.yVelocity) <=.01) {
     return am;
   }
 
+  public void becomeeaten(){
+    beeneaten = true;
+  }
   public boolean isEaten(){
     //boolean beeneaten=true;
     return beeneaten;
