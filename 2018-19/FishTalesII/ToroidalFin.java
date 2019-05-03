@@ -1,9 +1,9 @@
 import java.awt.*;//needed for Color
 
-class ToroidalFin extends Fish {
+class ToroidalFin extends Goldfish {
 
   ToroidalFin(String name, double x,double y) {
-    super();
+    super(name,x,y);
     this.xPos = x;
     this.yPos = y;
     this.maxSize = StdRandom.gaussian(10,10/5)/20;

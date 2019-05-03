@@ -10,7 +10,7 @@ interface Tankable {
   void bounce();
   void closest(Tankable t);
   double d(Tankable t);
-  void setAmmonia(double a);
+  double setAmmonia(double a);
   void tap();
 
 }
