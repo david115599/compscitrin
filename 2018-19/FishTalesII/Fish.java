@@ -21,7 +21,15 @@ abstract class Fish extends LivingObject{
 
 
   public boolean hasCollision(Tankable t){
-    if(this instanceof Goldfish && t instanceof Piranha && t.isDead() == false){
+    if(this instanceof Goldfish && t instanceof Piranha){
+      //this.vitalSigns = true;
+      this.beeneaten = true;
+    }
+    if(this instanceof Goldfish && t instanceof Whale && t.isDead() == false){
+      //this.vitalSigns = true;
+      this.beeneaten = true;
+    }
+    if(this instanceof Piranha && t instanceof Whale && t.isDead() == false){
       //this.vitalSigns = true;
       this.beeneaten = true;
     }
