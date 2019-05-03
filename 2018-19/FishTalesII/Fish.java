@@ -41,18 +41,12 @@ abstract class Fish extends LivingObject{
       this.xVelocity = (this.xPos-t.getX())/vecLength*thisSpeed;
       this.yVelocity = (this.yPos-t.getY())/vecLength*thisSpeed;
     }
-
-    if(this instanceof Piranha && t instanceof Piranha){
-      //this.vitalSigns = true;
-      if(this.size < t.getSize())
+    if(this instanceof Piranha && t instanceof Piranha && this.size < t.getSize()){
       this.beeneaten = true;
-
-      else if (this.size > t.getSize()) {
+    }
+    if(this instanceof Piranha && t instanceof Piranha && this.size > t.getSize()){
        this.size+= t.getSize()*.2;
       }
-    }
-
-
     if(this instanceof Fish && t instanceof Food){
         this.size +=t.getSize()*.2;
     }
@@ -196,7 +190,7 @@ if (Math.abs(this.yVelocity) <=.01) {
 
   public boolean tryToBreed(Tankable t){
     boolean hasBred = false;
-    if (Math.random()<=.2) {
+    if (Math.random()<=.2 && this.vitalSigns==false && t.isDead() == false) {
       hasBred = true;
     }
 
