@@ -1,5 +1,9 @@
 import java.util.*;//needed for ArrayList
 import java.awt.*;//needed for Color
+import java.util.Date;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 
@@ -76,8 +80,35 @@ public class FishTank{
 
       for(int z = 0; z<myStuff.size();z++){
         if(myStuff.get(z).isEaten() == true){
-          StdAudio.play(dyingsound);
-          myStuff.remove(z);
+          final CountDownLatch latch = new CountDownLatch(2);
+          final long start = System.nanoTime();
+          ExecutorService es = Executors.newCachedThreadPool();
+          //defines first runnable for playing the music
+          int todie = z;
+          Runnable runnable = new Runnable() {
+            public void run() {
+              StdAudio.play(dyingsound);
+              latch.countDown();
+            }
+          };
+          Runnable runnable1 = new Runnable() {
+            public void run() {
+              myStuff.remove(todie);
+              latch.countDown();//thread alingment
+            }
+          };
+          es.submit(runnable);//runs thread 1
+          es.submit(runnable1);//runs thread 2
+          //__________________________________________________________________
+          //ensures that threads remain aligned
+        /*  try
+          {
+            latch.await();
+          }
+          catch(InterruptedException ex)
+          {
+            Thread.currentThread().interrupt();
+          }*/
         }
         else{
           //  if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && myStuff.get(i).d(myStuff.get(z)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
@@ -106,26 +137,26 @@ public class FishTank{
                 //System.out.println("hasBred");
               }
             }
-              if (myStuff.get(i) instanceof Whale && myStuff.get(z) instanceof Whale) {
-                Whale w1 = (Whale)(myStuff.get(i));
-                Whale w2 = (Whale)(myStuff.get(z));
-                if (w1.tryToBreed(w2) == true) {
-                  add(new Whale("Whale",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
-                  //System.out.println("hasBred");
-                }
+            if (myStuff.get(i) instanceof Whale && myStuff.get(z) instanceof Whale) {
+              Whale w1 = (Whale)(myStuff.get(i));
+              Whale w2 = (Whale)(myStuff.get(z));
+              if (w1.tryToBreed(w2) == true) {
+                add(new Whale("Whale",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
+                //System.out.println("hasBred");
               }
             }
           }
-          /*if(myStuff.get(z) instanceof Goldfish){
-          if(myStuff.get(z).breed == true){
-          boolean sucess = false;
-          while(sucess ==false){
-          if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
-          sucess = true;
         }
+        /*if(myStuff.get(z) instanceof Goldfish){
+        if(myStuff.get(z).breed == true){
+        boolean sucess = false;
+        while(sucess ==false){
+        if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
+        sucess = true;
       }
     }
-  }*/
+  }
+}*/
 }
 }
 
