@@ -48,7 +48,7 @@ abstract class Fish extends LivingObject{
       this.beeneaten = true;
 
       else if (this.size > t.getSize()) {
-       t.isEaten();
+       this.size+= t.getSize()*.2;
       }
     }
 
