@@ -95,7 +95,7 @@ public class FishTank{
                 //System.out.println("hasBred");
               }
             }
-            if (myStuff.get(i) instanceof Piranha && myStuff.get(z) instanceof Piranha) {
+            if (myStuff.get(i) instanceof Piranha && myStuff.get(z) instanceof Piranha && myStuff.get(i).getSize() == myStuff.get(z).getSize() {
               Piranha p1 = (Piranha)(myStuff.get(i));
               Piranha p2 = (Piranha)(myStuff.get(z));
               if (p1.tryToBreed(p2) == true) {

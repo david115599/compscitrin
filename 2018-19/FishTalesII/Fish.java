@@ -25,6 +25,10 @@ abstract class Fish extends LivingObject{
       //this.vitalSigns = true;
       this.beeneaten = true;
     }
+    if(this instanceof Piranha && t instanceof Piranha && this.size < t.getSize()){
+      //this.vitalSigns = true;
+      this.beeneaten = true;
+    }
     if(this instanceof Goldfish && t instanceof Goldfish){
       if (Math.random()<= .2) {
         this.breed = true;
