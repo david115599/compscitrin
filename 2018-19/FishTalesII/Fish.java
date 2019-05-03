@@ -26,9 +26,11 @@ abstract class Fish extends LivingObject{
       this.beeneaten = true;
     }
     if(this instanceof Piranha && t instanceof Piranha && this.size < t.getSize()){
-      //this.vitalSigns = true;
       this.beeneaten = true;
     }
+    if(this instanceof Piranha && t instanceof Piranha && this.size > t.getSize()){
+       this.size+= t.getSize()*.2;
+     }
     if(this instanceof Goldfish && t instanceof Goldfish){
       if (Math.random()<= .2) {
         this.breed = true;
@@ -36,17 +38,16 @@ abstract class Fish extends LivingObject{
     }
 
     if(this instanceof Fish && t instanceof Fish){
+      if (this instanceof Piranha && t instanceof Piranha && this.size < t.getSize() || this instanceof Piranha && t instanceof Piranha && this.size > t.getSize()) {
+
+      }
+      else{
       double thisSpeed = Math.sqrt(this.xVelocity*this.xVelocity+this.yVelocity*this.yVelocity);
       double vecLength=Math.sqrt((this.xPos-t.getX())*(this.xPos-t.getX())+(this.yPos-t.getY())*(this.yPos-t.getY()));
       this.xVelocity = (this.xPos-t.getX())/vecLength*thisSpeed;
       this.yVelocity = (this.yPos-t.getY())/vecLength*thisSpeed;
     }
-    if(this instanceof Piranha && t instanceof Piranha && this.size < t.getSize()){
-      this.beeneaten = true;
     }
-    if(this instanceof Piranha && t instanceof Piranha && this.size > t.getSize()){
-       this.size+= t.getSize()*.2;
-      }
     if(this instanceof Fish && t instanceof Food){
         this.size +=t.getSize()*.2;
     }
@@ -182,7 +183,6 @@ if (Math.abs(this.yVelocity) <=.01) {
 
   public boolean isEaten(){
     //boolean beeneaten=true;
-
     return beeneaten;
   }//isEaten
 
