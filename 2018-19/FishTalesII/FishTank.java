@@ -17,6 +17,7 @@ public class FishTank{
   protected char spawntype;
   protected int spawnx;
   protected int spawny;
+  private double [] dyingsound = StdAudio.read("dyingsound.wav");
 
   public FishTank(){
     font = new Font("Arial", Font.BOLD, 20);
@@ -75,6 +76,7 @@ public class FishTank{
 
       for(int z = 0; z<myStuff.size();z++){
         if(myStuff.get(z).isEaten() == true){
+          StdAudio.play(dyingsound);
           myStuff.remove(z);
         }
         else{
