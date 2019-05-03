@@ -38,6 +38,17 @@ abstract class Fish extends LivingObject{
       this.yVelocity = (this.yPos-t.getY())/vecLength*thisSpeed;
     }
 
+    if(this instanceof Piranha && t instanceof Piranha){
+      //this.vitalSigns = true;
+      if(this.size < t.getSize())
+      this.beeneaten = true;
+
+      else if (this.size > t.getSize()) {
+       t.isEaten();
+      }
+    }
+
+
     if(this instanceof Fish && t instanceof Food){
         this.size +=t.getSize()*.2;
     }
@@ -171,7 +182,7 @@ if (Math.abs(this.yVelocity) <=.01) {
   }
 
   public boolean isEaten(){
-    //boolean beeneaten=false;
+    //boolean beeneaten=true;
 
     return beeneaten;
   }//isEaten
