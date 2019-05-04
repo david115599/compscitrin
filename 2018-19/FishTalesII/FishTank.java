@@ -84,60 +84,62 @@ public class FishTank{
         if(myStuff.get(z).isEaten() == true){
           //defines first runnable for playing the music
           int todie = z;
-          StdAudio.play(dyingsound);
+          if (myStuff.get(z) instanceof Fish) {
+            StdAudio.play(dyingsound);
+          }
           myStuff.remove(todie);
         }
 
-          else{
-            //  if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && myStuff.get(i).d(myStuff.get(z)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
-            if(myStuff.get(z)!= myStuff.get(i) && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
-              // do we want this in the if statment (myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false)
-              myStuff.get(i).hasCollision(myStuff.get(z));
-              if (myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Fish && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false || myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Pellet && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false ) {
-                add(new Bubble(myStuff.get(i).getX()-.1,myStuff.get(i).getY()-.1));
-                add(new Bubble(myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
+        else{
+          //  if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && myStuff.get(i).d(myStuff.get(z)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
+          if(myStuff.get(z)!= myStuff.get(i) && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
+            // do we want this in the if statment (myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false)
+            myStuff.get(i).hasCollision(myStuff.get(z));
+            if (myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Fish && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false || myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Pellet && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false ) {
+              add(new Bubble(myStuff.get(i).getX()-.1,myStuff.get(i).getY()-.1));
+              add(new Bubble(myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
+            }
+            //
+            if (myStuff.get(i) instanceof Goldfish && myStuff.get(z) instanceof Goldfish) {
+              Goldfish g1 = ((Goldfish)myStuff.get(i));
+              Goldfish g2 = ((Goldfish)myStuff.get(z));
+              if (g1.tryToBreed(g2) == true) {
+                add(new Goldfish("Goldfish",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
+                StdAudio.play(shootingstar);
+                //System.out.println("hasBred");
               }
-              //
-              if (myStuff.get(i) instanceof Goldfish && myStuff.get(z) instanceof Goldfish) {
-                Goldfish g1 = ((Goldfish)myStuff.get(i));
-                Goldfish g2 = ((Goldfish)myStuff.get(z));
-                if (g1.tryToBreed(g2) == true) {
-                  add(new Goldfish("Goldfish",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
-                  StdAudio.play(shootingstar);
-                  //System.out.println("hasBred");
-                }
-              }
+            }
 
-              if (myStuff.get(i) instanceof Piranha && myStuff.get(z) instanceof Piranha && myStuff.get(i).getSize() == myStuff.get(z).getSize()) {
-                Piranha p1 = (Piranha)(myStuff.get(i));
-                Piranha p2 = (Piranha)(myStuff.get(z));
-                if (p1.tryToBreed(p2) == true) {
-                  add(new Piranha("Piranha",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
-                  StdAudio.play(spawn);
-                  //System.out.println("hasBred");
-                }
+            if (myStuff.get(i) instanceof Piranha && myStuff.get(z) instanceof Piranha && myStuff.get(i).getSize() == myStuff.get(z).getSize()) {
+              Piranha p1 = (Piranha)(myStuff.get(i));
+              Piranha p2 = (Piranha)(myStuff.get(z));
+              if (p1.tryToBreed(p2) == true) {
+                add(new Piranha("Piranha",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
+                StdAudio.play(spawn);
+                //System.out.println("hasBred");
               }
-              if (myStuff.get(i) instanceof Whale && myStuff.get(z) instanceof Whale) {
-                Whale w1 = (Whale)(myStuff.get(i));
-                Whale w2 = (Whale)(myStuff.get(z));
-                if (w1.tryToBreed(w2) == true) {
-                  add(new Whale("Whale",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
-                  StdAudio.play(thunder);
-                  //System.out.println("hasBred");
-                }
+            }
+            if (myStuff.get(i) instanceof Whale && myStuff.get(z) instanceof Whale) {
+              Whale w1 = (Whale)(myStuff.get(i));
+              Whale w2 = (Whale)(myStuff.get(z));
+              if (w1.tryToBreed(w2) == true) {
+                add(new Whale("Whale",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
+                StdAudio.play(thunder);
+                //System.out.println("hasBred");
               }
             }
           }
-          /*if(myStuff.get(z) instanceof Goldfish){
-          if(myStuff.get(z).breed == true){
-          boolean sucess = false;
-          while(sucess ==false){
-          if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
-          sucess = true;
         }
+        /*if(myStuff.get(z) instanceof Goldfish){
+        if(myStuff.get(z).breed == true){
+        boolean sucess = false;
+        while(sucess ==false){
+        if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
+        sucess = true;
       }
     }
-  }*/
+  }
+}*/
 }
 }
 
