@@ -2,7 +2,7 @@
  *  Compilation:  javac StdAudio.java
  *  Execution:    java StdAudio
  *  Dependencies: none
- *  
+ *
  *  Simple library for reading, writing, and manipulating .wav files.
  *
  *
@@ -38,7 +38,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *  <i>Standard audio</i>. This class provides a basic capability for
- *  creating, reading, and saving audio. 
+ *  creating, reading, and saving audio.
  *  <p>
  *  The audio format uses a sampling rate of 44,100 (CD quality audio), 16-bit, monaural.
  *
@@ -69,7 +69,7 @@ public final class StdAudio {
     private StdAudio() {
         // can not instantiate
     }
-   
+
     // static initializer
     static {
         init();
@@ -84,7 +84,7 @@ public final class StdAudio {
 
             line = (SourceDataLine) AudioSystem.getLine(info);
             line.open(format, SAMPLE_BUFFER_SIZE * BYTES_PER_SAMPLE);
-            
+
             // the internal buffer is a fraction of the actual buffer size, this choice is arbitrary
             // it gets divided because we can't expect the buffered data to line up exactly with when
             // the sound card decides to push out its samples.
@@ -106,7 +106,7 @@ public final class StdAudio {
         line.drain();
         line.stop();
     }
-    
+
     /**
      * Writes one sample (between -1.0 and +1.0) to standard audio.
      * If the sample is outside the range, it will be clipped.
@@ -126,7 +126,7 @@ public final class StdAudio {
         buffer[bufferSize++] = (byte) s;
         buffer[bufferSize++] = (byte) (s >> 8);   // little Endian
 
-        // send to sound card if buffer is full        
+        // send to sound card if buffer is full
         if (bufferSize >= buffer.length) {
             line.write(buffer, 0, buffer.length);
             bufferSize = 0;
@@ -179,7 +179,7 @@ public final class StdAudio {
                 data = new byte[bytesToRead];
                 int bytesRead = ais.read(data);
                 if (bytesToRead != bytesRead)
-                    throw new IllegalStateException("read only " + bytesRead + " of " + bytesToRead + " bytes"); 
+                    throw new IllegalStateException("read only " + bytesRead + " of " + bytesToRead + " bytes");
             }
 
             // try to read from URL
@@ -190,7 +190,7 @@ public final class StdAudio {
                 data = new byte[bytesToRead];
                 int bytesRead = ais.read(data);
                 if (bytesToRead != bytesRead)
-                    throw new IllegalStateException("read only " + bytesRead + " of " + bytesToRead + " bytes"); 
+                    throw new IllegalStateException("read only " + bytesRead + " of " + bytesToRead + " bytes");
             }
         }
         catch (IOException e) {
@@ -403,13 +403,13 @@ public final class StdAudio {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        
+
         // 440 Hz for 1 sec
         double freq = 440.0;
         for (int i = 0; i <= StdAudio.SAMPLE_RATE; i++) {
             StdAudio.play(0.5 * Math.sin(2*Math.PI * freq * i / StdAudio.SAMPLE_RATE));
         }
-        
+
         // scale increments
         int[] steps = { 0, 2, 4, 5, 7, 9, 11, 12 };
         for (int i = 0; i < steps.length; i++) {
@@ -420,6 +420,6 @@ public final class StdAudio {
 
         // need to call this in non-interactive stuff so the program doesn't terminate
         // until all the sound leaves the speaker.
-        StdAudio.close(); 
+        StdAudio.close();
     }
 }
