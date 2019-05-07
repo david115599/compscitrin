@@ -33,11 +33,11 @@ abstract class Fish extends LivingObject{
       //this.vitalSigns = true;
       this.beeneaten = true;
     }
-    if(this instanceof Piranha && t instanceof Piranha && this.size < t.getSize()){
+    if(this instanceof Piranha && t instanceof Piranha && this.size < t.getSize() && t.isDead() == false){
       this.beeneaten = true;
       this.becomeeaten();
     }
-    if(this instanceof Piranha && t instanceof Piranha && this.size > t.getSize()){
+    if(this instanceof Piranha && t instanceof Piranha && this.size > t.getSize() && this.vitalSigns == false){
        this.size+= t.getSize()*.2;
        t.becomeeaten();
      }
