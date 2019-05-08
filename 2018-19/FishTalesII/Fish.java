@@ -21,31 +21,8 @@ abstract class Fish extends LivingObject{
 
 
   public boolean hasCollision(Tankable t){
-    if(this instanceof Goldfish && t instanceof Piranha){
-      //this.vitalSigns = true;
-      this.beeneaten = true;
-    }
-    if(this instanceof Goldfish && t instanceof Whale && t.isDead() == false){
-      //this.vitalSigns = true;
-      this.beeneaten = true;
-    }
-    if(this instanceof Piranha && t instanceof Whale && t.isDead() == false){
-      //this.vitalSigns = true;
-      this.beeneaten = true;
-    }
-    if(this instanceof Piranha && t instanceof Piranha && this.size < t.getSize() && t.isDead() == false){
-      this.beeneaten = true;
-      this.becomeeaten();
-    }
-    if(this instanceof Piranha && t instanceof Piranha && this.size > t.getSize() && this.vitalSigns == false){
-       this.size+= t.getSize()*.2;
-       t.becomeeaten();
-     }
-    if(this instanceof Goldfish && t instanceof Goldfish){
-      if (Math.random()<= .2) {
-        this.breed = true;
-      }
-    }
+    this.tryToEat(t);
+
 
     if(this instanceof Fish && t instanceof Fish){
       if (this instanceof Piranha && t instanceof Piranha && this.size < t.getSize() || this instanceof Piranha && t instanceof Piranha && this.size > t.getSize()) {
@@ -199,7 +176,34 @@ if (Math.abs(this.yVelocity) <=.01) {
     return beeneaten;
   }//isEaten
 
-  abstract public boolean tryToEat(Tankable t);
+  public void tryToEat(Tankable t){
+    if(this instanceof Goldfish && t instanceof Piranha){
+      //this.vitalSigns = true;
+      this.beeneaten = true;
+    }
+    if(this instanceof Goldfish && t instanceof Whale && t.isDead() == false){
+      //this.vitalSigns = true;
+      this.beeneaten = true;
+    }
+    if(this instanceof Piranha && t instanceof Whale && t.isDead() == false){
+      //this.vitalSigns = true;
+      this.beeneaten = true;
+    }
+    if(this instanceof Piranha && t instanceof Piranha && this.size < t.getSize() && t.isDead() == false){
+      this.beeneaten = true;
+      this.becomeeaten();
+    }
+    if(this instanceof Piranha && t instanceof Piranha && this.size > t.getSize() && this.vitalSigns == false){
+       this.size+= t.getSize()*.2;
+       t.becomeeaten();
+     }
+    if(this instanceof Goldfish && t instanceof Goldfish){
+      if (Math.random()<= .2) {
+        this.breed = true;
+      }
+    }
+    return;
+  };
 
   public boolean tryToBreed(Tankable t){
     boolean hasBred = false;
