@@ -24,11 +24,7 @@ class ToroidalFin extends Goldfish {
     StdDraw.circle(this.xPos, this.yPos, this.size);
   }//show
 
-  public boolean tryToEat(Tankable t){
-    boolean hasEaten = false;
 
-    return hasEaten;
-  }//tryToEat
   public  boolean tryToBreed(Tankable t){
     boolean hasBred = false;
 

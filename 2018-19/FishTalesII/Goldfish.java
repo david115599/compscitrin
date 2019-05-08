@@ -23,11 +23,6 @@ class Goldfish extends Fish {
     StdDraw.setPenColor(StdDraw.ORANGE);
     StdDraw.filledCircle(this.xPos, this.yPos, this.size);
   }//show
-
-  public boolean tryToEat(Tankable t){
-    boolean hasEaten = false;
-
-    return hasEaten;
-  }//tryToEat
+//tryToEat
 
 }//Goldfish

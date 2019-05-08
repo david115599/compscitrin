@@ -21,10 +21,9 @@ public class FishTank{
   protected char spawntype;
   protected int spawnx;
   protected int spawny;
-  private double [] dyingsound = StdAudio.read("dyingsound.wav");
-  private double [] spawn = StdAudio.read("spawn.wav");
+/*  private double [] spawn = StdAudio.read("spawn.wav");
   private double [] shootingstar = StdAudio.read("shootingstar.wav");
-  private double [] thunder = StdAudio.read("thunder.wav");
+  private double [] thunder = StdAudio.read("thunder.wav");*/
   public FishTank(){
     font = new Font("Arial", Font.BOLD, 20);
     StdDraw.setFont(font);
@@ -105,7 +104,7 @@ public class FishTank{
               Goldfish g2 = ((Goldfish)myStuff.get(z));
               if (g1.tryToBreed(g2) == true) {
                 add(new Goldfish("Goldfish",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
-               //StdAudio.play(shootingstar);
+              //  StdAudio.play(shootingstar);
                 //System.out.println("hasBred");
               }
             }

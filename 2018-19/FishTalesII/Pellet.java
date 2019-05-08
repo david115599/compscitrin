@@ -33,7 +33,11 @@ abstract class Pellet extends LivingObject{
     return beeneaten;
   }//isEaten
 
-  
+  public void becomeeaten(){
+    beeneaten = true;
+  }
+
+
   public void tap(){
 
   }
