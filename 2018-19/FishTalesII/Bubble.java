@@ -48,4 +48,8 @@ public class Bubble extends LivingObject{
   public void tap(){
 
   }
+
+  public void becomeeaten(){
+
+  }
 }//Pellet
