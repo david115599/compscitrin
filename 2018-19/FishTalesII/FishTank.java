@@ -190,7 +190,7 @@ boolean add(Tankable t){
   t.setName(name);
   String type = "object";
   if(t instanceof Piranha){
-    type = "Pirahna";
+    type = "Piranha";
   }
   else if(t instanceof Whale){
     type = "Whale";
