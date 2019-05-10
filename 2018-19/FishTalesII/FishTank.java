@@ -97,10 +97,10 @@ public class FishTank{
         else{
           boolean hascolided = false;
           //  if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && myStuff.get(i).d(myStuff.get(z)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
-            //if(myStuff.get(z)!= myStuff.get(i) && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
+            if(myStuff.get(z)!= myStuff.get(i) && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
 
 
-          if(myStuff.get(i).hasCollision(myStuff.get(z)) == true && hascolided == false && myStuff.get(z)!= myStuff.get(i)){
+        //  if(myStuff.get(i).hasCollision(myStuff.get(z)) == true && hascolided == false && myStuff.get(z)!= myStuff.get(i)){
 
 
           myStuff.get(i).hasCollision(myStuff.get(z));
