@@ -18,7 +18,7 @@ abstract class Fish extends LivingObject{
     super();
     this.breed = false;
     this.closestG = null;
-    
+
   }//default fish constructor
 
 
@@ -43,7 +43,6 @@ abstract class Fish extends LivingObject{
     if(this instanceof Fish && t instanceof Poison){
         this.size -=t.getSize()*.2;
     }
-
     if(this.isDead() == false && this instanceof Piranha && t instanceof Goldfish){
       this.size +=t.getSize()*.2;
     }
