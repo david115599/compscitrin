@@ -41,4 +41,20 @@ abstract class Pellet extends LivingObject{
   public void tap(){
 
   }
+
+  public void setName(String s){
+
+  }
+
+  public void setType(String t){
+
+  }
+
+  public String getName(){
+    return "pellet";
+  }
+
+  public String getType(){
+    return "pellet";
+  }
 }//Pellet

@@ -1,9 +1,9 @@
 import java.awt.*;//needed for Color
 
-public class Bubble extends LivingObject{
-  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+public class Bubble extends Pellet{
+  private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
   private boolean beeneaten=false;
-  double sheight = screenSize.getHeight()*.9; //sets height
+  private double sheight = screenSize.getHeight()*.9; //sets height
 
   Bubble(double x,double y) {
     super();

@@ -2,9 +2,9 @@ import java.awt.*;//needed for Color
 
 public class Food extends Pellet{
 
-  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-  double width = (screenSize.getWidth()*.9)/200; //sets width
-  double height = (screenSize.getHeight()*.9)/200; //sets height
+  private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+  private double width = (screenSize.getWidth()*.9)/200; //sets width
+  private double height = (screenSize.getHeight()*.9)/200; //sets height
 
   Food(){
 

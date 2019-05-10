@@ -8,20 +8,23 @@ import java.util.concurrent.Executors;
 
 
 public class FishTank{
-  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-  double swidth = screenSize.getWidth()*.9; //sets width
-  double sheight = screenSize.getHeight()*.9; //sets height
+  private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+  private double swidth = screenSize.getWidth()*.9; //sets width
+  private double sheight = screenSize.getHeight()*.9; //sets height
   private ArrayList<Tankable> myStuff = new ArrayList<Tankable>();
   private double length, width;
-  Font font;
+  private Font font;
   private int fishNum;
   private int pelletsNum;
   private double ammoniaCount;
   private Tankable oldestFish;
+  private String oldestName;
+  private String oldestType;
   protected char spawntype;
   protected int spawnx;
   protected int spawny;
-  /* private double [] spawn = StdAudio.read("spawn.wav");
+  private int c=0;//counter on fish names
+/*  private double [] spawn = StdAudio.read("spawn.wav");
   private double [] shootingstar = StdAudio.read("shootingstar.wav");
   private double [] thunder = StdAudio.read("thunder.wav");*/
   public FishTank(){
@@ -49,8 +52,10 @@ public class FishTank{
       // }
 
       //Updates oldest age
-      if(myStuff.get(i).getAge() > oldestAge && myStuff.get(i).isDead() == false){
+      if(myStuff.get(i) instanceof Fish && myStuff.get(i).getAge() > oldestAge && myStuff.get(i).isDead() == false){
         oldestAge = myStuff.get(i).getAge();
+        oldestName = myStuff.get(i).getName();
+        oldestType = myStuff.get(i).getType();
       }
 
       //Removes eaten Tankable objects
@@ -84,17 +89,17 @@ public class FishTank{
           //defines first runnable for playing the music
           int todie = z;
           if (myStuff.get(z) instanceof Fish) {
-            //  StdAudio.play(dyingsound);
+          //  StdAudio.play(dyingsound);
           }
           myStuff.remove(todie);
         }
 
         else{
           //  if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && myStuff.get(i).d(myStuff.get(z)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
-          //  if(myStuff.get(z)!= myStuff.get(i) && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
-          // do we want this in the if statment (myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false)
-          if(myStuff.get(i).hasCollision(myStuff.get(z)) == true){
-            if(myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Fish && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false || myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Pellet && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false ) {
+          if(myStuff.get(z)!= myStuff.get(i) && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
+            // do we want this in the if statment (myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false)
+            myStuff.get(i).hasCollision(myStuff.get(z));
+            if (myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Fish && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false || myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Pellet && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false ) {
               add(new Bubble(myStuff.get(i).getX()-.1,myStuff.get(i).getY()-.1));
               add(new Bubble(myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
             }
@@ -104,7 +109,7 @@ public class FishTank{
               Goldfish g2 = ((Goldfish)myStuff.get(z));
               if (g1.tryToBreed(g2) == true) {
                 add(new Goldfish("Goldfish",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
-                //  StdAudio.play(shootingstar);
+              //  StdAudio.play(shootingstar);
                 //System.out.println("hasBred");
               }
             }
@@ -114,7 +119,7 @@ public class FishTank{
               Piranha p2 = (Piranha)(myStuff.get(z));
               if (p1.tryToBreed(p2) == true) {
                 add(new Piranha("Piranha",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
-                //  StdAudio.play(spawn);
+              //  StdAudio.play(spawn);
                 //System.out.println("hasBred");
               }
             }
@@ -123,22 +128,13 @@ public class FishTank{
               Whale w2 = (Whale)(myStuff.get(z));
               if (w1.tryToBreed(w2) == true) {
                 add(new Whale("Whale",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
-                //  StdAudio.play(thunder);
+              //  StdAudio.play(thunder);
                 //System.out.println("hasBred");
               }
             }
           }
         }
-        /*if(myStuff.get(z) instanceof Goldfish){
-        if(myStuff.get(z).breed == true){
-        boolean sucess = false;
-        while(sucess ==false){
-        if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
-        sucess = true;
-      }
-    }
-  }
-}*/
+
 }
 }
 
@@ -147,7 +143,7 @@ StdDraw.setPenColor(StdDraw.BLACK);
 StdDraw.textLeft((-swidth/200)+1,(sheight/200)-.8, "Fish : " + Integer.toString(fishNum));
 StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1, "Ammonia : " + Float.toString(Math.round(ammoniaCount)));
 StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.2, "Pellets : " + Integer.toString(pelletsNum));
-StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.4, "Oldest Fish : " + Double.toString((double)Math.round(oldestAge*10)/10));
+StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.4, "Oldest Fish : " + oldestName + " " + oldestType + " " + Double.toString((double)Math.round(oldestAge*10)/10));
 
 
 
@@ -189,8 +185,24 @@ boolean add(Tankable t){
     }
 
   }
+  String name = "fish_" + c;
+  c++;
+  t.setName(name);
+  String type = "object";
+  if(t instanceof Piranha){
+    type = "Piranha";
+  }
+  else if(t instanceof Whale){
+    type = "Whale";
+  }
+  else if(t instanceof ToroidalFin){
+    type = "ToroidalFin";
+  }
 
-
+  else if(t instanceof Goldfish){
+    type = "Goldfish";
+  }
+  t.setType(type);
   myStuff.add(t);
   return true;
 }//add a Tankable object to the FishTank

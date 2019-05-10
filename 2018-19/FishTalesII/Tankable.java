@@ -13,5 +13,9 @@ interface Tankable {
   double d(Tankable t);
   double setAmmonia(double a);
   void tap();
+  void setName(String n);
+  void setType(String s);
+  String getName();
+  String getType();
 
 }

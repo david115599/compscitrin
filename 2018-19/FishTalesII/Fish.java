@@ -2,10 +2,11 @@ import java.awt.*;//needed for Color
 
 
 abstract class Fish extends LivingObject{
-  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-  double swidth = screenSize.getWidth()*.9; //sets width
-  double sheight = screenSize.getHeight()*.9; //sets height
+  private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+  private double swidth = screenSize.getWidth()*.9; //sets width
+  private double sheight = screenSize.getHeight()*.9; //sets height
   private String name;
+  private String type;
   private boolean vitalSigns=false;
   private boolean beeneaten=false;
   private double randomGen;
@@ -17,7 +18,9 @@ abstract class Fish extends LivingObject{
     super();
     this.breed = false;
     this.closestG = null;
+    
   }//default fish constructor
+
 
 
   public boolean hasCollision(Tankable t){
@@ -214,6 +217,22 @@ if (Math.abs(this.yVelocity) <=.01) {
 
     return hasBred;
   }//tryToBreed
+
+  public String getName(){
+    return this.name;
+  }
+
+  public String getType(){
+    return this.type;
+  }
+
+  public void setName(String s){
+    this.name = s;
+  }
+
+  public void setType(String t){
+    this.type = t;
+  }
 
 
   //Tap the Tank
