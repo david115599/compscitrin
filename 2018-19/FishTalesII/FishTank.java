@@ -21,7 +21,7 @@ public class FishTank{
   protected char spawntype;
   protected int spawnx;
   protected int spawny;
-/*  private double [] spawn = StdAudio.read("spawn.wav");
+  /* private double [] spawn = StdAudio.read("spawn.wav");
   private double [] shootingstar = StdAudio.read("shootingstar.wav");
   private double [] thunder = StdAudio.read("thunder.wav");*/
   public FishTank(){
@@ -84,17 +84,17 @@ public class FishTank{
           //defines first runnable for playing the music
           int todie = z;
           if (myStuff.get(z) instanceof Fish) {
-          //  StdAudio.play(dyingsound);
+            //  StdAudio.play(dyingsound);
           }
           myStuff.remove(todie);
         }
 
         else{
           //  if(myStuff.get(i).isDead() == false && myStuff.get(z).isDead() == false && myStuff.get(i).d(myStuff.get(z)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
-          if(myStuff.get(z)!= myStuff.get(i) && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
-            // do we want this in the if statment (myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false)
-            myStuff.get(i).hasCollision(myStuff.get(z));
-            if (myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Fish && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false || myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Pellet && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false ) {
+          //  if(myStuff.get(z)!= myStuff.get(i) && Math.sqrt(Math.pow((Math.abs(myStuff.get(i).getX()-myStuff.get(z).getX())),2)+Math.pow(Math.abs(myStuff.get(i).getY()-myStuff.get(z).getY()),2)) <= ((myStuff.get(i).getSize())+myStuff.get(z).getSize())*2){
+          // do we want this in the if statment (myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false)
+          if(myStuff.get(i).hasCollision(myStuff.get(z)) == true){
+            if(myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Fish && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false || myStuff.get(i) instanceof Fish && myStuff.get(z) instanceof Pellet && myStuff.get(z).isDead() == false && myStuff.get(i).isDead() == false ) {
               add(new Bubble(myStuff.get(i).getX()-.1,myStuff.get(i).getY()-.1));
               add(new Bubble(myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
             }
@@ -104,7 +104,7 @@ public class FishTank{
               Goldfish g2 = ((Goldfish)myStuff.get(z));
               if (g1.tryToBreed(g2) == true) {
                 add(new Goldfish("Goldfish",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
-              //  StdAudio.play(shootingstar);
+                //  StdAudio.play(shootingstar);
                 //System.out.println("hasBred");
               }
             }
@@ -114,7 +114,7 @@ public class FishTank{
               Piranha p2 = (Piranha)(myStuff.get(z));
               if (p1.tryToBreed(p2) == true) {
                 add(new Piranha("Piranha",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
-              //  StdAudio.play(spawn);
+                //  StdAudio.play(spawn);
                 //System.out.println("hasBred");
               }
             }
@@ -123,7 +123,7 @@ public class FishTank{
               Whale w2 = (Whale)(myStuff.get(z));
               if (w1.tryToBreed(w2) == true) {
                 add(new Whale("Whale",myStuff.get(z).getX()-.1,myStuff.get(z).getY()-.1));
-              //  StdAudio.play(thunder);
+                //  StdAudio.play(thunder);
                 //System.out.println("hasBred");
               }
             }

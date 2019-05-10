@@ -11,7 +11,7 @@ abstract class Fish extends LivingObject{
   private double randomGen;
   protected boolean breed = false;
   private double ammoniaNum = 0;
-  boolean collision;
+  protected boolean collision = false;
 
   Fish() {
     super();
@@ -21,9 +21,8 @@ abstract class Fish extends LivingObject{
 
 
   public boolean hasCollision(Tankable t){
+    if(this!= t && Math.sqrt(Math.pow((Math.abs(t.getX()-this.getX())),2)+Math.pow(Math.abs(t.getY()-this.getY()),2)) <= ((t.getSize())+this.getSize())*2){
     this.tryToEat(t);
-
-
     if(this instanceof Fish && t instanceof Fish){
       if (this instanceof Piranha && t instanceof Piranha && this.size < t.getSize() || this instanceof Piranha && t instanceof Piranha && this.size > t.getSize()) {
 
@@ -45,8 +44,9 @@ abstract class Fish extends LivingObject{
     if(this.isDead() == false && this instanceof Piranha && t instanceof Goldfish){
       this.size +=t.getSize()*.2;
     }
-   collision=false;
-    return collision;
+    collision = true;
+  }
+  return collision;
   }//hasCollision
 
   protected void move() {
