@@ -12,7 +12,7 @@ abstract class Fish extends LivingObject{
   private double randomGen;
   protected boolean breed = false;
   private double ammoniaNum = 0;
-  protected boolean collision = false;
+  protected boolean collision;
 
   Fish() {
     super();
@@ -46,9 +46,11 @@ abstract class Fish extends LivingObject{
     if(this.isDead() == false && this instanceof Piranha && t instanceof Goldfish){
       this.size +=t.getSize()*.2;
     }
-    collision = true;
+    return true;
   }
-  return collision;
+  else{
+    return false;
+  }
   }//hasCollision
 
   protected void move() {
