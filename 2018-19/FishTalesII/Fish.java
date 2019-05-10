@@ -24,7 +24,7 @@ abstract class Fish extends LivingObject{
 
 
   public boolean hasCollision(Tankable t){
-    if(this!= t && Math.sqrt(Math.pow((Math.abs(t.getX()-this.getX())),2)+Math.pow(Math.abs(t.getY()-this.getY()),2)) <= ((t.getSize())+this.getSize())*2){
+  //  if(this!= t && Math.sqrt(Math.pow((Math.abs(t.getX()-this.getX())),2)+Math.pow(Math.abs(t.getY()-this.getY()),2)) <= ((t.getSize())+this.getSize())*2){
     this.tryToEat(t);
     if(this instanceof Fish && t instanceof Fish){
       if (this instanceof Piranha && t instanceof Piranha && this.size < t.getSize() || this instanceof Piranha && t instanceof Piranha && this.size > t.getSize()) {
@@ -47,10 +47,10 @@ abstract class Fish extends LivingObject{
       this.size +=t.getSize()*.2;
     }
     return true;
-  }
+  /*}
   else{
     return false;
-  }
+  }*/
   }//hasCollision
 
   protected void move() {
