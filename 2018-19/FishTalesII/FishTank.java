@@ -8,19 +8,22 @@ import java.util.concurrent.Executors;
 
 
 public class FishTank{
-  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-  double swidth = screenSize.getWidth()*.9; //sets width
-  double sheight = screenSize.getHeight()*.9; //sets height
+  private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+  private double swidth = screenSize.getWidth()*.9; //sets width
+  private double sheight = screenSize.getHeight()*.9; //sets height
   private ArrayList<Tankable> myStuff = new ArrayList<Tankable>();
   private double length, width;
-  Font font;
+  private Font font;
   private int fishNum;
   private int pelletsNum;
   private double ammoniaCount;
   private Tankable oldestFish;
+  private String oldestName;
+  private String oldestType;
   protected char spawntype;
   protected int spawnx;
   protected int spawny;
+  private int c=0;//counter on fish names
 /*  private double [] spawn = StdAudio.read("spawn.wav");
   private double [] shootingstar = StdAudio.read("shootingstar.wav");
   private double [] thunder = StdAudio.read("thunder.wav");*/
@@ -49,8 +52,10 @@ public class FishTank{
       // }
 
       //Updates oldest age
-      if(myStuff.get(i).getAge() > oldestAge && myStuff.get(i).isDead() == false){
+      if(myStuff.get(i) instanceof Fish && myStuff.get(i).getAge() > oldestAge && myStuff.get(i).isDead() == false){
         oldestAge = myStuff.get(i).getAge();
+        oldestName = myStuff.get(i).getName();
+        oldestType = myStuff.get(i).getType();
       }
 
       //Removes eaten Tankable objects
@@ -129,16 +134,7 @@ public class FishTank{
             }
           }
         }
-        /*if(myStuff.get(z) instanceof Goldfish){
-        if(myStuff.get(z).breed == true){
-        boolean sucess = false;
-        while(sucess ==false){
-        if(add(new Goldfish("Goldfish",myStuff.get(z).getX()-.05-Math.random(),myStuff.get(z).getY()-.05-Math.random(),0.1f,0.1f)) == true){
-        sucess = true;
-      }
-    }
-  }
-}*/
+
 }
 }
 
@@ -147,7 +143,7 @@ StdDraw.setPenColor(StdDraw.BLACK);
 StdDraw.textLeft((-swidth/200)+1,(sheight/200)-.8, "Fish : " + Integer.toString(fishNum));
 StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1, "Ammonia : " + Float.toString(Math.round(ammoniaCount)));
 StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.2, "Pellets : " + Integer.toString(pelletsNum));
-StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.4, "Oldest Fish : " + Double.toString((double)Math.round(oldestAge*10)/10));
+StdDraw.textLeft((-swidth/200)+1,(sheight/200)-1.4, "Oldest Fish : " + oldestName + " " + oldestType + " " + Double.toString((double)Math.round(oldestAge*10)/10));
 
 
 
@@ -189,8 +185,24 @@ boolean add(Tankable t){
     }
 
   }
+  String name = "fish_" + c;
+  c++;
+  t.setName(name);
+  String type = "object";
+  if(t instanceof Piranha){
+    type = "Pirahna";
+  }
+  else if(t instanceof Whale){
+    type = "Whale";
+  }
+  else if(t instanceof ToroidalFin){
+    type = "ToroidalFin";
+  }
 
-
+  else if(t instanceof Goldfish){
+    type = "Goldfish";
+  }
+  t.setType(type);
   myStuff.add(t);
   return true;
 }//add a Tankable object to the FishTank
