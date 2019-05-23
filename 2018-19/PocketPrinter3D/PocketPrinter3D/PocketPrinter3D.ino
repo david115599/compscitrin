@@ -2,45 +2,55 @@
 #include <SD.h>
 #include <Stepper.h>
 #include <TFT.h>
-Sd2Card card;
-SdVolume volume;
-SdFile root;
+//Sd2Card card;
+//SdVolume volume;
+//SdFile root;
 #define lcd_cs 10
 #define dc     9
 #define rst    8
+#define sd_cs  4
 const int chipSelect = 4;
 const int stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
 Stepper myStepper(stepsPerRevolution, 2, 3, 5, 7);
 TFT TFTscreen = TFT(lcd_cs, dc, rst);
 PImage logo;
+//File currentimage;
 void setup() {
   Serial.begin(9600);
   myStepper.setSpeed(200);
 
 
-  Serial.print("\nInitializing SD card...");
+  /*Serial.print("\nInitializing SD card...");
 
-  // we'll use the initialization code from the utility libraries
-  // since we're just testing if the card is working!
-  if (!card.init(SPI_HALF_SPEED, chipSelect)) {
+    // we'll use the initialization code from the utility libraries
+    // since we're just testing if the card is working!
+    if (!card.init(SPI_HALF_SPEED, chipSelect)) {
     Serial.println("initialization failed. Things to check:");
     Serial.println("* is a card inserted?");
     Serial.println("* is your wiring correct?");
     Serial.println("* did you change the chipSelect pin to match your shield or module?");
     while (1);
-  } else {
+    } else {
     Serial.println("Wiring is correct and a card is present.");
-  }
+    }
 
 
-  File root1;
-  root1 = SD.open("/");
-  printDirectory(root1, 0);
-
+    File root1;
+    root1 = SD.open("/");
+    printDirectory(root1, 0);
+  */
   TFTscreen.begin();
   TFTscreen.background(255, 255, 255);
+  
+  Serial.print(F("Initializing SD card..."));
+  if (!SD.begin(sd_cs)) {
+    Serial.println(F("failed!"));
+    return;
+  }
+  Serial.println(F("OK!"));
 
   logo = TFTscreen.loadImage("0.bmp");
+  //currentimage = SD.open("0.bmp");
 }
 
 void loop() {
@@ -48,7 +58,7 @@ void loop() {
 
   if (logo.isValid() == false) {
     return;
-  }
+    }
   int x = (TFTscreen.width() / 2 - logo.width() / 2);
   int y = (TFTscreen.height() / 2 - logo.height() / 2);
   Serial.println(F("drawing image"));
