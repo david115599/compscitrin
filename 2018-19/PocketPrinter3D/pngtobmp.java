@@ -11,9 +11,9 @@ public class pngtobmp {
     try {
     File file = new File("test.png");
     BufferedImage bi = ImageIO.read(file);
-    int scalarx = bi.getWidth()/128;
-    int scalary = bi.getHeight()/160;
-    BufferedImage img = map( 128, 160 , bi, scalarx ,scalary );
+    int scalarx = bi.getWidth()/160;
+    int scalary = bi.getHeight()/128;
+    BufferedImage img = map( 160, 128 , bi, scalarx ,scalary );
     savePNG( img, "test.bmp" );
   }catch (IOException e) {
     System.out.println("Exception occured :" + e.getMessage());
