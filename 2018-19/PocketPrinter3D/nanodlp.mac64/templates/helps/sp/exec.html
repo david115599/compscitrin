@@ -1,0 +1,9 @@
+<br>
+<h4>Ejecución de Programas Externos</h4>
+Puedes llamar a programas externos bajo un amplio rango de condiciones. Al hacerlo, puedes comunicarte con diferentes programas.<br>
+
+<pre>python /home/pi/printer/calculate_speed.py [[LayerNumber]] [[TotalSolidArea]]</pre>
+<br>
+<pre>G1 Z1 F[[ExecReturn python /home/pi/printer/calculate_speed.py [[LayerNumber]] [[TotalSolidArea]]]]</pre>
+<br>
+<p class="text-danger">Por favor, ten en cuenta que nanoDLP no podría controlar los procesos externos. El uso excesivo de esta característica podría bloquear nanoDLP debido al alto uso de memoria o de procesos estancados. De hecho, la razón principal de los bloqueos de nanoDLP son las ejecuciones de programas externos. Por lo tanto, para aumentar la fiabilidad, usa esta función de forma inteligente.</p>

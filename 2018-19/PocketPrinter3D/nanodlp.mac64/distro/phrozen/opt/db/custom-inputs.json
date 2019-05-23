@@ -1,0 +1,13 @@
+[
+	{
+		"ID": 0,
+		"Name": "ResinLevel",
+		"Title": "Resin Level",
+		"Note": "Good",
+		"Placeholder": "2.0mm",
+		"Unit": "mm",
+		"Type": 0,
+		"Min": 0,
+		"Max": 0
+	}
+]

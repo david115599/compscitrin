@@ -1,0 +1,41 @@
+{% extends "../base.html" %}
+{% block content %}
+<h1>Tools</h1>
+<a class="btn btn-success" href="/setup/export" translate>Export Machine Settings File</a>
+<br>
+<a class="btn btn-success" href="/import" title="Import Machine File" translate>Import Machine Settings</a>
+<br>
+<a class="btn btn-success" href="/debug" translate>Debug Info</a>
+<br>
+<br>
+<br>
+<div class="alert alert-warning" role="alert" translate>Any of the following actions will take effect immediately after click, without changing the page.</div>
+<a class="ajax btn btn-danger" data-ajax="/" href="/printer/force-stop" data-confirm="stop-confirm" translate>Force Stop</a>
+<translate class="hide" id="stop-confirm">Are you sure you want to force stop the printer?</translate>
+<br>
+<a class="ajax btn btn-danger" data-ajax="/" href="/printer/off" data-confirm="poweroff-confirm" translate>Power Off</a>
+<translate class="hide" id="poweroff-confirm">Are you sure you want to power off the printer?</translate>
+<br>
+<a class="ajax btn btn-danger" data-ajax="/" href="/printer/restart" data-confirm="restart-confirm" translate>Restart Printer</a>
+<translate class="hide" id="restart-confirm">Are you sure you want to restart the printer?</translate>
+<br>
+<a class="ajax btn btn-warning" data-ajax="/" href="/printer/reload" translate>Reload NanoDLP</a>
+<br>
+<a class="ajax btn btn-danger" data-ajax="/" href="/printer/terminate" data-confirm="terminate-confirm" translate>Terminate nanoDLP</a>
+<translate class="hide" id="terminate-confirm">Are you sure you want to terminate nanoDLP and have access to terminal?</translate>
+<br>
+{% if arch=="arm" %}
+<a class="ajax btn btn-danger" data-ajax="/" href="/printer/restore" data-confirm="restore-confirm" translate>Restore Default Settings of Machine/Profiles/Buttons</a>
+<translate class="hide" id="restore-confirm">Are you sure you want to restore the default settings and reboot the printer?</translate>
+<br>
+<a class="btn btn-danger" href="/printer/distro/change" translate>Change Distribution</a>
+<br>
+<a class="btn btn-danger" href="/printer/upgrade" translate>Upgrade nanoDLP</a>
+<br>
+<br>
+<div class="alert alert-warning" role="alert" translate>Filesystem expantion will run silently in background, and will restart the Raspberry Pi afterward. Please do not change anything.</div>
+<a class="ajax btn btn-danger" data-ajax="/" href="/printer/expand-fs" data-confirm="expand-confirm" translate>Expand Filesystem</a>
+<translate class="hide" id="expand-confirm">Are you sure you want to expand filesystem?</translate>
+{% endif %}
+
+{% endblock %}

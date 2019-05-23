@@ -4,6 +4,8 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.awt.*;
+import javax.swing.JApplet;
 
 public class pngtobmp {
 
@@ -14,6 +16,7 @@ public class pngtobmp {
     int scalarx = bi.getWidth()/160;
     int scalary = bi.getHeight()/128;
     BufferedImage img = map( 160, 128 , bi, scalarx ,scalary );
+    img = convertToGrayScale(img);
     savePNG( img, "test.bmp" );
   }catch (IOException e) {
     System.out.println("Exception occured :" + e.getMessage());
@@ -24,13 +27,20 @@ public class pngtobmp {
     final BufferedImage res = new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_INT_RGB );
     int w = bi.getWidth();
      int h = bi.getHeight();
-
     for (int x = 0; x < sizeX; x++){
       for (int y = 0; y < sizeY; y++){
         res.setRGB(x, y, bi.getRGB( x*scalarx, y*scalary ) );
       }
     }
     return res;
+  }
+
+  public static BufferedImage convertToGrayScale(BufferedImage image) {
+    BufferedImage result = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+    Graphics g = result.getGraphics();
+    g.drawImage(image, 0, 0, null);
+    g.dispose();
+    return result;
   }
 
   private static void savePNG( final BufferedImage bi, final String path ){

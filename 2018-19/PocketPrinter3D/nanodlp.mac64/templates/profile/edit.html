@@ -1,0 +1,453 @@
+{% extends "../base.html" %} {% block content %}
+<div class="starter-template">
+	{% if msg %}
+	<div class="alert alert-danger" role="alert">{{msg}}</div>
+	{% endif %}
+	<legend translate>Edit Profile</legend>
+	<form action="" method="post" class="edit-page" id="setup">
+		<div class="row flex-row">
+			<div class="col-md-6">
+				<label for="Title" translate>Title</label>
+				<input class="form-control" value="{{profile.Title}}" name="Title" id="Title" required>
+				<br>
+			</div>
+			<div class="col-md-3">
+				<label><translate>Setup Mode</translate></label>
+				<select class="form-control" id="SetupMode">
+					<option value="0" {% if config.SetupMode==0 %}selected{% endif %} translate>Essential</option>
+					<option value="1" {% if config.SetupMode==1 %}selected{% endif %} translate>Basic</option>
+					<option value="2" {% if config.SetupMode==2 %}selected{% endif %} translate>Advanced</option>
+				</select>				
+				<br>
+			</div>
+			<div class="col-md-3 conditional" data-condition="#SetupMode > 0">
+				<label for="ResinPrice">
+					<span translate>Resin Price</span>
+					<span class="label label-default" translate>Per Litre</span>
+				</label>
+				<input class="form-control" value="{{profile.ResinPrice}}" name="ResinPrice" id="ResinPrice" step="0.01" type="number">
+			</div>			
+			<div class="col-md-12 conditional" data-condition="#SetupMode > 0">
+				<label for="Desc" translate>Description</label>
+				<textarea class="form-control" name="Desc" id="Desc">{{profile.Desc}}</textarea>
+			</div>
+		</div>
+		<br>
+
+		<h3><translate>Burn-in Layers</translate> {{helpModal("layers")}}</h3>
+		<div class="row flex-row">
+			<div class="col-md-3">
+				<label for="SupportLayerNumber">
+					<translate>Number of Layers</translate>{{regenerateRequired()}}
+				</label>
+				<input class="form-control" value="{{profile.SupportLayerNumber}}" name="SupportLayerNumber" id="SupportLayerNumber" type="number"
+				    required>
+			</div>
+			<div class="col-md-3">
+				<label for="SupportDepth">
+					<translate>Layer Thickness</translate>
+					<span class="label label-default">μm</span> {{helpModal("layer-thickness")}}</label>
+				<input class="form-control" value="{{profile.SupportDepth}}" name="SupportDepth" id="SupportDepth" step="0.001" type="number"
+				    required>
+			</div>
+			<div class="col-md-3">
+				<label for="SupportCureTime">
+					<translate>Cure Time</translate>
+					<span class="label label-default" translate>Second</span>
+				</label>
+				<input class="form-control" value="{{profile.SupportCureTime}}" name="SupportCureTime" id="SupportCureTime" step="0.0001"
+				    type="number" required>
+			</div>
+			<div class="col-md-3 conditional" data-condition="#SetupMode > 0">
+				<label for="SupportWaitBeforePrint">
+					<translate>Wait Before Print</translate>
+					<span class="label label-default" translate>Second</span>
+				</label>
+				<input class="form-control" value="{{profile.SupportWaitBeforePrint}}" name="SupportWaitBeforePrint" step="0.01" id="SupportWaitBeforePrint"
+				    type="number" required>
+				<br>
+			</div>
+			<div class="col-md-3 conditional" data-condition="#SetupMode > 0">
+				<label for="SupportWaitAfterPrint">
+					<translate>Wait After Print</translate>
+					<span class="label label-default" translate>Second</span>
+				</label>
+				<input class="form-control" value="{{profile.SupportWaitAfterPrint}}" name="SupportWaitAfterPrint" step="0.01" id="SupportWaitAfterPrint"
+				    type="number" required>
+			</div>
+			<div class="col-md-3 conditional" data-condition="#SetupMode > 0">
+				<label for="SupportWaitHeight">
+					<translate>Lift After Print</translate>
+					<span class="label label-default" translate>Millimeter</span> {{helpModal("lift-after")}}</label>
+				<input class="form-control" value="{{profile.SupportWaitHeight}}" name="SupportWaitHeight" step="0.001" id="SupportWaitHeight"
+				    type="number" required>
+			</div>
+			<div class="col-md-3 conditional" data-condition="#SetupMode > 0">
+				<label for="SupportTopWait">
+					<translate>Wait After Lift</translate>
+					<span class="label label-default" translate>Second</span>
+				</label>
+				<input class="form-control" value="{{profile.SupportTopWait}}" name="SupportTopWait" step="0.01" id="SupportTopWait" type="number"
+				    required>
+			</div>
+			<div class="col-md-3 conditional" data-condition="#SetupMode > 1">
+				<label for="SupportOffset">
+					<translate>Erode / Dilate Areas</translate>
+					<span class="label label-default" translate>MM</span>{{helpModal("erode")}} {{regenerateRequired()}}
+				</label>
+				<input class="form-control" value="{{profile.SupportOffset}}" name="SupportOffset" id="SupportOffset" step="0.001" type="number">
+			</div>
+		</div>
+		<br>
+		<h3>
+		<translate>Normal Layers</translate> {{helpModal("layers")}}</h3>
+		<div class="row flex-row">
+			<div class="col-md-3">
+				<label for="Depth">
+					<translate>Layer Thickness</translate>
+					<span class="label label-default" translate>μm</span> {{helpModal("layer-thickness")}}{{regenerateRequired()}}</label>
+				<input class="form-control" value="{{profile.Depth}}" name="Depth" id="Depth" step="0.001" type="number" required>
+			</div>
+			<div class="col-md-3">
+				<label for="CureTime">
+					<translate>Cure Time</translate>
+					<span class="label label-default" translate>Second</span>
+				</label>
+				<input class="form-control" value="{{profile.CureTime}}" name="CureTime" id="CureTime" step="0.0001" type="number" required>
+			</div>
+			<div class="col-md-3 conditional" data-condition="#SetupMode > 0">
+				<label for="WaitBeforePrint">
+					<translate>Wait Before Print</translate>
+					<span class="label label-default" translate>Second</span>
+				</label>
+				<input class="form-control" value="{{profile.WaitBeforePrint}}" name="WaitBeforePrint" id="WaitBeforePrint" step="0.01" type="number"
+				    required>
+			</div>
+			<div class="col-md-3 conditional" data-condition="#SetupMode > 0">
+				<label for="WaitAfterPrint">
+					<translate>Wait After Print</translate>
+					<span class="label label-default" translate>Second</span>
+				</label>
+				<input class="form-control" value="{{profile.WaitAfterPrint}}" name="WaitAfterPrint" id="WaitAfterPrint" step="0.01" type="number"
+				    required>
+				<br>
+			</div>
+			<div class="col-md-3 conditional" data-condition="#SetupMode > 0">
+				<label for="WaitHeight">
+					<translate>Lift After Print</translate>
+					<span class="label label-default">Millimeter</span> {{helpModal("lift-after")}}</label>
+				<input class="form-control" value="{{profile.WaitHeight}}" name="WaitHeight" id="WaitHeight" step="0.001" type="number" required>
+			</div>
+			<div class="col-md-3 conditional" data-condition="#SetupMode > 0">
+				<label for="TopWait">
+					<translate>Wait After Lift</translate>
+					<span class="label label-default" translate>Second</span>
+				</label>
+				<input class="form-control" value="{{profile.TopWait}}" name="TopWait" id="TopWait" step="0.01" type="number" required>
+			</div>
+			<div class="col-md-3 conditional" data-condition="#SetupMode > 1">
+				<label for="Offset">
+					<translate>Erode / Dilate Areas</translate>
+					<span class="label label-default" translate>MM</span>{{helpModal("erode")}} {{regenerateRequired()}}
+				</label>
+				<input class="form-control" value="{{profile.Offset}}" name="Offset" id="Offset" step="0.001" type="number">
+			</div>
+		</div>
+		<br>
+
+		<input type="hidden" id="SetupMode" value="{{config.SetupMode}}">
+		<div class="conditional" data-condition="#SetupMode == 2">
+			<h3 translate>Dynamic Calculation</h3>
+			<div class="row flex-row">
+				<div class="col-md-3">
+					<label for="DynamicCureTime">
+						<translate>Cure Time</translate>
+						<span class="label label-default" translate>Second</span>{{helpModal("dynamic-curetime,dynamic-guide,vars,math")}} {{formulaModal()}}</label>
+					<textarea class="form-control" name="DynamicCureTime" id="DynamicCureTime">{{profile.DynamicCureTime}}</textarea>
+				</div>
+				<div class="col-md-3">
+					<label for="DynamicSpeed">
+						<translate>Speed</translate>
+						<span class="label label-default" translate>μm/Second</span>{{helpModal("dynamic-speed,dynamic-guide,vars,math")}} {{formulaModal()}}</label>
+					<textarea class="form-control" name="DynamicSpeed" id="DynamicSpeed">{{profile.DynamicSpeed}}</textarea>
+				</div>
+				<div class="col-md-3">
+					<label for="DynamicLift">
+						<translate>Lift</translate>
+						<span class="label label-default" translate>Millimeter</span>{{helpModal("dynamic-lift,dynamic-guide,vars,math")}} {{formulaModal()}}</label>
+					<textarea class="form-control" name="DynamicLift" id="DynamicLift">{{profile.DynamicLift}}</textarea>
+				</div>
+				<div class="col-md-3">
+					<label for="DynamicWaitAfterLift">
+						<translate>Wait After Lift</translate>
+						<span class="label label-default" translate>Second</span>{{helpModal("dynamic-guide,vars,math")}} {{formulaModal()}}</label>
+					<textarea class="form-control" name="DynamicWaitAfterLift" id="DynamicWaitAfterLift">{{profile.DynamicWaitAfterLift}}</textarea>
+				</div>
+			</div>
+			<br>
+
+			<h3 translate>Motor Speed</h3>
+			<div class="row flex-row">
+				<div class="col-md-3">
+					<label for="ZStepWait">
+						<translate>Z-Axis Max Speed</translate>
+						<span class="label label-default" translate>μm/Second</span>{{helpModal("speed")}}</label>
+					<input class="form-control" value="{{profile.ZStepWait}}" name="ZStepWait" id="ZStepWait" type="number" min="1" required>
+				</div>
+				<div class="col-md-3">
+					<label for="SlowSectionHeight">
+						<translate>Slow Section Height</translate>
+						<span class="label label-default" translate>Millimeter</span>{{helpModal("speed")}}</label>
+					<input class="form-control" value="{{profile.SlowSectionHeight}}" name="SlowSectionHeight" id="SlowSectionHeight" step="0.001"
+						type="number" required>
+				</div>
+				<div class="col-md-3">
+					<label for="SlowSectionStepWait">
+						<translate>Speed in Slow Section</translate>
+						<span class="label label-default" translate>μm/Second</span>{{helpModal("speed")}}</label>
+					<input class="form-control" value="{{profile.SlowSectionStepWait}}" name="SlowSectionStepWait" id="SlowSectionStepWait" type="number"
+						min="1" required>
+				</div>
+			</div>
+			<br>
+
+			<h3 translate>Advanced Settings</h3>
+			<div class="row flex-row">
+				<div class="col-md-3">
+					<label for="JumpPerLayer">
+						<translate>Jump After Number of Layers</translate>{{helpModal("jump-layer")}}</label>
+					<input class="form-control" value="{{profile.JumpPerLayer}}" name="JumpPerLayer" id="JumpPerLayer" type="number" required>
+				</div>
+				<div class="col-md-3">
+					<label for="JumpHeight">
+						<translate>Jump Height</translate>
+						<span class="label label-default" translate>Millimeter</span>{{helpModal("jump-layer")}}</label>
+					<input class="form-control" value="{{profile.JumpHeight}}" name="JumpHeight" id="JumpHeight" step="0.001" type="number" required>
+				</div>
+				<div class="col-md-3">
+					<label for="LowQualitySkipPerLayer">
+						<translate>Number of Low Quality Layers</translate>{{helpModal("low-quality-layers")}}</label>
+					<input class="form-control" value="{{profile.LowQualitySkipPerLayer}}" name="LowQualitySkipPerLayer" id="LowQualitySkipPerLayer"
+						type="number" required>
+				</div>
+				<div class="col-md-3">
+					<label for="LowQualityCureTime">
+						<translate>Low Quality Cure Time</translate>
+						<span class="label label-default" translate>Second</span>{{helpModal("low-quality-layers")}}</label>
+					<input class="form-control" value="{{profile.LowQualityCureTime}}" name="LowQualityCureTime" id="LowQualityCureTime" step="0.0001"
+						type="number" required>
+						<br>
+				</div>
+				<div class="col-md-6">
+					<label for="FillColor">
+						<translate>Light Source Color</translate> {{helpModal("color")}}{{regenerateRequired()}}</label>
+					{% if profile.FillColor %}
+					<input class="form-control" value="{{profile.FillColor}}" name="FillColor" id="FillColor" type="color"> {% else %}
+					<input class="form-control" value="#ffffff" name="FillColor" id="FillColor" type="color"> {% endif %}					
+				</div>
+				<div class="col-md-6">
+					<label for="BlankColor">
+						<translate>Blank Area Color</translate> {{helpModal("color")}}{{regenerateRequired()}}</label>
+					{% if profile.BlankColor %}
+					<input class="form-control" value="{{profile.BlankColor}}" name="BlankColor" id="BlankColor" type="color"> {% else %}
+					<input class="form-control" value="#000000" name="BlankColor" id="BlankColor" type="color"> {% endif %}
+				</div>
+			</div>
+			<br>
+
+			<h3>
+				<translate>Pixel Dimming</translate>{{helpModal("dimming")}}</h3>
+			<div class="row flex-row">
+				<div class="col-md-3">
+					<label for="PixelDiming">
+						<translate>Dimming Type</translate>{{regenerateRequired()}}</label>
+					<select name="PixelDiming" id="PixelDiming" class="form-control">
+						<option value="0" {% if profile.PixelDiming==0 %}selected{% endif %} translate>Off</option>
+						<option value="1" {% if profile.PixelDiming==1 %}selected{% endif %} translate>Checkerboard</option>
+						<option value="2" {% if profile.PixelDiming==2 %}selected{% endif %} translate>Homogeneous</option>
+					</select>
+				</div>
+				<div class="col-md-3 conditional" data-condition="#PixelDiming > 0">
+					<label for="DimAmount">
+						<translate>Dimming Amount Percentage</translate>{{regenerateRequired()}}</label>
+					<input class="form-control" value="{{profile.DimAmount}}" name="DimAmount" id="DimAmount" step="0.1" min="0" max="100" type="number">
+				</div>
+				<div class="col-md-3 conditional" data-condition="#PixelDiming > 0">
+					<label for="DimWall">
+						<translate>Wall Around Dimming</translate>{{regenerateRequired()}}</label>
+					<input class="form-control" value="{{profile.DimWall}}" name="DimWall" id="DimWall" step="1" type="number">
+				</div>
+				<div class="col-md-3 conditional" data-condition="#PixelDiming > 0">
+					<label for="DimSkip">
+						<translate>Skip Dimming for Early Layers</translate>{{regenerateRequired()}}</label>
+					<input class="form-control" value="{{profile.DimSkip}}" name="DimSkip" id="DimSkip" step="1" type="number">
+				</div>
+			</div>
+			<br>
+
+			<h3>
+			<translate>Infill / Hollowing</translate>{{helpModal("infill")}}</h3>
+			<div class="row flex-row">
+				<div class="col-md-6">
+					<label for="HatchingType">
+						<translate>Type</translate>{{regenerateRequired()}}</label>
+					<select name="HatchingType" id="HatchingType" class="form-control">
+						<option value="0" {% if profile.HatchingType==0 %}selected{% endif %} translate>Off</option>
+						<option value="1" {% if profile.HatchingType==1 %}selected{% endif %} translate>Hexagonal</option>
+						<option value="2" {% if profile.HatchingType==2 %}selected{% endif %} translate>Hollowing</option>
+					</select>
+					<br>
+				</div>
+				<div class="col-md-3 conditional" data-condition="#HatchingType > 0">
+					<label for="HatchingTopCap">
+						<translate>Top Cap Wall</translate>
+						<span class="label label-default"
+							translate>Layers</span>{{helpModal("infill-cap-wall")}}{{regenerateRequired()}}
+					</label>
+					<input class="form-control" value="{{profile.HatchingTopCap}}" name="HatchingTopCap" id="HatchingTopCap" step="1"
+						max="10" type="number">
+				</div>
+				<div class="col-md-3 conditional" data-condition="#HatchingType > 0">
+					<label for="HatchingBottomCap">
+						<translate>Bottom Cap Wall</translate>
+						<span class="label label-default"
+							translate>Layers</span>{{helpModal("infill-cap-wall")}}{{regenerateRequired()}}
+					</label>
+					<input class="form-control" value="{{profile.HatchingBottomCap}}" name="HatchingBottomCap" id="HatchingBottomCap"
+						step="1" max="10" type="number">
+				</div>
+				<div class="col-md-3 conditional" data-condition="#HatchingType > 0">
+					<label for="HatchingOuterWall">
+						<translate>Outer Wall Thickness</translate>
+						<span class="label label-default" translate>Pixels</span>{{helpModal("infill-outer-wall")}}{{regenerateRequired()}}</label>
+					<input class="form-control" value="{{profile.HatchingOuterWall}}" name="HatchingOuterWall" id="HatchingOuterWall" step="1"
+						type="number">
+					<br>
+				</div>
+				<div class="col-md-3 conditional" data-condition="#HatchingType > 0">
+					<label for="HatchingWall">
+						<translate>Infill Pattern Wall Size</translate>
+						<span class="label label-default" translate>Pixels</span>
+						{{helpModal("infill-outer-wall")}}{{regenerateRequired()}}
+					</label>
+					<input class="form-control" value="{{profile.HatchingWall}}" name="HatchingWall" id="HatchingWall" step="1" type="number">
+					<br>
+				</div>
+				<div class="col-md-3 conditional" data-condition="#HatchingType > 0">
+					<label for="HatchingGap">
+						<translate>Infill Pattern Cell Width</translate>
+						<span class="label label-default" translate>Pixels</span>
+						{{helpModal("infill-outer-wall")}}{{regenerateRequired()}}
+					</label>
+					<input class="form-control" value="{{profile.HatchingGap}}" name="HatchingGap" id="HatchingGap" step="1"
+						type="number">
+				</div>
+			</div>
+			<br>
+
+			<h3 translate>Slicer Options</h3>
+			<div class="row flex-row">
+				<div class="col-md-6">
+					<label for="AntiAlias">
+						<translate>Anti-aliasing</translate>{{helpModal("antialiasing")}}{{regenerateRequired()}}</label>
+					<select name="AntiAlias" id="AntiAlias" class="form-control">
+						<option value="0" {% if profile.AntiAlias==0 %}selected{% endif %} translate>Enable</option>
+						<option value="1" {% if profile.AntiAlias==1 %}selected{% endif %} translate>Disable</option>
+					</select>
+					<br>
+				</div>
+				<div class="col-md-6">
+					<label for="ImageRotate">
+						<translate>Rotate Layers</translate>{{regenerateRequired()}}</label>
+					<select name="ImageRotate" id="ImageRotate" class="form-control">
+						<option value="0" {% if profile.ImageRotate==0 %}selected{% endif %} translate>Disabled</option>
+						<option value="1" {% if profile.ImageRotate==1 %}selected{% endif %} translate>Rotate 90°</option>
+					</select>
+					<br>
+				</div>
+			</div>
+			<br>
+		</div>
+
+		<input type="hidden" id="PrinterType" value="{{config.PrinterType}}">
+		<h3 translate>Codes</h3>
+		<div class="row flex-row">
+			<div class="col-md-12 conditional" data-condition="#PrinterType == 1">
+				<label for="LaserCode"><translate>Laser Code</translate>{{helpModal("vars,math,gcode,shield,exec")}} {{formulaModal()}}</label>
+				<textarea class="form-control" name="LaserCode" id="LaserCode">{{profile.LaserCode}}</textarea>
+				<br>
+			</div>
+			<div class="col-md-6">
+				<input type="hidden" name="SyscallBeforeLayer" id="SyscallBeforeLayer" value="{{profile.SyscallBeforeLayer}}">
+				<label for="ShieldBeforeLayer">
+					<translate>Code Before Each Layer</translate>{{helpModal("vars,math,gcode,shield,exec")}} {{formulaModal()}}</label>
+				<textarea class="form-control" name="ShieldBeforeLayer" id="ShieldBeforeLayer">{{profile.ShieldBeforeLayer}}</textarea>
+				<br>
+			</div>
+			<div class="col-md-6">
+				<input name="SyscallAfterLayer" id="SyscallAfterLayer" value="{{profile.SyscallAfterLayer}}" type="hidden">
+				<label for="ShieldAfterLayer">
+					<translate>Code After Each Layer</translate>{{helpModal("vars,math,gcode,shield,exec")}} {{formulaModal()}}</label>
+				<textarea class="form-control" name="ShieldAfterLayer" id="ShieldAfterLayer">{{profile.ShieldAfterLayer}}</textarea>
+			</div>
+		</div>
+		<br>
+
+		<div class="conditional" data-condition="#SetupMode == 2">
+			<h3 translate>Override Machine Level Settings</h3>
+			<div class="row flex-row">
+				<div class="col-md-4">
+					<label for="ShieldStart">
+						<translate>Override Start of Print GCode</translate>{{helpModal("gcode-start,vars,math,gcode,shield,exec")}} {{formulaModal()}}</label>
+					<textarea class="form-control" name="ShieldStart" id="ShieldStart">{{profile.ShieldStart}}</textarea>
+				</div>
+				<div class="col-md-4">
+					<label for="ShieldResume">
+						<translate>Override Resume Print GCode</translate>{{helpModal("gcode-start,vars,math,gcode,shield,exec")}} {{formulaModal()}}</label>
+					<textarea class="form-control" name="ShieldResume" id="ShieldResume">{{profile.ShieldResume}}</textarea>
+					<br>
+				</div>
+				<div class="col-md-4">
+					<label for="ShieldFinish">
+						<translate>Override Print Stop GCode</translate> {{formulaModal()}}</label>
+					<textarea class="form-control" name="ShieldFinish" id="ShieldFinish">{{profile.ShieldFinish}}</textarea>
+					<br>
+				</div>
+				<div class="col-md-3">
+					<label for="XYRes">
+						<translate>Override X Resolution</translate>
+						<span class="label label-default" translate>Micron</span>{{regenerateRequired()}}</label>
+					<input class="form-control" value="{{profile.XYRes}}" name="XYRes" id="XYRes" step="0.001" type="number">
+					<br>
+				</div>
+				<div class="col-md-3">
+					<label for="YRes">
+						<translate>Override Y Resolution</translate>
+						<span class="label label-default" translate>Micron</span>{{regenerateRequired()}}</label>
+					<input class="form-control" value="{{profile.YRes}}" name="YRes" id="YRes" step="0.001" type="number">
+					<input value="{{profile.XYResPerc}}" name="XYResPerc" id="XYResPerc" step="0.001" type="hidden">
+				</div>
+				<div class="col-md-3">
+					<label for="ZResPerc">
+						<translate>Z Model Size Modifier</translate>
+						<span class="label label-default" translate>Percentage</span>{{regenerateRequired()}}</label>
+					<input class="form-control" value="{{profile.ZResPerc}}" name="ZResPerc" id="ZResPerc" step="0.001" type="number">
+				</div>
+				<div class="col-md-3">
+					<label for="IgnoreMask">
+						<translate>Mask File</translate> {{helpModal("mask")}}{{regenerateRequired()}}</label>
+					<select name="IgnoreMask" id="IgnoreMask" class="form-control">
+						<option value="0" {% if profile.IgnoreMask==0 %}selected{% endif %} translate>Use, If Available</option>
+						<option value="1" {% if profile.IgnoreMask==1 %}selected{% endif %} translate>Ignore</option>
+					</select>
+					<br>
+				</div>
+			</div>
+		</div>
+
+		<button type="submit" class="btn btn-success" translate>Submit</button>
+	</form>
+	<br>
+	<br>
+</div>
+{% endblock %}

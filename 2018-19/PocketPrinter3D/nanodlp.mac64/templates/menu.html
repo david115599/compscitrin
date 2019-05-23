@@ -1,0 +1,58 @@
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only" translate>Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a href="/" class="navbar-brand"><img src="/static/logo.png" alt="NanoDLP"></a>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        <li><a href="/plates"><span class="glyphicon glyphicon-tasks"></span>&nbsp; <translate>Plates</translate></a></li>
+        <li><a href="/profiles"><span class="glyphicon glyphicon-tint"></span>&nbsp; <translate>Resin Profiles</translate></a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-wrench"></span>&nbsp; <translate>Setup</translate> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/z-calibration"><span class="glyphicon glyphicon-resize-vertical"></span>&nbsp; <translate>Z Axis Control</translate></a></li>
+                <li><a href="/projector-calibration"><span class="glyphicon glyphicon-picture"></span>&nbsp; <translate>Projector Calibration</translate></a></li>
+                <li><a href="/setup"><span class="glyphicon glyphicon-wrench"></span>&nbsp; <translate>Machine Settings</translate></a></li>                
+                <li><a href="/term"><span class="glyphicon glyphicon-phone"></span>&nbsp; <translate>RAMPS Terminal</translate></a></li>
+                <li><a href="/add-protection"><span class="glyphicon glyphicon-lock"></span>&nbsp; <translate>Password Protection</translate></a></li>
+                <li><a href="/setup/custom-buttons"><span class="glyphicon glyphicon-pencil"></span>&nbsp; <translate>Custom Buttons</translate></a></li>
+                <li><a href="/tools"><span class="glyphicon glyphicon-cog"></span>&nbsp; <translate>Tools</translate></a></li>
+                <li><a href="/help"><span class="glyphicon glyphicon-info-sign"></span>&nbsp; <translate>Help</translate></a></li>
+            </ul>            
+        </li>        
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        {% if rampsReconnect %}
+        <li>
+            <a href="/ramps/reconnect"><span class="label label-danger"><span class="glyphicon glyphicon-transfer"></span>&nbsp; <translate>RAMPS: Reconnect</translate></span></a>
+        </li>
+        {% endif %}
+        {% if arch=="arm" %}
+        <li>
+            {% if wifi!="" %}
+                <a href="/wifi"><span class="label label-success">{{wifi}} &nbsp;<span class="glyphicon glyphicon-signal"></span></span></a>
+            {% else %}
+                <a href="/wifi"><span class="label text-info"><translate>Wi-Fi</translate> &nbsp;<span class="glyphicon glyphicon-signal"></span></span></a>
+            {% endif %}
+        </li>
+        {% endif %}
+        <li>
+            {% if newBuild %}
+                <a href="/printer/upgrade">
+                    <span class="label label-info">{% if printerName!="" %}{{printerName}} - {% endif %}<translate>New Version Available</translate></span>
+                </a>
+            {% elif version>0 %}
+                <a href="http://www.nanodlp.com">
+                    <small>{% if printerName!="" %}{{printerName}} - {% endif %}<translate>Build</translate> {{version}}</small>
+                </a>
+            {% endif %}
+        </li>
+    </ul>
+</div>
+<!--/.nav-collapse -->
