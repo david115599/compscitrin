@@ -16,6 +16,7 @@ TFT TFTscreen = TFT(lcd_cs, dc, rst);
 PImage logo;
 //File currentimage;
 void setup() {
+  pinMode(6, OUTPUT);
   Serial.begin(9600);
   myStepper.setSpeed(200);
 
@@ -70,7 +71,7 @@ void loop() {
   // take into account the image size.
 
   for (int i = 0; i < 9; i++) {
-    digitalWrite(13, LOW);
+    digitalWrite(6, LOW);
     String str = (String)i + ".bmp";
     int len = (int)str.length() + 1;
     char buf[len];
@@ -86,9 +87,9 @@ void loop() {
     TFTscreen.background(255, 255, 255);
     Serial.println(F("drawing image"));
     TFTscreen.image(logo, x, y);
-    digitalWrite(13, HIGH);
+    digitalWrite(6, HIGH);
     delay(20000);
-    digitalWrite(13, LOW);
+    digitalWrite(6, LOW);
   }
 
 }
