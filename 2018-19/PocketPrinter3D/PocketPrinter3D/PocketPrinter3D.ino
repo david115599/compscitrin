@@ -89,7 +89,7 @@ void loop() {
     Serial.println(F("drawing image"));
     TFTscreen.image(logo, x, y);
     digitalWrite(6, HIGH);
-    delay(10000);
+    delay(20000);
     Serial.println("layerdone");
     digitalWrite(6, LOW);
     myStepper.step(-10/*#of steps*/);
