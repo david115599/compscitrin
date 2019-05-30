@@ -10,7 +10,7 @@
 #define rst    8
 #define sd_cs  4
 const int chipSelect = 4;
-const int stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
+const int stepsPerRevolution = 100;  // change this to fit the number of steps per revolution
 Stepper myStepper(stepsPerRevolution, 2, 3, 5, 7);
 TFT TFTscreen = TFT(lcd_cs, dc, rst);
 PImage logo;
@@ -52,10 +52,11 @@ void setup() {
 
   logo = TFTscreen.loadImage("0.bmp");
   //currentimage = SD.open("0.bmp");
+  myStepper.step(10000/*#of steps*/);
 }
 
 void loop() {
-  //myStepper.step(5/*#of steps*/);
+
 
   if (logo.isValid() == false) {
     return;
@@ -70,7 +71,7 @@ void loop() {
   // To avoid the image to be draw outside the screen,
   // take into account the image size.
 
-  for (int i = 0; i < 9; i++) {
+  for (int i = 0; i < 100; i++) {
     digitalWrite(6, LOW);
     String str = (String)i + ".bmp";
     int len = (int)str.length() + 1;
@@ -88,8 +89,10 @@ void loop() {
     Serial.println(F("drawing image"));
     TFTscreen.image(logo, x, y);
     digitalWrite(6, HIGH);
-    delay(20000);
+    delay(10000);
+    Serial.println("layerdone");
     digitalWrite(6, LOW);
+    myStepper.step(-10/*#of steps*/);
   }
 
 }

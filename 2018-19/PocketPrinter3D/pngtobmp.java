@@ -11,13 +11,26 @@ public class pngtobmp {
 
   public static void main( final String[] args ) {
     try {
-    File file = new File("test.png");
-    BufferedImage bi = ImageIO.read(file);
-    int scalarx = bi.getWidth()/160;
-    int scalary = bi.getHeight()/128;
-    BufferedImage img = map( 160, 128 , bi, scalarx ,scalary );
-    img = convertToGrayScale(img);
-    savePNG( img, "test.bmp" );
+      for (int i = 0;i<100 ;i++ ) {
+        if (i<10) {
+          File file = new File("out000"+i+".png");
+          BufferedImage bi = ImageIO.read(file);
+          int scalarx = bi.getWidth()/160;
+          int scalary = bi.getHeight()/128;
+          BufferedImage img = map( 160, 128 , bi, scalarx ,scalary );
+          //img = convertToGrayScale(img);
+          savePNG( img, i+".bmp" );
+        }
+        else if (i<100) {
+          File file = new File("out00"+i+".png");
+          BufferedImage bi = ImageIO.read(file);
+          int scalarx = bi.getWidth()/160;
+          int scalary = bi.getHeight()/128;
+          BufferedImage img = map( 160, 128 , bi, scalarx ,scalary );
+          //img = convertToGrayScale(img);
+          savePNG( img, i+".bmp" );
+        }
+      }
   }catch (IOException e) {
     System.out.println("Exception occured :" + e.getMessage());
   }
@@ -47,8 +60,6 @@ public class pngtobmp {
     try {
       RenderedImage rendImage = bi;
       ImageIO.write(rendImage, "bmp", new File(path));
-      ImageIO.write(rendImage, "PNG", new File(path));
-      ImageIO.write(rendImage, "jpeg", new File(path));
     } catch ( IOException e) {
       e.printStackTrace();
     }
