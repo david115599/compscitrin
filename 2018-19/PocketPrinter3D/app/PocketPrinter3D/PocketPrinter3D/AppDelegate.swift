@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  PocketPrinter3D
 //
-//  Created by David Bershadsky on 5/31/19.
-//  Copyright © 2019 David Bershadsky And Leah Teichholtz. All rights reserved.
+//  Created by David Bershadsky on 6/10/19.
+//  Copyright © 2019 David Bershadsky and Leah Teichholtz. All rights reserved.
 //
 
 import UIKit

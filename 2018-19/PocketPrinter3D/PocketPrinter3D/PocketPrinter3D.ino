@@ -52,12 +52,11 @@ void setup() {
 
   logo = TFTscreen.loadImage("0.bmp");
   //currentimage = SD.open("0.bmp");
-  myStepper.step(10000/*#of steps*/);
+  myStepper.step(-10000/*#of steps*/);
 }
 
 void loop() {
-
-
+//myStepper.step(-100);
   if (logo.isValid() == false) {
     return;
     }
@@ -71,7 +70,7 @@ void loop() {
   // To avoid the image to be draw outside the screen,
   // take into account the image size.
 
-  for (int i = 0; i < 100; i++) {
+  for (int i = 0; i < 100; i=i) {
     digitalWrite(6, LOW);
     String str = (String)i + ".bmp";
     int len = (int)str.length() + 1;
@@ -92,7 +91,7 @@ void loop() {
     delay(20000);
     Serial.println("layerdone");
     digitalWrite(6, LOW);
-    myStepper.step(-10/*#of steps*/);
+   // myStepper.step(-100);*/
   }
 
 }
