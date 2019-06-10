@@ -30,6 +30,15 @@ public class pngtobmp {
           //img = convertToGrayScale(img);
           savePNG( img, i+".bmp" );
         }
+        else if (i<1000){
+          File file = new File("out0"+i+".png");
+          BufferedImage bi = ImageIO.read(file);
+          int scalarx = bi.getWidth()/160;
+          int scalary = bi.getHeight()/128;
+          BufferedImage img = map( 160, 128 , bi, scalarx ,scalary );
+          //img = convertToGrayScale(img);
+          savePNG( img, i+".bmp" );
+        }
       }
   }catch (IOException e) {
     System.out.println("Exception occured :" + e.getMessage());
