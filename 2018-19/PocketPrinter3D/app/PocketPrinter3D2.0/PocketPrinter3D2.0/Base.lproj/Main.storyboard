@@ -18,11 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="IMG_2484" translatesAutoresizingMaskIntoConstraints="NO" id="twl-Dp-kKl">
-                                <rect key="frame" x="67" y="160" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enabling Creativity through 3D printing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAI-0R-oqt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enabling Creativity through 3D printing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAI-0R-oqt">
                                 <rect key="frame" x="39" y="105" width="297" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -39,31 +35,83 @@
                                     <action selector="nextpage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8ZU-YY-H4V"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIq-gC-gnC">
-                                <rect key="frame" x="16" y="760" width="41" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pocket Printer 3D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6R-hh-2zc">
+                                <rect key="frame" x="67" y="61" width="242" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="images">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="previouspage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="35r-EY-5rb"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pocket Printer 3D" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6R-hh-2zc">
-                                <rect key="frame" x="75" y="61" width="225" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vpV-1t-qfl">
+                                <rect key="frame" x="67" y="134" width="240" height="270"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                </accessibility>
+                                <string key="text">The Pocket Printer 3D is an inavative new technology that allows young people to be exposed to the magic of 3d printing from a young age for just $10                  What is SLA Printing?                                        Sla or Steriolithography works by using uv light in order to solidify resin into the desired shape                            What Makes SLA Printing Special?     SLA Printing enables you to make extremley small details that would normaly be imposable because of the nozzel size of fused deposition 3d printers.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RXr-Bk-rrE">
+                                <rect key="frame" x="67" y="134" width="240" height="559"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                </accessibility>
+                                <string key="text">Fused Deposition Modeling (FDM), or Fused Filament Fabrication (FFF), is an additive manufacturing process that belongs to the material extrusion family. In FDM, an object is built by selectively depositing melted material in a pre-determined path layer-by-layer. The materials used are thermoplastic polymers and come in a filament form.
+
+FDM is the most widely used 3D Printing technology: it represents the largest installed base of 3D printers globally and is often the first technology people are exposed to. In this article, the basic principles and the key aspects of the technology are presented.
+
+A designer should keep in mind the capabilities and limitations of the technology when fabricating a part with FDM, as this will help him achieve the best result.                                        Source: https://www.3dhubs.com/knowledge-base/</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLL-Oh-u9i">
+                                <rect key="frame" x="16" y="750" width="45" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="sm_5aa0fdd386c8a-1"/>
+                                <connections>
+                                    <action selector="previouspage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PyT-Bt-ixt"/>
+                                </connections>
+                            </button>
+                            <textView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UTX-S6-SFM">
+                                <rect key="frame" x="67" y="134" width="240" height="559"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                </accessibility>
+                                <string key="text">Stereolithography (SLA) is an additive manufacturing process that belongs to the Vat Photopolymerization family. In SLA, an object is created by selectively curing a polymer resin layer-by-layer using an ultraviolet (UV) laser beam. The materials used in SLA are photosensitive thermoset polymers that come in a liquid form.
+
+SLA is famous for being the first 3D Printing technology: its inventor patented the technology back in 1986. If parts of very high accuracy or smooth surface finish are needed, SLA is the most cost-effective 3D printing technology available. Best results are achieved when the designer takes advantage of the benefits and limitations of the manufacturing process.
+
+SLA has many common characteristics with Direct Light Processing (DLP), another Vat Photopolymerization 3D printing technology. For simplicity, the two technologies can be treated as equals.                                         Source: https://www.3dhubs.com/knowledge-base/</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="IMG_2487" translatesAutoresizingMaskIntoConstraints="NO" id="Vu3-x1-fHo">
+                                <rect key="frame" x="67" y="221" width="240" height="296"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="IMG_2119" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="twl-Dp-kKl">
+                                <rect key="frame" x="57" y="412" width="260" height="354"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="left" destination="kIq-gC-gnC" id="343-eT-LnW"/>
+                        <outlet property="fdm" destination="RXr-Bk-rrE" id="ttR-me-O1d"/>
+                        <outlet property="left" destination="QLL-Oh-u9i" id="Y8c-Qk-ep9"/>
+                        <outlet property="pg1content" destination="vpV-1t-qfl" id="5Cd-3A-CYe"/>
                         <outlet property="pp3dpicture" destination="twl-Dp-kKl" id="iD2-ZR-JSc"/>
                         <outlet property="right" destination="tFf-Fd-WLc" id="fS6-Hv-RZH"/>
+                        <outlet property="sla" destination="UTX-S6-SFM" id="9Rd-4e-JyT"/>
+                        <outlet property="slicermovie" destination="Vu3-x1-fHo" id="ota-ch-P9a"/>
                         <outlet property="subtitle" destination="PAI-0R-oqt" id="nOq-RO-IIv"/>
                         <outlet property="title0" destination="f6R-hh-2zc" id="UMU-Cm-mTF"/>
                     </connections>
@@ -74,8 +122,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IMG_2484" width="3024" height="4032"/>
-        <image name="images" width="310" height="163"/>
+        <image name="IMG_2119" width="3024" height="4032"/>
+        <image name="IMG_2487" width="3024" height="4032"/>
         <image name="sm_5aa0fdd386c8a" width="360" height="360"/>
+        <image name="sm_5aa0fdd386c8a-1" width="360" height="360"/>
     </resources>
 </document>
