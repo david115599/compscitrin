@@ -5,7 +5,7 @@ Run the program by running "java NameThatTune.java integer" integer represents h
 This program proceduraly generates music based on a random number generator
 The Program makes the generated music the same length as the number of seconds that is
 inputed when the program is called.
-It generates music in diffrent keys which are determined by a random number at the begining
+It generates music in different keys which are determined by a random number at the begining
 of the program.
 It then chooses the length of each note randomly.
 It uses 2d arrays in order to add multiple instruments which play in different octaves simultaniously with the melody
