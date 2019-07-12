@@ -1,7 +1,7 @@
 /*
 NameThatTune
 By David Bershadsky and Sira Nassoko
-Run the program by runing "java NameThatTune.java integer" integer represents how long the generated music will play
+Run the program by running "java NameThatTune.java integer" integer represents how long the generated music will play
 This program proceduraly generates music based on a random number generator
 The Program makes the generated music the same length as the number of seconds that is
 inputed when the program is called.
