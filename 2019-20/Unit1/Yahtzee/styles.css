@@ -1,0 +1,30 @@
+
+	body {
+		background-color: rgb(255,255,255);
+
+	}
+	table,td,th{
+		   border: 1px solid black;
+			 align = center;
+			 margin: auto;
+	}
+	.dice{
+		border: 0px solid black;
+	}
+	.Upper_Section{
+    background-color: rgb(225, 225, 225);
+     border: 1px solid black;
+  }
+	.Upper_Score{
+		background-color: rgb(225, 225, 225);
+		 border: 1px solid black;
+	}
+	.Lower_Section{
+		background-color: rgb(225, 225, 225);
+		 border: 1px solid black;
+	}
+	.Final_Score{
+		background-color: rgb(225, 225, 225);
+		 border: 1px solid black;
+	}
+	}
