@@ -3,36 +3,42 @@
 <head>
   <link rel="stylesheet" href="styles.css">
   <meta charset="utf-8">
-  <title></title>
+  <title>Yahtzee</title>
 </head>
 <body>
+  <h1 class = "title">Yahtzee</h1>
   <table class="dice">
     <tr id = "dice_lables">
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>4</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
     </tr>
     <tr id = "dice">
-<th id = die_1>
-<img src="assets\question_mark.png" alt="" height=100 width=60></img>
-</th>
-<th id = die_2>
-<img src="assets\question_mark.png" alt="" height=100 width=60></img>
-</th>
-<th id = die_3>
-<img src="assets\question_mark.png" alt="" height=100 width=60></img>
-</th>
-<th id = die_4>
-<img src="assets\question_mark.png" alt="" height=100 width=60></img>
-</th>
-<th id = die_5>
-<img src="assets\question_mark.png" alt="" height=100 width=60></img>
-</th>
-      <tr>
-        <td id="roll_button"><button type="button">Roll the Dice!</button></td>
-      </tr>
+      <th id = die_1>
+        <img src="assets\question_mark.png" alt="" height=100 width=60></img>
+      </th>
+      <th id = die_2>
+        <img src="assets\question_mark.png" alt="" height=100 width=60></img>
+      </th>
+      <th id = die_3>
+        <img src="assets\question_mark.png" alt="" height=100 width=60></img>
+      </th>
+      <th id = die_4>
+        <img src="assets\question_mark.png" alt="" height=100 width=60></img>
+      </th>
+      <th id = die_5>
+        <img src="assets\question_mark.png" alt="" height=100 width=60></img>
+      </th>
+    </tr>
+  </table>
+  <table class = rollingrow>
+    <tr>
+      <td id="roll_button"><button type="button">Roll the Dice!</button></td>
+      <td>Remaining Rolls:</td>
+      <td id="remaining_rolls">3</td>
+    </tr>
   </table>
   <table class="Upper_Section">
     <tr class="Header">
@@ -45,37 +51,37 @@
     </tr>
     <tr class="Twos">
       <td>Twos</td>
-        <td id = "twos">0</td>
+      <td id = "twos">0</td>
     </tr>
     <tr class="Threes">
       <td>Threes</td>
-        <td id = "threes">0</td>
+      <td id = "threes">0</td>
     </tr>
     <tr class="Fours">
       <td>Fours</td>
-        <td id = "fours">0</td>
+      <td id = "fours">0</td>
     </tr>
     <tr class="Fives">
       <td>Fives</td>
-        <td id = "fives">0</td>
+      <td id = "fives">0</td>
     </tr>
     <tr class="Sixes">
       <td>Sixes</td>
-        <td id = "sixes">0</td>
+      <td id = "sixes">0</td>
     </tr>
   </table>
   <table class="Upper_Score">
     <tr class="Total_Score">
       <td>Total Score</td>
-        <td id = "total_score">0</td>
+      <td id = "total_score">0</td>
     </tr>
     <tr class="Bonus">
       <td>Bonus</td>
-        <td id = "bonus">0</td>
+      <td id = "bonus">0</td>
     </tr>
     <tr class="Total">
       <td>Total</td>
-        <td id = "total">0</td>
+      <td id = "total">0</td>
     </tr>
   </table>
   <table class="Lower_Section">
@@ -83,47 +89,51 @@
       <th>Lower Section</th>
       <th>Score</th>
     </tr>
-    <tr class="3_of_a_kind">
+    <tr class="three_of_a_kind">
       <td>3 of a kind</td>
-        <td id = "3_of_a_kind">0</td>
+      <td id = "three_of_a_kind">0</td>
     </tr>
-    <tr class="4_of_a_kind">
+    <tr class="four_of_a_kind">
       <td>4 of a kind</td>
-        <td id = "4_of_a_kind">0</td>
+      <td id = "four_of_a_kind">0</td>
+    </tr>
+    <tr class="full_house">
+      <td>Full house</td>
+      <td id = "full_house">0</td>
     </tr>
     <tr class="Small_Straight">
       <td>Small Straight</td>
-        <td id = "small_straight">0</td>
+      <td id = "small_straight">0</td>
     </tr>
     <tr class="Large_Straight">
       <td>Large Straight</td>
-        <td id = "large_straight">0</td>
+      <td id = "large_straight">0</td>
     </tr>
     <tr class="Yahtzee">
       <td>Yahtzee</td>
-        <td id = "yahtzee">0</td>
+      <td id = "yahtzee">0</td>
     </tr>
     <tr class="Chance">
       <td>Chance</td>
-        <td id = "chance">0</td>
+      <td id = "chance">0</td>
     </tr>
     <tr class="Yahtzee_Bonus">
       <td>Yahtzee Bonus</td>
-        <td id = "yahtzee_bonus">0</td>
+      <td id = "yahtzee_bonus">0</td>
     </tr>
   </table>
   <table class="Final_Score">
     <tr class="Total_of_Upper_Section">
       <td>Total of Upper Section</td>
-        <td id = "total_of_upper_section">0</td>
+      <td id = "total_of_upper_section">0</td>
     </tr>
     <tr class="Total_of_Lower_Section">
       <td>Total of Lower Section</td>
-        <td id = "total_of_lower_section">0</td>
+      <td id = "total_of_lower_section">0</td>
     </tr>
     <tr class="Grand_Total">
       <td>Grand Total</td>
-        <td id = "grand_total">0</td>
+      <td id = "grand_total">0</td>
     </tr>
   </table>
 
