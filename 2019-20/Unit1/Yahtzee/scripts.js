@@ -5,6 +5,15 @@ console.log("its false");
 if ((null == false)==true) {
 console.log("its true");
 }*/
+var user  = {
+  total_rolls: 0,
+  tunr_rolls: 2,
+  dice:[1,2,3,3,4],
+  name: "david"
+}
+window.localStorage.setItem(user.name, JSON.stringify(user));
+
+
 var roll_button = document.getElementById("roll_button");
 var rolls = 3;
 var remaining_rolls =  document.getElementById("remaining_rolls");
@@ -24,10 +33,10 @@ var threelock = false;
 var fourlock = false;
 var fivelock = false;
 var finalvalues = [];
-var aces = document.getElementById("aces");
+/*var aces = document.getElementById("aces");
 var twos = document.getElementById("twos");
 var threes = document.getElementById("threes");
-var fours = document.getElementById("fours");
+var fours = document.getElementById("fours");*/
 var hasthreeofakind = false;
 var haspair = false;
 
@@ -44,76 +53,90 @@ var small_straightlock = false;
 var large_straightlock = false;
 var yahtzeelock = false;
 var chancelock = false;
-
+var divs = [aces, twos, threes, fours, fives, sixes];
+var divss = ["aces", "twos", "threes", "fours", "fives", "sixes"];
+var locks = [aceslock, twoslock, threeslock, fourslock, fiveslock, sixeslock];
+var finval = [0,0,0,0,0,0];
+var finvals = [0,0,0,0,0,0];
 function scoreoptions() {
   hasthreeofakind = false;
   haspair = false;
   var count = 0;
-  (aces).innerHTML =(0).toString();
-  (twos).innerHTML =(0).toString();
-  (threes).innerHTML =(0).toString();
-  (fours).innerHTML =(0).toString();
-  (fives).innerHTML =(0).toString();
-  (sixes).innerHTML =(0).toString();
-  (three_of_a_kind).innerHTML =(0).toString();
-  (four_of_a_kind).innerHTML =(0).toString();
-  (full_house).innerHTML =(0).toString();
-  (small_straight).innerHTML =(0).toString();
-  (large_straight).innerHTML =(0).toString();
-  (yahtzee).innerHTML =(0).toString();
+  finalvaluesclean = finalvalues.reduce(function (s, v) { return s + (v || 0); });
+
+  for (var i = 0; i < divs.length; i++) {
+    if (locks[i] === false) {
+      (divs[i]).innerHTML =(0).toString();
+    }
+  }
+  for (var i = 0; i < divs.length; i++) {
+    if (locks[i] === false) {
+      (divs[i]).addEventListener('click', function() {
+        locks[i] = true;
+        finvals[i]=finval[i];
+        console.log(finvals);
+      });
+    }
+  }
   if (chancelock == false){
-    (chance).innerHTML =(finalvalues[0]+finalvalues[1]+finalvalues[2]+finalvalues[3]+finalvalues[4]).toString();
+    (chance).innerHTML ="<button type='button'>"+finalvalues.reduce(function (s, v) { return s + (v || 0); }, 0)+"</button>";
   }
-  if (small_straightlock==false && finalvalues.includes(1)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4) |finalvalues.includes(5)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4) | (finalvalues.includes(5)&&finalvalues.includes(6)&&finalvalues.includes(3)&&finalvalues.includes(4))){
-    (small_straight).innerHTML =(30).toString();
+  if (small_straightlock==false && ((finalvalues.includes(1)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4)) | (finalvalues.includes(5)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4)) | ((finalvalues.includes(5)&&finalvalues.includes(6)&&finalvalues.includes(3)&&finalvalues.includes(4))))){
+    (small_straight).innerHTML ="<button type='button'>"+(30)+"</button>";
   }
-  if (large_straightlock==false && finalvalues.includes(1)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4) &&finalvalues.includes(5) |finalvalues.includes(5)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4)&&finalvalues.includes(6)){
-    (large_straight).innerHTML =(40).toString();
+  if (large_straightlock==false && ((finalvalues.includes(1)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4) &&finalvalues.includes(5)) |(finalvalues.includes(5)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4)&&finalvalues.includes(6)))){
+    (large_straight).innerHTML ="<button type='button'>"+(40)+"</button>";
   }
   if (yahtzeelock==false && finalvalues[0]==finalvalues[1] && finalvalues[1]==finalvalues[2] && finalvalues[2]==finalvalues[3] && finalvalues[3]==finalvalues[4] && onelock == true && twolock == true && threelock == true && fourlock == true && fivelock == true){
-    (yahtzee).innerHTML =(50).toString();
+    (yahtzee).innerHTML ="<button type='button'>"+(50)+"</button>";
   }
-  var divs = [aces, twos, threes, fours, fives, sixes];
-  var locks = [aceslock, twoslock, threeslock, fourslock, fiveslock, sixeslock];
   for (var val = 1; val <= 6; val++) {
     count = 0;
-    if (finalvalues.includes(val)) {
       for (var i = 0; i < finalvalues.length; i++) {
         if (finalvalues[i]==val) {
           count++;
         }
         if (locks[val-1] === false && i == finalvalues.length-1) {
-          ((divs[val-1])).innerHTML =(count*val).toString();
+          finval[val]=count*val;
+          ((divs[val-1])).innerHTML =" <button type='button'>"+(finval[val])+"</button>";
+
         }
-        if (count == 3) {
-          (three_of_a_kind).innerHTML =(count*val).toString();
+        if (three_of_a_kindlock === false && count == 3) {
+          (three_of_a_kind).innerHTML =" <button type='button'>"+(count*val)+"</button>";
         }
-        if (count == 4) {
-          (four_of_a_kind).innerHTML =(count*val).toString();
+        if (four_of_a_kindlock === false &&count == 4) {
+          (four_of_a_kind).innerHTML =" <button type='button'>"+(count*val)+"</button>";
+        }
+      }
+
+  }
+
+  var count1 = 0;
+  var count2 = 0;
+
+  for (var i = 0; i <= finalvalues.length; i++) {
+    if (finalvalues[0] == finalvalues[i] && finalvalues[i] != 0 && finalvalues[i] != undefined) {
+      count1++
+    }
+    else if (i != 0 && finalvalues[i] != 0 && finalvalues[i] != undefined){
+      for (var q = i; q<=finalvalues.length; q++){
+        if (finalvalues[i]==finalvalues[q]) {
+          count2++;
         }
       }
     }
-  }
-
-var count1 = 0;
-var count2 = 0;
-
-for (var i = 0; i <= finalvalues.length; i++) {
-  if (finalvalues[0] == finalvalues[i] && finalvalues[i] != 0 && finalvalues[i] != undefined) {
-    count1++
-  }
-  else if (i != 0 && finalvalues[i] != 0 && finalvalues[i] != undefined){
-    for (var q = i; q<=finalvalues.length; q++){
-      if (finalvalues[i]==finalvalues[q]) {
-        count2++;
-      }
+    if (count1 + count2 ==5 && count2 >=2 && count1 >=2 ){
+      (full_house).innerHTML ="<button type='button'>"+(25)+"</button>";
     }
   }
-  if (count1 + count2 ==5 && count2 >=2 && count1 >=2 ){
-    (full_house).innerHTML =(25).toString();
-  }
-}
+  for (var i = 0; i < divs.length; i++) {
+    if (locks[i] === true) {
+      (divs[i]).innerHTML =(finvals[i]).toString();
+    console.log("alive");
+      console.log(divs[i],locks[i],finval[i]);
+    }
 
+  }
 }
 
 function getRandomInt(max) {
@@ -204,7 +227,7 @@ roll_button.addEventListener('click', function(){
   for (var i = 0; i < finalvalues.length; i++) {
     console.log(finalvalues[i]);
   }
-  if (/*rolls>0*/true ) {
+  if (rolls>0/*true*/ ) {
     if (onelock == false) {
       one = getRandomInt(6)+1;
       die_1.innerHTML =" <button type='button'><img src=assets\\"+one.toString()+".svg alt='' height=100 width=60></img></button>"
