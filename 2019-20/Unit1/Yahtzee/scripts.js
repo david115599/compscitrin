@@ -33,13 +33,8 @@ var threelock = false;
 var fourlock = false;
 var fivelock = false;
 var finalvalues = [];
-/*var aces = document.getElementById("aces");
-var twos = document.getElementById("twos");
-var threes = document.getElementById("threes");
-var fours = document.getElementById("fours");*/
 var hasthreeofakind = false;
 var haspair = false;
-
 var aceslock = false;
 var twoslock = false;
 var threeslock = false;
@@ -53,61 +48,71 @@ var small_straightlock = false;
 var large_straightlock = false;
 var yahtzeelock = false;
 var chancelock = false;
-var divs = [aces, twos, threes, fours, fives, sixes];
-var divss = ["aces", "twos", "threes", "fours", "fives", "sixes"];
-var locks = [aceslock, twoslock, threeslock, fourslock, fiveslock, sixeslock];
-var finval = [0,0,0,0,0,0];
-var finvals = [0,0,0,0,0,0];
+var divs = [aces, twos, threes, fours, fives, sixes, three_of_a_kind, four_of_a_kind, full_house, small_straight, large_straight, yahtzee, chance];
+var divss = ["aces", "twos", "threes", "fours", "fives", "sixes",  "three_of_a_kind", "four_of_a_kind", "full_house", "small_straight", "large_straight", "yahtzee", "chance"];
+//var locks = [aceslock, twoslock, threeslock, fourslock, fiveslock, sixeslock];
+var locks = [false, false, false, false, false, false, false, false, false, false, false, false, false];
+var finval = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+var finvals = [0,0,0,0,0,0,0,0,0,0,0,0,0];
 function scoreoptions() {
   hasthreeofakind = false;
   haspair = false;
   var count = 0;
   finalvaluesclean = finalvalues.reduce(function (s, v) { return s + (v || 0); });
-
   for (var i = 0; i < divs.length; i++) {
     if (locks[i] === false) {
       (divs[i]).innerHTML =(0).toString();
     }
   }
-  for (var i = 0; i < divs.length; i++) {
-    if (locks[i] === false) {
-      (divs[i]).addEventListener('click', function() {
-        locks[i] = true;
-        finvals[i]=finval[i];
-        console.log(finvals);
-      });
-    }
-  }
   if (chancelock == false){
-    (chance).innerHTML ="<button type='button'>"+finalvalues.reduce(function (s, v) { return s + (v || 0); }, 0)+"</button>";
+    (chance).innerHTML ="<button type='button'>"+finalvaluesclean+"</button>";
+    finval[12] = finalvaluesclean;
   }
   if (small_straightlock==false && ((finalvalues.includes(1)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4)) | (finalvalues.includes(5)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4)) | ((finalvalues.includes(5)&&finalvalues.includes(6)&&finalvalues.includes(3)&&finalvalues.includes(4))))){
     (small_straight).innerHTML ="<button type='button'>"+(30)+"</button>";
+    finval[9] = 30;
+  }
+  else if (small_straightlock==false) {
+    (small_straight).innerHTML ="<button type='button'>"+(0)+"</button>";
   }
   if (large_straightlock==false && ((finalvalues.includes(1)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4) &&finalvalues.includes(5)) |(finalvalues.includes(5)&&finalvalues.includes(2)&&finalvalues.includes(3)&&finalvalues.includes(4)&&finalvalues.includes(6)))){
     (large_straight).innerHTML ="<button type='button'>"+(40)+"</button>";
+    finval[10] = 40;
+  }
+  else if (large_straightlock==false) {
+    (large_straight).innerHTML ="<button type='button'>"+(0)+"</button>";
   }
   if (yahtzeelock==false && finalvalues[0]==finalvalues[1] && finalvalues[1]==finalvalues[2] && finalvalues[2]==finalvalues[3] && finalvalues[3]==finalvalues[4] && onelock == true && twolock == true && threelock == true && fourlock == true && fivelock == true){
     (yahtzee).innerHTML ="<button type='button'>"+(50)+"</button>";
+    finval[11] = 50;
+  }
+  else if (yahtzeelock==false) {
+    (yahtzee).innerHTML ="<button type='button'>"+(0)+"</button>";
   }
   for (var val = 1; val <= 6; val++) {
     count = 0;
-      for (var i = 0; i < finalvalues.length; i++) {
-        if (finalvalues[i]==val) {
-          count++;
-        }
-        if (locks[val-1] === false && i == finalvalues.length-1) {
-          finval[val]=count*val;
-          ((divs[val-1])).innerHTML =" <button type='button'>"+(finval[val])+"</button>";
-
-        }
-        if (three_of_a_kindlock === false && count == 3) {
-          (three_of_a_kind).innerHTML =" <button type='button'>"+(count*val)+"</button>";
-        }
-        if (four_of_a_kindlock === false &&count == 4) {
-          (four_of_a_kind).innerHTML =" <button type='button'>"+(count*val)+"</button>";
-        }
+    for (var i = 0; i < finalvalues.length; i++) {
+      if (finalvalues[i]==val) {
+        count++;
       }
+      if (locks[val-1] === false && i == finalvalues.length-1) {
+        finval[val-1]=count*val;
+        ((divs[val-1])).innerHTML =" <button type='button'>"+(finval[val-1])+"</button>";
+
+      }
+      (three_of_a_kind).innerHTML ="<button type='button'>"+(0)+"</button>";
+      console.log("this code is brocken fix it, it only works if you select the first die");
+      if (three_of_a_kindlock === false && count == 3) {
+      console.log("this code is brocken fix it");
+        three_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
+        finval[6] = finalvaluesclean;
+      }
+      (four_of_a_kind).innerHTML ="<button type='button'>"+(0)+"</button>";
+      if (four_of_a_kindlock === false &&count == 4) {
+        four_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
+        finval[7] = finalvaluesclean;
+      }
+    }
 
   }
 
@@ -125,20 +130,64 @@ function scoreoptions() {
         }
       }
     }
-    if (count1 + count2 ==5 && count2 >=2 && count1 >=2 ){
+    if (count1 + count2 ==5 && count2 >=2 && count1 >=2 && full_houselock == false){
+      finval[8] = 25;
       (full_house).innerHTML ="<button type='button'>"+(25)+"</button>";
+    }
+    else if (full_houselock==false) {
+      (full_house).innerHTML ="<button type='button'>"+(0)+"</button>";
     }
   }
   for (var i = 0; i < divs.length; i++) {
     if (locks[i] === true) {
       (divs[i]).innerHTML =(finvals[i]).toString();
-    console.log("alive");
+      console.log("alive");
       console.log(divs[i],locks[i],finval[i]);
     }
-
   }
+
+
 }
 
+
+for (var i = 0; i < divs.length; i++) {
+  if (locks[i] === false) {
+    (divs[i]).addEventListener('click', function() {
+      if (rolls != 3) {
+        locks[divss.indexOf(this.id.toString())] = true;
+        finvals[divss.indexOf(this.id.toString())]=finval[divss.indexOf(this.id.toString())];
+        rolls=3;
+        console.log(finval);
+        console.log(divss.indexOf(this.id.toString()));
+        console.log(this.id.toString());
+        console.log(finvals);
+        console.log(locks);
+        onelock = false
+        twolock = false
+        threelock = false
+        fourlock = false
+        fivelock = false
+        one = null;
+        two = null;
+        three = null;
+        four = null;
+        five = null;
+        die_1.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+        die_2.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+        die_3.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+        die_4.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+        die_5.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+        remaining_rolls.innerHTML = rolls.toString();
+        for (var i = 0; i < finalvalues.length; i++) {
+          finalvalues[i]=undefined;
+        }
+        for (var i = 0; i < finval.length; i++) {
+          finval[i] = 0;
+        }
+      }
+    });
+  }
+}
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
@@ -248,8 +297,8 @@ roll_button.addEventListener('click', function(){
       five = getRandomInt(6)+1;
       die_5.innerHTML =" <button type='button'><img src=assets\\"+five.toString()+".svg alt='' height=100 width=60></img></button>"
     }
-    rolls = rolls-1
-    console.log("roll button clicked")
-    remaining_rolls.innerHTML = rolls.toString()
-    scoreoptions()
+    rolls = rolls-1;
+    console.log("roll button clicked");
+    remaining_rolls.innerHTML = rolls.toString();
+    scoreoptions();
   }});
