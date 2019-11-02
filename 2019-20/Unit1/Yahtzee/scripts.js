@@ -89,6 +89,7 @@ login.addEventListener('mouseleave', function(){
     }
     window.localStorage.setItem(user.name, JSON.stringify(user));
   }
+if (confirm("To resume a game press ok. to start a new game press Cancel")) {
   finalvalues = user.current_dice;
   one = user.current_dice[0];
   two = user.current_dice[1];
@@ -105,6 +106,13 @@ login.addEventListener('mouseleave', function(){
   die_4.innerHTML =" <button type='button'><img src=assets\\"+four.toString()+".svg alt='' height=100 width=60></img></button>"
   die_5.innerHTML =" <button type='button'><img src=assets\\"+five.toString()+".svg alt='' height=100 width=60></img></button>"
   scoreoptions();
+
+} else {
+  user.current_round = 0;
+  user.current_dice = [null,null,null,null,null];
+  user.current_gamevals = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  user.current_locks = [false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+}
 });
 save.addEventListener('click', function() {
   if (roundcount === 15) {
@@ -123,12 +131,6 @@ save.addEventListener('click', function() {
   }
   window.localStorage.setItem(user.name, JSON.stringify(user));
 });
-
-
-
-
-
-
 
 
 function scoreoptions() {
