@@ -134,12 +134,10 @@ function scoreoptions() {
         }
       }
     }
+    (full_house).innerHTML ="<button type='button'>"+(0)+"</button>";
     if (count1 + count2 ==5 && count2 >=2 && count1 >=2 && full_houselock == false){
       finval[8] = 25;
       (full_house).innerHTML ="<button type='button'>"+(25)+"</button>";
-    }
-    else if (full_houselock==false) {
-      (full_house).innerHTML ="<button type='button'>"+(0)+"</button>";
     }
   }
   for (var i = 0; i < divs.length; i++) {
@@ -171,11 +169,11 @@ for (var i = 0; i < divs.length; i++) {
         threelock = false
         fourlock = false
         fivelock = false
-        one = null;
-        two = null;
-        three = null;
-        four = null;
-        five = null;
+        one = 0;
+        two = 0;
+        three = 0;
+        four = 0;
+        five = 0;
         die_1.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
         die_2.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
         die_3.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
@@ -189,6 +187,7 @@ for (var i = 0; i < divs.length; i++) {
           finval[i] = 0;
         }
       }
+scoreoptions();
     });
   }
 }
