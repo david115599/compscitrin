@@ -1,19 +1,20 @@
 console.log("Scripts.js loaded");
-/*if ((null == false)==false) {
-console.log("its false");
-}
-if ((null == false)==true) {
-console.log("its true");
-}*/
-var user  = {
-  total_rolls: 0,
-  tunr_rolls: 2,
-  dice:[1,2,3,3,4],
-  name: "david"
-}
-window.localStorage.setItem(user.name, JSON.stringify(user));
 
-
+var users  =
+{
+  name: "David",
+  current_round:1,
+  current_dice:[1,2,3,3,4],
+  current_gamevals: [1,0,1,1,11,1,1,1,11,1,1,1,1,1],
+  current_locks: [true,false,true,true,true,true,true,true,true,true,true,true,true,true],
+  past_games_scores:[]
+}
+var user;
+window.localStorage.setItem(users.name, JSON.stringify(users));
+var totalup = 0;
+var uptotal = 0;
+var totallow = 0;
+var roundcount=0;
 var roll_button = document.getElementById("roll_button");
 var rolls = 3;
 var remaining_rolls =  document.getElementById("remaining_rolls");
@@ -52,8 +53,84 @@ var divs = [aces, twos, threes, fours, fives, sixes, three_of_a_kind, four_of_a_
 var divss = ["aces", "twos", "threes", "fours", "fives", "sixes",  "three_of_a_kind", "four_of_a_kind", "full_house", "small_straight", "large_straight", "yahtzee", "chance"];
 //var locks = [aceslock, twoslock, threeslock, fourslock, fiveslock, sixeslock];
 var locks = [false, false, false, false, false, false, false, false, false, false, false, false, false];
-var finval = [0,0,0,0,0,0,0,0,0,0,0,0,0];
-var finvals = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+var finval = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var finvals = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+
+var value;
+var login = document.getElementById("login");
+login.addEventListener('mouseleave', function(){
+  var safe = true;
+  var invalidinputs = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?";
+  for (var i = 0; i < invalidinputs.length; i++)
+  {
+    if (this.value.includes(invalidinputs.charAt(i)))
+    {
+      safe = false;
+      console.log("invalid");
+      alert ("Contains invalid inputs");
+    }
+  }
+  if (safe === true) {
+    value = this.value;
+    console.log(value);
+    currentuser.innerHTML = value;
+  }
+
+ user = JSON.parse(window.localStorage.getItem(value))
+  if (user === null) {
+    user = {
+      name: value,
+      current_round:0,
+      current_dice:[null,null,null,null,null],
+      current_gamevals: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      current_locks:[false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+      past_games_scores:[]
+    }
+    window.localStorage.setItem(user.name, JSON.stringify(user));
+  }
+  finalvalues = user.current_dice;
+  one = user.current_dice[0];
+  two = user.current_dice[1];
+  three = user.current_dice[2];
+  four = user.current_dice[3];
+  five = user.current_dice[4];
+  finvals = user.current_gamevals;
+  locks = user.current_locks;
+  roundcount = user.current_round;
+
+  die_1.innerHTML =" <button type='button'><img src=assets\\"+one.toString()+".svg alt='' height=100 width=60></img></button>"
+  die_2.innerHTML =" <button type='button'><img src=assets\\"+two.toString()+".svg alt='' height=100 width=60></img></button>"
+  die_3.innerHTML =" <button type='button'><img src=assets\\"+three.toString()+".svg alt='' height=100 width=60></img></button>"
+  die_4.innerHTML =" <button type='button'><img src=assets\\"+four.toString()+".svg alt='' height=100 width=60></img></button>"
+  die_5.innerHTML =" <button type='button'><img src=assets\\"+five.toString()+".svg alt='' height=100 width=60></img></button>"
+  scoreoptions();
+});
+save.addEventListener('click', function() {
+  if (roundcount === 15) {
+
+    user.current_round = 0;
+    user.current_dice = [null,null,null,null,null];
+    user.current_gamevals = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    user.current_locks = [false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+    user.past_games_scores.push(uptotal+totallow);
+  }
+  else{
+    user.current_round = roundcount;
+    user.current_dice = [one,two,three,four,five];
+    user.current_gamevals = finvals;
+    user.current_locks = locks;
+  }
+  window.localStorage.setItem(user.name, JSON.stringify(user));
+});
+
+
+
+
+
+
+
+
 function scoreoptions() {
   hasthreeofakind = false;
   haspair = false;
@@ -108,17 +185,17 @@ function scoreoptions() {
       finval[val-1]=count*val;
       ((divs[val-1])).innerHTML =" <button type='button'>"+(count*val)+"</button>";
     }
-}
-    if (three_of_a_kindlock === false && (kcount == 3 || kcount == 4)) {
-      three_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
-      finval[6] = finalvaluesclean;
-
-    }
-    if (four_of_a_kindlock === false &&kcount == 4) {
-      four_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
-      finval[7] = finalvaluesclean;
-    }
   }
+  if (three_of_a_kindlock === false && (kcount == 3 || kcount == 4)) {
+    three_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
+    finval[6] = finalvaluesclean;
+
+  }
+  if (four_of_a_kindlock === false &&kcount == 4) {
+    four_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
+    finval[7] = finalvaluesclean;
+  }
+
 
   var count1 = 0;
   var count2 = 0;
@@ -140,6 +217,7 @@ function scoreoptions() {
       (full_house).innerHTML ="<button type='button'>"+(25)+"</button>";
     }
   }
+
   for (var i = 0; i < divs.length; i++) {
     if (locks[i] === true) {
       (divs[i]).innerHTML =(finvals[i]).toString();
@@ -147,7 +225,19 @@ function scoreoptions() {
       console.log(divs[i],locks[i],finval[i]);
     }
   }
-
+  totalup = finvals[0]+finvals[1]+finvals[2]+finvals[3]+finvals[4]+finvals[5];
+  uptotal = totalup;
+  total_score.innerHTML =totalup;
+  if (totalup>=63) {
+    bonus.innerHTML =(35).toString();
+    uptotal+=35
+  }
+  total.innerHTML =(uptotal);
+  total_of_upper_section.innerHTML =(uptotal);
+  totallow = finvals[6]+finvals[7]+finvals[8]+finvals[9]+finvals[10]+finvals[11]+finvals[12]+finvals[13];
+  total_of_lower_section.innerHTML =(totallow);
+  grand_total.innerHTML =(totallow+uptotal);
+}
 
 
 
@@ -155,7 +245,8 @@ function scoreoptions() {
 for (var i = 0; i < divs.length; i++) {
   if (locks[i] === false) {
     (divs[i]).addEventListener('click', function() {
-      if (rolls != 3) {
+      if (rolls != 3 && roundcount<=13) {
+        roundcount++
         locks[divss.indexOf(this.id.toString())] = true;
         finvals[divss.indexOf(this.id.toString())]=finval[divss.indexOf(this.id.toString())];
         rolls=3;
@@ -187,7 +278,10 @@ for (var i = 0; i < divs.length; i++) {
           finval[i] = 0;
         }
       }
-scoreoptions();
+      else {
+        console.log("gameover");
+      }
+      scoreoptions();
     });
   }
 }
