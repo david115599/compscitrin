@@ -58,7 +58,8 @@ function scoreoptions() {
   hasthreeofakind = false;
   haspair = false;
   var count = 0;
-  finalvaluesclean = finalvalues.reduce(function (s, v) { return s + (v || 0); });
+  //  finalvaluesclean = finalvalues.reduce(function (s, v) { return s + (v || 0); });
+  finalvaluesclean = one+two+three+four+five;
   for (var i = 0; i < divs.length; i++) {
     if (locks[i] === false) {
       (divs[i]).innerHTML =(0).toString();
@@ -89,31 +90,28 @@ function scoreoptions() {
   else if (yahtzeelock==false) {
     (yahtzee).innerHTML ="<button type='button'>"+(0)+"</button>";
   }
+  (three_of_a_kind).innerHTML ="<button type='button'>"+(0)+"</button>";
+  (four_of_a_kind).innerHTML ="<button type='button'>"+(0)+"</button>";
   for (var val = 1; val <= 6; val++) {
     count = 0;
     for (var i = 0; i < finalvalues.length; i++) {
       if (finalvalues[i]==val) {
         count++;
-      }
-      if (locks[val-1] === false && i == finalvalues.length-1) {
-        finval[val-1]=count*val;
-        ((divs[val-1])).innerHTML =" <button type='button'>"+(finval[val-1])+"</button>";
-
-      }
-      (three_of_a_kind).innerHTML ="<button type='button'>"+(0)+"</button>";
-      console.log("this code is brocken fix it, it only works if you select the first die");
-      if (three_of_a_kindlock === false && count == 3) {
-      console.log("this code is brocken fix it");
-        three_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
-        finval[6] = finalvaluesclean;
-      }
-      (four_of_a_kind).innerHTML ="<button type='button'>"+(0)+"</button>";
-      if (four_of_a_kindlock === false &&count == 4) {
-        four_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
-        finval[7] = finalvaluesclean;
+        if (locks[val-1] === false && i == finalvalues.length-1) {
+          finval[val-1]=count*val;
+          ((divs[val-1])).innerHTML =" <button type='button'>"+(count*val)+"</button>";
+        }
       }
     }
+    if (three_of_a_kindlock === false && (count == 3 || count == 4)) {
+      three_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
+      finval[6] = finalvaluesclean;
 
+    }
+    if (four_of_a_kindlock === false &&count == 4) {
+      four_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
+      finval[7] = finalvaluesclean;
+    }
   }
 
   var count1 = 0;
