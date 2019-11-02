@@ -92,23 +92,29 @@ function scoreoptions() {
   }
   (three_of_a_kind).innerHTML ="<button type='button'>"+(0)+"</button>";
   (four_of_a_kind).innerHTML ="<button type='button'>"+(0)+"</button>";
+
+  var kcount=0;
   for (var val = 1; val <= 6; val++) {
     count = 0;
     for (var i = 0; i < finalvalues.length; i++) {
       if (finalvalues[i]==val) {
         count++;
-        if (locks[val-1] === false && i == finalvalues.length-1) {
-          finval[val-1]=count*val;
-          ((divs[val-1])).innerHTML =" <button type='button'>"+(count*val)+"</button>";
-        }
+      }
+      if (count>=3) {
+        kcount=count
       }
     }
-    if (three_of_a_kindlock === false && (count == 3 || count == 4)) {
+    if (locks[val-1] === false) {
+      finval[val-1]=count*val;
+      ((divs[val-1])).innerHTML =" <button type='button'>"+(count*val)+"</button>";
+    }
+}
+    if (three_of_a_kindlock === false && (kcount == 3 || kcount == 4)) {
       three_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
       finval[6] = finalvaluesclean;
 
     }
-    if (four_of_a_kindlock === false &&count == 4) {
+    if (four_of_a_kindlock === false &&kcount == 4) {
       four_of_a_kind.innerHTML =" <button type='button'>"+(finalvaluesclean)+"</button>";
       finval[7] = finalvaluesclean;
     }
@@ -145,7 +151,7 @@ function scoreoptions() {
   }
 
 
-}
+
 
 
 for (var i = 0; i < divs.length; i++) {
