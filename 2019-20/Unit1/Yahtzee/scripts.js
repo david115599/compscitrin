@@ -2,7 +2,7 @@ console.log("Scripts.js loaded");
 
 var users  =
 {
-  name: "David",
+  name: "testuser",
   current_round:1,
   current_dice:[1,2,3,3,4],
   current_gamevals: [1,0,1,1,11,1,1,1,11,1,1,1,1,1],
@@ -14,7 +14,7 @@ window.localStorage.setItem(users.name, JSON.stringify(users));
 var totalup = 0;
 var uptotal = 0;
 var totallow = 0;
-var roundcount=0;
+var roundcount=1;
 var roll_button = document.getElementById("roll_button");
 var rolls = 3;
 var remaining_rolls =  document.getElementById("remaining_rolls");
@@ -77,11 +77,11 @@ login.addEventListener('mouseleave', function(){
     currentuser.innerHTML = value;
   }
 
- user = JSON.parse(window.localStorage.getItem(value))
+  user = JSON.parse(window.localStorage.getItem(value))
   if (user === null) {
     user = {
       name: value,
-      current_round:0,
+      current_round:1,
       current_dice:[null,null,null,null,null],
       current_gamevals: [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
       current_locks:[false,false,false,false,false,false,false,false,false,false,false,false,false,false],
@@ -89,35 +89,42 @@ login.addEventListener('mouseleave', function(){
     }
     window.localStorage.setItem(user.name, JSON.stringify(user));
   }
-if (confirm("To resume a game press ok. to start a new game press Cancel")) {
-  finalvalues = user.current_dice;
-  one = user.current_dice[0];
-  two = user.current_dice[1];
-  three = user.current_dice[2];
-  four = user.current_dice[3];
-  five = user.current_dice[4];
-  finvals = user.current_gamevals;
-  locks = user.current_locks;
-  roundcount = user.current_round;
-
-  die_1.innerHTML =" <button type='button'><img src=assets\\"+one.toString()+".svg alt='' height=100 width=60></img></button>"
-  die_2.innerHTML =" <button type='button'><img src=assets\\"+two.toString()+".svg alt='' height=100 width=60></img></button>"
-  die_3.innerHTML =" <button type='button'><img src=assets\\"+three.toString()+".svg alt='' height=100 width=60></img></button>"
-  die_4.innerHTML =" <button type='button'><img src=assets\\"+four.toString()+".svg alt='' height=100 width=60></img></button>"
-  die_5.innerHTML =" <button type='button'><img src=assets\\"+five.toString()+".svg alt='' height=100 width=60></img></button>"
+  if (confirm("To resume a game press ok. to start a new game press Cancel")) {
+    finalvalues = user.current_dice;
+    one = user.current_dice[0];
+    two = user.current_dice[1];
+    three = user.current_dice[2];
+    four = user.current_dice[3];
+    five = user.current_dice[4];
+    finvals = user.current_gamevals;
+    locks = user.current_locks;
+    roundcount = user.current_round;
+current_rounds.innerHTML = roundcount;
+    die_1.innerHTML =" <button type='button'><img src=assets\\"+one.toString()+".svg alt='' height=100 width=60></img></button>"
+    die_2.innerHTML =" <button type='button'><img src=assets\\"+two.toString()+".svg alt='' height=100 width=60></img></button>"
+    die_3.innerHTML =" <button type='button'><img src=assets\\"+three.toString()+".svg alt='' height=100 width=60></img></button>"
+    die_4.innerHTML =" <button type='button'><img src=assets\\"+four.toString()+".svg alt='' height=100 width=60></img></button>"
+    die_5.innerHTML =" <button type='button'><img src=assets\\"+five.toString()+".svg alt='' height=100 width=60></img></button>"
+if (one == 0) {
+  die_1.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+  die_2.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+  die_3.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+  die_4.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+  die_5.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+}
   scoreoptions();
 
-} else {
-  user.current_round = 0;
-  user.current_dice = [null,null,null,null,null];
-  user.current_gamevals = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-  user.current_locks = [false,false,false,false,false,false,false,false,false,false,false,false,false,false];
-}
+  } else {
+    user.current_round = 1;
+    user.current_dice = [null,null,null,null,null];
+    user.current_gamevals = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    user.current_locks = [false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+  }
 });
 save.addEventListener('click', function() {
   if (roundcount === 15) {
 
-    user.current_round = 0;
+    user.current_round = 1;
     user.current_dice = [null,null,null,null,null];
     user.current_gamevals = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     user.current_locks = [false,false,false,false,false,false,false,false,false,false,false,false,false,false];
@@ -247,8 +254,9 @@ function scoreoptions() {
 for (var i = 0; i < divs.length; i++) {
   if (locks[i] === false) {
     (divs[i]).addEventListener('click', function() {
-      if (rolls != 3 && roundcount<=13) {
+      if (rolls != 3 && roundcount<13) {
         roundcount++
+        current_rounds.innerHTML = roundcount;
         locks[divss.indexOf(this.id.toString())] = true;
         finvals[divss.indexOf(this.id.toString())]=finval[divss.indexOf(this.id.toString())];
         rolls=3;
@@ -280,8 +288,17 @@ for (var i = 0; i < divs.length; i++) {
           finval[i] = 0;
         }
       }
-      else {
+      else if(roundcount == 13) {
         console.log("gameover");
+        user.current_round = 1;
+        user.current_dice = [null,null,null,null,null];
+        user.current_gamevals = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        user.current_locks = [false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+        user.past_games_scores.push(uptotal+totallow);
+        window.localStorage.setItem(user.name, JSON.stringify(user));
+        if (confirm("To play again press ok")){
+          location.reload();
+        }
       }
       scoreoptions();
     });
