@@ -99,20 +99,20 @@ login.addEventListener('mouseleave', function(){
     finvals = user.current_gamevals;
     locks = user.current_locks;
     roundcount = user.current_round;
-current_rounds.innerHTML = roundcount;
+    current_rounds.innerHTML = roundcount;
     die_1.innerHTML =" <button type='button'><img src=assets\\"+one.toString()+".svg alt='' height=100 width=60></img></button>"
     die_2.innerHTML =" <button type='button'><img src=assets\\"+two.toString()+".svg alt='' height=100 width=60></img></button>"
     die_3.innerHTML =" <button type='button'><img src=assets\\"+three.toString()+".svg alt='' height=100 width=60></img></button>"
     die_4.innerHTML =" <button type='button'><img src=assets\\"+four.toString()+".svg alt='' height=100 width=60></img></button>"
     die_5.innerHTML =" <button type='button'><img src=assets\\"+five.toString()+".svg alt='' height=100 width=60></img></button>"
-if (one == 0) {
-  die_1.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
-  die_2.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
-  die_3.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
-  die_4.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
-  die_5.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
-}
-  scoreoptions();
+    if (one == 0) {
+      die_1.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+      die_2.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+      die_3.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+      die_4.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+      die_5.innerHTML =" <button type='button'><img src=assets\\question_mark.png alt='' height=100 width=60></img></button>"
+    }
+    scoreoptions();
 
   } else {
     user.current_round = 1;
@@ -206,46 +206,78 @@ function scoreoptions() {
   }
 
 
-  var count1 = 0;
-  var count2 = 0;
-
-  for (var i = 0; i <= finalvalues.length; i++) {
-    if (finalvalues[0] == finalvalues[i] && finalvalues[i] != 0 && finalvalues[i] != undefined) {
-      count1++
-    }
-    else if (i != 0 && finalvalues[i] != 0 && finalvalues[i] != undefined){
-      for (var q = i; q<=finalvalues.length; q++){
-        if (finalvalues[i]==finalvalues[q]) {
-          count2++;
+  var count1=0;
+  var count2=0;
+  for (var val = 1; val <= 6; val++) {
+    count = 0;
+    for (var i = 0; i < finalvalues.length; i++) {
+      if (finalvalues[i]==val && finalvalues[i]!= null && finalvalues[i]!= 0 && finalvalues[i]!= undefined) {
+        if (finalvalues[i]==val && finalvalues[i]!= null && finalvalues[i]!= 0 && finalvalues[i]!= undefined) {
+          count++;
+        }
+        if (count==2) {
+          if (count1 ==0) {
+            count1=count
+          }
+        }
+        if (count==3) {
+          if (count1 ==0) {
+            count1=0
+          }
+          count2=count
         }
       }
     }
-    (full_house).innerHTML ="<button type='button'>"+(0)+"</button>";
-    if (count1 + count2 ==5 && count2 >=2 && count1 >=2 && full_houselock == false){
-      finval[8] = 25;
-      (full_house).innerHTML ="<button type='button'>"+(25)+"</button>";
-    }
   }
+  /*  var count1 = [0,0,0,0,0,0,0];
+  if (onelock === true && twolock === true && threelock === true && fourlock === true && fivelock === true) {
+  for (var i = 0; i <= 6; i++) {
+  for (var q = 0; q<=6; q++) {
+  if(finalvalues[i]===finalvalues[q] && i!=q){
+  count1[i]++;
+  console.log(count1,full_housetemp,full_housetemp[q]);
+}
+}
+}
+}*/
+/*  for (var i = 0; i <= finalvalues.length; i++) {
+if (finalvalues[0] == finalvalues[i] && finalvalues[i] != 0 && finalvalues[i] != undefined) {
+count1++
+}
+else if (i != 0 && finalvalues[i] != 0 && finalvalues[i] != undefined){
+for (var q = i; q<=finalvalues.length; q++){
+if (finalvalues[i]==finalvalues[q]) {
+count2++;
+}
+}
+}*/
+(full_house).innerHTML ="<button type='button'>"+(0)+"</button>";
+if (count1 + count2 ==5 && count2 >=2 && count1 >=2 && onelock === true&& twolock === true&& threelock === true && fourlock === true && fivelock === true/* 5==count1[6]+count1[0]+count1[1]+count1[2]+count1[3]+count1[4]+count1[5]*/ && full_houselock == false){
+  console.log('her');
+  finval[8] = 25;
+  (full_house).innerHTML ="<button type='button'>"+(25)+"</button>";
+}
 
-  for (var i = 0; i < divs.length; i++) {
-    if (locks[i] === true) {
-      (divs[i]).innerHTML =(finvals[i]).toString();
-      console.log("alive");
-      console.log(divs[i],locks[i],finval[i]);
-    }
+
+for (var i = 0; i < divs.length; i++) {
+  if (locks[i] === true) {
+    (divs[i]).innerHTML =(finvals[i]).toString();
+    console.log("alive");
+    console.log(divs[i],locks[i],finval[i]);
   }
-  totalup = finvals[0]+finvals[1]+finvals[2]+finvals[3]+finvals[4]+finvals[5];
-  uptotal = totalup;
-  total_score.innerHTML =totalup;
-  if (totalup>=63) {
-    bonus.innerHTML =(35).toString();
-    uptotal+=35
-  }
-  total.innerHTML =(uptotal);
-  total_of_upper_section.innerHTML =(uptotal);
-  totallow = finvals[6]+finvals[7]+finvals[8]+finvals[9]+finvals[10]+finvals[11]+finvals[12]+finvals[13];
-  total_of_lower_section.innerHTML =(totallow);
-  grand_total.innerHTML =(totallow+uptotal);
+}
+totalup = finvals[0]+finvals[1]+finvals[2]+finvals[3]+finvals[4]+finvals[5];
+uptotal = totalup;
+total_score.innerHTML =totalup;
+if (totalup>=63) {
+  bonus.innerHTML =(35).toString();
+  uptotal+=35
+}
+total.innerHTML =(uptotal);
+total_of_upper_section.innerHTML =(uptotal);
+totallow = finvals[6]+finvals[7]+finvals[8]+finvals[9]+finvals[10]+finvals[11]+finvals[12]+finvals[13];
+total_of_lower_section.innerHTML =(totallow);
+grand_total.innerHTML =(totallow+uptotal);
 }
 
 
