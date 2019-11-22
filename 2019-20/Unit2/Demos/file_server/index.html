@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>P,R,S - Client</title>
+  <link rel="stylesheet" href="styles/style.css">
+ </head>
+
+<body>
+  <header>
+  <h1><a href="/">P, R, S</a></h1>
+  <a href ="/rules">View Rules</a>
+  <a href ="/stats">View Stats</a>
+</header>
+
+  <div id="feedback">
+  </div>
+  <div id="enter_name">
+    <h2>Welcome to Paper, Rock, Scissors</h2>
+    It looks like you haven't played before!<br><br>
+    Enter your name:<input type="text" id="enter_name_input">
+    <button id = "enter_name_button">Submit Name</button>
+  </div>
+  <div id="throw_choice" class="hidden">
+    <h2>Play the Game</h2>
+    <h4><span class="player_name_span"></span>, it's your turn to bust a move!</h4>
+    Enter your choice of weapon:
+    <select>
+      <option value=" "> </option>
+      <option value="paper">Paper</option>
+      <option value="rock">Rock</option>
+      <option value="scissors">Scissors</option>
+    </select>
+    <button id = "throw_choice_button">Throw Choice</button>
+  </div>
+  <div id="game_results" class="hidden">
+    <h2>Game Results</h2>
+    <button id = "play_again_button">Play Again</button>
+  </div>
+  <footer>
+    Brought to you by the cool kids of Software Engineering - Fall, 2018.
+  </footer>
+  <script src="scripts/scripts.js"></script>
+ </body>
+</html>

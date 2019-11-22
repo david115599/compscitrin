@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>P,R,S - Client</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <h1>P, R, S</h1>
+  <button id = "show_rules_button">View Rules</button>
+  <button id = "show_stats_button">View Stats</button>
+
+  <div id="feedback">
+  </div>
+  <div id="rules" class="hidden">
+    <h2>Rules</h2>
+    The game of P, R, S is based on trust, skill and determination.
+    Each player must:
+    <ul>
+      <li>Something</li>
+      <li>Something</li>
+      <li>Something</li>
+    </ul>
+  </div>
+  <div id="stats" class="hidden">
+    <h2>Stats- ____ games played</h2>
+    <table>
+      <tr>
+        <th class="top_row">Player Name</th>
+        <th class="top_row">Paper %</th>
+        <th class="top_row">Rock %</th>
+        <th class="top_row">Scissors %</th>
+        <th class="top_row">Wins %</th>
+      </tr>
+      <tr>
+        <th><span class="player_name_span"></span>  </th>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      <tr>
+        <th> B(r)owser </th>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+    </table>
+  </div>
+  <div id="enter_name" class="hidden">
+    <h2>Welcome to Paper, Rock, Scissors</h2>
+    It looks like you haven't played before!<br><br>
+    Enter your name:<input type="text" id="enter_name_input">
+    <button id = "enter_name_button">Submit Name</button>
+  </div>
+  <div id="throw_choice" class="hidden">
+    <h2>Play the Game</h2>
+    <h4><span class="player_name_span"></span>, it's your turn to bust a move!</h4>
+    Enter your choice of weapon:
+    <select>
+      <option value=" "> </option>
+      <option value="paper">Paper</option>
+      <option value="rock">Rock</option>
+      <option value="scissors">Scissors</option>
+    </select>
+    <button id = "throw_choice_button">Throw Choice</button>
+  </div>
+  <div id="game_results" class="hidden">
+    <h2>Game Results</h2>
+    <button id = "play_again_button">Play Again</button>
+  </div>
+  <footer>
+    Brought to you by the cool kids of Software Engineering - Fall, 2018.
+  </footer>
+  <script src="scripts.js"></script>
+</body>
+</html>
