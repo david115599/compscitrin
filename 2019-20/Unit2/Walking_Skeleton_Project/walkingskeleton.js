@@ -51,11 +51,11 @@ app.get('/game', function(request, response) {
   fileContent = fs.readFileSync("data/users.csv", {encoding: 'utf8'});
   console.log(fileContent);
   var logged_in = false;
-if(fileContent.match(user_data.name) && fileContent.match(user_data.password)){
+fileContentar = fileContent.split(/,|\n/);
+console.log(fileContentar);
+if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password)) {
 logged_in = true;
 }
-
-  //add logged in logic
 
   if (logged_in) {
     response.status(200);
