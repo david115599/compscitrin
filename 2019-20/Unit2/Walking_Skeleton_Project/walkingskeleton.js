@@ -53,7 +53,7 @@ app.get('/game', function(request, response) {
   var logged_in = false;
 fileContentar = fileContent.split(/,|\n/);
 console.log(fileContentar);
-if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password)) {
+if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password) && fileContentar[fileContentar.indexOf(user_data.name)+4] == user_data.password) {
 logged_in = true;
 }
 
