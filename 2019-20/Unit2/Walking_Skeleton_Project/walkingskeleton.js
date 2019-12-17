@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var favicon = require('serve-favicon');
 
+
 var app = express(); //Create an Express route
 app.use(express.static('public'));
 app.set('views', __dirname + '/views');
@@ -47,7 +48,13 @@ app.get('/game', function(request, response) {
     password: request.query.password
   };
   console.log(user_data);
+  fileContent = fs.readFileSync("data/users.csv", {encoding: 'utf8'});
+  console.log(fileContent);
   var logged_in = false;
+if(fileContent.match(user_data.name) && fileContent.match(user_data.password)){
+logged_in = true;
+}
+
   //add logged in logic
 
   if (logged_in) {
@@ -59,7 +66,7 @@ app.get('/game', function(request, response) {
   } else {
     response.status(403);
     response.setHeader('Content-Type', 'text/html')
-    response.render('error');
+    response.render('error403');
   }
 });
 
@@ -68,6 +75,7 @@ app.post('/:user/game', function(request, response) {
     name: request.params.user,
     weapon: request.query.weapon
   };
+
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
   response.send(JSON.stringify(user_data));
