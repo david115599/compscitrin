@@ -7,7 +7,7 @@ var app = express(); //Create an Express route
 app.use(express.static('public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(favicon(__dirname + '/public/images/logo.png'));
+app.use(favicon(__dirname + '/public/images/logo1.png'));
 
 var port = 3000;
 app.listen(port, function() {
@@ -51,11 +51,11 @@ app.get('/game', function(request, response) {
   fileContent = fs.readFileSync("data/users.csv", {encoding: 'utf8'});
   console.log(fileContent);
   var logged_in = false;
-fileContentar = fileContent.split(/,|\n/);
-console.log(fileContentar);
-if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password) && fileContentar[fileContentar.indexOf(user_data.name)+4] == user_data.password) {
-logged_in = true;
-}
+  fileContentar = fileContent.split(/,|\n/);
+  console.log(fileContentar);
+  if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password) && fileContentar[fileContentar.indexOf(user_data.name)+4] == user_data.password && fileContentar[fileContentar.indexOf(user_data.name)+4] > 4) {
+    logged_in = true;
+  }
 
   if (logged_in) {
     response.status(200);
