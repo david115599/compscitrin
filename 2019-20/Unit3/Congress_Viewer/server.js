@@ -25,6 +25,8 @@ app.get('/', function(request, response){
   response.render('index',{feedback:""});
 });
 
+var politicians = [];
+
 app.get('/view', function(request, responsea){
   responsea.status(200);
   responsea.setHeader('Content-Type', 'text/html')
@@ -36,14 +38,27 @@ app.get('/view', function(request, responsea){
       "X-API-Key": "wvz6nlmPtKUxSUTEDqeDaJpO1Wkv8jC6zpEQZups"
     }
   }
+  var options2 = {
+    url: "https://api.propublica.org/congress/v1/116/house/members.json",
+    json: true,
+    headers: {
+      "X-API-Key": "wvz6nlmPtKUxSUTEDqeDaJpO1Wkv8jC6zpEQZups"
+    }
+  }
 
   apirequest.get(options, function(error, response, body) {
     console.error('error:', error); // Print the error if one occurred
     console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body.results[0].members); // Print the HTML for the Google homepage.
-  responsea.render('politicians',{feedback:body});
+    //console.log('body:', body.results[0].members); // Print the HTML for the Google homepage.
+    politicians[0] = (body.results[0]);
   });
-
+  apirequest.get(options2, function(error, response, body) {
+    console.error('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  //  console.log('body:', body.results[0].members); // Print the HTML for the Google homepage.
+    politicians[1] = (body.results[0]);
+  });
+  responsea.render('politicians',{feedback:politicians});
 });
 
 app.get('/logout', function(request, response){
