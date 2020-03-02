@@ -28,9 +28,6 @@ app.get('/', function(request, response){
 var politicians = [];
 
 app.get('/view', function(request, responsea){
-  responsea.status(200);
-  responsea.setHeader('Content-Type', 'text/html')
-
   var options = {
     url: "https://api.propublica.org/congress/v1/116/senate/members.json",
     json: true,
@@ -58,6 +55,8 @@ app.get('/view', function(request, responsea){
   //  console.log('body:', body.results[0].members); // Print the HTML for the Google homepage.
     politicians[1] = (body.results[0]);
   });
+  responsea.status(200);
+  responsea.setHeader('Content-Type', 'text/html')
   responsea.render('politicians',{feedback:politicians});
 });
 
