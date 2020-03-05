@@ -27,22 +27,22 @@ app.get('/', function(request, response){
 
 var politicians = [];
 
-app.get('/view', function(request, responsea){
+
+app.post('/view', function(request, responsea, body){
   var options = {
-    url: "https://api.propublica.org/congress/v1/116/senate/members.json",
+    url: 'https://api.propublica.org/congress/v1/'+request.body.year+'/senate/members.json',
     json: true,
     headers: {
       "X-API-Key": "wvz6nlmPtKUxSUTEDqeDaJpO1Wkv8jC6zpEQZups"
     }
   }
   var options2 = {
-    url: "https://api.propublica.org/congress/v1/116/house/members.json",
+    url: 'https://api.propublica.org/congress/v1/'+request.body.year+'/house/members.json',
     json: true,
     headers: {
       "X-API-Key": "wvz6nlmPtKUxSUTEDqeDaJpO1Wkv8jC6zpEQZups"
     }
   }
-
   apirequest.get(options, function(error, response, body) {
     console.error('error:', error); // Print the error if one occurred
     console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -52,12 +52,20 @@ app.get('/view', function(request, responsea){
   apirequest.get(options2, function(error, response, body) {
     console.error('error:', error); // Print the error if one occurred
     console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  //  console.log('body:', body.results[0].members); // Print the HTML for the Google homepage.
+    //console.log('body:', body.results[0].members); // Print the HTML for the Google homepage.
     politicians[1] = (body.results[0]);
   });
+if (request.body.sh == "1") {
   responsea.status(200);
   responsea.setHeader('Content-Type', 'text/html')
-  responsea.render('politicians',{feedback:politicians});
+  responsea.render('politicians',{feedback:politicians[1]});
+}
+if(request.body.sh == "0") {
+  responsea.status(200);
+  responsea.setHeader('Content-Type', 'text/html')
+  responsea.render('politicians',{feedback:politicians[0]});
+}
+
 });
 
 app.get('/logout', function(request, response){
