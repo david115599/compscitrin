@@ -25,9 +25,6 @@ app.get('/', function(request, response){
   response.render('index',{feedback:""});
 });
 
-var politicians = [];
-
-
 app.post('/view', function(request, responsea, body){
   var options = {
     url: 'https://api.propublica.org/congress/v1/'+request.body.year+'/senate/members.json',
@@ -43,28 +40,29 @@ app.post('/view', function(request, responsea, body){
       "X-API-Key": "wvz6nlmPtKUxSUTEDqeDaJpO1Wkv8jC6zpEQZups"
     }
   }
+  if (request.body.sh == "1") {
+
+    apirequest.get(options2, function(error, response, body) {
+      console.error('error:', error); // Print the error if one occurred
+      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+      //console.log('body:', body.results[0].members); // Print the HTML for the Google homepage.
+      responsea.status(200);
+      responsea.setHeader('Content-Type', 'text/html')
+      responsea.render('politicians',{feedback:body.results[0]});
+
+    });
+  }
+  else if(request.body.sh == "0") {
+
   apirequest.get(options, function(error, response, body) {
     console.error('error:', error); // Print the error if one occurred
     console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
     //console.log('body:', body.results[0].members); // Print the HTML for the Google homepage.
-    politicians[0] = (body.results[0]);
-  });
-  apirequest.get(options2, function(error, response, body) {
-    console.error('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    //console.log('body:', body.results[0].members); // Print the HTML for the Google homepage.
-    politicians[1] = (body.results[0]);
-  });
-if (request.body.sh == "1") {
-  responsea.status(200);
-  responsea.setHeader('Content-Type', 'text/html')
-  responsea.render('politicians',{feedback:politicians[1]});
-}
-if(request.body.sh == "0") {
-  responsea.status(200);
-  responsea.setHeader('Content-Type', 'text/html')
-  responsea.render('politicians',{feedback:politicians[0]});
-}
+    responsea.status(200);
+    responsea.setHeader('Content-Type', 'text/html')
+    responsea.render('politicians',{feedback:body.results[0]});
+  });}
+
 
 });
 
