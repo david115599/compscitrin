@@ -13,11 +13,11 @@
 <body>
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
   <form action="/view" method="post">
-    <select class="form-control" name="sh">
-      <option value="0">Senate</option>
-      <option value="1">House</option>
+    <select class="form-control" name="sh" id="corrup">
+      <option value="0" id="sen">Senate</option>
+      <option value="1" id="hou">House</option>
     </select>
-    <select class="form-control" name="year">
+    <select class="form-control" name="year" id = "years">
     <% for (var i =116; i >=102;  i-- ) { %>
       <option value= <%=i%> ><%=i%> </option>
     <% } %>
