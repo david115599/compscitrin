@@ -32,22 +32,22 @@ $(document).ready(function() {
 });
 
 
-$(document).ready(function() {
-  $("#corrup").click(function(event) {
-    var val = $("#corrup").attr(value);
-    if (val == 0) {
-      var content =" ";
-      for (var i =116; i >=102;  i-- ) {
-        content+=  '<option value= '+i+' >'+i+' </option>'
-      }
-      $('#years').html(content);
+const selectElement = document.querySelector('#corrup');
+
+selectElement.addEventListener('change', (event) => {
+  var val = $("#corrup").attr("value");
+  if (val == 0) {
+    var content =" ";
+    for (var i =116; i >=80;  i-- ) {
+      content+=  '<option value= '+i+' >'+i+' </option>'
     }
-    else {
-      var content =" ";
-      for (var i =116; i >=89;  i-- ) {
-        content+=  '<option value= '+i+' >'+i+' </option>'
-      }
-      $('#years').html(content);
+    $('#years').html(content);
+  }
+  else {
+    var content =" ";
+    for (var i =116; i >=102;  i-- ) {
+      content+=  '<option value= '+i+' >'+i+' </option>'
     }
-  });
+    $('#years').html(content);
+  }
 });
