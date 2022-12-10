@@ -5,7 +5,7 @@
   "main": "walkingskeleton.js",
   "dependencies": {
     "ejs": "^2.7.4",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "fs": "0.0.1-security",
     "serve-favicon": "^2.5.0"
   },
